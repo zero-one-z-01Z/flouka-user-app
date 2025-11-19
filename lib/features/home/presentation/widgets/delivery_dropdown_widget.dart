@@ -13,10 +13,10 @@ class DeliveryDropdownWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(Icons.arrow_drop_down, color: AppColor.primaryColor),
+        SvgWidget(svg: Images.location, height: 4.h, width: 4.h),
         SizedBox(width: 4.w),
         Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               LanguageProvider.translate("home", "deliver_to"),
@@ -29,7 +29,7 @@ class DeliveryDropdownWidget extends StatelessWidget {
           ],
         ),
         SizedBox(width: 2.w),
-        SvgWidget(svg: Images.location, height: 4.h, width: 4.h),
+        Icon(Icons.arrow_drop_down, color: AppColor.primaryColor),
       ],
     );
   }
