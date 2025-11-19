@@ -3,6 +3,8 @@ import 'package:flouka/core/widgets/svg_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import '../widgets/delivery_dropdown_widget.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -23,6 +25,8 @@ class HomePage extends StatelessWidget {
                 SvgWidget(svg: Images.cart, onTap: () {}),
                 SizedBox(width: 4.w),
                 SvgWidget(svg: Images.search, onTap: () {}),
+                const Spacer(),
+                const DeliveryDropdownWidget(),
               ],
             ),
           ],
