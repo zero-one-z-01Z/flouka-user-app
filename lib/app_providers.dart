@@ -1,5 +1,6 @@
 import 'package:flouka/features/banners/presentation/provider/banners_provider.dart';
 import 'package:flouka/features/categories/presentation/providers/categories_provider.dart';
+import 'package:flouka/features/navbar/presentation/provider/nav_provider.dart';
 import 'package:flouka/injection_container.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -20,6 +21,7 @@ class AppProviders extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => BannersProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => CategoryProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => StoresProvider()),
+        ChangeNotifierProvider(create: (_) => NavBarProvider()),
       ],
       child: child,
     );
