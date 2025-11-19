@@ -1,3 +1,5 @@
+import 'package:flouka/features/categories/data/repositories/category_repo_impl.dart';
+import 'package:flouka/features/categories/domain/usecases/category_usecase.dart';
 import 'package:get_it/get_it.dart';
 
 // import 'package:gifts/settings/data/datasources/remote.dart';
@@ -10,6 +12,8 @@ import 'features/banners/data/datasource/remote.dart';
 import 'features/banners/data/repositories/banners_repo_impl.dart';
 import 'features/banners/domain/repositories/banner_repository.dart';
 import 'features/banners/domain/usecases/banners_usecases.dart';
+import 'features/categories/data/datasource/remote.dart';
+import 'features/categories/domain/repositories/category_repo.dart';
 import 'features/products/data/repos/product_repo_impl.dart';
 import 'features/products/domain/user_case/product_use_case.dart';
 
@@ -70,12 +74,12 @@ Future<void> initializeDependencies() async {
   // sl.registerSingleton<SettingsRepo>(SettingsRepoImpl(sl.get()));
   // sl.registerSingleton<SettingsUseCases>(SettingsUseCases(sl.get()));
 
-  // //categories
-  // sl.registerSingleton<CategoryRemoteDataSource>(
-  //   CategoryRemoteDataSource(sl.get()),
-  // );
-  // sl.registerSingleton<CategoryRepo>(CategoryRepoImpl(sl.get()));
-  // sl.registerSingleton<CategoryUsecase>(CategoryUsecase(sl.get()));
+  //categories
+  sl.registerSingleton<CategoryRemoteDataSource>(
+    CategoryRemoteDataSource(sl.get()),
+  );
+  sl.registerSingleton<CategoryRepo>(CategoryRepoImpl(sl.get()));
+  sl.registerSingleton<CategoryUsecase>(CategoryUsecase(sl.get()));
 
   // // market auth
   // sl.registerSingleton<MarketAuthRemoteDataSource>(

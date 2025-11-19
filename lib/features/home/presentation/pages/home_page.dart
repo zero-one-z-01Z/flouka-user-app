@@ -1,3 +1,4 @@
+import 'package:flouka/features/categories/presentation/widgets/categories_home_explore.dart';
 import 'package:flouka/features/home/presentation/widgets/far_away_container_widget.dart';
 import 'package:flouka/features/home/presentation/widgets/home_appbar_widget.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ class HomePage extends StatelessWidget {
           HomeAppbarWidget(),
           FarAwayContainerWidget(),
           CarouselSliderWidget(),
+          CategoriesHomeExplore(),
         ],
       ),
     );

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/helper_function/prefs.dart';
 import '../../../core/helper_function/helper_function.dart';
+import '../../categories/presentation/providers/categories_provider.dart';
 
 class SplashProvider extends ChangeNotifier {
   void startApp() async {
@@ -15,6 +16,10 @@ class SplashProvider extends ChangeNotifier {
         Constants.globalContext(),
         listen: false,
       ).getBanners(),
+      Provider.of<CategoryProvider>(
+        Constants.globalContext(),
+        listen: false,
+      ).getCategories(),
     ]);
 
     bool isFirstTime = !(sharedPreferences.getBool('onBoarding') ?? false);

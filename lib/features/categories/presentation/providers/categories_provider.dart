@@ -1,7 +1,4 @@
-import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import '../../../../core/dialog/snack_bar.dart';
 import '../../domain/entity/category_entity.dart';
 import '../../domain/usecases/category_usecase.dart';
 
@@ -25,22 +22,33 @@ class CategoryProvider extends ChangeNotifier {
     _error = null;
     notifyListeners();
 
-    Either<DioException, List<CategoryEntity>> result = await categoryUseCases
-        .getCategories();
+    // Fake categories instead of API call
+    _categories = [
+      CategoryEntity(
+        id: 1,
+        image: 'https://placehold.co/600x400/000000/FFFFFF/png',
+        name: 'category_1',
+      ),
+      CategoryEntity(
+        id: 2,
+        image: 'https://placehold.co/600x400/FFFFFF/000000/png',
+        name: 'category_2',
+      ),
+      CategoryEntity(
+        id: 3,
+        image: 'https://placehold.co/600x400/0000FF/FFFFFF/png',
+        name: 'category_3',
+      ),
+      CategoryEntity(
+        id: 4,
+        image: 'https://placehold.co/600x400/FFFF00/000000/png',
+        name: 'category_4',
+      ),
+    ];
 
-    result.fold(
-      (failure) {
-        _error = failure.message;
-        _categories = [];
-        showToast(_error ?? "Error loading categories");
-      },
-      (data) {
-        _categories = data;
-        if (_categories.isNotEmpty && _selectedCategory == null) {
-          _selectedCategory = null; // default = show all
-        }
-      },
-    );
+    if (_categories.isNotEmpty && _selectedCategory == null) {
+      _selectedCategory = null; // default = show all
+    }
 
     _isLoading = false;
     notifyListeners();
