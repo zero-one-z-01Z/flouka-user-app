@@ -5,6 +5,7 @@ import 'package:flouka/features/home/presentation/widgets/home_appbar_widget.dar
 import 'package:flouka/features/products/presentation/widgets/filter_products.dart';
 import 'package:flouka/features/products/presentation/widgets/filtered_products_home_section.dart';
 import 'package:flouka/features/products/presentation/widgets/hot_deals_home_section.dart';
+import 'package:flouka/features/stores/presentation/widgets/stores_home_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flouka/features/banners/presentation/widgets/carousel_slider_widget.dart';
 import 'package:sizer/sizer.dart';
@@ -28,6 +29,7 @@ class HomePage extends StatelessWidget {
             const FilterProductsWidget(),
             const FilteredProductsHomeSection(),
             const HotDealsHomeSection(),
+            const StoresHomeSection(),
             SizedBox(height: 10.h),
           ],
         ),
