@@ -20,6 +20,10 @@ class SplashProvider extends ChangeNotifier {
         Constants.globalContext(),
         listen: false,
       ).getCategories(),
+      Provider.of<CategoryProvider>(
+        Constants.globalContext(),
+        listen: false,
+      ).getPopularCategories(),
     ]);
 
     bool isFirstTime = !(sharedPreferences.getBool('onBoarding') ?? false);
