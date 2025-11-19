@@ -22,9 +22,9 @@ class _FilterProductsWidgetState extends State<FilterProductsWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
+      padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
       child: SizedBox(
-        height: 10.h,
+        height: 2.h,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: _filters.length,
@@ -39,7 +39,7 @@ class _FilterProductsWidgetState extends State<FilterProductsWidget> {
                 });
               },
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 1),
                 child: Text(
                   _filters[index],
                   style: TextStyle(
