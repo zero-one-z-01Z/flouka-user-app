@@ -32,7 +32,7 @@ class LoadingAnimationWidget extends StatelessWidget {
         SizedBox(height: 5.h),
         Text(
           LanguageProvider.translate("global", "loading"),
-          style: AppStyles.style15Normal,
+          style: TextStyleClass.normalStyle(),
         ),
       ],
     );

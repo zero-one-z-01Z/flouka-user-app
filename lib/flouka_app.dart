@@ -22,7 +22,7 @@ class Syantkom extends StatelessWidget {
             return AnnotatedRegion(
               value: barColor(),
               child: MaterialApp(
-                title: 'syantkom',
+                title: 'flouka',
                 debugShowCheckedModeBanner: false,
                 navigatorObservers: [routeObserver],
                 navigatorKey: Constants.navState,

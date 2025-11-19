@@ -280,7 +280,7 @@ class _AddVideoPageState extends State<AddVideoPage> {
                         SizedBox(width: 2.w),
                         Text(
                           '$minute:00 / ${convertSecToMin(sec)}',
-                          style: AppStyles.style10Normal.copyWith(
+                          style: TextStyleClass.normalStyle().copyWith(
                             color: Colors.white,
                           ),
                         ),
@@ -344,7 +344,9 @@ class _AddVideoPageState extends State<AddVideoPage> {
                                   width: 20.w,
                                   height: 4.5.h,
                                   color: Colors.white,
-                                  textStyle: AppStyles.smallStyle(),
+                                  textStyle: TextStyleClass.normalStyle().copyWith(
+                                    color: Colors.black,
+                                  ),
                                   borderRadius: 25,
                                 ),
                               const Spacer(),

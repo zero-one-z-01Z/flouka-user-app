@@ -85,7 +85,6 @@ flutter:
     - assets/images/settings/
     - assets/images/test/
     - assets/images/wallet/
-    - assets/fonts/
     - assets/languages/
   # fonts:
   #   - family: Lato

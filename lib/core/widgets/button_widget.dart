@@ -75,10 +75,9 @@ class ButtonWidget extends StatelessWidget {
                 LanguageProvider.translate("buttons", text),
                 style:
                     textStyle ??
-                    AppStyles.style10Normal.copyWith(
+                    TextStyleClass.normalStyle(
                       color: Colors.white,
-                      fontSize: 18.sp,
-                    ),
+                    ).copyWith(fontSize: 18.sp),
               ),
               if (isSpaceBetween == true) const SizedBox(),
               if (widgetAfterText) widget ?? const SizedBox(),
@@ -136,7 +135,7 @@ class BorderButtonWidget extends StatelessWidget {
                 LanguageProvider.translate("buttons", text),
                 style:
                     textStyle ??
-                    AppStyles.textButtonStyle(color: color ?? Colors.white),
+                    TextStyleClass.normalStyle(color: color ?? Colors.white),
               ),
               if (widgetAfterText && widget != null) SizedBox(width: 3.w),
               if (widgetAfterText) widget ?? const SizedBox(),

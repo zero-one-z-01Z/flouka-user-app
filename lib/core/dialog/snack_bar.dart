@@ -26,14 +26,12 @@ void showToast(String text, {Color? color, String? title}) {
           "\n----------------------------------------------\n",
         ),
         contentType: ContentType.warning,
-        messageTextStyle: AppStyles.normalBoldStyle(
-          fontSize: Constants.isTablet ? 30 : 15.sp,
+        messageTextStyle: TextStyleClass.normalStyle(
           color: Colors.white,
-        ),
-        titleTextStyle: AppStyles.normalBoldStyle(
-          fontSize: Constants.isTablet ? 40 : 13.sp,
+        ).copyWith(fontSize: Constants.isTablet ? 30 : 15.sp),
+        titleTextStyle: TextStyleClass.normalStyle(
           color: Colors.white,
-        ),
+        ).copyWith(fontSize: Constants.isTablet ? 40 : 13.sp),
         color: color ?? AppColor.primaryColor,
         inMaterialBanner: true,
       ),

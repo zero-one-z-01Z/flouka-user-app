@@ -38,7 +38,7 @@ class LanguageProvider extends ChangeNotifier {
   Future fetchLocale() async {
     var prefs = await SharedPreferences.getInstance();
     String? language = prefs.getString('language_code');
-    _appLocale = Locale(language ?? "ar");
+    _appLocale = Locale(language ?? "en");
     notifyListeners();
   }
 

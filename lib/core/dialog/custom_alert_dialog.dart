@@ -55,12 +55,12 @@ void customAlertDialog({
                 children: [
                   Text(
                     LanguageProvider.translate('warning', title),
-                    style: AppStyles.style18Normal,
+                    style: TextStyleClass.normalStyle(),
                   ),
                   SizedBox(height: 0.5.h),
                   Text(
                     LanguageProvider.translate('warning', content),
-                    style: AppStyles.style16Normal
+                    style: TextStyleClass.normalStyle()
                         .copyWith(color: desColor ?? const Color(0xff656363))
                         .copyWith(height: 1.5),
                     textAlign: TextAlign.center,
@@ -83,7 +83,7 @@ void customAlertDialog({
                               ),
                               child: Text(
                                 LanguageProvider.translate('buttons', confirm),
-                                style: AppStyles.style16Normal.copyWith(
+                                style: TextStyleClass.normalStyle().copyWith(
                                   color: confirmTextColor ?? Colors.white,
                                 ),
                                 textAlign: TextAlign.center,
@@ -106,7 +106,7 @@ void customAlertDialog({
                             ),
                             child: Text(
                               LanguageProvider.translate('buttons', cancel),
-                              style: AppStyles.style16Normal.copyWith(
+                              style: TextStyleClass.normalStyle().copyWith(
                                 color: cancelTextColor ?? Colors.white,
                               ),
                               textAlign: TextAlign.center,

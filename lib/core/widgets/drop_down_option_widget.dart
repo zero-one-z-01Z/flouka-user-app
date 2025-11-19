@@ -70,7 +70,7 @@ class _DropDownOptionWidgetState extends State<DropDownOptionWidget> {
                   Expanded(
                     child: Text(
                       dropDownClass.displayedOptionName(data),
-                      style: AppStyles.style15Normal,
+                      style: TextStyleClass.normalStyle(),
                     ),
                   ),
                 ],
