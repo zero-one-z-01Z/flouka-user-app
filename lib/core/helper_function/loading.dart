@@ -1,7 +1,7 @@
+import 'package:flouka/core/constants/app_lotties.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:sizer/sizer.dart';
-import '../constants/app_lotties.dart';
 import '../constants/constants.dart';
 
 bool isLoadingStart = false;
@@ -27,7 +27,7 @@ void loading() {
                 padding: EdgeInsets.all(2.w),
                 child: Center(
                   child: Lottie.asset(
-                    AppLotties.loading,
+                    Lotties.loading,
                     width: 30.w,
                     height: 30.w,
                     fit: BoxFit.fill,

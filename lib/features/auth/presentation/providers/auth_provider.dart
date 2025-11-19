@@ -153,7 +153,7 @@ class AuthProvider extends ChangeNotifier {
 
   List<TextFieldModel> registerTextFieldList = [
     TextFieldModel(
-      label: LanguageProvider.translate("inputs", "Password"),
+      label: LanguageProvider.translate("inputs", "Number"),
       controller: TextEditingController(),
       textInputType: const TextInputType.numberWithOptions(),
       validator: (value) => validatePhone(value),
