@@ -11,6 +11,12 @@
   "global": {
   },
 
+  "auth": {
+    "Whatever you love, we have it.": "Whatever you love, we have it.",
+    "Already have an account?": "Already have an account?",
+    "Login": "Login"
+  },
+
   "empty": {
   },
 
@@ -38,10 +44,8 @@
     "today": "today"
   },
 
-  "auth": {
-  },
-
   "buttons": {
+    "Sign up": "Sign up",
     "next": "Next"
   },
 

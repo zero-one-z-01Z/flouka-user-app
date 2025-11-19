@@ -77,7 +77,7 @@ class ButtonWidget extends StatelessWidget {
                     textStyle ??
                     TextStyleClass.normalStyle(
                       color: Colors.white,
-                    ).copyWith(fontSize: 18.sp),
+                    ).copyWith(fontSize: 17.sp),
               ),
               if (isSpaceBetween == true) const SizedBox(),
               if (widgetAfterText) widget ?? const SizedBox(),

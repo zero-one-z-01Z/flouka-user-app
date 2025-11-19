@@ -7,6 +7,8 @@ import 'package:flouka/features/on_boarding/domain/entity/on_boarding_entity.dar
 import 'package:flouka/features/on_boarding/presentation/views/on_boarding_view.dart';
 import 'package:flutter/material.dart';
 
+import '../../../auth/presentation/views/login_or_register_view.dart';
+
 class OnBoardingProvider extends ChangeNotifier {
   void goToOnBoardingView() {
     navP(const OnBoardingView());
@@ -27,6 +29,7 @@ class OnBoardingProvider extends ChangeNotifier {
 
   void skipButtonPressed() {
     // navigation
+    navP(const LoginOrRegisterView());
     // sharedPreferences.setBool("onBoarding", true);
   }
 
@@ -42,7 +45,7 @@ class OnBoardingProvider extends ChangeNotifier {
     const OnBoardingEntity(
       title: "Irrelevant results again?",
       description: "on_boarding_2",
-      image: Images.onboardingImage1,
+      image: Images.onboardingImage2,
       backGroundImage: Images.greenCircle,
     ),
     const OnBoardingEntity(
