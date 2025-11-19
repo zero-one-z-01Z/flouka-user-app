@@ -8,9 +8,11 @@ class CustomTextWithUnderLineText extends StatelessWidget {
     super.key,
     required this.customText,
     required this.underLineText,
+    this.onTap,
   });
   final String customText;
   final String underLineText;
+  final VoidCallback? onTap;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -22,7 +24,7 @@ class CustomTextWithUnderLineText extends StatelessWidget {
           style: TextStyleClass.normalStyle(),
         ),
         TextButton(
-          onPressed: () {},
+          onPressed: onTap,
           child: Text(
             LanguageProvider.translate("auth", underLineText),
             style: TextStyleClass.normalStyle().copyWith(
