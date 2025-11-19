@@ -4,12 +4,17 @@ import '../../../../core/config/app_styles.dart';
 import '../../../language/presentation/provider/language_provider.dart';
 
 class CustomTextWithUnderLineText extends StatelessWidget {
-  const CustomTextWithUnderLineText({super.key, required this.customText, required this.underLineText});
+  const CustomTextWithUnderLineText({
+    super.key,
+    required this.customText,
+    required this.underLineText,
+  });
   final String customText;
   final String underLineText;
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(

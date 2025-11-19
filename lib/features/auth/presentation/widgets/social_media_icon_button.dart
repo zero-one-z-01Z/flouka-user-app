@@ -12,7 +12,7 @@ class SocialMediaIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
+      padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.2.h),
       margin: EdgeInsets.only(bottom: 2.h),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(32),
@@ -21,14 +21,14 @@ class SocialMediaIconButton extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SvgWidget(svg: Images.google, width: 5.w),
+          SvgWidget(svg: Images.google, width: 4.w),
           Text(
             LanguageProvider.translate("auth", "Continue with Google"),
             style: TextStyleClass.normalStyle().copyWith(
               fontWeight: FontWeight.w500,
             ),
           ),
-          SizedBox(width: 5.w),
+          SizedBox(width: 4.w),
         ],
       ),
     );
