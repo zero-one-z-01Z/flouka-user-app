@@ -33,14 +33,14 @@ class ConfirmPopUpWidget extends StatelessWidget {
         children: [
           Text(
             title ?? LanguageProvider.translate('popup', 'هل تريد تسجيل الخروج'),
-            style: AppStyles.style16Normal,
+            style: TextStyleClass.normalStyle(),
           ),
           SizedBox(height: 4.h),
           BorderButtonWidget(
             onTap: onConfirm ?? () {},
             text: LanguageProvider.translate('global', 'نعم'),
             width: 60.w,
-            textStyle: AppStyles.style16Normal,
+            textStyle: TextStyleClass.normalStyle(),
           ),
           SizedBox(height: 3.h),
 
@@ -50,7 +50,7 @@ class ConfirmPopUpWidget extends StatelessWidget {
             },
             width: 60.w,
             text: LanguageProvider.translate('global', 'لا'),
-            textStyle: AppStyles.style16Normal.copyWith(color: Colors.white),
+            textStyle: TextStyleClass.normalStyle().copyWith(color: Colors.white),
           ),
         ],
       ),

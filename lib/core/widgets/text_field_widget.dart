@@ -138,17 +138,17 @@ class TextFieldWidget extends StatelessWidget {
     return InputDecoration(
       counterText: counter ?? "",
       isDense: true,
-      counterStyle: AppStyles.style10Normal,
+      counterStyle: TextStyleClass.normalStyle().copyWith(fontSize: 10),
       hintText: hintText == null
           ? null
           : LanguageProvider.translate('inputs', hintText!),
       fillColor: color ?? Colors.white,
       filled: true,
-      hintStyle: AppStyles.style10Normal
+      hintStyle: TextStyleClass.normalStyle().copyWith(fontSize: 10)
           .copyWith(color: hintColor ?? Colors.grey[600], fontSize: 15.sp)
           .copyWith(height: 1.2.sp),
-      labelStyle: AppStyles.style10Normal.copyWith(color: const Color(0xff8F8C8C)),
-      floatingLabelStyle: AppStyles.style10Normal,
+      labelStyle: TextStyleClass.normalStyle().copyWith(color: const Color(0xff8F8C8C)),
+      floatingLabelStyle: TextStyleClass.normalStyle(),
       floatingLabelBehavior: isLabel
           ? FloatingLabelBehavior.always
           : FloatingLabelBehavior.never,
@@ -191,7 +191,7 @@ class TextFieldWidget extends StatelessWidget {
       ),
       hoverColor: Colors.grey,
       prefixIcon: prefix,
-      errorStyle: AppStyles.style15Normal.copyWith(color: Colors.red),
+      errorStyle: TextStyleClass.normalStyle().copyWith(color: Colors.red),
       contentPadding:
           contentPadding ??
           EdgeInsets.only(

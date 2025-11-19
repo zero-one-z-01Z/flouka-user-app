@@ -39,7 +39,7 @@ class EmptyWidget extends StatelessWidget {
         ),
         Text(
           LanguageProvider.translate("empty", title),
-          style: AppStyles.style15Normal,
+          style: TextStyleClass.normalStyle(),
           textAlign: TextAlign.center,
         ),
       ],

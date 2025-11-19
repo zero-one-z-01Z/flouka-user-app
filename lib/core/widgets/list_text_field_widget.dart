@@ -52,9 +52,8 @@ class ListTextFieldWidget extends StatelessWidget {
                     children: [
                       Text(
                         inputs[index].editTextString!,
-                        style: AppStyles.style20Normal.copyWith(
+                        style: TextStyleClass.normalStyle(
                           color: Colors.black,
-                          fontWeight: FontWeight.w400,
                         ),
                       ),
                       SizedBox(width: 1.w),
@@ -76,7 +75,7 @@ class ListTextFieldWidget extends StatelessWidget {
                         LanguageProvider.translate('inputs', inputs[index].label!),
                         style:
                             style ??
-                            AppStyles.style18Normal.copyWith(
+                            TextStyleClass.normalStyle(
                               color: textColor ?? Colors.black,
                             ),
                       ),
@@ -108,10 +107,7 @@ class ListTextFieldWidget extends StatelessWidget {
                         const SizedBox(width: 8),
                         Text(
                           "965+",
-                          style: AppStyles.style16Normal.copyWith(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: TextStyleClass.normalStyle(color: Colors.black),
                         ),
                         const SizedBox(width: 8),
                       ],

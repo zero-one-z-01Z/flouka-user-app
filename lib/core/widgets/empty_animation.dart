@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:sizer/sizer.dart';
-import '../config/app_styles.dart';
 import '../../features/language/presentation/provider/language_provider.dart';
+import '../config/app_styles.dart';
 
 class EmptyAnimation extends StatelessWidget {
   const EmptyAnimation({
@@ -26,7 +26,7 @@ class EmptyAnimation extends StatelessWidget {
         if (aboveText != null && aboveText!)
           Text(
             LanguageProvider.translate("global", title),
-            style: AppStyles.style18Normal.copyWith(
+            style: TextStyleClass.normalStyle().copyWith(
               fontWeight: FontWeight.bold,
             ),
             textAlign: TextAlign.center,
@@ -37,7 +37,7 @@ class EmptyAnimation extends StatelessWidget {
         if (aboveText == null)
           Text(
             LanguageProvider.translate("global", title),
-            style: AppStyles.style15Normal,
+            style: TextStyleClass.normalStyle(),
           ),
       ],
     );

@@ -74,7 +74,7 @@ class DropDownWidgetState extends State<DropDownWidget> {
                     child: Text(
                       dropDownClass.displayedName(),
                       maxLines: 1,
-                      style: AppStyles.style15Normal.copyWith(color: Colors.black),
+                      style: TextStyleClass.normalStyle(color: Colors.black),
                     ),
                   ),
                   const Spacer(),

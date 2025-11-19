@@ -58,7 +58,7 @@ class UploadMultiImageWidget extends StatelessWidget {
                       'global',
                       title ?? 'upload_image',
                     ).replaceAll('*count*', count.toString()),
-                    style: AppStyles.style16Normal.copyWith(
+                    style: TextStyleClass.normalStyle().copyWith(
                       color: AppColor.primaryColor,
                     ),
                   ),
@@ -138,7 +138,7 @@ class UploadMultiImageWidget extends StatelessWidget {
                 if (images.isNotEmpty)
                   Text(
                     LanguageProvider.translate('global', 'delete_image'),
-                    style: AppStyles.style16Normal.copyWith(
+                    style: TextStyleClass.normalStyle().copyWith(
                       color: const Color(0xff323131),
                     ),
                   ),

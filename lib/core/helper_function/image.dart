@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -20,7 +19,7 @@ Future<dynamic> chooseImage({bool video = false}) {
       child: CupertinoAlertDialog(
         title: Text(
           LanguageProvider.translate('inputs', 'pick'),
-          style: AppStyles.smallStyle(),
+          style: TextStyleClass.normalStyle(),
         ),
         actions: <CupertinoDialogAction>[
           CupertinoDialogAction(
@@ -71,7 +70,7 @@ Future<dynamic> chooseImage({bool video = false}) {
             // child: Text('cancel',s TextStyleClass),
             child: Text(
               LanguageProvider.translate('inputs', 'camera'),
-              style: AppStyles.smallStyle(),
+              style: TextStyleClass.normalStyle(),
             ),
           ),
           CupertinoDialogAction(
@@ -86,7 +85,7 @@ Future<dynamic> chooseImage({bool video = false}) {
             },
             child: Text(
               LanguageProvider.translate('inputs', 'photo'),
-              style: AppStyles.smallStyle(),
+              style: TextStyleClass.normalStyle(),
             ),
           ),
         ],
@@ -104,10 +103,7 @@ Future<dynamic> chooseImageMulti(context, {bool video = false}) {
       child: CupertinoAlertDialog(
         title: Text(
           LanguageProvider.translate('inputs', 'pick'),
-          style: AppStyles.style16Normal.copyWith(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
+          style: TextStyleClass.normalStyle(),
         ),
         actions: <CupertinoDialogAction>[
           CupertinoDialogAction(
@@ -126,10 +122,7 @@ Future<dynamic> chooseImageMulti(context, {bool video = false}) {
             // child: Text('cancel',s TextStyleClass.smallStyle()),
             child: Text(
               LanguageProvider.translate('inputs', 'camera'),
-              style: AppStyles.style16Normal.copyWith(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyleClass.normalStyle(),
             ),
           ),
           CupertinoDialogAction(
@@ -140,10 +133,7 @@ Future<dynamic> chooseImageMulti(context, {bool video = false}) {
             },
             child: Text(
               LanguageProvider.translate('inputs', 'photo'),
-              style: AppStyles.style16Normal.copyWith(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyleClass.normalStyle(),
             ),
           ),
         ],

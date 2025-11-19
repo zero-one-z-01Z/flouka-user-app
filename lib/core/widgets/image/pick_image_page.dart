@@ -376,7 +376,7 @@ class _AddImagePageState extends State<AddImagePage> {
                                   height: 4.5.h,
                                   color: Colors.white,
                                   textStyle:
-                                      AppStyles.smallStyle(
+                                      TextStyleClass.normalStyle().copyWith(
                                         color: Colors.black,
                                       ),
                                   borderRadius: 25,
