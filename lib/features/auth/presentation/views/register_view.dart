@@ -11,8 +11,8 @@ import '../../../../core/widgets/button_widget.dart';
 import '../widgets/login_social_media_list_widget.dart';
 import '../widgets/or_divider_widget.dart';
 
-class LoginView extends StatelessWidget {
-  const LoginView({super.key});
+class RegisterView extends StatelessWidget {
+  const RegisterView({super.key});
   @override
   Widget build(BuildContext context) {
     final AuthProvider authProvider = Provider.of(context);
@@ -20,35 +20,23 @@ class LoginView extends StatelessWidget {
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 4.w),
         child: Form(
-          key: authProvider.loginFormKey,
+          key: authProvider.registerFormKey,
           child: Column(
             children: [
               SizedBox(height: 5.h),
               Text(
-                LanguageProvider.translate("auth", "Login"),
+                LanguageProvider.translate("auth", "sign Up"),
                 style: TextStyleClass.smallStyle().copyWith(
                   fontWeight: FontWeight.bold,
                   fontSize: 15.sp,
                 ),
               ),
-              SizedBox(height: 6.h),
+              SizedBox(height: 8.h),
               Image.asset(Images.logo2, width: 40.w),
-              SizedBox(height: 3.h),
-              ListTextFieldWidget(inputs: authProvider.loginTextFieldList),
+              SizedBox(height: 8.h),
+              ListTextFieldWidget(inputs: authProvider.registerTextFieldList),
               SizedBox(height: 2.h),
-              ButtonWidget(onTap: () {}, text: "Login"),
-              SizedBox(height: 2.h),
-              Align(
-                alignment: AlignmentDirectional.centerStart,
-                child: Text(
-                  LanguageProvider.translate("auth", "Forgot password"),
-                  style: TextStyleClass.normalStyle().copyWith(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15.sp,
-                    decoration: TextDecoration.underline,
-                  ),
-                ),
-              ),
+              ButtonWidget(onTap: () {}, text: "Get started"),
               SizedBox(height: 2.h),
               const OrDividerWidget(),
               SizedBox(height: 3.h),
@@ -56,10 +44,10 @@ class LoginView extends StatelessWidget {
               Align(
                 alignment: AlignmentDirectional.centerStart,
                 child: CustomTextWithUnderLineText(
-                  customText: "New to Habitual?",
-                  underLineText: "Sign up",
+                  customText: "Already have an account?",
+                  underLineText: "Login",
                   onTap: () {
-                    authProvider.goToRegisterView();
+                    authProvider.goToLoginView();
                   },
                 ),
               ),

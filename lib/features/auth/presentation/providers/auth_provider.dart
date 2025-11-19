@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flouka/features/auth/presentation/views/login_view.dart'
     show LoginView;
+import 'package:flouka/features/auth/presentation/views/register_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../../../../core/dialog/confirm_dialog.dart';
@@ -26,7 +27,11 @@ class AuthProvider extends ChangeNotifier {
   AuthProvider(this.userUseCase);
 
   void goToLoginView() {
-    navPARU(const LoginView());
+    navPR(const LoginView());
+  }
+
+  void goToRegisterView() {
+    navPR(const RegisterView());
   }
 
   /// ----------- Login Logic -----------
@@ -146,7 +151,19 @@ class AuthProvider extends ChangeNotifier {
     ),
   ];
 
+  List<TextFieldModel> registerTextFieldList = [
+    TextFieldModel(
+      label: LanguageProvider.translate("inputs", "Password"),
+      controller: TextEditingController(),
+      textInputType: const TextInputType.numberWithOptions(),
+      validator: (value) => validatePhone(value),
+      key: "phone",
+    ),
+  ];
+
   final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
+
+  final GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
 
   Future<void> login() async {
     Map<String, dynamic> data = {};

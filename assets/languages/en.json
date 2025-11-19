@@ -15,7 +15,9 @@
     "Forgot password": "Forgot password",
     "New to Habitual?": "New to Habitual?",
     "Sign up": "Sign up",
+    
     "or": "or",
+    "sign Up": "sign Up",
     "Continue with Apple": "Continue with Apple",
     "Continue with Facebook": "Continue with Facebook",
     "Continue with Google": "Continue with Google",
@@ -59,6 +61,7 @@
   "buttons": {
     "Login": "Login",
     "Sign up": "Sign up",
+    "Get started": "Get started",
     "next": "Next"
   },
 

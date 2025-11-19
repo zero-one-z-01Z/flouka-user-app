@@ -14,6 +14,7 @@ class OnBoardingView extends StatelessWidget {
   Widget build(BuildContext context) {
     final onBoardingProvider = Provider.of<OnBoardingProvider>(context);
     return Scaffold(
+      // this stack is for logo and skip in the top of the screen
       body: Stack(
         children: [
           Column(
