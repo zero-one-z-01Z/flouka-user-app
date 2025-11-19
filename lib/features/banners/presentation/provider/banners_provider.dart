@@ -1,7 +1,4 @@
-import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import '../../../../core/dialog/snack_bar.dart';
 import '../../domain/entities/banner_entity.dart';
 import '../../domain/usecases/banners_usecases.dart';
 
@@ -13,17 +10,29 @@ class BannersProvider with ChangeNotifier {
   BannersProvider(this.bannersUseCase);
 
   Future<void> getBanners() async {
-    Map<String, dynamic> data = {};
     bannersList.clear();
     notifyListeners();
 
-    Either<DioException, List<BannersEntity>> response = await bannersUseCase
-        .getBanners(data);
+    // Fake data instead of API call
+    bannersList = [
+      const BannersEntity(
+        id: 1,
+        image: 'https://placehold.co/600x400/000000/FFFFFF/png',
+        link: null,
+      ),
+      const BannersEntity(
+        id: 2,
+        image: 'https://placehold.co/600x400/FFFFFF/000000/png',
+        link: null,
+      ),
+      const BannersEntity(
+        id: 3,
+        image: 'https://placehold.co/600x400/000000/FFFFFF/png',
+        link: null,
+      ),
+    ];
 
-    response.fold((l) => showToast(l.message ?? "Error loading banners"), (r) {
-      bannersList.addAll(r);
-      notifyListeners();
-    });
+    notifyListeners();
   }
 
   void changeIndex(int index) {

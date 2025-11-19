@@ -20,42 +20,45 @@ class CarouselSliderWidget extends StatelessWidget {
       return const Center(child: LoadingWidget());
     }
 
-    return Column(
-      children: [
-        SizedBox(
-          width: 90.w,
-          height: 15.h,
-          child: CarouselSlider(
-            items: bannerProvider.bannersList.map((item) {
-              return InkWell(
-                onTap: () {
-                  if (item.link != null) {
-                    launchLink(item.link!);
-                  }
-                },
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: CachedNetworkImage(
-                    imageUrl: item.image,
-                    fit: BoxFit.cover,
-                    width: double.infinity,
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 1.h),
+      child: Column(
+        children: [
+          SizedBox(
+            width: 90.w,
+            height: 15.h,
+            child: CarouselSlider(
+              items: bannerProvider.bannersList.map((item) {
+                return InkWell(
+                  onTap: () {
+                    if (item.link != null) {
+                      launchLink(item.link!);
+                    }
+                  },
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: CachedNetworkImage(
+                      imageUrl: item.image,
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                    ),
                   ),
-                ),
-              );
-            }).toList(),
-            options: CarouselOptions(
-              height: 200,
-              viewportFraction: 1.0,
-              enlargeCenterPage: false,
-              autoPlay: true,
-              onPageChanged: (index, reason) {
-                bannerProvider.changeIndex(index);
-              },
+                );
+              }).toList(),
+              options: CarouselOptions(
+                height: 200,
+                viewportFraction: 1.0,
+                enlargeCenterPage: false,
+                autoPlay: true,
+                onPageChanged: (index, reason) {
+                  bannerProvider.changeIndex(index);
+                },
+              ),
             ),
           ),
-        ),
-        const SizedBox(height: 8),
-      ],
+          const SizedBox(height: 8),
+        ],
+      ),
     );
   }
 }
