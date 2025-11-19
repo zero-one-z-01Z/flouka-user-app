@@ -1,5 +1,5 @@
-import 'package:flouka/core/constants/assets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/assetsasdasd'
 
 
 class LogoWidget extends StatelessWidget {
