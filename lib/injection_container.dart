@@ -14,8 +14,6 @@ import 'features/banners/domain/repositories/banner_repository.dart';
 import 'features/banners/domain/usecases/banners_usecases.dart';
 import 'features/categories/data/datasource/remote.dart';
 import 'features/categories/domain/repositories/category_repo.dart';
-import 'features/products/data/repos/product_repo_impl.dart';
-import 'features/products/domain/user_case/product_use_case.dart';
 
 final sl = GetIt.instance;
 
