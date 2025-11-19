@@ -80,18 +80,27 @@
     "closed": "Closed"
   },
 
-  "validation": {
-    "incorrect_email": "Invalid email address",
-    "field": "This field is required",
-    "please_retype_password": "Please retype the password",
-    "first_name": "First name is required",
-    "last_name": "Last name is required",
-    "phone_required": "Phone number is required",
-    "empty_email": "Email is required",
-    "email_required": "Email is required",
-    "password_required": "Password is required",
-    "confirm_password": "Passwords do not match",
-    "phone_invalid": "Invalid phone number",
-    "english_phone": "Phone number must contain digits only"
+ "validation": {
+    "phone_required": "Phone number is required.",
+    "phone_invalid": "Invalid phone number.",
+    "english_phone": "Phone number must not contain English characters.",
+    "name_required": "Name is required.",
+    "empty_email": "Email address is required.",
+    "incorrect_email": "Please enter a valid email address.",
+    "otp_required": "OTP code is required.",
+    "password_required": "Password is required.",
+    "government": "Please select your city/government.",
+    "address": "Address is required.",
+    "area": "Area is required.",
+    "part": "Part is required.",
+    "first_name": "First name is required.",
+    "last_name": "Last name is required.",
+    "apartment": "Apartment number is required.",
+    "building": "Building number is required.",
+    "address_name": "Address name is required.",
+    "street_name": "Street name is required.",
+    "please_retype_password": "Please retype your password.",
+    "confirm_password": "Passwords do not match."
   }
+
 }
