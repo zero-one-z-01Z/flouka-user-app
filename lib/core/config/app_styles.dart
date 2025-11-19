@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-class TextStyleClass {
+abstract class TextStyleClass {
   static TextStyle headStyle({Color? color}) {
     return TextStyle(color: color ?? Colors.black, fontSize: 20.sp);
   }

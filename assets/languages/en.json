@@ -1,5 +1,12 @@
 {
   "on_boarding": {
+    "Welcome!": "Welcome!",
+    "Irrelevant results again?": "Irrelevant results again?",
+    "Your interests working with you.": "Your interests working with you.",
+    "on_boarding_1": "It’s a pleasure to meet you. We are excited that you’re here so let’s get started!",
+    "on_boarding_2": "No need to rummage through irrelevant items anymore, we got you covered. Habitual sends you relevant items based off of your habits and interests.",
+    "on_boarding_3": "Tell us what you like. No, really, it helps a bunch when we serve you some great products. You just keep doing your thing.",
+    "Skip": "Skip"
   },
   "global": {
   },
@@ -35,6 +42,7 @@
   },
 
   "buttons": {
+    "next": "Next"
   },
 
   "settings": {
