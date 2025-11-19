@@ -32,7 +32,13 @@ class _SplashViewState extends State<SplashView> {
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [LogoWidget(isWhite: true, fit: BoxFit.fitWidth, width: 40.w)],
+            children: [
+              LogoWidget(isWhite: true, fit: BoxFit.fitWidth, width: 40.w),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [Text("sas")],
+              ),
+            ],
           ),
         ),
       ),

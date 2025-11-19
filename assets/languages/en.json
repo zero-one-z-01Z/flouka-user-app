@@ -1,0 +1,72 @@
+{
+  "on_boarding": {
+  },
+  "global": {
+  },
+
+  "empty": {
+  },
+
+  "error": {
+    "max_distance": "You must allow a distance less than ",
+    "wallet": "Wallet balance is not enough, please recharge",
+    "error": "An error occurred, please try again",
+    "error_date": "There is an error in the date",
+    "error_time": "There is an error in the time",
+    "location": "There is an error with the location",
+    "open_gps": "Please enable location services to complete the process"
+  },
+
+  "inputs": {
+  },
+
+  "time": {
+    "ago": "ago",
+    "year": "year",
+    "month": "month",
+    "day": "day",
+    "hour": "hour",
+    "min": "minute",
+    "sec": "second",
+    "today": "today"
+  },
+
+  "auth": {
+  },
+
+  "buttons": {
+  },
+
+  "settings": {
+  },
+
+  "ticket": {
+    "ticket_number": "Ticket Number: *id*",
+    "ticket_category": "Category: *cat*",
+    "ticket_date": "Ticket Date: *date*",
+    "tickets": "Tickets",
+    "support_ticket": "Support Ticket",
+    "add_ticket": "Add Ticket",
+    "low": "Low Priority",
+    "medium": "Medium Priority",
+    "high": "High Priority",
+    "in_progress": "In Progress",
+    "wait_for_user": "Waiting for User",
+    "closed": "Closed"
+  },
+
+  "validation": {
+    "incorrect_email": "Invalid email address",
+    "field": "This field is required",
+    "please_retype_password": "Please retype the password",
+    "first_name": "First name is required",
+    "last_name": "Last name is required",
+    "phone_required": "Phone number is required",
+    "empty_email": "Email is required",
+    "email_required": "Email is required",
+    "password_required": "Password is required",
+    "confirm_password": "Passwords do not match",
+    "phone_invalid": "Invalid phone number",
+    "english_phone": "Phone number must contain digits only"
+  }
+}
