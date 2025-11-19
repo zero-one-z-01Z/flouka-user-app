@@ -1,4 +1,3 @@
-import 'package:flouka/core/config/app_color.dart';
 import 'package:flouka/core/config/app_styles.dart';
 import 'package:flouka/features/language/presentation/provider/language_provider.dart';
 import 'package:flutter/material.dart';
