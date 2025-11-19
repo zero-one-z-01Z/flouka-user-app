@@ -17,7 +17,7 @@ class OnBoardingItemWidget extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          height: 48.h,
+          height: 55.h,
           width: 100.w,
           child: Stack(
             children: [
@@ -25,18 +25,25 @@ class OnBoardingItemWidget extends StatelessWidget {
                 alignment: isBackGroundImageLeft
                     ? Alignment.topLeft
                     : Alignment.topRight,
-                child: Image.asset(onBoardingEntity.backGroundImage),
+                child: Image.asset(
+                  onBoardingEntity.backGroundImage,
+                  height: 45.h,
+                  fit: BoxFit.fill,
+                ),
               ),
               Positioned(
                 left: 0,
                 right: 0,
                 bottom: 0,
-                child: Image.asset(onBoardingEntity.image),
+                child: Transform.scale(
+                  scale: 1.2,
+                  child: Image.asset(onBoardingEntity.image),
+                ),
               ),
             ],
           ),
         ),
-        SizedBox(height: 8.h),
+        SizedBox(height: 3.h),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 8.w),
           child: Text(

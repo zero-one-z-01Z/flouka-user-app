@@ -15,7 +15,8 @@
     "Forgot password": "Forgot password",
     "New to Habitual?": "New to Habitual?",
     "Sign up": "Sign up",
-    
+    "resend_otp_after": "Resend code in",
+    "Enter the verification code sent to": "Enter the verification code sent to",
     "or": "or",
     "sign Up": "sign Up",
     "Continue with Apple": "Continue with Apple",
@@ -62,7 +63,8 @@
     "Login": "Login",
     "Sign up": "Sign up",
     "Get started": "Get started",
-    "next": "Next"
+    "next": "Next",
+    "Active": "Active"
   },
 
   "settings": {
