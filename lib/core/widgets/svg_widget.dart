@@ -6,37 +6,43 @@ class SvgWidget extends StatelessWidget {
   final Color? color;
   final String svg;
   final BoxFit? fit;
-  const SvgWidget(
-      {this.height,
-      this.width,
-      this.color,
-      required this.svg,
-      super.key,
-      this.fit});
+  final VoidCallback? onTap;
+  const SvgWidget({
+    this.height,
+    this.width,
+    this.color,
+    required this.svg,
+    super.key,
+    this.fit,
+    this.onTap,
+  });
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            SvgPicture.asset(
-              svg,
-              colorFilter: color == null
-                  ? null
-                  : ColorFilter.mode(color!, BlendMode.srcIn),
-              width: width,
-              height: height,
-              fit: fit ?? BoxFit.fitWidth,
-            ),
-          ],
-        ),
-      ],
+    return InkWell(
+      onTap: onTap ?? () {},
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SvgPicture.asset(
+                svg,
+                colorFilter: color == null
+                    ? null
+                    : ColorFilter.mode(color!, BlendMode.srcIn),
+                width: width,
+                height: height,
+                fit: fit ?? BoxFit.fitWidth,
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

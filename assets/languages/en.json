@@ -1,0 +1,29 @@
+{
+    "home":{
+        "deliver_to":"Deliver To",
+        "change":"Change",
+        "far_from_location":"Your seem Far away from this location",
+        "explore": "Explore",
+        "categories": "Popular Categories",
+        "see_all": "See All",
+        "for_you": "For You",
+        "hot_deals": "Hot Deals",
+        "retail_stores": "Retail Stores"
+    },
+
+    "navbar":{
+        "home": "Home",
+        "categories": "Categories",
+        "orders": "Orders",
+        "profile": "Profile",
+        "explore": "Explore"
+    },
+    "filters":{
+        "new": "New Gadget",
+        "best_selling": "Best Selling"
+    },
+
+    "buttons":{
+        "shop_now": "Shop Now"    
+    }
+}
