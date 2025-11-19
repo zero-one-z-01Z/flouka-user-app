@@ -1,5 +1,7 @@
 import 'dart:developer';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flouka/features/auth/presentation/views/login_view.dart'
+    show LoginView;
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../../../../core/dialog/confirm_dialog.dart';
@@ -24,7 +26,7 @@ class AuthProvider extends ChangeNotifier {
   AuthProvider(this.userUseCase);
 
   void goToLoginView() {
-    // navPARU(const UserLoginView());
+    navPARU(const LoginView());
   }
 
   /// ----------- Login Logic -----------
@@ -129,14 +131,14 @@ class AuthProvider extends ChangeNotifier {
 
   List<TextFieldModel> loginTextFieldList = [
     TextFieldModel(
-      hint: LanguageProvider.translate("inputs", "full_name"),
+      label: LanguageProvider.translate("inputs", "Number"),
       key: "name",
       controller: TextEditingController(),
       textInputType: TextInputType.name,
       validator: (value) => validatePhone(value),
     ),
     TextFieldModel(
-      hint: LanguageProvider.translate("inputs", "phone"),
+      label: LanguageProvider.translate("inputs", "Password"),
       controller: TextEditingController(),
       textInputType: const TextInputType.numberWithOptions(),
       validator: (value) => validatePassword(value),

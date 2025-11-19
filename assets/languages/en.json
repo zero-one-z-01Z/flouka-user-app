@@ -12,6 +12,11 @@
   },
 
   "auth": {
+    "Forgot password": "Forgot password",
+    "or": "or",
+    "Continue with Apple": "Continue with Apple",
+    "Continue with Facebook": "Continue with Facebook",
+    "Continue with Google": "Continue with Google",
     "Whatever you love, we have it.": "Whatever you love, we have it.",
     "Already have an account?": "Already have an account?",
     "Login": "Login",
@@ -34,6 +39,8 @@
   },
 
   "inputs": {
+    "Number":"Number",
+    "Password":"Password"
   },
 
   "time": {
@@ -48,6 +55,7 @@
   },
 
   "buttons": {
+    "Login": "Login",
     "Sign up": "Sign up",
     "next": "Next"
   },

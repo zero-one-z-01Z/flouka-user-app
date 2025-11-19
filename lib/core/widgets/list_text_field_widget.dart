@@ -17,8 +17,8 @@ class ListTextFieldWidget extends StatelessWidget {
     this.isGradient,
     this.textColor,
     this.errorStyleColor,
-    this.borderRadius,
-    this.borderWidth,
+    this.borderRadius = 20,
+    this.borderWidth = .7,
   });
   final List<TextFieldModel> inputs;
   final TextStyle? style;
@@ -52,9 +52,7 @@ class ListTextFieldWidget extends StatelessWidget {
                     children: [
                       Text(
                         inputs[index].editTextString!,
-                        style: TextStyleClass.normalStyle(
-                          color: Colors.black,
-                        ),
+                        style: TextStyleClass.normalStyle(color: Colors.black),
                       ),
                       SizedBox(width: 1.w),
                     ],
@@ -77,7 +75,7 @@ class ListTextFieldWidget extends StatelessWidget {
                             style ??
                             TextStyleClass.normalStyle(
                               color: textColor ?? Colors.black,
-                            ),
+                            ).copyWith(fontSize: 15.sp, fontWeight: FontWeight.bold),
                       ),
                   ],
                 );
@@ -97,23 +95,7 @@ class ListTextFieldWidget extends StatelessWidget {
             maxLines: inputs[index].max,
             validator: inputs[index].validator,
             obscureText: inputs[index].obscureText,
-            suffix: telInputs.contains(inputs[index].key)
-                ? Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const SizedBox(width: 8),
-                        Text(
-                          "965+",
-                          style: TextStyleClass.normalStyle(color: Colors.black),
-                        ),
-                        const SizedBox(width: 8),
-                      ],
-                    ),
-                  )
-                : inputs[index].suffix,
+            suffix: inputs[index].suffix,
             prefix: inputs[index].prefix,
             readOnly: inputs[index].readOnly,
             width: inputs[index].width,

@@ -1,6 +1,8 @@
 import 'package:flouka/core/constants/app_images.dart';
 import 'package:flouka/core/widgets/button_widget.dart';
+import 'package:flouka/features/auth/presentation/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../core/config/app_styles.dart';
 import '../../../language/presentation/provider/language_provider.dart';
@@ -10,6 +12,7 @@ class SignMeUpView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AuthProvider authProvider = Provider.of(context, listen: false);
     return Scaffold(
       body: Column(
         children: [
@@ -41,7 +44,13 @@ class SignMeUpView extends StatelessWidget {
             ),
           ),
           SizedBox(height: 4.h),
-          ButtonWidget(onTap: () {}, text: "Sign up", borderRadius: 16),
+          ButtonWidget(
+            onTap: () {
+              authProvider.goToLoginView();
+            },
+            text: "Sign up",
+            borderRadius: 16,
+          ),
           SizedBox(height: 2.h),
           Text(
             LanguageProvider.translate("auth", "Ask me again later"),

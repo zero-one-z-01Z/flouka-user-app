@@ -236,7 +236,8 @@ class TextFieldWidget extends StatelessWidget {
       borderRadius: BorderRadius.circular(borderRadius ?? 10),
       borderSide: BorderSide(
         color: color ?? const Color(0xff8F8C8C),
-        width: borderWidth ?? 1.sp,
+        width: borderWidth ?? 1
+        .sp,
       ),
     );
   }

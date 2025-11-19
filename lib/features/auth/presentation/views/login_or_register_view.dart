@@ -7,6 +7,7 @@ import 'package:sizer/sizer.dart';
 import '../../../../core/config/app_styles.dart';
 import '../../../language/presentation/provider/language_provider.dart';
 import '../widgets/auth_stack_images_widget.dart';
+import '../widgets/custom_text_with_under_line_login_text.dart';
 
 class LoginOrRegisterView extends StatelessWidget {
   const LoginOrRegisterView({super.key});
@@ -37,25 +38,9 @@ class LoginOrRegisterView extends StatelessWidget {
             borderRadius: 16,
           ),
           SizedBox(height: 2.h),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                LanguageProvider.translate("auth", "Already have an account?"),
-                style: TextStyleClass.normalStyle(),
-              ),
-              TextButton(
-                onPressed: () {},
-                child: Text(
-                  LanguageProvider.translate("auth", "Login"),
-                  style: TextStyleClass.normalStyle().copyWith(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    decoration: TextDecoration.underline,
-                  ),
-                ),
-              ),
-            ],
+          const CustomTextWithUnderLineText(
+            customText: 'Already have an account?',
+            underLineText: 'Login',
           ),
         ],
       ),
