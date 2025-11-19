@@ -1,6 +1,6 @@
+import 'package:flouka/core/constants/assets.dart';
 import 'package:flutter/material.dart';
 
-import '../constants/assets.gen.dart';
 
 class LogoWidget extends StatelessWidget {
   final double? width, height;
@@ -13,7 +13,7 @@ class LogoWidget extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         Image.asset(
-          Assets.images.logo.logo.path,
+          Images.floukaLogo,
           fit: fit ?? BoxFit.contain,
           width: width,
           height: height,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import 'package:flouka/core/constants/assets.gen.dart';
 import '../config/app_styles.dart';
 import '../../features/language/presentation/provider/language_provider.dart';
 import '../constants/constants.dart';
@@ -115,10 +114,6 @@ class ListTextFieldWidget extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(width: 8),
-                        Padding(
-                          padding: EdgeInsets.only(bottom: .5.h),
-                          child: Assets.images.auth.kuwitFlag.image(),
-                        ),
                       ],
                     ),
                   )
