@@ -75,6 +75,17 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/address/
+    - assets/images/auth/
+    - assets/images/categories/
+    - assets/images/checkout/
+    - assets/images/home/
+    - assets/images/navbar/
+    - assets/images/onboarding/
+    - assets/images/products/
+    - assets/images/settings/
+    - assets/images/test/
+    - assets/images/wallet/
     - assets/fonts/
   # fonts:
   #   - family: Lato
