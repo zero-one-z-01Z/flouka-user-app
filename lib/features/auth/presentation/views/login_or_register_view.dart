@@ -1,5 +1,7 @@
 import 'package:flouka/core/constants/app_images.dart';
+import 'package:flouka/core/helper_function/navigation.dart';
 import 'package:flouka/core/widgets/button_widget.dart';
+import 'package:flouka/features/auth/presentation/views/sign_me_up_view.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../core/config/app_styles.dart';
@@ -27,7 +29,13 @@ class LoginOrRegisterView extends StatelessWidget {
             ),
           ),
           SizedBox(height: 8.h),
-          ButtonWidget(onTap: () {}, text: "Sign up", borderRadius: 16),
+          ButtonWidget(
+            onTap: () {
+              navP(const SignMeUpView());
+            },
+            text: "Sign up",
+            borderRadius: 16,
+          ),
           SizedBox(height: 2.h),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
