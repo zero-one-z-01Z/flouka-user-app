@@ -1,9 +1,5 @@
-import 'dart:developer';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../../../core/helper_function/navigation.dart';
-import '../../../../core/models/text_field_model.dart';
 import '../../domain/user_case/product_use_case.dart';
 
 class AddProductProvider extends ChangeNotifier {
