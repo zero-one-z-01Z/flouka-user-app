@@ -1,0 +1,136 @@
+import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
+import 'package:flouka/core/constants/assets.gen.dart';
+import '../config/app_styles.dart';
+import '../../features/language/presentation/provider/language_provider.dart';
+import '../constants/constants.dart';
+import '../models/text_field_model.dart';
+import 'svg_widget.dart';
+import 'text_field_widget.dart';
+
+class ListTextFieldWidget extends StatelessWidget {
+  const ListTextFieldWidget({
+    super.key,
+    required this.inputs,
+    this.style,
+    this.color,
+    this.borderColor,
+    this.isGradient,
+    this.textColor,
+    this.errorStyleColor,
+    this.borderRadius,
+    this.borderWidth,
+  });
+  final List<TextFieldModel> inputs;
+  final TextStyle? style;
+  final bool? isGradient;
+  final double? borderRadius;
+  final double? borderWidth;
+  final Color? borderColor, errorStyleColor, textColor, color;
+
+  @override
+  Widget build(BuildContext context) {
+    List<String> telInputs = ['phone', 'whats'];
+    return SizedBox(
+      width: double.infinity,
+      child: Wrap(
+        alignment: WrapAlignment.spaceBetween,
+        children: List.generate(inputs.length, (index) {
+          TextFieldWidget textFieldWidget = TextFieldWidget(
+            borderRadius: borderRadius ?? 3.w,
+            borderWidth: borderWidth,
+            titleWidget: Builder(
+              builder: (ctx) {
+                if (inputs[index].titleWidgets != null) {
+                  return Row(children: [...inputs[index].titleWidgets!]);
+                }
+                if (inputs[index].title != null) {
+                  return inputs[index].title!;
+                }
+                if (inputs[index].editTextString != null) {
+                  return Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        inputs[index].editTextString!,
+                        style: AppStyles.style20Normal.copyWith(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      SizedBox(width: 1.w),
+                    ],
+                  );
+                }
+                return Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (inputs[index].image != null)
+                      SvgWidget(
+                        svg: inputs[index].image!,
+                        width: Constants.isTablet ? 5.w : null,
+                        color: textColor,
+                      ),
+                    if (inputs[index].image != null) SizedBox(width: 2.w),
+                    if (inputs[index].label != null)
+                      Text(
+                        LanguageProvider.translate('inputs', inputs[index].label!),
+                        style:
+                            style ??
+                            AppStyles.style18Normal.copyWith(
+                              color: textColor ?? Colors.black,
+                            ),
+                      ),
+                  ],
+                );
+              },
+            ),
+
+            color: color,
+            borderColor: borderColor,
+            isLabel: inputs[index].isLabel ?? false,
+            maxLength: telInputs.contains(inputs[index].key) ? 10 : null,
+            controller: inputs[index].controller,
+            keyboardType: inputs[index].textInputType,
+            next: inputs.length - 1 != index,
+            hintText: inputs[index].hint,
+            onTextTap: inputs[index].onTap,
+            minLines: inputs[index].min,
+            maxLines: inputs[index].max,
+            validator: inputs[index].validator,
+            obscureText: inputs[index].obscureText,
+            suffix: telInputs.contains(inputs[index].key)
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const SizedBox(width: 8),
+                        Text(
+                          "965+",
+                          style: AppStyles.style16Normal.copyWith(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Padding(
+                          padding: EdgeInsets.only(bottom: .5.h),
+                          child: Assets.images.auth.kuwitFlag.image(),
+                        ),
+                      ],
+                    ),
+                  )
+                : inputs[index].suffix,
+            prefix: inputs[index].prefix,
+            readOnly: inputs[index].readOnly,
+            width: inputs[index].width,
+            contentPadding: inputs[index].contentPadding,
+          );
+          return textFieldWidget;
+        }),
+      ),
+    );
+  }
+}

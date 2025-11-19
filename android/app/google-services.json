@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "284237387262",
+    "project_id": "flouka-8213d",
+    "storage_bucket": "flouka-8213d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:284237387262:android:77264886e4c35a9af71caf",
+        "android_client_info": {
+          "package_name": "com.zeroonez.flouka.user"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWvfvpWSLeXX_zfP4LOKbzKbSMZn8tJTA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
