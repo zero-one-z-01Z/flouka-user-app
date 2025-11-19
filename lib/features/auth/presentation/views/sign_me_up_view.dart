@@ -61,3 +61,10 @@ class SignMeUpView extends StatelessWidget {
     );
   }
 }
+
+  // Container(width: 20.w,height: 20.w,
+  //                           decoration:BoxDecoration(shape: BoxShape.circle,
+  //                               border: Border.all(color: AppColor.defaultColor,width: 2),
+  //                               image: DecorationImage(image: serviceProvider.showUserImage(),fit: BoxFit.cover)
+  //                           )
+  //                       ),
