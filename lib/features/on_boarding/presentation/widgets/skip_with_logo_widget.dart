@@ -16,20 +16,24 @@ class SkipWithLogoWidget extends StatelessWidget {
       listen: false,
     );
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 4.w),
+      padding: EdgeInsets.symmetric(horizontal: 8.w),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SizedBox(width: 10.w),
-          Image.asset(Images.logo),
+          Transform.scale(scale: 1.1, child: Image.asset(Images.logo)),
           InkWell(
             onTap: () {
               onBoardingProvider.skipButtonPressed();
             },
-            child: Text(
-              LanguageProvider.translate("on_boarding", "Skip"),
-              style: TextStyleClass.normalStyle(),
+            child: Padding(
+              padding: EdgeInsets.only(top: .6.h),
+              child: Text(
+                LanguageProvider.translate("on_boarding", "Skip"),
+                style: TextStyleClass.normalStyle(),
+              ),
             ),
           ),
         ],

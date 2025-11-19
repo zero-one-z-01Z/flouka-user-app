@@ -1,7 +1,6 @@
 import 'dart:developer';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flouka/features/auth/presentation/views/login_view.dart'
-    show LoginView;
+import 'package:flouka/features/auth/presentation/views/login_view.dart';
 import 'package:flouka/features/auth/presentation/views/register_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';

@@ -144,10 +144,13 @@ class TextFieldWidget extends StatelessWidget {
           : LanguageProvider.translate('inputs', hintText!),
       fillColor: color ?? Colors.white,
       filled: true,
-      hintStyle: TextStyleClass.normalStyle().copyWith(fontSize: 10)
+      hintStyle: TextStyleClass.normalStyle()
+          .copyWith(fontSize: 10)
           .copyWith(color: hintColor ?? Colors.grey[600], fontSize: 15.sp)
           .copyWith(height: 1.2.sp),
-      labelStyle: TextStyleClass.normalStyle().copyWith(color: const Color(0xff8F8C8C)),
+      labelStyle: TextStyleClass.normalStyle().copyWith(
+        color: const Color(0xff8F8C8C),
+      ),
       floatingLabelStyle: TextStyleClass.normalStyle(),
       floatingLabelBehavior: isLabel
           ? FloatingLabelBehavior.always
@@ -236,8 +239,7 @@ class TextFieldWidget extends StatelessWidget {
       borderRadius: BorderRadius.circular(borderRadius ?? 10),
       borderSide: BorderSide(
         color: color ?? const Color(0xff8F8C8C),
-        width: borderWidth ?? 1
-        .sp,
+        width: borderWidth ?? 1.sp,
       ),
     );
   }

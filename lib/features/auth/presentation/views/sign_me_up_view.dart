@@ -21,7 +21,7 @@ class SignMeUpView extends StatelessWidget {
             scale: 1.3,
             child: Image.asset(Images.bigLogo, width: 30.w),
           ),
-          SizedBox(height: 8.h),
+          SizedBox(height: 10.h),
           Image.asset(Images.signup2, width: 60.w),
           SizedBox(height: 4.h),
           Padding(

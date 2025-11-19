@@ -19,7 +19,7 @@ class AuthStackImagesWidget extends StatelessWidget {
             right: 0,
             bottom: -5.h,
             child: Transform.scale(
-              scale: 1.2,
+              scale: 1.3,
               child: Image.asset(Images.onboardingImage1, width: 50.w),
             ),
           ),

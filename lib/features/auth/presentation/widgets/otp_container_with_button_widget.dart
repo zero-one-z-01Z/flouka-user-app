@@ -5,6 +5,7 @@ import '../../../../core/config/app_color.dart';
 import '../../../../core/config/app_styles.dart';
 import '../../../../core/widgets/button_widget.dart';
 import '../../../language/presentation/provider/language_provider.dart';
+import '../providers/complete_info_provider.dart';
 import '../providers/otp_provider.dart';
 import 'custom_otp_field.dart';
 import 'row_text_widget.dart';
@@ -15,6 +16,10 @@ class OtpContainerWithButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final otpProvider = Provider.of<OtpProvider>(context);
+    final completeInfoProvider = Provider.of<CompleteInfoProvider>(
+      context,
+      listen: false,
+    );
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
       decoration: BoxDecoration(
@@ -57,6 +62,8 @@ class OtpContainerWithButton extends StatelessWidget {
               fontSize: 15.sp,
             ),
             onTap: () {
+              completeInfoProvider.goToCompleteInfoView();
+
               // otpProvider.checkCode();
             },
           ),

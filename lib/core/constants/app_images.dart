@@ -25,6 +25,7 @@ class Images {
   static const String facebook = 'assets/images/auth/facebook.svg';
   static const String signup = 'assets/images/auth/signup.png';
   static const String signup2 = 'assets/images/auth/signup2.png';
+  static const String preson = 'assets/images/auth/person.png';
 
   //Home
   static const String cart = 'assets/images/home/cart.svg';
