@@ -4,6 +4,7 @@ import 'package:flouka/core/constants/app_images.dart';
 import 'package:flouka/core/widgets/button_widget.dart';
 import 'package:flouka/core/widgets/list_text_field_widget.dart';
 import 'package:flouka/features/language/presentation/provider/language_provider.dart';
+import 'package:flouka/features/navbar/presentation/provider/nav_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -58,7 +59,9 @@ class CompleteInfoView extends StatelessWidget {
       ),
       bottomNavigationBar: Padding(
         padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 4.w),
-        child: ButtonWidget(height: 6.h, width: 80.w, onTap: () {}, text: "Sign Up"),
+        child: ButtonWidget(height: 6.h, width: 80.w, onTap: () {
+          Provider.of<NavBarProvider>(context,listen: false).goToNavView();
+        }, text: "Sign Up"),
       ),
     );
   }

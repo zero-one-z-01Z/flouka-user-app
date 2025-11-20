@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import '../../../../core/helper_function/prefs.dart';
 import '../../../core/helper_function/helper_function.dart';
 import '../../categories/presentation/providers/categories_provider.dart';
+import '../../on_boarding/presentation/providers/on_boarding_provider.dart';
 
 class SplashProvider extends ChangeNotifier {
   void startApp() async {
@@ -32,16 +33,16 @@ class SplashProvider extends ChangeNotifier {
     bool isFirstTime = !(sharedPreferences.getBool('onBoarding') ?? false);
     String? isLoggedIn = sharedPreferences.getString('token');
     if (isFirstTime) {
-      Provider.of<NavBarProvider>(
-        Constants.globalContext(),
-        listen: false,
-      ).goToNavView();
+      // Provider.of<NavBarProvider>(
+      //   Constants.globalContext(),
+      //   listen: false,
+      // ).goToNavView();
     // if (isFirstTime) {
-    //   Provider.of<OnBoardingProvider>(Constants.globalContext(), listen: false,).goToOnBoardingView();
+      Provider.of<OnBoardingProvider>(Constants.globalContext(), listen: false,).goToOnBoardingView();
 
     // }else{
       // Provider.of<NavBarProvider>(Constants.globalContext(), listen: false,).currentIndex = 0;
-      Provider.of<NavBarProvider>(Constants.globalContext(), listen: false,).goToNavView();
+      // Provider.of<NavBarProvider>(Constants.globalContext(), listen: false,).goToNavView();
     }
   }
 }
