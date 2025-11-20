@@ -36,6 +36,11 @@ class SplashProvider extends ChangeNotifier {
         Constants.globalContext(),
         listen: false,
       ).goToNavView();
+    // if (isFirstTime) {
+    //   Provider.of<OnBoardingProvider>(Constants.globalContext(), listen: false,).goToOnBoardingView();
+
+    // }else{
+      // Provider.of<NavBarProvider>(Constants.globalContext(), listen: false,).currentIndex = 0;
+      Provider.of<NavBarProvider>(Constants.globalContext(), listen: false,).goToNavView();
     }
   }
-}

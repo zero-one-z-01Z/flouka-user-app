@@ -1,4 +1,5 @@
 import 'package:flouka/core/constants/app_images.dart';
+import 'package:flouka/features/categories/presentation/view/categories_view.dart';
 import 'package:flouka/features/home/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import '../../../../../core/helper_function/navigation.dart';

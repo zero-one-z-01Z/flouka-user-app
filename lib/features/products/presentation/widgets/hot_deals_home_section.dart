@@ -6,7 +6,9 @@ import 'package:sizer/sizer.dart';
 import 'hot_deals_home_container_widget.dart';
 
 class HotDealsHomeSection extends StatelessWidget {
-  const HotDealsHomeSection({super.key});
+  const HotDealsHomeSection({super.key, this.showTitle = true});
+
+  final bool showTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -39,36 +41,38 @@ class HotDealsHomeSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 2.w),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Hot Deals',
-                  style: TextStyle(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    // todo: navigate to all hot deals
-                  },
-                  child: Text(
-                    LanguageProvider.translate('home', 'see_all'),
+          if (showTitle) ...[
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 2.w),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Hot Deals',
                     style: TextStyle(
-                      fontSize: 15.sp,
+                      fontSize: 16.sp,
                       fontWeight: FontWeight.w600,
-                      color: AppColor.tertiaryColor,
-                      decoration: TextDecoration.underline,
                     ),
                   ),
-                ),
-              ],
+                  TextButton(
+                    onPressed: () {
+                      // TODO: navigate to all hot deals
+                    },
+                    child: Text(
+                      LanguageProvider.translate('home', 'see_all'),
+                      style: TextStyle(
+                        fontSize: 15.sp,
+                        fontWeight: FontWeight.w600,
+                        color: AppColor.tertiaryColor,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          SizedBox(height: 1.h),
+            SizedBox(height: 1.h),
+          ],
           SizedBox(
             height: 24.h,
             child: ListView.builder(

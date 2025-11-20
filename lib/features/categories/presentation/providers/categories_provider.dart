@@ -46,11 +46,27 @@ class CategoryProvider extends ChangeNotifier {
         image: 'https://placehold.co/600x400/FFFF00/000000/png',
         name: 'category_4',
       ),
+      CategoryEntity(
+        id: 5,
+        image: 'https://placehold.co/600x400/FFFF011/000000/png',
+        name: 'category_5',
+      ),
+      CategoryEntity(
+        id: 6,
+        image: 'https://placehold.co/600x400/FFFF011/000000/png',
+        name: 'category_6',
+      ),
     ];
 
     if (_categories.isNotEmpty && _selectedCategory == null) {
       _selectedCategory = null; // default = show all
     }
+
+    //  Either<DioException, List<BannersEntity>> response = await bannersUseCase
+    //     .getBanners(data);
+
+    // response.fold((l) => showToast(l.message ?? "Error loading banners"), (r) {
+    //   bannersList.addAll(r);
 
     _isLoading = false;
     notifyListeners();

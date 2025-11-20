@@ -4,6 +4,9 @@ import 'package:flouka/features/address/presentation/providers/area_provider.dar
 import 'package:flouka/features/address/presentation/providers/map_provider.dart';
 import 'package:flouka/features/address/presentation/providers/parts_provider.dart';
 import 'package:flouka/features/auth/presentation/providers/auth_provider.dart';
+import 'package:flouka/features/categories/presentation/providers/subcategory_provider.dart';
+import 'package:flouka/features/categories/presentation/providers/filter_provider.dart';
+import 'package:flouka/features/products/presentation/providers/brand_provider.dart';
 import 'package:flouka/features/cart/presentation/providers/checkout_provider.dart';
 import 'package:flouka/features/on_boarding/presentation/providers/on_boarding_provider.dart';
 import 'package:flouka/features/banners/presentation/provider/banners_provider.dart';
@@ -35,6 +38,9 @@ class AppProviders extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AddressDetailsProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => BannersProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => CategoryProvider(sl.get())),
+        ChangeNotifierProvider(create: (_) => SubcategoryProvider()),
+        ChangeNotifierProvider(create: (_) => FilterProvider()),
+        ChangeNotifierProvider(create: (_) => BrandProvider()),
         ChangeNotifierProvider(create: (_) => StoresProvider()),
         ChangeNotifierProvider(create: (_) => NavBarProvider()),
         ChangeNotifierProvider(create: (_) => OnBoardingProvider()),
