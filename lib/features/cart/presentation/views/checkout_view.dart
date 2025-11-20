@@ -1,9 +1,8 @@
-import 'package:flouka/core/constants/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../core/config/app_styles.dart';
-import '../../../../core/widgets/button_widget.dart';
+import '../../../../core/widgets/draggable_image_button_widget.dart';
 import '../../../address/presentation/widgets/my_address_widget.dart';
 import '../../../language/presentation/provider/language_provider.dart';
 import '../../domain/entity/cart_entity.dart';
@@ -73,24 +72,7 @@ class CheckoutView extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 2.w),
-              child: Stack(
-                children: [
-                  ButtonWidget(
-                    onTap: () {},
-                    color: const Color(0xffB4B4B4),
-                    text: 'send_order',
-                    width: double.infinity,
-                  ),
-                  Positioned(
-                    left: 4.w,
-                    top: 1.2.h,
-                    child: Image.asset(Images.arrowRight),
-                  ),
-                ],
-              ),
-            ),
+            DraggableImageButton(onComplete: () {}),
           ],
         ),
       ),
