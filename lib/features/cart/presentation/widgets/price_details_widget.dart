@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sizer/sizer.dart';
 import '../../../language/presentation/provider/language_provider.dart';
 import '../providers/checkout_provider.dart';
 import '../providers/coupon_provider.dart';
@@ -22,17 +23,20 @@ class PriceDetailesList extends StatelessWidget {
         spacing: 4,
         children: [
           PaymentPriceWidget(
+            fontSize: 16.sp,
             title: LanguageProvider.translate("global", "price"),
             price: checkoutProvider.cartPrice.toStringAsFixed(2),
           ),
           Divider(color: Colors.grey.shade400, endIndent: 32, indent: 32),
           PaymentPriceWidget(
-            title: LanguageProvider.translate("global", "delivery"),
+            fontSize: 16.sp,
+            title: LanguageProvider.translate("global", "Shiping"),
             price: checkoutProvider.delivery.toStringAsFixed(2),
           ),
           if (couponProvider.couponEntity != null) ...[
             Divider(color: Colors.grey.shade400, endIndent: 32, indent: 32),
             PaymentPriceWidget(
+              fontSize: 16.sp,
               title: LanguageProvider.translate("global", "discount"),
               price: couponProvider
                   .calcCoupon(checkoutProvider.subTotalTax)!
@@ -41,11 +45,13 @@ class PriceDetailesList extends StatelessWidget {
           ],
           Divider(color: Colors.grey.shade400, endIndent: 32, indent: 32),
           PaymentPriceWidget(
-            title: LanguageProvider.translate("global", "tax"),
+            fontSize: 16.sp,
+            title: LanguageProvider.translate("global", "Taxes"),
             price: checkoutProvider.tax.toStringAsFixed(2),
           ),
           Divider(color: Colors.grey.shade400, endIndent: 32, indent: 32),
           PaymentPriceWidget(
+            fontSize: 15.99.sp,
             title: LanguageProvider.translate("global", "total"),
             price: checkoutProvider.total.toStringAsFixed(2),
             isGreen: true,

@@ -52,7 +52,18 @@
     "best_selling": "Best Selling"
   },
   "global": {
-    "total":"Total"
+    "checkout":"Checkout",
+    "total":"Total",
+    "Pay With":"Pay With",
+    "Deliver To":"Deliver To",
+    "Shipment":"Shipment",
+    "Debit/CreditCards":"Debit/CreditCards",
+    "Cach On Delivery":"Cach On Delivery",
+    "Wallet App":"Wallet App",
+    "Shiping":"Shiping",
+    "Taxes":"Taxes",
+    "of":"of",
+    "address":"Address"
   },
   "empty": {},
   "error": {

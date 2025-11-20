@@ -11,10 +11,12 @@ class PaymentPriceWidget extends StatelessWidget {
     required this.title,
     required this.price,
     this.isGreen = false,
+    this.fontSize,
   });
   final String title;
   final String price;
   final bool isGreen;
+  final double? fontSize;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -28,7 +30,7 @@ class PaymentPriceWidget extends StatelessWidget {
           ),
         ),
         const Spacer(),
-        PriceWidget(price: convertDataToNum(price) ?? 5555),
+        PriceWidget(price: convertDataToNum(price) ?? 5555, fontSize: fontSize),
         // Text(
         //   "$price",
         //   style: AppStyles.style15Normal.copyWith(

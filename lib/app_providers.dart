@@ -32,6 +32,7 @@ class AppProviders extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => language),
         ChangeNotifierProvider(create: (_) => SplashProvider()),
+        ChangeNotifierProvider(create: (_) => AddressDetailsProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => BannersProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => CategoryProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => StoresProvider()),
@@ -42,7 +43,6 @@ class AppProviders extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => CompleteInfoProvider()),
         ChangeNotifierProvider(create: (_) => CartProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => CouponProvider(sl.get())),
-        ChangeNotifierProvider(create: (_) => AddressDetailsProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => AddressProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => AreaProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => CityProvider(sl.get())),

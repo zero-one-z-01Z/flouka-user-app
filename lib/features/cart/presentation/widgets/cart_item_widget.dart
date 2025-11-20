@@ -55,7 +55,6 @@ class CartItemWidget extends StatelessWidget {
                             color: const Color(0xff333542),
                           ),
                         ),
-
                         Row(
                           spacing: 4,
                           mainAxisAlignment: MainAxisAlignment.start,

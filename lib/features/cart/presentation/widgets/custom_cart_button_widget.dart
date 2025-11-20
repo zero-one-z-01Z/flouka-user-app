@@ -1,13 +1,13 @@
-
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../../../core/config/app_color.dart';
 import '../../../../core/config/app_styles.dart';
 import '../../../../core/widgets/button_widget.dart';
 import '../../../../core/widgets/price_widget.dart';
 import '../../../language/presentation/provider/language_provider.dart';
 import '../providers/cart_provider.dart';
+import '../providers/checkout_provider.dart';
 
 class CustomCartButtonWidget extends StatelessWidget {
   const CustomCartButtonWidget({super.key, required this.cartProvider});
@@ -16,6 +16,7 @@ class CustomCartButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final CheckoutProvider checkoutProvider = Provider.of<CheckoutProvider>(context);
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
       decoration: const BoxDecoration(
@@ -37,7 +38,9 @@ class CustomCartButtonWidget extends StatelessWidget {
           ButtonWidget(
             width: 40.w,
             color: AppColor.primaryColor,
-            onTap: () {},
+            onTap: () {
+              checkoutProvider.goToPage();
+            },
             text: "CHECOUT",
           ),
         ],

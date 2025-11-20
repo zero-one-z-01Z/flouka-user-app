@@ -59,6 +59,7 @@ abstract class Images {
   static const String cash = 'assets/images/checkout/cash.svg';
   static const String visa = 'assets/images/checkout/visa.svg';
   static const String wallet = 'assets/images/checkout/wallet.svg';
+  static const String locationFilled = 'assets/images/checkout/location_filled.svg';
 
   //Wallet
   static const String arrowDown = 'assets/images/wallet/arrow_down.png';

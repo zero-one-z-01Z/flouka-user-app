@@ -1,3 +1,4 @@
+import 'package:flouka/core/config/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,10 +21,10 @@ class PaymentMthodItemWidget extends StatelessWidget {
         duration: const Duration(milliseconds: 300),
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(8),
+          color: const Color(0xffeffbff),
+          borderRadius: BorderRadius.circular(16),
           border: checkoutProvider.isPaymentMethodSelected(paymentMethodEntity)
-              ? Border.all(color: Colors.black, width: 1)
+              ? Border.all(color: AppColor.primaryColor, width: 1.2)
               : null,
         ),
         child: Row(

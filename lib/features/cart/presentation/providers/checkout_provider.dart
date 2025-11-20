@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 import 'package:flouka/core/constants/constants.dart';
 import 'package:flouka/core/dialog/new_success_dialog.dart';
 import 'package:flouka/core/models/text_field_model.dart';
-import 'package:flouka/features/address/presentation/providers/address_provider.dart';
 import 'package:flouka/features/cart/domain/entity/coupon_entity.dart';
 import 'package:flouka/features/cart/presentation/providers/coupon_provider.dart';
 import '../../../../core/dialog/snack_bar.dart';
@@ -28,9 +27,9 @@ class CheckoutProvider extends ChangeNotifier {
   final OrderUseCase orderUseCase;
   CheckoutProvider(this.orderUseCase);
 
-  late num tax;
+  late num tax = 15;
 
-  late num delivery;
+  late num delivery = 15;
 
   late num cartPrice;
 
@@ -39,25 +38,26 @@ class CheckoutProvider extends ChangeNotifier {
   CouponEntity? couponEntity;
 
   late num total;
-  NavBarProvider navBarProvider = Provider.of<NavBarProvider>(
-    Constants.globalContext(),
-    listen: false,
-  );
-  OrderProvider ordersProvider = Provider.of<OrderProvider>(
-    Constants.globalContext(),
-    listen: false,
-  );
-  AddressProvider addressProvider = Provider.of<AddressProvider>(
-    Constants.globalContext(),
-    listen: false,
-  );
-  final couponProvider = Provider.of<CouponProvider>(
-    Constants.globalContext(),
-    listen: false,
-  );
+
   Future createOrder() async {
+    NavBarProvider navBarProvider = Provider.of<NavBarProvider>(
+      Constants.globalContext(),
+      listen: false,
+    );
+    OrderProvider ordersProvider = Provider.of<OrderProvider>(
+      Constants.globalContext(),
+      listen: false,
+    );
+    // AddressProvider addressProvider = Provider.of<AddressProvider>(
+    //   Constants.globalContext(),
+    //   listen: false,
+    // );
+    final couponProvider = Provider.of<CouponProvider>(
+      Constants.globalContext(),
+      listen: false,
+    );
     Map<String, dynamic> dataToUse = {};
-    dataToUse['address_id'] = addressProvider.addressEntity?.id;
+    dataToUse['address_id'] = 1;
     dataToUse['total'] = total;
     dataToUse['sub_total'] = cartPrice;
     log(cartPrice.toString());
@@ -89,6 +89,10 @@ class CheckoutProvider extends ChangeNotifier {
   }
 
   void goToPage([Map<String, dynamic>? inputs]) async {
+    final couponProvider = Provider.of<CouponProvider>(
+      Constants.globalContext(),
+      listen: false,
+    );
     // delivery = settings.settingsEntity!.delivery;
     cartPrice = cart.caluclateTotal();
     // tax = (settings.settingsEntity!.tax / 100) * cartPrice;
@@ -112,17 +116,17 @@ class CheckoutProvider extends ChangeNotifier {
   List<PaymentMethodEntity> paymentMethods = [
     PaymentMethodEntity(
       image: Images.visa,
-      paymentMethod: "visa",
+      paymentMethod: "Debit/CreditCards",
       toAPI: "online",
     ),
     PaymentMethodEntity(
       image: Images.cash,
-      paymentMethod: "cache",
+      paymentMethod: "Cach On Delivery",
       toAPI: "cash",
     ),
     PaymentMethodEntity(
       image: Images.wallet,
-      paymentMethod: "wallet_app",
+      paymentMethod: "Wallet App",
       toAPI: "wallet",
     ),
   ];
