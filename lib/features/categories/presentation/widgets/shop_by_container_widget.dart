@@ -1,6 +1,8 @@
 import 'package:flouka/core/config/app_color.dart';
 import 'package:flouka/core/config/app_styles.dart';
+import 'package:flouka/core/helper_function/navigation.dart';
 import 'package:flouka/features/language/presentation/provider/language_provider.dart';
+import 'package:flouka/features/products/presentation/pages/shop_products_page.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -39,12 +41,18 @@ class ShopByContainerWidget extends StatelessWidget {
           ],
         ),
         const Spacer(),
-        Text(
-          LanguageProvider.translate('home', 'see_all'),
-          style: TextStyleClass.normalStyle().copyWith(
-            fontSize: 16.sp,
-            fontWeight: FontWeight.w500,
-            color: const Color(0xffAEB1C1),
+        InkWell(
+          onTap: () {
+            navP(const ShopProductsPage());
+          },
+          child: Text(
+            LanguageProvider.translate('home', 'see_all'),
+            style: TextStyleClass.normalStyle().copyWith(
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w500,
+              color: const Color(0xffAEB1C1),
+              decoration: TextDecoration.underline,
+            ),
           ),
         ),
       ],

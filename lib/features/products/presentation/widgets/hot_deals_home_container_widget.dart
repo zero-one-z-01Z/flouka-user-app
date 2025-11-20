@@ -13,6 +13,7 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
     required this.priceAfterOffer,
     required this.priceBeforeOffer,
     required this.rating,
+    this.imageHeight,
   });
 
   final String imageUrl;
@@ -20,6 +21,7 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
   final double priceAfterOffer;
   final double priceBeforeOffer;
   final double rating;
+  final double? imageHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -27,16 +29,16 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         Container(
-          margin: EdgeInsets.symmetric(horizontal: 2.w),
+          margin: EdgeInsets.symmetric(horizontal: 2.w).copyWith(bottom: 0.4.h),
           width: 40.w,
           decoration: BoxDecoration(
             color: AppColor.backgroundColor,
             borderRadius: BorderRadius.circular(12),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.3),
-                blurRadius: 2,
-                offset: const Offset(0, 2),
+                color: Colors.black.withOpacity(0.05),
+                blurRadius: 20,
+                offset: const Offset(0, 4),
               ),
             ],
           ),
@@ -50,7 +52,7 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
                   child: CachedNetworkImage(
                     imageUrl: imageUrl,
                     width: double.infinity,
-                    height: 10.h,
+                    height: imageHeight ?? 10.h,
                     fit: BoxFit.cover,
                   ),
                 ),
