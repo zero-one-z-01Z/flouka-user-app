@@ -32,6 +32,12 @@ class BannersProvider with ChangeNotifier {
       ),
     ];
 
+    //  Either<DioException, List<BannersEntity>> response = await bannersUseCase
+    //     .getBanners(data);
+
+    // response.fold((l) => showToast(l.message ?? "Error loading banners"), (r) {
+    //   bannersList.addAll(r);
+
     notifyListeners();
   }
 
