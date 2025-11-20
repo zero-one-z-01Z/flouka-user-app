@@ -63,6 +63,7 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<WalletRemoteDataSource>(WalletRemoteDataSource(sl.get()),);
   sl.registerSingleton<WalletRepo>(WalletRepoImpl(sl.get()));
   sl.registerSingleton<WalletUseCases>(WalletUseCases(sl.get()));
+  
 
   // tickets
   
