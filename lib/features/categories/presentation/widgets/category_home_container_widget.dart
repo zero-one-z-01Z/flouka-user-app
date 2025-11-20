@@ -1,21 +1,20 @@
 import 'package:flouka/core/config/app_color.dart';
 import 'package:flouka/core/config/app_styles.dart';
 import 'package:flouka/core/widgets/svg_widget.dart';
+import 'package:flouka/features/categories/domain/entity/category_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class CategoryHomeContainerWidget extends StatelessWidget {
   const CategoryHomeContainerWidget({
     super.key,
-    required this.imageUrl,
-    required this.categoryName,
     this.isSvg = false,
     this.textColor = Colors.black,
     this.fontWeight = FontWeight.w400,
+    required this.category,
   });
 
-  final String imageUrl;
-  final String categoryName;
+  final CategoryEntity category;
   final bool isSvg;
   final Color textColor;
   final FontWeight fontWeight;
@@ -38,13 +37,13 @@ class CategoryHomeContainerWidget extends StatelessWidget {
           clipBehavior: Clip.antiAlias,
           child: Center(
             child: isSvg
-                ? SvgWidget(svg: imageUrl, width: 8.w)
-                : Image.network(imageUrl, fit: BoxFit.contain),
+                ? SvgWidget(svg: category.image, width: 8.w)
+                : Image.network(category.image, fit: BoxFit.contain),
           ),
         ),
         SizedBox(height: 1.h),
         Text(
-          categoryName,
+          category.name,
           style: TextStyleClass.normalStyle().copyWith(
             fontSize: 14.sp,
             fontWeight: fontWeight,

@@ -1,7 +1,6 @@
 import 'package:flouka/core/constants/constants.dart';
 import 'package:flouka/features/banners/presentation/provider/banners_provider.dart';
 import 'package:flouka/features/navbar/presentation/provider/nav_provider.dart';
-import 'package:flouka/features/on_boarding/presentation/providers/on_boarding_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/helper_function/prefs.dart';
@@ -28,12 +27,11 @@ class SplashProvider extends ChangeNotifier {
 
     bool isFirstTime = !(sharedPreferences.getBool('onBoarding') ?? false);
     String? isLoggedIn = sharedPreferences.getString('token');
-    if (isFirstTime) {
-      Provider.of<OnBoardingProvider>(Constants.globalContext(), listen: false,).goToOnBoardingView();
+    // if (isFirstTime) {
+    //   Provider.of<OnBoardingProvider>(Constants.globalContext(), listen: false,).goToOnBoardingView();
 
-    }else{
-      Provider.of<NavBarProvider>(Constants.globalContext(), listen: false,).currentIndex = 0;
+    // }else{
+      // Provider.of<NavBarProvider>(Constants.globalContext(), listen: false,).currentIndex = 0;
       Provider.of<NavBarProvider>(Constants.globalContext(), listen: false,).goToNavView();
     }
   }
-}

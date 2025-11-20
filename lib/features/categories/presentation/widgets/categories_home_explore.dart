@@ -4,7 +4,6 @@ import 'package:flouka/features/language/presentation/provider/language_provider
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../domain/entity/category_entity.dart';
 import '../providers/categories_provider.dart';
 import 'category_home_container_widget.dart';
@@ -30,14 +29,18 @@ class CategoriesHomeExplore extends StatelessWidget {
             itemCount: categories.length + 1,
             itemBuilder: (context, index) {
               if (index == 0) {
+                final exploreCategory = CategoryEntity(
+                  id: 0,
+                  image: Images.explore,
+                  name: LanguageProvider.translate('home', 'explore'),
+                );
                 return Padding(
                   padding: EdgeInsets.zero,
                   child: CategoryHomeContainerWidget(
-                    imageUrl: Images.explore,
-                    categoryName: LanguageProvider.translate('home', 'explore'),
                     isSvg: true,
                     fontWeight: FontWeight.bold,
                     textColor: AppColor.primaryColor,
+                    category: exploreCategory,
                   ),
                 );
               }
@@ -46,10 +49,7 @@ class CategoriesHomeExplore extends StatelessWidget {
 
               return Padding(
                 padding: EdgeInsets.zero,
-                child: CategoryHomeContainerWidget(
-                  imageUrl: category.image,
-                  categoryName: category.name,
-                ),
+                child: CategoryHomeContainerWidget(category: category),
               );
             },
           );
