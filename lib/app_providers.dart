@@ -10,7 +10,6 @@ import 'features/auth/presentation/providers/complete_info_provider.dart';
 import 'features/auth/presentation/providers/otp_provider.dart';
 import 'features/language/presentation/provider/language_provider.dart';
 import 'features/splash/provider/splash_provider.dart';
-import 'injection_container.dart';
 import 'features/stores/presentation/providers/stores_provider.dart';
 
 class AppProviders extends StatelessWidget {

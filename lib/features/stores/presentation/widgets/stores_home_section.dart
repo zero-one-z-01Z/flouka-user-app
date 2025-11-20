@@ -34,7 +34,7 @@ class StoresHomeSection extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    // TODO: navigate to all stores
+                    // todo: navigate to all stores
                   },
                   child: Text(
                     LanguageProvider.translate('home', 'see_all'),

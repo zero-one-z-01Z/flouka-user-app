@@ -53,7 +53,7 @@ class HotDealsHomeSection extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    // TODO: navigate to all hot deals
+                    // todo: navigate to all hot deals
                   },
                   child: Text(
                     LanguageProvider.translate('home', 'see_all'),
