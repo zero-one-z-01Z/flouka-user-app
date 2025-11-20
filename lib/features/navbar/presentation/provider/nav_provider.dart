@@ -11,7 +11,7 @@ import '../views/nav_bar_view.dart';
 class NavBarProvider extends ChangeNotifier {
   int currentIndex = 0;
 
-  final List<Widget> body = const [HomePage(), SizedBox(), CartView(), SizedBox()];
+  final List<Widget> body = const [HomePage(), CategoriesView(), CartView(), SizedBox()];
 
   final List<BottomNaBarEntity> bottomNavigationBarItemEntity = [
     BottomNaBarEntity(

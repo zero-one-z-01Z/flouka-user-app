@@ -44,3 +44,4 @@ class SplashProvider extends ChangeNotifier {
       Provider.of<NavBarProvider>(Constants.globalContext(), listen: false,).goToNavView();
     }
   }
+}
