@@ -1,0 +1,105 @@
+import 'dart:async';
+import 'dart:developer';
+import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../../../../../core/constants/constants.dart';
+import '../../../../../../core/models/drop_down_class.dart';
+import '../../../language/presentation/provider/language_provider.dart';
+import '../../domain/entities/city_entity.dart';
+import '../../domain/usecase/city_usecase.dart';
+import 'area_provider.dart';
+
+class CityProvider extends ChangeNotifier implements DropDownClass<CityEntity> {
+  CityEntity? cityEntity;
+  CityEntity? getLatLngCityEntity;
+  List<CityEntity> cities = [];
+  final CityUseCases cityUseCases;
+  CityProvider(this.cityUseCases);
+
+  Map<dynamic, dynamic> validation() {
+    return {
+      'value': selected() == null,
+      "text": LanguageProvider.translate("validation", "select_city_first"),
+    };
+  }
+
+  void clear() {
+    cityEntity = null;
+    cities.clear();
+    notifyListeners();
+  }
+
+  Future getCities() async {
+    cities.clear();
+    Either<DioException, List<CityEntity>> value = await cityUseCases.getCities();
+    value.fold(
+      (l) async {
+        // showToast(l.message!);
+      },
+      (r) {
+        cities = r;
+        notifyListeners();
+      },
+    );
+  }
+
+  @override
+  String displayedName() {
+    return cityEntity?.name ?? LanguageProvider.translate('inputs', 'government');
+  }
+
+  @override
+  String displayedOptionName(CityEntity type) {
+    return type.name;
+  }
+
+  @override
+  Widget? displayedOptionWidget(CityEntity? type) {
+    return null;
+  }
+
+  @override
+  Widget? displayedWidget() {
+    return null;
+  }
+
+  @override
+  List<CityEntity> list() {
+    return cities;
+  }
+
+  @override
+  Future onTap(CityEntity? data) async {
+    cityEntity = data;
+    if (data != null) {
+      Provider.of<AreaProvider>(
+        Constants.globalContext(),
+        listen: false,
+      ).getArea(id: cityEntity!.id);
+    }
+    log(data!.id.toString());
+    notifyListeners();
+  }
+
+  @override
+  CityEntity? selected() {
+    return cityEntity;
+  }
+
+  @override
+  value() {
+    return cityEntity?.id;
+  }
+
+  @override
+  bool require() {
+    return true;
+  }
+
+  @override
+  String? titleName() {
+    return null;
+  }
+}

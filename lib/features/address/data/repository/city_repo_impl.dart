@@ -1,0 +1,24 @@
+import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
+import 'package:flouka/features/address/data/model/city_model.dart';
+import '../../domain/repository/city_repo.dart';
+import '../datasource/city_remote.dart';
+import '../model/area_model.dart';
+
+class CityRepoImpl implements CityRepo {
+  final CityRemoteDataSource cityRemoteDataSource;
+
+  CityRepoImpl(this.cityRemoteDataSource);
+
+  @override
+  Future<Either<DioException, List<CityModel>>> getCities() async {
+    return await cityRemoteDataSource.getCities();
+  }
+
+  @override
+  Future<Either<DioException, List<AreaModel>>> getArea(
+    Map<String, dynamic> data,
+  ) async {
+    return await cityRemoteDataSource.getArea(data);
+  }
+}

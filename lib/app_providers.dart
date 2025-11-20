@@ -1,4 +1,10 @@
+import 'package:flouka/features/address/presentation/providers/address_details_provider.dart';
+import 'package:flouka/features/address/presentation/providers/address_provider.dart';
+import 'package:flouka/features/address/presentation/providers/area_provider.dart';
+import 'package:flouka/features/address/presentation/providers/map_provider.dart';
+import 'package:flouka/features/address/presentation/providers/parts_provider.dart';
 import 'package:flouka/features/auth/presentation/providers/auth_provider.dart';
+import 'package:flouka/features/cart/presentation/providers/checkout_provider.dart';
 import 'package:flouka/features/on_boarding/presentation/providers/on_boarding_provider.dart';
 import 'package:flouka/features/banners/presentation/provider/banners_provider.dart';
 import 'package:flouka/features/categories/presentation/providers/categories_provider.dart';
@@ -6,6 +12,7 @@ import 'package:flouka/features/navbar/presentation/provider/nav_provider.dart';
 import 'package:flouka/injection_container.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'features/address/presentation/providers/city_provider.dart';
 import 'features/auth/presentation/providers/complete_info_provider.dart';
 import 'features/auth/presentation/providers/otp_provider.dart';
 import 'features/cart/presentation/providers/cart_provider.dart';
@@ -13,6 +20,7 @@ import 'features/cart/presentation/providers/coupon_provider.dart';
 import 'features/language/presentation/provider/language_provider.dart';
 import 'features/splash/provider/splash_provider.dart';
 import 'features/stores/presentation/providers/stores_provider.dart';
+import 'features/wallet/presentation/provider/wallet_provider.dart';
 
 class AppProviders extends StatelessWidget {
   const AppProviders({super.key, required this.child, required this.language});
@@ -34,6 +42,14 @@ class AppProviders extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => CompleteInfoProvider()),
         ChangeNotifierProvider(create: (_) => CartProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => CouponProvider(sl.get())),
+        ChangeNotifierProvider(create: (_) => AddressDetailsProvider(sl.get())),
+        ChangeNotifierProvider(create: (_) => AddressProvider(sl.get())),
+        ChangeNotifierProvider(create: (_) => AreaProvider(sl.get())),
+        ChangeNotifierProvider(create: (_) => CityProvider(sl.get())),
+        ChangeNotifierProvider(create: (_) => MapProvider()),
+        ChangeNotifierProvider(create: (_) => PartsProvider()),
+        ChangeNotifierProvider(create: (_) => CheckoutProvider(sl.get())),
+        ChangeNotifierProvider(create: (_) => WalletProvider(sl.get())),
       ],
       child: child,
     );
