@@ -2,6 +2,7 @@ import 'package:flouka/core/constants/app_images.dart';
 import 'package:flouka/features/home/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import '../../../../../core/helper_function/navigation.dart';
+import '../../../cart/presentation/views/cart_view.dart';
 import '../../../language/presentation/provider/language_provider.dart';
 import '../../domain/entities/bottom_nav_bar_entity.dart';
 import '../views/nav_bar_view.dart';
@@ -9,12 +10,7 @@ import '../views/nav_bar_view.dart';
 class NavBarProvider extends ChangeNotifier {
   int currentIndex = 0;
 
-  final List<Widget> body = const [
-    HomePage(),
-    SizedBox(),
-    SizedBox(),
-    SizedBox(),
-  ];
+  final List<Widget> body = const [HomePage(), SizedBox(), CartView(), SizedBox()];
 
   final List<BottomNaBarEntity> bottomNavigationBarItemEntity = [
     BottomNaBarEntity(

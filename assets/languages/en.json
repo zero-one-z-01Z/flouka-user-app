@@ -51,7 +51,9 @@
     "new": "New Gadget",
     "best_selling": "Best Selling"
   },
-  "global": {},
+  "global": {
+    "total":"Total"
+  },
   "empty": {},
   "error": {
     "max_distance": "You must allow a distance less than ",

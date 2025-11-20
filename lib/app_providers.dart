@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'features/auth/presentation/providers/complete_info_provider.dart';
 import 'features/auth/presentation/providers/otp_provider.dart';
+import 'features/cart/presentation/providers/cart_provider.dart';
+import 'features/cart/presentation/providers/coupon_provider.dart';
 import 'features/language/presentation/provider/language_provider.dart';
 import 'features/splash/provider/splash_provider.dart';
 import 'features/stores/presentation/providers/stores_provider.dart';
@@ -30,6 +32,8 @@ class AppProviders extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AuthProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => OtpProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => CompleteInfoProvider()),
+        ChangeNotifierProvider(create: (_) => CartProvider(sl.get())),
+        ChangeNotifierProvider(create: (_) => CouponProvider(sl.get())),
       ],
       child: child,
     );

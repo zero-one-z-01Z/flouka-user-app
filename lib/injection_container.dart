@@ -16,6 +16,10 @@ import 'features/banners/data/datasource/remote.dart';
 import 'features/banners/data/repositories/banners_repo_impl.dart';
 import 'features/banners/domain/repositories/banner_repository.dart';
 import 'features/banners/domain/usecases/banners_usecases.dart';
+import 'features/cart/data/data_source/cart_remote_data_source.dart';
+import 'features/cart/data/repo/cart_repo_impl.dart';
+import 'features/cart/domain/repo/cart_repo.dart';
+import 'features/cart/domain/use_case/cart_use_case.dart';
 import 'features/categories/data/datasource/remote.dart';
 import 'features/categories/domain/repositories/category_repo.dart';
 
@@ -28,7 +32,10 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<AuthRemoteDataSource>(AuthRemoteDataSource(sl.get()));
   sl.registerSingleton<AuthRepo>(AuthRepoImpl(sl.get()));
   sl.registerSingleton<AuthUseCase>(AuthUseCase(sl.get()));
-  // sl.registerSingleton<NotificationRepo>(NotificationRepoImpl());
+  // cart
+  sl.registerSingleton<CartRemoteDataSource>(CartRemoteDataSource(sl.get()));
+  sl.registerSingleton<CartRepo>(CartRepoImpl(sl.get()));
+  sl.registerSingleton<CartUseCase>(CartUseCase(sl.get()));
 
   // sl.registerSingleton<UserRemoteDataSource>(UserRemoteDataSource(sl.get()));
   // sl.registerSingleton<UserRepo>(UserRepoImpl(userRemoteDatasource: sl.get()));
@@ -67,9 +74,7 @@ Future<void> initializeDependencies() async {
   // sl.registerSingleton<CityUseCases>(CityUseCases(sl.get()));
 
   //banners
-  sl.registerSingleton<BannersRemoteDataSource>(
-    BannersRemoteDataSource(sl.get()),
-  );
+  sl.registerSingleton<BannersRemoteDataSource>(BannersRemoteDataSource(sl.get()));
   sl.registerSingleton<BannersRepository>(BannersRepoImpl(sl.get()));
   sl.registerSingleton<BannersUseCase>(BannersUseCase(sl.get()));
 
@@ -81,9 +86,7 @@ Future<void> initializeDependencies() async {
   // sl.registerSingleton<SettingsUseCases>(SettingsUseCases(sl.get()));
 
   //categories
-  sl.registerSingleton<CategoryRemoteDataSource>(
-    CategoryRemoteDataSource(sl.get()),
-  );
+  sl.registerSingleton<CategoryRemoteDataSource>(CategoryRemoteDataSource(sl.get()));
   sl.registerSingleton<CategoryRepo>(CategoryRepoImpl(sl.get()));
   sl.registerSingleton<CategoryUsecase>(CategoryUsecase(sl.get()));
 
