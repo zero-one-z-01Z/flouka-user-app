@@ -1,4 +1,5 @@
 import 'package:flouka/core/config/app_styles.dart';
+import 'package:flouka/core/helper_function/helper_function.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -46,24 +47,30 @@ class _DraggableImageButtonState extends State<DraggableImageButton> {
             left: posX,
             top: 1.2.h,
             child: GestureDetector(
-              onHorizontalDragUpdate: (details) {
+              onHorizontalDragUpdate: (details) async {
                 setState(() {
                   posX += details.delta.dx;
-
                   if (posX < 20) posX = 20;
                   if (posX > maxX) posX = maxX;
-
                   if (posX >= maxX) {
                     completed = true;
-                    widget.onComplete();
                   }
-
                   if (posX < maxX - 20) {
                     completed = false;
                   }
                 });
               },
-
+              onHorizontalDragEnd: (details) async {
+                await delay(100);
+                if (completed) {
+                  widget.onComplete();
+                }
+                await delay(500);
+                setState(() {
+                  posX = 20;
+                  completed = false;
+                });
+              },
               child: AnimatedSwitcher(
                 duration: const Duration(milliseconds: 300),
                 transitionBuilder: (child, animation) =>
