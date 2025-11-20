@@ -7,8 +7,24 @@
     "on_boarding_2": "No need to rummage through irrelevant items anymore, we got you covered. Habitual sends you relevant items based off of your habits and interests.",
     "on_boarding_3": "Tell us what you like. No, really, it helps a bunch when we serve you some great products. You just keep doing your thing.",
     "Skip": "Skip"
+  "home": {
+    "deliver_to": "Deliver To",
+    "change": "Change",
+    "far_from_location": "Your seem Far away from this location",
+    "explore": "Explore",
+    "categories": "Popular Categories",
+    "see_all": "See All",
+    "for_you": "For You",
+    "hot_deals": "Hot Deals",
+    "retail_stores": "Retail Stores",
+    "popular_categories": "Popular Categories"
   },
-  "global": {
+  "navbar": {
+    "home": "Home",
+    "categories": "Categories",
+    "orders": "Orders",
+    "profile": "Profile",
+    "explore": "Explore"
   },
 
   "auth": {
@@ -31,8 +47,16 @@
   },
 
   "empty": {
+  "filters": {
+    "new": "New Gadget",
+    "best_selling": "Best Selling"
   },
-
+  "buttons": {
+    "shop_now": "Shop Now"
+  },
+  "on_boarding": {},
+  "global": {},
+  "empty": {},
   "error": {
     "max_distance": "You must allow a distance less than ",
     "wallet": "Wallet balance is not enough, please recharge",
@@ -42,6 +66,7 @@
     "location": "There is an error with the location",
     "open_gps": "Please enable location services to complete the process"
   },
+  "inputs": {},
 
   "inputs": {
     "Email":"Email",
@@ -73,6 +98,8 @@
   "settings": {
   },
 
+  "auth": {},
+  "settings": {},
   "ticket": {
     "ticket_number": "Ticket Number: *id*",
     "ticket_category": "Category: *cat*",
@@ -109,6 +136,19 @@
     "street_name": "Street name is required.",
     "please_retype_password": "Please retype your password.",
     "confirm_password": "Passwords do not match."
+  "validation": {
+    "incorrect_email": "Invalid email address",
+    "field": "This field is required",
+    "please_retype_password": "Please retype the password",
+    "first_name": "First name is required",
+    "last_name": "Last name is required",
+    "phone_required": "Phone number is required",
+    "empty_email": "Email is required",
+    "email_required": "Email is required",
+    "password_required": "Password is required",
+    "confirm_password": "Passwords do not match",
+    "phone_invalid": "Invalid phone number",
+    "english_phone": "Phone number must contain digits only"
   }
 
 }
