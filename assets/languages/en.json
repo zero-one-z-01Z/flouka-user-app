@@ -28,6 +28,16 @@
     "explore": "Explore"
   },
 
+  "filter": {
+    "category": "Category",
+    "brand": "Brand",
+    "price": "Price",
+    "color": "Color",
+    "screen_size": "Screen Size",
+    "brand_filter": "Brand Filter",
+    "search": "Search on Brands ..."
+  },
+
   "categories":{
     "search": "Search on Categories ...",
     "shop_by" : "SHOP BY"
@@ -54,7 +64,8 @@
 
   "filters": {
     "new": "New Gadget",
-    "best_selling": "Best Selling"
+    "best_selling": "Best Selling",
+    "filter": "Filter"
   },
   "global": {},
   "empty": {},
@@ -92,7 +103,9 @@
     "Get started": "Get started",
     "EDIT": "EDIT",
     "next": "Next",
-    "Active": "Active"
+    "Active": "Active",
+    "apply": "Apply",
+    "reset": "Reset"
   },
   "settings": {},
   "ticket": {

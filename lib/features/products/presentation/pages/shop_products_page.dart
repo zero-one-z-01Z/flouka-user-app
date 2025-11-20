@@ -1,3 +1,5 @@
+import 'package:flouka/core/helper_function/navigation.dart';
+import 'package:flouka/features/products/presentation/pages/filter_page.dart';
 import 'package:flouka/features/products/presentation/widgets/shop_products_page_filter.dart';
 import 'package:flouka/features/products/presentation/widgets/shop_products_grid.dart';
 import 'package:flutter/material.dart';
@@ -22,19 +24,24 @@ class ShopProductsPage extends StatelessWidget {
               children: [
                 const Expanded(child: SearchbarContainer()),
                 SizedBox(width: 2.w),
-                Container(
-                  width: 12.w,
-                  height: 5.h,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(
-                      color: const Color(0xff221F1F).withOpacity(0.2),
+                InkWell(
+                  onTap: () {
+                    navP(const FilterPage());
+                  },
+                  child: Container(
+                    width: 12.w,
+                    height: 5.h,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                        color: const Color(0xff221F1F).withOpacity(0.2),
+                      ),
                     ),
-                  ),
-                  child: Center(
-                    child: SvgWidget(
-                      svg: Images.filter,
-                      color: AppColor.primaryColor,
+                    child: Center(
+                      child: SvgWidget(
+                        svg: Images.filter,
+                        color: AppColor.primaryColor,
+                      ),
                     ),
                   ),
                 ),
