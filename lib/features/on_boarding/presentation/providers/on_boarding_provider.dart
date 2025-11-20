@@ -11,7 +11,7 @@ import '../../../auth/presentation/views/login_or_register_view.dart';
 
 class OnBoardingProvider extends ChangeNotifier {
   void goToOnBoardingView() {
-    navP(const OnBoardingView());
+    navPARU(const OnBoardingView());
   }
 
   void onNextButtonPressed() {
@@ -29,7 +29,7 @@ class OnBoardingProvider extends ChangeNotifier {
 
   void skipButtonPressed() {
     // navigation
-    navP(const LoginOrRegisterView());
+    navPARU(const LoginOrRegisterView());
     // sharedPreferences.setBool("onBoarding", true);
   }
 

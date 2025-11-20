@@ -74,7 +74,7 @@ class HotDealsHomeSection extends StatelessWidget {
             SizedBox(height: 1.h),
           ],
           SizedBox(
-            height: 24.h,
+            height: 25.h,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: hotDeals.length,

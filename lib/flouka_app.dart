@@ -9,8 +9,8 @@ import 'features/language/domain/entities/app_localizations.dart';
 import 'features/language/presentation/provider/language_provider.dart';
 import 'features/splash/views/splash_view.dart';
 
-class Syantkom extends StatelessWidget {
-  const Syantkom({super.key});
+class MainApp extends StatelessWidget {
+  const MainApp({super.key});
 
   @override
   Widget build(BuildContext context) {

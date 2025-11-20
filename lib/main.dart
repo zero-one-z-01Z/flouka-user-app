@@ -74,7 +74,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppProviders(language: language, child: const Syantkom());
+    return AppProviders(language: language, child: const MainApp());
   }
 }
 

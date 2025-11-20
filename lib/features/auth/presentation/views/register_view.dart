@@ -1,4 +1,5 @@
 import 'package:flouka/core/config/app_styles.dart';
+import 'package:flouka/core/helper_function/navigation.dart';
 import 'package:flouka/core/widgets/list_text_field_widget.dart';
 import 'package:flouka/features/auth/presentation/providers/auth_provider.dart';
 import 'package:flouka/features/auth/presentation/providers/otp_provider.dart';
@@ -54,7 +55,8 @@ class RegisterView extends StatelessWidget {
                   customText: "Already have an account?",
                   underLineText: "Login",
                   onTap: () {
-                    authProvider.goToLoginView();
+                    // authProvider.goToLoginView();
+                    navPop();
                   },
                 ),
               ),

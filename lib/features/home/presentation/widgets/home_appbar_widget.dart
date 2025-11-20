@@ -18,9 +18,9 @@ class HomeAppbarWidget extends StatelessWidget {
         children: [
           const DeliveryDropdownWidget(),
           const Spacer(),
-          SvgWidget(svg: Images.cart, onTap: () {}),
+          SvgWidget(svg: Images.search,),
           SizedBox(width: 4.w),
-          SvgWidget(svg: Images.search, onTap: () {}),
+          SvgWidget(svg: Images.cart),
         ],
       ),
     );

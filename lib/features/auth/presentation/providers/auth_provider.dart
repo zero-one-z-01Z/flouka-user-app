@@ -30,7 +30,7 @@ class AuthProvider extends ChangeNotifier {
   }
 
   void goToRegisterView() {
-    navPR(const RegisterView());
+    navP(const RegisterView());
   }
 
   /// ----------- Login Logic -----------

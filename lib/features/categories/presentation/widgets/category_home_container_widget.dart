@@ -49,14 +49,18 @@ class CategoryHomeContainerWidget extends StatelessWidget {
         ),
         SizedBox(height: 1.h),
         showText
-            ? Text(
-                category.name,
-                style: TextStyleClass.normalStyle().copyWith(
-                  fontSize: 14.sp,
-                  fontWeight: fontWeight,
-                  color: textColor,
+            ? SizedBox(
+          width: 20.w,
+              child: Text(
+                  category.name,
+                  style: TextStyleClass.normalStyle().copyWith(
+                    fontSize: 14.sp,
+                    fontWeight: fontWeight,
+                    color: textColor,
+                  ),
+                textAlign: TextAlign.center,
                 ),
-              )
+            )
             : const SizedBox.shrink(),
       ],
     );
