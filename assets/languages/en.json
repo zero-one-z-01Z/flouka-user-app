@@ -28,6 +28,11 @@
     "explore": "Explore"
   },
 
+  "categories":{
+    "search": "Search on Categories ...",
+    "shop_by" : "SHOP BY"
+  },
+
   "auth": {
     "Forgot password": "Forgot password",
     "New to Habitual?": "New to Habitual?",

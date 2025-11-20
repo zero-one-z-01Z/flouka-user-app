@@ -8,16 +8,20 @@ import 'package:sizer/sizer.dart';
 class CategoryHomeContainerWidget extends StatelessWidget {
   const CategoryHomeContainerWidget({
     super.key,
-    this.isSvg = false,
+    this.ishome = true,
+    this.isSvg = true,
     this.textColor = Colors.black,
     this.fontWeight = FontWeight.w400,
     required this.category,
+    required this.showText,
   });
 
   final CategoryEntity category;
   final bool isSvg;
   final Color textColor;
   final FontWeight fontWeight;
+  final bool showText;
+  final bool ishome;
 
   @override
   Widget build(BuildContext context) {
@@ -36,20 +40,24 @@ class CategoryHomeContainerWidget extends StatelessWidget {
           ),
           clipBehavior: Clip.antiAlias,
           child: Center(
-            child: isSvg
-                ? SvgWidget(svg: category.image, width: 8.w)
+            child: ishome
+                ? isSvg
+                      ? SvgWidget(svg: category.image, width: 8.w)
+                      : Image.network(category.image, fit: BoxFit.contain)
                 : Image.network(category.image, fit: BoxFit.contain),
           ),
         ),
         SizedBox(height: 1.h),
-        Text(
-          category.name,
-          style: TextStyleClass.normalStyle().copyWith(
-            fontSize: 14.sp,
-            fontWeight: fontWeight,
-            color: textColor,
-          ),
-        ),
+        showText
+            ? Text(
+                category.name,
+                style: TextStyleClass.normalStyle().copyWith(
+                  fontSize: 14.sp,
+                  fontWeight: fontWeight,
+                  color: textColor,
+                ),
+              )
+            : const SizedBox.shrink(),
       ],
     );
   }

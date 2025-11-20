@@ -23,77 +23,105 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 2.w),
-      width: 40.w,
-      decoration: BoxDecoration(
-        color: AppColor.backgroundColor,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.3),
-            blurRadius: 2,
-            offset: const Offset(0, 2),
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 2.w),
+          width: 40.w,
+          decoration: BoxDecoration(
+            color: AppColor.backgroundColor,
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.3),
+                blurRadius: 2,
+                offset: const Offset(0, 2),
+              ),
+            ],
           ),
-        ],
-      ),
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 1.h),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: CachedNetworkImage(
-                imageUrl: imageUrl,
-                width: double.infinity,
-                height: 10.h,
-                fit: BoxFit.cover,
-              ),
-            ),
-            SizedBox(height: 1.h),
-            SizedBox(
-              width: 20.w,
-              child: Text(
-                title,
-                style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600),
-                softWrap: true,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-            SizedBox(height: 1.h),
-            Row(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 1.h),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  priceAfterOffer.toString(),
-                  style: TextStyle(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w600,
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: CachedNetworkImage(
+                    imageUrl: imageUrl,
+                    width: double.infinity,
+                    height: 10.h,
+                    fit: BoxFit.cover,
                   ),
                 ),
-                const Spacer(),
-                Text(
-                  priceBeforeOffer.toString(),
-                  style: TextStyle(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w600,
-                    color: AppColor.tertiaryColor,
-                    decoration: TextDecoration.lineThrough,
+                SizedBox(height: 1.h),
+                SizedBox(
+                  width: 20.w,
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    softWrap: true,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                   ),
+                ),
+                SizedBox(height: 1.h),
+                Row(
+                  children: [
+                    Text(
+                      priceAfterOffer.toString(),
+                      style: TextStyle(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const Spacer(),
+                    Text(
+                      priceBeforeOffer.toString(),
+                      style: TextStyle(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w600,
+                        color: AppColor.tertiaryColor,
+                        decoration: TextDecoration.lineThrough,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 1.h),
+                Row(
+                  children: [
+                    const SvgWidget(svg: Images.star),
+                    Text(rating.toString()),
+                  ],
                 ),
               ],
             ),
-            SizedBox(height: 1.h),
-            Row(
-              children: [
-                const SvgWidget(svg: Images.star),
-                Text(rating.toString()),
-              ],
-            ),
-          ],
+          ),
         ),
-      ),
+        Positioned(
+          top: 1.h,
+          right: 3.w,
+          child: Container(
+            width: 7.w,
+            height: 7.w,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  blurRadius: 4,
+                  offset: const Offset(0, 2),
+                ),
+              ],
+            ),
+            child: Icon(Icons.favorite_border, size: 4.w, color: Colors.black),
+          ),
+        ),
+      ],
     );
   }
 }

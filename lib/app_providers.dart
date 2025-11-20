@@ -1,4 +1,6 @@
 import 'package:flouka/features/auth/presentation/providers/auth_provider.dart';
+import 'package:flouka/features/categories/presentation/providers/subcategory_provider.dart';
+import 'package:flouka/features/categories/presentation/providers/filter_provider.dart';
 import 'package:flouka/features/on_boarding/presentation/providers/on_boarding_provider.dart';
 import 'package:flouka/features/banners/presentation/provider/banners_provider.dart';
 import 'package:flouka/features/categories/presentation/providers/categories_provider.dart';
@@ -25,6 +27,8 @@ class AppProviders extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => SplashProvider()),
         ChangeNotifierProvider(create: (_) => BannersProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => CategoryProvider(sl.get())),
+        ChangeNotifierProvider(create: (_) => SubcategoryProvider()),
+        ChangeNotifierProvider(create: (_) => FilterProvider()),
         ChangeNotifierProvider(create: (_) => StoresProvider()),
         ChangeNotifierProvider(create: (_) => NavBarProvider()),
         ChangeNotifierProvider(create: (_) => OnBoardingProvider()),
