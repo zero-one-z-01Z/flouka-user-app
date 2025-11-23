@@ -88,6 +88,7 @@ class SettingsProvider extends ChangeNotifier {
     NewSettingsEntity(
       svgImage: Images.settingsNotification,
       text: "notification",
+      color: const Color(0xff11BD57),
       onTap: () {
         // Provider.of<NotificationProvider>(
         //   Constants.globalContext(),
@@ -98,6 +99,7 @@ class SettingsProvider extends ChangeNotifier {
     NewSettingsEntity(
       svgImage: Images.settingsLanguage,
       text: "language",
+      color: const Color(0xff144B86),
       onTap: () {
         Provider.of<LanguageProvider>(
           Constants.globalContext(),
@@ -108,6 +110,7 @@ class SettingsProvider extends ChangeNotifier {
     NewSettingsEntity(
       svgImage: Images.settingsSupport,
       text: "support",
+      color: const Color(0xff254AA5),
       onTap: () {
         Provider.of<TicketsProvider>(
           Constants.globalContext(),
@@ -118,6 +121,7 @@ class SettingsProvider extends ChangeNotifier {
     NewSettingsEntity(
       svgImage: Images.settingsPrivacyPolicy,
       text: "privacy_policy",
+      color: const Color(0xff70C090),
       onTap: () {
         // goToPrivacy();
       },
@@ -137,6 +141,7 @@ class SettingsProvider extends ChangeNotifier {
     NewSettingsEntity(
       svgImage: Images.settingsDeleteAccount,
       text: "delete_account",
+      color: const Color(0xffF44336),
       onTap: () {
         Provider.of<AuthProvider>(
           Constants.globalContext(),

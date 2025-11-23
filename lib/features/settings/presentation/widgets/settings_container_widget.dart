@@ -8,11 +8,14 @@ class SettingsContainerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        gradient: LinearGradient(colors: [Colors.white.withAlpha(70), Colors.white.withAlpha(200)],
-            begin: Alignment.topCenter, end: Alignment.bottomCenter),
+        borderRadius: BorderRadius.circular(4),
+        gradient: LinearGradient(
+          colors: [Colors.white.withAlpha(70), Colors.white.withAlpha(200)],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
       ),
-      padding: EdgeInsets.symmetric(horizontal: 4.w,vertical: 1.h),
+      padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
       child: child,
     );
   }
