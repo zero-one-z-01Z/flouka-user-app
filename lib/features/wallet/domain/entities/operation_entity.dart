@@ -8,14 +8,19 @@ class OperationEntity extends Equatable {
   final String price;
   final String operation;
   final String createdAt;
-  const OperationEntity({required this.id, required this.userId, required this.price, required this.operation, required this.createdAt});
-
+  const OperationEntity({
+    required this.id,
+    required this.userId,
+    required this.price,
+    required this.operation,
+    required this.createdAt,
+  });
 
   String transactionIcon() {
-    if (operation == "buy" || operation == "join") {
-      return Images.visa;
+    if (operation == "deposited" || operation == "deducted") {
+      return Images.arrowDown;
     } else {
-      return Images.wallet;
+      return Images.arrowUp;
     }
   }
 

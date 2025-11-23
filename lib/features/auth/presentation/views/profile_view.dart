@@ -6,7 +6,6 @@ import 'package:flouka/features/settings/presentation/widgets/settings_widget.da
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:provider/provider.dart';
-
 import '../../../settings/presentation/provider/settings_provider.dart';
 
 class ProfileView extends StatelessWidget {

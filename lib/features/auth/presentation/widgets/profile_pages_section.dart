@@ -1,34 +1,59 @@
 import 'package:flouka/core/constants/app_images.dart';
+import 'package:flouka/core/constants/constants.dart';
 import 'package:flouka/features/auth/presentation/widgets/profile_pages_container_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../../address/presentation/providers/address_provider.dart';
+import '../../../wallet/presentation/provider/wallet_provider.dart';
 
 class ProfilePagesSection extends StatelessWidget {
   const ProfilePagesSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<String> titleList = ["orders", "favorite", "wallet", "address"];
-
-    List<String> subTitleList = [
-      "manage_orders",
-      "manage_favorites",
-      "added",
-      "0.0 US \$",
-    ];
-
-    List<String> svgList = [
-      Images.settingsOrders,
-      Images.settingsFavorite,
-      Images.settingsWallet,
-      Images.settingsAddress,
+    List<Map<String, dynamic>> dataList = [
+      {
+        "title": "orders",
+        "subTitle": "manage_orders",
+        "svg": Images.settingsOrders,
+        "onTap": () {},
+      },
+      {
+        "title": "favorite",
+        "subTitle": "manage_favorites",
+        "svg": Images.settingsFavorite,
+        "onTap": () {},
+      },
+      {
+        "title": "wallet",
+        "subTitle": "0.0 US \$",
+        "svg": Images.settingsWallet,
+        "onTap": () {
+          final walletProvider = Provider.of<WalletProvider>(
+            Constants.globalContext(),
+            listen: false,
+          );
+          walletProvider.goToWalletPage();
+        },
+      },
+      {
+        "title": "address",
+        "subTitle": "added",
+        "svg": Images.settingsAddress,
+        "onTap": () {
+          final addressProvider = Provider.of<AddressProvider>(context);
+          addressProvider.goToAddressPage();
+        },
+      },
     ];
 
     return GridView.builder(
       padding: EdgeInsets.symmetric(vertical: 1.h),
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: titleList.length,
+      itemCount: dataList.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         mainAxisSpacing: 8,
@@ -36,11 +61,7 @@ class ProfilePagesSection extends StatelessWidget {
         crossAxisSpacing: 6,
       ),
       itemBuilder: (context, index) {
-        return ProfilePagesContainerWidget(
-          title: titleList[index],
-          subTitle: subTitleList[index],
-          svg: svgList[index],
-        );
+        return ProfilePagesContainerWidget(data: dataList[index]);
       },
     );
   }

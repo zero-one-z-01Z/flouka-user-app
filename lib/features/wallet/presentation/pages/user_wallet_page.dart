@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-import '../../../../core/config/app_color.dart';
+import '../../../../core/config/app_styles.dart';
 import '../../../../core/widgets/loading_widget.dart';
 import '../../../language/presentation/provider/language_provider.dart';
 import '../provider/wallet_provider.dart';
@@ -24,9 +24,15 @@ class UserWalletHome extends StatelessWidget {
       child: SafeArea(
         top: false,
         child: Scaffold(
-          backgroundColor: AppColor.backgroundColor,
+          backgroundColor: const Color(0xffEFFBFF),
           appBar: AppBar(
-            title: Text(LanguageProvider.translate('settings', 'wallet')),
+            title: Text(
+              LanguageProvider.translate('settings', 'wallet'),
+              style: TextStyleClass.normalStyle().copyWith(
+                fontWeight: FontWeight.bold,
+                fontSize: 17.sp,
+              ),
+            ),
             elevation: 0,
           ),
           bottomNavigationBar: const WalletBottomWidget(),

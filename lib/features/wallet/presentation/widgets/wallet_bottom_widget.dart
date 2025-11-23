@@ -24,7 +24,7 @@ class WalletBottomWidget extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 2.h),
               child: ButtonWidget(
-                borderRadius: 10,
+                borderRadius: 12,
                 withShadow: false,
                 onTap: () {
                   walletProvider.showChargeSheet();

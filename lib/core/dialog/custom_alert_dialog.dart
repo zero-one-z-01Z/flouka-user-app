@@ -44,7 +44,10 @@ void customAlertDialog({
                     width: 35.w,
                     height: 35.w,
                     padding: EdgeInsets.all(padding ?? 0),
-                    decoration: BoxDecoration(shape: BoxShape.circle, color: color),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: color,
+                    ),
                     child: image.contains('.svg')
                         ? SvgWidget(svg: image, fit: BoxFit.contain)
                         : Image.asset(image, fit: BoxFit.contain),
@@ -75,7 +78,7 @@ void customAlertDialog({
                             child: Container(
                               padding: EdgeInsets.symmetric(
                                 horizontal: 4.w,
-                                vertical: 1.h,
+                                vertical: 0.6.h,
                               ),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
@@ -121,7 +124,6 @@ void customAlertDialog({
             ],
           ),
         ),
-       
       );
     },
   );
