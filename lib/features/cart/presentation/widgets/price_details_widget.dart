@@ -7,8 +7,8 @@ import '../providers/coupon_provider.dart';
 import 'payment_price_widget.dart';
 
 class PriceDetailesList extends StatelessWidget {
-  const PriceDetailesList({super.key});
-
+  const PriceDetailesList({super.key, this.isBold = false});
+  final bool? isBold;
   @override
   Widget build(BuildContext context) {
     final CheckoutProvider checkoutProvider = Provider.of<CheckoutProvider>(context);
@@ -55,6 +55,7 @@ class PriceDetailesList extends StatelessWidget {
             title: LanguageProvider.translate("global", "total"),
             price: checkoutProvider.total.toStringAsFixed(2),
             isGreen: true,
+            isBold: isBold,
           ),
         ],
       ),

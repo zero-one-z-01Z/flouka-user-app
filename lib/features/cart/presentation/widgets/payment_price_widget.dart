@@ -12,9 +12,11 @@ class PaymentPriceWidget extends StatelessWidget {
     required this.price,
     this.isGreen = false,
     this.fontSize,
+    this.isBold = false,
   });
   final String title;
   final String price;
+  final bool? isBold;
   final bool isGreen;
   final double? fontSize;
   @override
@@ -25,7 +27,7 @@ class PaymentPriceWidget extends StatelessWidget {
           title,
           style: TextStyleClass.normalStyle().copyWith(
             fontSize: 15.sp,
-            fontWeight: isGreen ? FontWeight.w900 : FontWeight.normal,
+            fontWeight: (isGreen || isBold!) ? FontWeight.w900 : FontWeight.normal,
             color: isGreen ? Colors.green : Colors.black,
           ),
         ),

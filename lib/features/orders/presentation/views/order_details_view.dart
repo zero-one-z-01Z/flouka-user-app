@@ -6,10 +6,12 @@ import 'package:sizer/sizer.dart';
 import '../../../../core/config/app_styles.dart';
 import '../../../../core/widgets/loading_animation_widget.dart';
 import '../../../address/presentation/widgets/delivery_address_widget.dart';
+import '../../../cart/presentation/widgets/price_details_widget.dart';
 import '../../../language/presentation/provider/language_provider.dart';
 import '../../domain/entity/order_entity.dart';
 import '../provider/order_details_provider.dart';
 import '../provider/order_provider.dart';
+import '../widget/custom_order_payment_way_widget.dart';
 import '../widget/order_details_item_widget.dart';
 import '../widget/order_info_widget.dart';
 import '../widget/order_status_widget.dart';
@@ -90,6 +92,9 @@ class OrderDetailsView extends StatelessWidget {
                     orderDetailsEntity:
                         orderDetailsProvider.data!.orderDetails.first,
                   ),
+                  const CustomOrderPaymentWayWidget(),
+                  SizedBox(height: 1.3.h),
+                  const PriceDetailesList(isBold: true),
                 ],
               ),
             ),
