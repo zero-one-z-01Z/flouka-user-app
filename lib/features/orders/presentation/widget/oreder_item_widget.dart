@@ -63,10 +63,14 @@ class OrderItemWidget extends StatelessWidget {
                           color: const Color(0xff333542),
                         ),
                       ),
+                      SizedBox(height: .5.h),
                       Text(
                         orderEntity.status?.name ?? "",
-                        style: TextStyleClass.smallStyle(color: Colors.green),
+                        style: TextStyleClass.smallStyle(
+                          color: Colors.green,
+                        ).copyWith(fontWeight: FontWeight.bold),
                       ),
+                      SizedBox(height: .2.h),
                       Text(
                         "On Monday 13th ,12:45 PM",
                         style: TextStyleClass.smallStyle(),
