@@ -5,8 +5,8 @@ import '../helper_function/convert.dart';
 import '../helper_function/helper_function.dart';
 
 class NotificationLocalClass {
-  static final FlutterLocalNotificationsPlugin
-  notificationsPlugin = FlutterLocalNotificationsPlugin();
+  static final FlutterLocalNotificationsPlugin notificationsPlugin =
+      FlutterLocalNotificationsPlugin();
   static Future notificationDet() async {
     return const NotificationDetails(
       android: AndroidNotificationDetails(
@@ -37,9 +37,7 @@ class NotificationLocalClass {
         await notificationDet(),
         payload: payload,
       );
-      delay(
-        2500,
-      ).then((value) => notificationsPlugin.cancelAll());
+      delay(2500).then((value) => notificationsPlugin.cancelAll());
     } catch (e) {
       debugPrint(e.toString());
     }

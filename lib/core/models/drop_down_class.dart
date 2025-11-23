@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-abstract class DropDownClass<T>{
+abstract class DropDownClass<T> {
   String displayedName();
   String? titleName();
   bool require();

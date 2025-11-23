@@ -5,16 +5,11 @@ abstract class Images {
   static const String bigLogo = 'assets/images/big_logo.png';
 
   //onboarding
-  static const String onboardingImage1 =
-      'assets/images/onboarding/onboarding1.png';
-  static const String onboardingImage2 =
-      'assets/images/onboarding/onboarding2.png';
-  static const String onboardingImage3 =
-      'assets/images/onboarding/onboarding3.png';
-  static const String onboardingImage4 =
-      'assets/images/onboarding/onboarding4.png';
-  static const String yellowCircle =
-      'assets/images/onboarding/yellow_circle.png';
+  static const String onboardingImage1 = 'assets/images/onboarding/onboarding1.png';
+  static const String onboardingImage2 = 'assets/images/onboarding/onboarding2.png';
+  static const String onboardingImage3 = 'assets/images/onboarding/onboarding3.png';
+  static const String onboardingImage4 = 'assets/images/onboarding/onboarding4.png';
+  static const String yellowCircle = 'assets/images/onboarding/yellow_circle.png';
   static const String greenCircle = 'assets/images/onboarding/green_circle.png';
   static const String pinkCircle = 'assets/images/onboarding/pink_circle.png';
   static const String circles = 'assets/images/onboarding/3circles.png';

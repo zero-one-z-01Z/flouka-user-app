@@ -30,7 +30,6 @@ class MapScreen extends StatelessWidget {
           mapProv.onMapCreated(c);
         },
         onTap: (latLng) {},
-        myLocationEnabled: true,
         myLocationButtonEnabled: false,
         onCameraMove: (pos) => mapProv.onCameraMove(pos),
       ),

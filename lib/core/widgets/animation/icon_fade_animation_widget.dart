@@ -8,10 +8,11 @@ class IconFadeAnimation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedSwitcher(
-        duration:  Duration(milliseconds: duration ?? 300),
-        transitionBuilder: (Widget child, Animation<double> animation) {
-          return FadeTransition(opacity: animation, child: child);
-        },
-        child: child);
+      duration: Duration(milliseconds: duration ?? 300),
+      transitionBuilder: (Widget child, Animation<double> animation) {
+        return FadeTransition(opacity: animation, child: child);
+      },
+      child: child,
+    );
   }
 }
