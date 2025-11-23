@@ -1,3 +1,5 @@
+import 'package:flouka/core/helper_function/navigation.dart';
+import 'package:flouka/features/address/presentation/views/add_address_screen.dart';
 import 'package:flouka/features/language/presentation/provider/language_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,7 +31,9 @@ class MapScreen extends StatelessWidget {
         onMapCreated: (c) {
           mapProv.onMapCreated(c);
         },
-        onTap: (latLng) {},
+        onTap: (latLng) {
+          navP(const AddAddressScreen());
+        },
         myLocationButtonEnabled: true,
         onCameraMove: (pos) => mapProv.onCameraMove(pos),
       ),

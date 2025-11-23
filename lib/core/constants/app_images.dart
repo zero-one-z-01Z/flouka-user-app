@@ -94,4 +94,6 @@ abstract class Images {
   static const String testPhilips = 'assets/images/test/philips.png';
   static const String testProfile = 'assets/images/test/profile.png';
   static const String testSamsung = 'assets/images/test/samsung.png';
+
+  static const String locationMap = "assets/images/location_map.png";
 }
