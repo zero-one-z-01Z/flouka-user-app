@@ -18,7 +18,7 @@ class OrderItemWidget extends StatelessWidget {
         Provider.of<OrderDetailsProvider>(context);
     return InkWell(
       onTap: () {
-        // orderDetailsProvider.goToPage({'order_id': orderEntity.id});
+        orderDetailsProvider.goToPage({'order_id': orderEntity.id});
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
