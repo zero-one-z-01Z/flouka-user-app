@@ -12,6 +12,8 @@ import 'package:flouka/features/on_boarding/presentation/providers/on_boarding_p
 import 'package:flouka/features/banners/presentation/provider/banners_provider.dart';
 import 'package:flouka/features/categories/presentation/providers/categories_provider.dart';
 import 'package:flouka/features/navbar/presentation/provider/nav_provider.dart';
+import 'package:flouka/features/settings/presentation/provider/settings_provider.dart';
+import 'package:flouka/features/tickets/presentation/provider/tickets_provider.dart';
 import 'package:flouka/injection_container.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -45,6 +47,8 @@ class AppProviders extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => StoresProvider()),
         ChangeNotifierProvider(create: (_) => NavBarProvider()),
         ChangeNotifierProvider(create: (_) => OnBoardingProvider()),
+        ChangeNotifierProvider(create: (_) => SettingsProvider(sl.get())),
+        ChangeNotifierProvider(create: (_) => TicketsProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => AuthProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => OtpProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => CompleteInfoProvider()),

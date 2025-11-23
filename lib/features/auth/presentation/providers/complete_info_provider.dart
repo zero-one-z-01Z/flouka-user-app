@@ -18,9 +18,7 @@ class CompleteInfoProvider extends ChangeNotifier {
   bool isEdit = false;
 
   void goToCompleteInfoView() {
-    provider.userEntity == null
-        ? navP(const CompleteInfoView(isEdit: false))
-        : navP(const CompleteInfoView(isEdit: true));
+    navP(CompleteInfoView(isEdit: isEdit));
   }
 
   late List<TextFieldModel> completeInfoTextFieldList = [
