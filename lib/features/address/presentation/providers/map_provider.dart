@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import '../../../../../../core/constants/constants.dart';
 import '../../../../../../core/helper_function/location.dart';
 import '../../../../../../core/helper_function/navigation.dart';
 import '../../../../../../core/models/pagination_class.dart';
@@ -25,10 +24,6 @@ class MapProvider with ChangeNotifier implements PaginationClass {
   Future<void> initLocation() async {
     LatLng latLng = await determinePosition();
     _center = latLng;
-
-    mapStyleString = await DefaultAssetBundle.of(
-      Constants.globalContext(),
-    ).loadString('assets/map_styles/map_style.json');
 
     notifyListeners();
   }
