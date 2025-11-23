@@ -30,7 +30,9 @@ class SavedAddressesPage extends StatelessWidget {
             children: [
               SizedBox(height: 2.h),
               BorderButtonWidget(
-                onTap: () {},
+                onTap: () {
+                  mapProvider.goToMapPage();
+                },
                 text: "ADD NEW ADDRESS",
                 textStyle: TextStyleClass.normalStyle(
                   color: AppColor.primaryColor,
