@@ -40,13 +40,15 @@ class _FilterProductsWidgetState extends State<FilterProductsWidget> {
               },
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 1),
-                child: Text(
-                  _filters[index],
+                child: AnimatedDefaultTextStyle(
+                  duration: const Duration(milliseconds: 250),
+                  curve: Curves.easeInOut,
                   style: TextStyle(
                     fontSize: 16.sp,
                     fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
                     color: isSelected ? Colors.black : const Color(0xffAEB1C1),
                   ),
+                  child: Text(_filters[index]),
                 ),
               ),
             );
