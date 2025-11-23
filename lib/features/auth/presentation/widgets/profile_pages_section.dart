@@ -4,8 +4,8 @@ import 'package:flouka/features/auth/presentation/widgets/profile_pages_containe
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../../address/presentation/providers/address_provider.dart';
+import '../../../chat/presentation/providers/chat_provider.dart';
 import '../../../wallet/presentation/provider/wallet_provider.dart';
 
 class ProfilePagesSection extends StatelessWidget {
@@ -24,7 +24,13 @@ class ProfilePagesSection extends StatelessWidget {
         "title": "favorite",
         "subTitle": "manage_favorites",
         "svg": Images.settingsFavorite,
-        "onTap": () {},
+        "onTap": () {
+          final chatProvider = Provider.of<ChatProvider>(
+            Constants.globalContext(),
+            listen: false,
+          );
+          chatProvider.goToChatPage();
+        },
       },
       {
         "title": "wallet",

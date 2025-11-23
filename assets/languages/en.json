@@ -20,6 +20,12 @@
     "retail_stores": "Retail Stores",
     "popular_categories": "Popular Categories"
   },
+  "chat": {
+    "chat": "Chat",
+    "online": "Online",
+    "type_your_message": "Type your message...",
+    "typing": "typing..."
+  },
   "navbar": {
     "home": "Home",
     "categories": "Categories",
@@ -67,8 +73,8 @@
     "checkout": "Checkout",
     "total": "Total",
     "settings": "Settings",
-    "choose_lang": "Choose Language",
-    "choose_lang_content": "Choose your language",
+    "choose_lang": "\uD83C\uDF0D Choose Your Language",
+    "choose_lang_content": "Please choose the language you prefer to use in the app. You can change it anytime from settings",
     "Pay With": "Pay With",
     "operations": "Wallet Operations",
     "Deliver To": "Deliver To",
