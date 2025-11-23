@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:flouka/features/address/domain/entities/area_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../../../core/dialog/custom_alert_dialog.dart';
@@ -22,24 +23,27 @@ class AddressProvider extends ChangeNotifier {
   Future getAddress() async {
     address.clear();
     Map<String, dynamic> data = {};
-    Either<DioException, List<AddressEntity>> value = await addressUseCases
-        .getAddress(data);
-    value.fold(
-      (l) async {
-        showToast(l.message!);
-      },
-      (r) {
-        address = r;
-        if (address.isEmpty) {
-          addressEntity = null;
-          isFirstTime = true;
-        } else {
-          addressEntity = address.first;
-          isFirstTime = false;
-        }
-        notifyListeners();
-      },
-    );
+    address.add(fakeAddressEntitiy);
+    address.add(fakeAddressEntitiy2);
+    notifyListeners();
+    // Either<DioException, List<AddressEntity>> result = await addressUseCases
+    //     .getAddress(data);
+    // result.fold(
+    //   (l) async {
+    //     showToast(l.message!);
+    //   },
+    //   (r) {
+    //     address = r;
+    //     if (address.isEmpty) {
+    //       addressEntity = null;
+    //       isFirstTime = true;
+    //     } else {
+    //       addressEntity = address.first;
+    //       isFirstTime = false;
+    //     }
+    //     notifyListeners();
+    //   },
+    // );
   }
 
   void refresh() async {
@@ -148,4 +152,46 @@ class AddressProvider extends ChangeNotifier {
   bool isSelected(AddressEntity addressEntity) {
     return this.addressEntity?.id == addressEntity.id;
   }
+
+  AddressEntity? selectedAdressEntity;
+  void onSelectAddressEntity(AddressEntity adress) {
+    this.selectedAdressEntity = adress;
+    notifyListeners();
+  }
+
+  bool isAddressEntitySeleted(AddressEntity adressEntity) {
+    return adressEntity.id == selectedAdressEntity?.id;
+  }
 }
+
+final fakeAddressEntitiy = AddressEntity(
+  id: 5,
+  userId: 5,
+  areaEntity: AreaEntity(id: 5, name: 'areaName', cityId: 5, partNumber: 5),
+  areaId: 5,
+  partNumber: 5,
+  addressName: 'addressName',
+  streetName: 'streetName',
+  lat: 5,
+  lng: 5,
+  building: 'building',
+  apartment: 'apartment',
+  notes: 'notes',
+  createdAt: 'createdAt',
+);
+
+final fakeAddressEntitiy2 = AddressEntity(
+  id: 4,
+  userId: 5,
+  areaEntity: AreaEntity(id: 5, name: 'areaName', cityId: 5, partNumber: 5),
+  areaId: 5,
+  partNumber: 5,
+  addressName: 'addressName',
+  streetName: 'streetName',
+  lat: 5,
+  lng: 5,
+  building: 'building',
+  apartment: 'apartment',
+  notes: 'notes',
+  createdAt: 'createdAt',
+);

@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/helper_function/prefs.dart';
 import '../../../core/helper_function/helper_function.dart';
+import '../../address/presentation/providers/address_provider.dart';
 import '../../categories/presentation/providers/categories_provider.dart';
 import '../../navbar/presentation/provider/nav_provider.dart';
 import '../../on_boarding/presentation/providers/on_boarding_provider.dart';
@@ -30,6 +31,7 @@ class SplashProvider extends ChangeNotifier {
       ).getPopularCategories(),
       Provider.of<CartProvider>(Constants.globalContext(), listen: false).getData(),
       Provider.of<OrderProvider>(Constants.globalContext(), listen: false).getData(),
+      Provider.of<AddressProvider>(Constants.globalContext(), listen: false).getAddress(),
     ]);
 
     bool isFirstTime = !(sharedPreferences.getBool('onBoarding') ?? false);
@@ -39,10 +41,10 @@ class SplashProvider extends ChangeNotifier {
         Constants.globalContext(),
         listen: false,
       ).goToNavView();
-    // if (isFirstTime) {
+      // if (isFirstTime) {
       // Provider.of<OnBoardingProvider>(Constants.globalContext(), listen: false,).goToOnBoardingView();
 
-    // }else{
+      // }else{
       // Provider.of<NavBarProvider>(Constants.globalContext(), listen: false,).currentIndex = 0;
       // Provider.of<NavBarProvider>(Constants.globalContext(), listen: false,).goToNavView();
     }

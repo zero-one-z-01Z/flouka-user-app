@@ -16,28 +16,14 @@ class SvgWidget extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            SvgPicture.asset(
-              svg,
-              colorFilter: color == null
-                  ? null
-                  : ColorFilter.mode(color!, BlendMode.srcIn),
-              width: width,
-              height: height,
-              fit: fit ?? BoxFit.fitWidth,
-            ),
-          ],
-        ),
-      ],
+    return SvgPicture.asset(
+      svg,
+      colorFilter: color == null
+          ? null
+          : ColorFilter.mode(color!, BlendMode.srcIn),
+      width: width,
+      height: height,
+      fit: fit ?? BoxFit.fitWidth,
     );
   }
 }

@@ -70,6 +70,9 @@
   "global": {
     "checkout":"Checkout",
     "total":"Total",
+    "Name":"Name",
+    "Address":"Address",
+    "Mobile number":"Mobile number",
     "Pay With":"Pay With",
     "Deliver To":"Deliver To",
     "Shipment":"Shipment",
@@ -118,6 +121,7 @@
     "EDIT": "EDIT",
     "next": "Next",
     "Active": "Active",
+    "ADD NEW ADDRESS": "ADD NEW ADDRESS",
     "apply": "Apply",
     "reset": "Reset"
   },

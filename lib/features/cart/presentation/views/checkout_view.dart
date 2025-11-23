@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../core/config/app_styles.dart';
 import '../../../../core/widgets/draggable_image_button_widget.dart';
+import '../../../address/presentation/providers/address_provider.dart';
 import '../../../address/presentation/widgets/my_address_widget.dart';
 import '../../../language/presentation/provider/language_provider.dart';
 import '../../domain/entity/cart_entity.dart';
@@ -19,6 +20,7 @@ class CheckoutView extends StatelessWidget {
   Widget build(BuildContext context) {
     final CheckoutProvider checkoutProvider = Provider.of<CheckoutProvider>(context);
     final CartProvider cartProvider = Provider.of<CartProvider>(context);
+    final AddressProvider addressProvider = Provider.of<AddressProvider>(context);
     return Scaffold(
       backgroundColor: const Color(0xffeffbff),
       // backgroundColor: Colors.black,
@@ -72,7 +74,11 @@ class CheckoutView extends StatelessWidget {
                 ),
               ),
             ),
-            DraggableImageButton(onComplete: () {}),
+            DraggableImageButton(
+              onComplete: () {
+                addressProvider.goToAddressPage();
+              },
+            ),
           ],
         ),
       ),
