@@ -8,20 +8,23 @@ import 'package:flouka/features/navbar/presentation/provider/nav_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-
 import '../providers/complete_info_provider.dart';
 
 class CompleteInfoView extends StatelessWidget {
-  const CompleteInfoView({super.key});
+  const CompleteInfoView({super.key, required this.isEdit});
+
+  final bool isEdit;
 
   @override
   Widget build(BuildContext context) {
     final completeInfoProvider = Provider.of<CompleteInfoProvider>(context);
+    completeInfoProvider.isEdit = isEdit;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
         title: Text(
           LanguageProvider.translate("auth", "Profile"),
-          style: TextStyleClass.headStyle().copyWith(fontSize: 16.sp),
+          style: TextStyleClass.headStyle().copyWith(fontSize: 17.sp),
         ),
       ),
       body: SingleChildScrollView(
@@ -39,7 +42,8 @@ class CompleteInfoView extends StatelessWidget {
                   child: ButtonWidget(
                     color: const Color(0xffdbf6ff),
                     height: 2.h,
-                    width: 8.w,
+                    width: 4.w,
+                    borderRadius: 4,
                     onTap: () {},
                     text: "EDIT",
                     textStyle: TextStyleClass.smallStyle().copyWith(
@@ -59,9 +63,17 @@ class CompleteInfoView extends StatelessWidget {
       ),
       bottomNavigationBar: Padding(
         padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 4.w),
-        child: ButtonWidget(height: 6.h, width: 80.w, onTap: () {
-          Provider.of<NavBarProvider>(context,listen: false).goToNavView();
-        }, text: "Sign Up"),
+        child: ButtonWidget(
+          height: 6.h,
+          width: 80.w,
+          onTap: () {
+            if (isEdit) {
+            } else {
+              Provider.of<NavBarProvider>(context, listen: false).goToNavView();
+            }
+          },
+          text: isEdit ? "save" : "sign_up",
+        ),
       ),
     );
   }
