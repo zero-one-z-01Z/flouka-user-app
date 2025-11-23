@@ -1,7 +1,6 @@
 import 'package:flouka/core/constants/constants.dart';
 import 'package:flouka/features/banners/presentation/provider/banners_provider.dart';
 import 'package:flouka/features/cart/presentation/providers/cart_provider.dart';
-import 'package:flouka/features/navbar/presentation/provider/nav_provider.dart';
 import 'package:flouka/features/orders/presentation/provider/order_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
