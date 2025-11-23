@@ -49,96 +49,60 @@ class SavedAddressContainerWidget extends StatelessWidget {
               ],
             ),
             const Divider(thickness: 1.5, color: Color(0xffe3e3e3)),
+
             Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              spacing: 10.w,
+              spacing: 25.w,
               children: [
-                Column(
-                  spacing: 2.5.h,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Name",
-                      style: TextStyleClass.normalStyle(
-                        color: const Color(0xff595959),
-                      ).copyWith(fontSize: 17.sp),
-                    ),
-                    Text(
-                      LanguageProvider.translate("global", "Address"),
-                      style: TextStyleClass.normalStyle(
-                        color: const Color(0xff595959),
-                      ).copyWith(fontSize: 17.sp),
-                    ),
-                    Text(
-                      LanguageProvider.translate("global", "Mobile number"),
-                      style: TextStyleClass.normalStyle(
-                        color: const Color(0xff595959),
-                      ).copyWith(fontSize: 17.sp),
-                    ),
-                  ],
+                Text(
+                  "Name",
+                  style: TextStyleClass.normalStyle(
+                    color: const Color(0xff595959),
+                  ).copyWith(fontSize: 17.sp),
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  spacing: 2.3.h,
-                  children: [
-                    Text("3omran ba4a", style: TextStyleClass.smallStyle()),
-                    Text(address.addressName, style: TextStyleClass.smallStyle()),
-                    Text("01229804760", style: TextStyleClass.smallStyle()),
-                  ],
+                Expanded(
+                  child: Text(
+                    "3omran ba4a",
+                    style: TextStyleClass.normalStyle().copyWith(fontSize: 15.sp),
+                  ),
                 ),
               ],
             ),
-
-            // Row(
-            //   spacing: 25.w,
-            //   children: [
-            //     Text(
-            //       "Name",
-            //       style: TextStyleClass.normalStyle(
-            //         color: const Color(0xff595959),
-            //       ).copyWith(fontSize: 17.sp),
-            //     ),
-            //     Text(
-            //       "3omran ba4a",
-            //       style: TextStyleClass.normalStyle().copyWith(fontSize: 15.sp),
-            //     ),
-            //   ],
-            // ),
-            // SizedBox(height: 1.h),
-            // Row(
-            //   spacing: 25.w,
-            //   children: [
-            //     Text(
-            //       LanguageProvider.translate("global", "Address"),
-            //       style: TextStyleClass.normalStyle(
-            //         color: const Color(0xff595959),
-            //       ).copyWith(fontSize: 17.sp),
-            //     ),
-            //     Text(
-            //       "3omran ba4a",
-            //       style: TextStyleClass.normalStyle().copyWith(fontSize: 15.sp),
-            //     ),
-            //   ],
-            // ),
-            // SizedBox(height: 1.h),
-            // Row(
-            //   spacing: 25.w,
-            //   children: [
-            //     Text(
-            //       LanguageProvider.translate("global", "Mobile number"),
-            //       style: TextStyleClass.normalStyle(
-            //         color: const Color(0xff595959),
-            //       ).copyWith(fontSize: 17.sp),
-            //     ),
-            //     Text(
-            //       "3omran ba4a",
-            //       style: TextStyleClass.normalStyle().copyWith(fontSize: 15.sp),
-            //     ),
-            //   ],
-            // ),
+            SizedBox(height: 1.h),
+            Row(
+              spacing: 21.w,
+              children: [
+                Text(
+                  LanguageProvider.translate("global", "Address"),
+                  style: TextStyleClass.normalStyle(
+                    color: const Color(0xff595959),
+                  ).copyWith(fontSize: 17.sp),
+                ),
+                Expanded(
+                  child: Text(
+                    "3omran ba4a",
+                    style: TextStyleClass.normalStyle().copyWith(fontSize: 15.sp),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 1.h),
+            Row(
+              spacing: 7.w,
+              children: [
+                Text(
+                  LanguageProvider.translate("global", "Mobile number"),
+                  style: TextStyleClass.normalStyle(
+                    color: const Color(0xff595959),
+                  ).copyWith(fontSize: 17.sp),
+                ),
+                Expanded(
+                  child: Text(
+                    "01229804760",
+                    style: TextStyleClass.normalStyle().copyWith(fontSize: 15.sp),
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),

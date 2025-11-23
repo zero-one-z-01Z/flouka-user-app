@@ -4,13 +4,12 @@ import 'package:flouka/core/constants/app_lotties.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-import '../../../../../core/helper_function/navigation.dart';
 import '../../../../../core/widgets/button_widget.dart';
 import '../../../../../core/widgets/loading_animation_widget.dart';
 import '../../../language/presentation/provider/language_provider.dart';
 import '../providers/address_provider.dart';
+import '../providers/map_provider.dart';
 import '../widgets/saved_address_container_widget.dart';
-import 'select_address_map_page.dart';
 
 class SavedAddressesPage extends StatelessWidget {
   const SavedAddressesPage({super.key});
@@ -18,15 +17,9 @@ class SavedAddressesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final addressProvider = context.watch<AddressProvider>();
-
+    final MapProvider mapProvider = Provider.of(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Text(LanguageProvider.translate('global', 'address')),
-        // leading: IconButton(
-        //   onPressed: () => navPop(),
-        //   icon: const Icon(Icons.arrow_back_ios_new),
-        // ),
-      ),
+      appBar: AppBar(title: Text(LanguageProvider.translate('global', 'address'))),
 
       body: Builder(
         builder: (context) {
@@ -61,7 +54,7 @@ class SavedAddressesPage extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 17.sp, vertical: 5.h),
         child: ButtonWidget(
           onTap: () {
-            navP(const SelectAddressMapPage());
+            mapProvider.goToMapPage();
           },
           text: "apply",
           height: 7.h,

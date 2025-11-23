@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flouka/core/constants/app_lotties.dart';
+import 'package:flouka/features/address/presentation/views/map_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flouka/core/dialog/new_success_dialog.dart';
 import 'package:flouka/features/address/domain/usecase/city_usecase.dart';
@@ -25,7 +26,6 @@ import '../../../language/presentation/provider/language_provider.dart';
 import '../../domain/entities/address_entity.dart';
 import '../../domain/entities/city_entity.dart';
 import '../../domain/usecase/address_usecase.dart';
-import '../views/select_address_map_page.dart';
 import 'address_provider.dart';
 
 class AddressDetailsProvider extends ChangeNotifier {
@@ -338,7 +338,7 @@ class AddressDetailsProvider extends ChangeNotifier {
         setData(addressEntity.lat, addressEntity.lng);
         setInputsData();
         navP(
-          const SelectAddressMapPage(),
+          const MapScreen(),
           then: (val) async {
             resetData();
           },
@@ -350,7 +350,7 @@ class AddressDetailsProvider extends ChangeNotifier {
         navPop();
         setData(position.latitude, position.longitude);
         navP(
-          const SelectAddressMapPage(),
+          const MapScreen(),
           then: (val) async {
             resetData();
           },
