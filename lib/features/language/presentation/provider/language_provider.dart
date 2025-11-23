@@ -60,7 +60,8 @@ class LanguageProvider extends ChangeNotifier {
   }
 
   String getTranslate(String key, value) {
-    Map localizedStrings = ApiHandel.getInstance.languages[_appLocale.languageCode];
+    Map localizedStrings =
+        ApiHandel.getInstance.languages[_appLocale.languageCode];
     if (localizedStrings.containsKey(key) &&
         localizedStrings[key].containsKey(value)) {
       return localizedStrings[key][value];
@@ -157,8 +158,8 @@ class LanguageProvider extends ChangeNotifier {
 
   void showLanguageDialog() {
     customAlertDialog(
-      title: 'choose_lang',
-      content: 'choose_lang_content',
+      title: translate('global', "choose_lang"),
+      content: translate('global', "choose_lang_content"),
       top: -15.h,
       backConfirm: const Color(0xff11683D),
       backCancel: const Color(0xff0E5196),

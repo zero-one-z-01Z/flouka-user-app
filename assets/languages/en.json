@@ -66,6 +66,9 @@
   "global": {
     "checkout": "Checkout",
     "total": "Total",
+    "settings": "Settings",
+    "choose_lang": "Choose Language",
+    "choose_lang_content": "Choose your language",
     "Pay With": "Pay With",
     "Deliver To": "Deliver To",
     "Shipment": "Shipment",
@@ -124,7 +127,19 @@
     "apply": "Apply",
     "reset": "Reset"
   },
-  "settings": {},
+  "settings": {
+    "settings": "Settings",
+    "language": "Language",
+    "support": "Support",
+    "dark_mode": "Dark Mode",
+    "notification": "Notifications",
+    "privacy_policy": "Privacy Policy",
+    "help": "Help",
+    "about": "About",
+    "delete_account": "Delete Account",
+    "delete": "Delete",
+    "logout": "Logout"
+  },
   "ticket": {
     "ticket_number": "Ticket Number: *id*",
     "ticket_category": "Category: *cat*",
