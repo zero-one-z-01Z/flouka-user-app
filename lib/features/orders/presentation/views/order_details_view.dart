@@ -1,9 +1,9 @@
 import 'package:flouka/core/constants/app_lotties.dart';
+import 'package:flouka/features/orders/presentation/widget/share_your_experience_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../core/config/app_styles.dart';
-import '../../../../core/widgets/button_widget.dart';
 import '../../../../core/widgets/loading_animation_widget.dart';
 import '../../../address/presentation/widgets/delivery_address_widget.dart';
 import '../../../language/presentation/provider/language_provider.dart';
@@ -12,8 +12,8 @@ import '../provider/order_details_provider.dart';
 import '../provider/order_provider.dart';
 import '../widget/order_details_item_widget.dart';
 import '../widget/order_info_widget.dart';
-import '../widget/order_price_item_widget.dart';
-import '../widget/order_status_comment.dart';
+import '../widget/order_status_widget.dart';
+// import '../widget/order_price_item_widget.dart';
 
 class OrderDetailsView extends StatelessWidget {
   const OrderDetailsView({super.key});
@@ -27,20 +27,15 @@ class OrderDetailsView extends StatelessWidget {
       backgroundColor: const Color(0xfff7f5f5),
       appBar: AppBar(
         title: Text(
-          LanguageProvider.translate("global", "order_details"),
+          LanguageProvider.translate("global", "Tracking Details"),
           style: TextStyleClass.normalStyle().copyWith(fontWeight: FontWeight.w500),
         ),
-        // leading: IconButton(
-        //   onPressed: () => Navigator.pop(context),
-        //   icon: const Icon(Icons.arrow_back_ios_new),
-        // ),
       ),
       body: Builder(
         builder: (context) {
           if (orderDetailsProvider.data == null) {
             return const Center(child: LoadingAnimationWidget(gif: Lotties.loading));
           }
-
           return SizedBox(
             height: 100.h,
             width: 100.w,
@@ -51,49 +46,46 @@ class OrderDetailsView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   OrderInfoItemWidget(
-                    title: LanguageProvider.translate("global", "order_id"),
+                    title: LanguageProvider.translate("global", "Order ID"),
                     info: orderDetailsProvider.data?.id.toString() ?? "",
                   ),
-                  OrderPriceExpansionTileWidget(
-                    title: LanguageProvider.translate("global", "total_prices"),
-                    info:
-                        "${orderDetailsProvider.data?.total} ${LanguageProvider.translate("global", "dinar")}",
-                  ),
-                  SizedBox(height: 1.3.h),
-                  Text(
-                    LanguageProvider.translate("global", "shipment_address"),
-                    style: TextStyleClass.normalStyle().copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: 1.3.h),
-                  const DeliveryAddressWidget(withoutArrow: true),
-                  SizedBox(height: 1.3.h),
                   OrderStatusWidget(
-                    status: orderDetailsProvider.data?.status ?? OrderStatus.pending,
+                    orderStatus:
+                        orderDetailsProvider.data?.status ?? OrderStatus.pending,
                   ),
                   SizedBox(height: 1.3.h),
+                  const DeliveryAddressWidget(),
+                  SizedBox(height: 1.3.h),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
 
-                  if (orderDetailsProvider.data?.status == OrderStatus.pending)
-                    ButtonWidget(
-                      color: Colors.redAccent,
-                      onTap: () {
-                        orderProvider.showCancelOrderDialog(
-                          orderDetailsProvider,
-                          orderDetailsProvider.data!.id!,
-                        );
-                      },
-                      text: "cancel_order",
-                    ),
-                  Text(
-                    "${LanguageProvider.translate("global", "the_order")} "
-                    " 1 "
-                    "${LanguageProvider.translate("global", "from")}"
-                    " ${orderDetailsProvider.data!.orderDetails.length} ",
-                    style: TextStyleClass.normalStyle().copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                    child: const ShareYourExperienceWidget(),
                   ),
+                  SizedBox(height: 1.3.h),
+                  // if (orderDetailsProvider.data?.status == OrderStatus.pending)
+                  //   ButtonWidget(
+                  //     color: Colors.redAccent,
+                  //     onTap: () {
+                  //       orderProvider.showCancelOrderDialog(
+                  //         orderDetailsProvider,
+                  //         orderDetailsProvider.data!.id!,
+                  //       );
+                  //     },
+                  //     text: "cancel_order",
+                  //   ),
+                  // Text(
+                  //   "${LanguageProvider.translate("global", "the_order")} "
+                  //   " 1 "
+                  //   "${LanguageProvider.translate("global", "from")}"
+                  //   " ${orderDetailsProvider.data!.orderDetails.length} ",
+                  //   style: TextStyleClass.normalStyle().copyWith(
+                  //     fontWeight: FontWeight.bold,
+                  //   ),
+                  // ),
                   OrderDetailsItemWidget(
                     orderDetailsEntity:
                         orderDetailsProvider.data!.orderDetails.first,

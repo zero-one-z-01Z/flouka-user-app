@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-
+import 'package:sizer/sizer.dart';
+import '../../../../core/config/app_color.dart';
 import '../../../../core/config/app_styles.dart';
 
 class OrderInfoItemWidget extends StatelessWidget {
-  const OrderInfoItemWidget({
-    super.key,
-    required this.title,
-    required this.info,
-  });
+  const OrderInfoItemWidget({super.key, required this.title, required this.info});
 
   final String title;
   final String info;
@@ -22,15 +19,14 @@ class OrderInfoItemWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        spacing: 1.w,
         children: [
-          Text(
-            title,
-            style: TextStyleClass.normalStyle(),
-          ),
+          Text(title, style: TextStyleClass.normalStyle().copyWith(fontSize: 15.sp)),
           Text(
             info,
-            style: TextStyleClass.normalStyle(),
+            style: TextStyleClass.normalStyle(
+              color: AppColor.primaryColor,
+            ).copyWith(fontWeight: FontWeight.bold, fontSize: 16.sp),
           ),
         ],
       ),

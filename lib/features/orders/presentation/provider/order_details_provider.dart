@@ -1,11 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flouka/features/orders/domain/entity/order_entity.dart';
 import '../../../../core/dialog/snack_bar.dart';
+import '../../../../core/helper_function/navigation.dart';
 import '../../../../core/models/provider_structure_model.dart';
 import '../../../products/domain/entity/product_entity.dart';
 import '../../../products/domain/entity/product_image_entity.dart';
 import '../../domain/entity/order_details_entity.dart';
 import '../../domain/use_case/order_use_case.dart';
+import '../views/order_details_view.dart';
 
 class OrderDetailsProvider extends ChangeNotifier
     implements ProviderStructureModel<OrderEntity> {
@@ -66,7 +68,7 @@ class OrderDetailsProvider extends ChangeNotifier
     }
 
     // Navigate first
-    // todo : navP(const OrderDetailsView());
+     navP(const OrderDetailsView());
 
     // Fetch data safely
     await refresh();

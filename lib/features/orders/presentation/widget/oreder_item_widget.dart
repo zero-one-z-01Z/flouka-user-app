@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flouka/core/config/app_color.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,7 @@ import '../../../../core/config/app_styles.dart';
 import '../../../language/presentation/provider/language_provider.dart';
 import '../../domain/entity/order_entity.dart';
 import '../provider/order_details_provider.dart';
-import 'custom_order_action_buttons_widget.dart';
+import 'share_your_experience_widget.dart';
 
 class OrderItemWidget extends StatelessWidget {
   const OrderItemWidget({super.key, required this.orderEntity});
@@ -19,6 +20,7 @@ class OrderItemWidget extends StatelessWidget {
     return InkWell(
       onTap: () {
         orderDetailsProvider.goToPage({'order_id': orderEntity.id});
+        log("order details");
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
@@ -81,12 +83,7 @@ class OrderItemWidget extends StatelessWidget {
               ],
             ),
             SizedBox(height: 1.h),
-            Text(
-              LanguageProvider.translate("global", "Share Your Experience"),
-              style: TextStyleClass.normalStyle().copyWith(fontSize: 15.sp),
-            ),
-            SizedBox(height: 1.h),
-            const CustomOrderActionButtonsWidget(),
+            const ShareYourExperienceWidget(),
           ],
         ),
       ),

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -15,29 +14,35 @@ class CustomOrderActionButtonsWidget extends StatelessWidget {
       children: [
         Expanded(
           child: ButtonWidget(
+            borderRadius: 10,
+
             color: const Color(0xffdff7ff),
             onTap: () {},
             text: "Seller",
             textStyle: TextStyleClass.smallStyle(),
-            height: 4.h,
+            height: 3.h,
           ),
         ),
         Expanded(
           child: ButtonWidget(
+            borderRadius: 10,
+
             color: const Color(0xffdff7ff),
             onTap: () {},
             text: "Product",
             textStyle: TextStyleClass.smallStyle(),
-            height: 4.h,
+            height: 3.h,
           ),
         ),
         Expanded(
           child: ButtonWidget(
+            borderRadius: 10,
+
             color: const Color(0xffdff7ff),
             onTap: () {},
             text: "Delivery",
             textStyle: TextStyleClass.smallStyle(),
-            height: 4.h,
+            height: 3.h,
           ),
         ),
       ],
