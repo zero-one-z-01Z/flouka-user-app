@@ -1,3 +1,4 @@
+import 'package:flouka/features/orders/presentation/provider/order_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -21,6 +22,7 @@ class CheckoutView extends StatelessWidget {
     final CheckoutProvider checkoutProvider = Provider.of<CheckoutProvider>(context);
     final CartProvider cartProvider = Provider.of<CartProvider>(context);
     final AddressProvider addressProvider = Provider.of<AddressProvider>(context);
+    final OrderProvider orderProvider = Provider.of<OrderProvider>(context);
     return Scaffold(
       backgroundColor: const Color(0xffeffbff),
       // backgroundColor: Colors.black,
@@ -76,7 +78,7 @@ class CheckoutView extends StatelessWidget {
             ),
             DraggableImageButton(
               onComplete: () {
-                addressProvider.goToAddressPage();
+                orderProvider.goToPage();
               },
             ),
           ],

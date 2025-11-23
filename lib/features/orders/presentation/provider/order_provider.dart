@@ -15,6 +15,7 @@ import '../../../products/domain/entity/product_image_entity.dart';
 import '../../domain/entity/order_details_entity.dart';
 import '../../domain/entity/order_entity.dart';
 import '../../domain/use_case/order_use_case.dart';
+import '../views/orders_view.dart';
 import 'order_details_provider.dart';
 
 class OrderProvider extends ChangeNotifier
@@ -39,6 +40,8 @@ class OrderProvider extends ChangeNotifier
   bool paginationStarted = false;
 
   ScrollController controller = ScrollController();
+
+  TextEditingController searchController = TextEditingController();
 
   List<OrderEntity> get newOrders =>
       data?.where((order) => order.status == 'new').toList() ?? [];
@@ -82,7 +85,7 @@ class OrderProvider extends ChangeNotifier
   @override
   void goToPage([Map<String, dynamic>? inputs]) {
     refresh();
-    // todo  navP(const OrdersView());
+    navP(const OrdersView());
   }
 
   @override
@@ -152,7 +155,7 @@ final fakeOrder = OrderEntity(
       size: 'asdasd',
       productEntity: ProductEntity(
         id: 55,
-        name: 'asdasd',
+        name: 'Lenovod Yoga 920 13/Core i7/16GB/SSD 1TB',
         description: 'asdasd',
         image: 'asdasd',
         price: 5654,
