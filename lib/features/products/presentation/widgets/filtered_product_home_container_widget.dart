@@ -48,7 +48,12 @@ class FilteredProductHomeContainerWidget extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CachedNetworkImage(imageUrl: imageUrl, height: 12.h, width: 12.h),
+              CachedNetworkImage(
+                imageUrl: imageUrl,
+                height: 12.h,
+                width: 12.h,
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

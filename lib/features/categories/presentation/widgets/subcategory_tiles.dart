@@ -33,6 +33,7 @@ class SubcategoryTile extends StatelessWidget {
               imageUrl: subcategory!.image,
               width: 12.w,
               height: 5.h,
+              errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
             SizedBox(width: 2.w),
             Text(

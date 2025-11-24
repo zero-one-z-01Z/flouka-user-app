@@ -36,6 +36,7 @@ class ReviewWithImagesSection extends StatelessWidget {
                       imageUrl: "https://placehold.co/600x400/000000/FFFFFF/png",
                       width: 20.w,
                       height: 20.w,
+                      errorWidget: (context, url, error) => const Icon(Icons.error),
                     ),
                   ),
                 ),

@@ -27,6 +27,7 @@ class ProductDetailsHeaderWidget extends StatelessWidget {
               return CachedNetworkImage(
                 fit: BoxFit.cover,
                 imageUrl: productDetailsProvider.data!.images![index]!.image,
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               );
             },
           ),

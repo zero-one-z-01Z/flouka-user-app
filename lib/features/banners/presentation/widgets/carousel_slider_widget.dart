@@ -41,6 +41,7 @@ class CarouselSliderWidget extends StatelessWidget {
                       imageUrl: item.image,
                       fit: BoxFit.cover,
                       width: double.infinity,
+                      errorWidget: (context, url, error) => const Icon(Icons.error),
                     ),
                   ),
                 );

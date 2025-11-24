@@ -54,6 +54,7 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
                     width: double.infinity,
                     height: imageHeight ?? 10.h,
                     fit: BoxFit.cover,
+                    errorWidget: (context, url, error) => const Icon(Icons.error),
                   ),
                 ),
                 SizedBox(height: 1.h),
@@ -61,10 +62,7 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
                   width: 20.w,
                   child: Text(
                     title,
-                    style: TextStyle(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600),
                     softWrap: true,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -75,10 +73,7 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
                   children: [
                     Text(
                       priceAfterOffer.toString(),
-                      style: TextStyle(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w600,
-                      ),
+                      style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600),
                     ),
                     const Spacer(),
                     Text(
