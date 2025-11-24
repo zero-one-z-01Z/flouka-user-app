@@ -1,4 +1,5 @@
 import 'package:flouka/core/constants/app_images.dart';
+import 'package:flouka/features/auth/presentation/views/profile_view.dart';
 import 'package:flouka/features/categories/presentation/view/categories_view.dart';
 import 'package:flouka/features/home/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,12 @@ import '../views/nav_bar_view.dart';
 class NavBarProvider extends ChangeNotifier {
   int currentIndex = 0;
 
-  final List<Widget> body = const [HomePage(), CategoriesView(), CartView(), SizedBox()];
+  final List<Widget> body = [
+    const HomePage(),
+    const CategoriesView(),
+    const CartView(),
+    const ProfileView(),
+  ];
 
   final List<BottomNaBarEntity> bottomNavigationBarItemEntity = [
     BottomNaBarEntity(

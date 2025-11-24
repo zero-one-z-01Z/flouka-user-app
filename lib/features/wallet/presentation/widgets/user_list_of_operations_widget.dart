@@ -27,11 +27,15 @@ class ListOfTransactionWidgets extends StatelessWidget {
                 width: 100.w,
                 padding: EdgeInsets.symmetric(horizontal: 3.w),
                 child: Text(
-                  LanguageProvider.translate("wallet", "operations"),
-                  style: TextStyleClass.normalStyle(),
+                  LanguageProvider.translate("global", "operations"),
+                  style: TextStyleClass.normalStyle().copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            ...List.generate((walletProvider.myOperations?.length ?? 6), (index) {
+            ...List.generate((walletProvider.myOperations?.length ?? 6), (
+              index,
+            ) {
               if (walletProvider.myOperations == null) {
                 // return ShimmerWidget(height: 7.h, width: 100.w);
               } else {

@@ -194,7 +194,7 @@ class AuthProvider extends ChangeNotifier {
   void confirmDeleteAccount() {
     confirmDialog(
       LanguageProvider.translate('settings', "delete_account"),
-      LanguageProvider.translate('settings', "delete_account"),
+      LanguageProvider.translate('settings', "delete"),
       () {
         deleteAccount();
       },

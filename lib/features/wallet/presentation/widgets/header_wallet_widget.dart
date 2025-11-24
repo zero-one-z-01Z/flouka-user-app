@@ -34,18 +34,29 @@ class HeaderWalletWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        LanguageProvider.translate("global", "balance"),
-                        style: TextStyleClass.normalStyle(),
+                        LanguageProvider.translate("global", "your_credit"),
+                        style: TextStyleClass.normalStyle().copyWith(
+                          color: Colors.white,
+                          fontSize: 16.sp,
+                        ),
                       ),
                       Row(
                         children: [
                           Text(
                             " ${authProvider.userEntity?.wallet ?? 0} ",
-                            style: TextStyleClass.normalStyle(),
+                            style: TextStyleClass.normalStyle().copyWith(
+                              color: Colors.white,
+                              fontSize: 21.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           Text(
-                            LanguageProvider.translate('global', 'dinar'),
-                            style: TextStyleClass.normalStyle()
+                            LanguageProvider.translate('global', 'US'),
+                            style: TextStyleClass.normalStyle().copyWith(
+                              color: Colors.white,
+                              fontSize: 21.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ],
                       ),

@@ -3,7 +3,6 @@ import 'package:flouka/features/language/presentation/provider/language_provider
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-
 import '../providers/stores_provider.dart';
 import 'stores_container_home_widget.dart';
 
@@ -34,7 +33,7 @@ class StoresHomeSection extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    // todo: navigate to all stores
+                    context.read<StoresProvider>().goToStoreDetailsPage();
                   },
                   child: Text(
                     LanguageProvider.translate('home', 'see_all'),

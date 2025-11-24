@@ -1,5 +1,5 @@
 import 'package:flouka/features/categories/presentation/widgets/categories_grid_view.dart';
-import 'package:flouka/features/categories/presentation/widgets/searchbar_container.dart';
+import 'package:flouka/core/widgets/searchbar_container.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 

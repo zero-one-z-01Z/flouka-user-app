@@ -1,5 +1,3 @@
-import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/constants/constants.dart';
@@ -24,31 +22,55 @@ class WalletProvider extends ChangeNotifier implements PaginationClass {
   WalletProvider(this.walletUseCases);
 
   Future walletOperations() async {
-    Map<String, dynamic> data = {};
-    data['page'] = pageIndex;
-    Either<DioException, List<OperationEntity>> login = await walletUseCases
-        .walletOperations(data);
-    login.fold(
-      (l) {
-        showToast("${l.message}");
-      },
-      (r) async {
-        pageIndex++;
-        myOperations ??= [];
-        myOperations?.addAll(r);
-        if (r.isEmpty) {
-          paginationFinished = true;
-        }
-      },
-    );
-    paginationStarted = false;
-
+    myOperations = [
+      OperationEntity(
+        id: 1,
+        userId: 1,
+        price: "100",
+        operation: "deposited",
+        createdAt: DateTime.now().toString(),
+      ),
+      OperationEntity(
+        id: 2,
+        userId: 1,
+        price: "20",
+        operation: "deducted",
+        createdAt: DateTime.now().toString(),
+      ),
+      OperationEntity(
+        id: 3,
+        userId: 1,
+        price: "100",
+        operation: "deposited",
+        createdAt: DateTime.now().toString(),
+      ),
+    ];
     notifyListeners();
+    // Map<String, dynamic> data = {};
+    // data['page'] = pageIndex;
+    // Either<DioException, List<OperationEntity>> login = await walletUseCases
+    //     .walletOperations(data);
+    // login.fold(
+    //   (l) {
+    //     showToast("${l.message}");
+    //   },
+    //   (r) async {
+    //     pageIndex++;
+    //     myOperations ??= [];
+    //     myOperations?.addAll(r);
+    //     if (r.isEmpty) {
+    //       paginationFinished = true;
+    //     }
+    //   },
+    // );
+    // paginationStarted = false;
+    //
+    // notifyListeners();
   }
 
   void goToWalletPage() {
     // if (AuthProvider.isLogin()) {
-    refresh();
+    // refresh();
     navP(UserWalletHome());
     // } else {
     // showGuestDialog();
@@ -58,7 +80,10 @@ class WalletProvider extends ChangeNotifier implements PaginationClass {
   void refresh() {
     clear();
     notifyListeners();
-    Provider.of<AuthProvider>(Constants.globalContext(), listen: false).getProfile();
+    Provider.of<AuthProvider>(
+      Constants.globalContext(),
+      listen: false,
+    ).getProfile();
     walletOperations();
   }
 
@@ -160,7 +185,8 @@ class WalletProvider extends ChangeNotifier implements PaginationClass {
       },
     );
   }
-//
+
+  //
   @override
   int pageIndex = 1;
 

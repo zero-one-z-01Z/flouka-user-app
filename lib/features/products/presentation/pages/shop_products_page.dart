@@ -7,7 +7,7 @@ import 'package:sizer/sizer.dart';
 import '../../../../core/config/app_color.dart';
 import '../../../../core/constants/app_images.dart';
 import '../../../../core/widgets/svg_widget.dart';
-import '../../../categories/presentation/widgets/searchbar_container.dart';
+import '../../../../core/widgets/searchbar_container.dart';
 
 class ShopProductsPage extends StatelessWidget {
   const ShopProductsPage({super.key});

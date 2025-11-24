@@ -10,6 +10,7 @@ class ProductEntity {
   final int? marketId;
   final String? image;
   final List<ProductImageEntity?>? images;
+  final double? rating;
 
   ProductEntity({
     required this.id,
@@ -21,5 +22,6 @@ class ProductEntity {
     required this.marketId,
     required this.image,
     required this.images,
+    this.rating,
   });
 }

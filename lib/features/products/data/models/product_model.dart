@@ -13,11 +13,12 @@ class ProductModel extends ProductEntity {
     super.marketId,
     super.image,
     super.images,
+    super.rating,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     List<ProductImageModel> images = [];
-      if (json.containsKey('images') && json['images'] != null) {
+    if (json.containsKey('images') && json['images'] != null) {
       for (var i in json['images']) {
         images.add(ProductImageModel.fromJson(i));
       }
@@ -33,6 +34,9 @@ class ProductModel extends ProductEntity {
       marketId: json['marketId'],
       image: json['image'],
       images: images,
+      rating: json['rating'] != null
+          ? (json['rating'] as num).toDouble()
+          : null,
     );
   }
 }

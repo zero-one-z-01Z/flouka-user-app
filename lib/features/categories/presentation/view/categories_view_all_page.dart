@@ -6,7 +6,7 @@ import 'package:flouka/features/categories/domain/entity/category_entity.dart';
 import 'package:flouka/features/categories/presentation/providers/categories_provider.dart';
 import 'package:flouka/features/categories/presentation/widgets/categories_home_explore.dart';
 import 'package:flouka/features/categories/presentation/widgets/categories_view_all_filter_widget.dart';
-import 'package:flouka/features/categories/presentation/widgets/searchbar_container.dart';
+import 'package:flouka/core/widgets/searchbar_container.dart';
 import 'package:flouka/features/categories/presentation/widgets/shop_by_container_widget.dart';
 import 'package:flouka/features/products/presentation/widgets/hot_deals_home_section.dart';
 import 'package:flutter/material.dart';
