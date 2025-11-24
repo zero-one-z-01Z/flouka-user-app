@@ -30,6 +30,10 @@ import 'features/orders/data/data_srouce/order_remote_data_source.dart';
 import 'features/orders/data/repos/order_repo_impl.dart';
 import 'features/orders/domain/repos/order_repo.dart';
 import 'features/orders/domain/use_case/order_use_case.dart';
+import 'features/products/data/data_source/product_remote_data_source.dart';
+import 'features/products/data/repos/product_repo_impl.dart';
+import 'features/products/domain/repo/product_repo.dart';
+import 'features/products/domain/user_case/product_use_case.dart';
 import 'features/wallet/data/data_sources/remote.dart';
 import 'features/wallet/data/repositories/wallet_repo.dart';
 import 'features/wallet/domain/repositories/wallet_repo_impl.dart';
@@ -64,6 +68,13 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<WalletRepo>(WalletRepoImpl(sl.get()));
   sl.registerSingleton<WalletUseCases>(WalletUseCases(sl.get()));
   
+    // product
+  sl.registerSingleton<ProductRemoteDataSource>(
+    ProductRemoteDataSource(sl.get()),
+  );
+  sl.registerSingleton<ProductRepo>(ProductRepoImpl(sl.get()));
+  sl.registerSingleton<ProductUseCase>(ProductUseCase(sl.get()));
+ 
 
   // tickets
   
