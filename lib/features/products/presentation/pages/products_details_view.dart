@@ -1,11 +1,13 @@
 import 'package:flouka/core/config/app_styles.dart';
 import 'package:flouka/core/constants/app_lotties.dart';
 import 'package:flouka/core/widgets/loading_animation_widget.dart';
+import 'package:flouka/features/products/presentation/widgets/gradiant_button.dart';
 import 'package:flouka/features/products/presentation/widgets/product_details_header_widget.dart';
 import 'package:flouka/features/products/presentation/widgets/review_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import '../../../../core/config/app_color.dart';
 import '../../../language/presentation/provider/language_provider.dart';
 import '../providers/products_details_provider.dart';
 import '../widgets/avg_rating_widget.dart';
@@ -84,6 +86,11 @@ class ProductsDetailsView extends StatelessWidget {
                           const AvgRatingWidget(),
                           SizedBox(height: 2.h),
                           const ReviewContainerWidget(),
+                          gradiantButton(
+                            onTap: () {},
+                            text: "Sold By APPLESTORE",
+                            gradiantcolors: [Colors.white, AppColor.primaryColor],
+                          ),
 
                           SizedBox(height: 5.h),
                         ],
