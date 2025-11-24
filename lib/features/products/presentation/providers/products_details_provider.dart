@@ -92,6 +92,19 @@ class ProductDetailsProvider extends ChangeNotifier
     notifyListeners();
   }
 
+  List<Color> colorsList = [Colors.red, Colors.green, Colors.blue, Colors.purple];
+  late Color selectedColor = colorsList.first;
+
+  void onColorChange(Color newColor) {
+    if (selectedColor == newColor) return;
+    selectedColor = newColor;
+    notifyListeners();
+  }
+
+  bool isColorSelected(Color color) {
+    return selectedColor == color;
+  }
+
   // ColorEntity? colorEntity;
   // onColorChange(ColorEntity newColor) {
   //   if (colorEntity?.id == newColor.id) {
