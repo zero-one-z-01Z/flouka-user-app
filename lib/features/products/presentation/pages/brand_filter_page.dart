@@ -1,4 +1,5 @@
 import 'package:flouka/core/config/app_color.dart';
+import 'package:flouka/features/products/presentation/pages/price_filter_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -152,7 +153,7 @@ class BrandFilterPage extends StatelessWidget {
         ).copyWith(bottom: 5.h),
         child: ButtonWidget(
           onTap: () {
-            navP(const BrandFilterPage());
+            navP(const PriceFilterPage());
           },
           text: 'apply',
           width: 54.w,
