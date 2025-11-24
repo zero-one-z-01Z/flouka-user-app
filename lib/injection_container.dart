@@ -100,12 +100,6 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<SettingsRepo>(SettingsRepoImpl(sl.get()));
   sl.registerSingleton<SettingsUseCases>(SettingsUseCases(sl.get()));
 
-  // products
-  sl.registerSingleton<ProductRemoteDataSource>(
-    ProductRemoteDataSource(sl.get()),
-  );
-  sl.registerSingleton<ProductRepo>(ProductRepoImpl(sl.get()));
-  sl.registerSingleton<ProductUseCase>(ProductUseCase(sl.get()));
 
   // sl.registerSingleton<MarketRemoteDataSource>(
   //   MarketRemoteDataSource(sl.get()),

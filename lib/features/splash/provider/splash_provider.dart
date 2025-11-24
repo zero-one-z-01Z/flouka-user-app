@@ -32,34 +32,31 @@ class SplashProvider extends ChangeNotifier {
       ).getPopularCategories(),
       Provider.of<CartProvider>(Constants.globalContext(), listen: false).getData(),
       Provider.of<OrderProvider>(Constants.globalContext(), listen: false).getData(),
-      Provider.of<AddressProvider>(Constants.globalContext(), listen: false).getAddress(),
+      Provider.of<AddressProvider>(
+        Constants.globalContext(),
+        listen: false,
+      ).getAddress(),
       Provider.of<WalletProvider>(
         Constants.globalContext(),
         listen: false,
       ).walletOperations(),
-      Provider.of<CartProvider>(
-        Constants.globalContext(),
-        listen: false,
-      ).getData(),
-      Provider.of<OrderProvider>(
-        Constants.globalContext(),
-        listen: false,
-      ).getData(),
+      Provider.of<CartProvider>(Constants.globalContext(), listen: false).getData(),
+      Provider.of<OrderProvider>(Constants.globalContext(), listen: false).getData(),
     ]);
 
     bool isFirstTime = !(sharedPreferences.getBool('onBoarding') ?? false);
     String? isLoggedIn = sharedPreferences.getString('token');
-    if (isFirstTime) {
-      Provider.of<NavBarProvider>(
-        Constants.globalContext(),
-        listen: false,
-      ).goToNavView();
-      // if (isFirstTime) {
-      // Provider.of<OnBoardingProvider>(Constants.globalContext(), listen: false,).goToOnBoardingView();
+    // if (!isFirstTime) {
+    Provider.of<OnBoardingProvider>(
+      Constants.globalContext(),
+      listen: false,
+    ).goToOnBoardingView();
+    // if (isFirstTime) {
+    // Provider.of<OnBoardingProvider>(Constants.globalContext(), listen: false,).goToOnBoardingView();
 
-      // }else{
-      // Provider.of<NavBarProvider>(Constants.globalContext(), listen: false,).currentIndex = 0;
-      // Provider.of<NavBarProvider>(Constants.globalContext(), listen: false,).goToNavView();
-    }
+    // }else{
+    // Provider.of<NavBarProvider>(Constants.globalContext(), listen: false,).currentIndex = 0;
+    // Provider.of<NavBarProvider>(Constants.globalContext(), listen: false,).goToNavView();
+    // }
   }
 }
