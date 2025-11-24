@@ -1,3 +1,5 @@
+import 'package:flouka/core/helper_function/navigation.dart';
+import 'package:flouka/features/stores/presentation/pages/store_details_page.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/stores_container_home_widget.dart';
@@ -34,4 +36,16 @@ class StoresProvider with ChangeNotifier {
   ];
 
   List<StoreEntity> get stores => _stores;
+
+  void goToStoreDetailsPage() {
+    navP(const StoreDetailsPage());
+  }
+
+  int current = 0;
+
+  void changeCurrent(int index) async {
+    if (current == index) return;
+    current = index;
+    notifyListeners();
+  }
 }
