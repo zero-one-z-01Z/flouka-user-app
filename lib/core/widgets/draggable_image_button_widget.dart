@@ -25,7 +25,7 @@ class _DraggableImageButtonState extends State<DraggableImageButton> {
     double maxX = screenWidth - 100;
 
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 4.w),
+      padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
       child: Stack(
         children: [
           AnimatedContainer(

@@ -14,18 +14,16 @@ class ChatBubble extends StatelessWidget {
     return Align(
       alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
       child: Row(
-        mainAxisAlignment: isUser
-            ? MainAxisAlignment.end
-            : MainAxisAlignment.start,
+        mainAxisAlignment: isUser ? MainAxisAlignment.end : MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (!isUser) ...[
-            const CircleAvatar(
-              backgroundColor: Colors.black,
-              child: Icon(Icons.person, color: Colors.white),
-            ),
-            const SizedBox(width: 8),
-          ],
+          // if (!isUser) ...[
+          //   const CircleAvatar(
+          //     backgroundColor: Colors.black,
+          //     child: Icon(Icons.person, color: Colors.white),
+          //   ),
+          //   const SizedBox(width: 8),
+          // ],
           Flexible(
             child: Container(
               padding: const EdgeInsets.all(12),

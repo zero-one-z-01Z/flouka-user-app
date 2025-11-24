@@ -34,19 +34,18 @@ class SettingsWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Container(
-                            padding: EdgeInsets.all(3.w),
+                            padding: EdgeInsets.all(1.5.w),
                             margin: EdgeInsets.symmetric(
-                              horizontal: 1.w,
+                              // horizontal: 1.w,
                               vertical: 1.h,
                             ),
                             decoration: BoxDecoration(
-                              color:
-                                  settingsEntity.color ?? AppColor.primaryColor,
-                              borderRadius: BorderRadius.circular(12.sp),
+                              color: settingsEntity.color ?? AppColor.primaryColor,
+                              borderRadius: BorderRadius.circular(4),
                             ),
                             child: SvgWidget(
                               svg: settingsEntity.svgImage,
-                              width: 4.w,
+                              width: 6.w,
                               color: Colors.white,
                             ),
                           ),
@@ -76,10 +75,7 @@ class SettingsWidget extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: Container(
-                    color: const Color(0xffEFEFEF),
-                    height: 0.15.h,
-                  ),
+                  child: Container(color: const Color(0xffEFEFEF), height: 0.15.h),
                 ),
               ],
             ),

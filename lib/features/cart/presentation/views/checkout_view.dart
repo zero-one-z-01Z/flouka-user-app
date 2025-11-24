@@ -81,6 +81,7 @@ class CheckoutView extends StatelessWidget {
                 orderProvider.goToPage();
               },
             ),
+            SizedBox(height: 2.h),
           ],
         ),
       ),

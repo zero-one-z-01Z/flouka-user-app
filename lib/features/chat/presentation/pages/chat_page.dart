@@ -73,7 +73,6 @@ class ChatPage extends StatelessWidget {
                     ),
                   );
                 }
-
                 final message = chatProvider.messages[index];
                 return ChatBubble(message: message);
               },

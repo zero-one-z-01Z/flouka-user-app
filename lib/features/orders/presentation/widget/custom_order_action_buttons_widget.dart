@@ -20,7 +20,7 @@ class CustomOrderActionButtonsWidget extends StatelessWidget {
             onTap: () {},
             text: "Seller",
             textStyle: TextStyleClass.smallStyle(),
-            height: 3.h,
+            height: 4.h,
           ),
         ),
         Expanded(
@@ -31,7 +31,7 @@ class CustomOrderActionButtonsWidget extends StatelessWidget {
             onTap: () {},
             text: "Product",
             textStyle: TextStyleClass.smallStyle(),
-            height: 3.h,
+            height: 4.h,
           ),
         ),
         Expanded(
@@ -42,7 +42,7 @@ class CustomOrderActionButtonsWidget extends StatelessWidget {
             onTap: () {},
             text: "Delivery",
             textStyle: TextStyleClass.smallStyle(),
-            height: 3.h,
+            height: 4.h,
           ),
         ),
       ],
