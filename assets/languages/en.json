@@ -68,12 +68,15 @@
     "filter": "Filter"
   },
   "global": {
+    "work": "Work",
+    "home": "Home",
     "checkout":"Checkout",
     "total":"Total",
     "Personal information":"Personal information",
     "Name":"Name",
     "Order ID":"Order ID",
     "Address":"Address",
+    "Address Lable (Optional)":"Address Lable (Optional)",
     "Mobile number":"Mobile number",
     "Pay With":"Pay With",
     "ADD NEW ADDRESS":"ADD NEW ADDRESS",
@@ -130,6 +133,7 @@
     "next": "Next",
     "Active": "Active",
     "ADD NEW ADDRESS": "ADD NEW ADDRESS",
+    "edit": "Edit",
     "apply": "Apply",
     "reset": "Reset"
   },

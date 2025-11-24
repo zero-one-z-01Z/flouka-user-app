@@ -1,5 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:flouka/core/constants/app_images.dart';
+import 'package:flouka/features/address/domain/entities/address_label_entity.dart';
 import 'package:flouka/features/address/domain/entities/area_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
@@ -161,6 +163,21 @@ class AddressProvider extends ChangeNotifier {
 
   bool isAddressEntitySeleted(AddressEntity adressEntity) {
     return adressEntity.id == selectedAdressEntity?.id;
+  }
+
+  final List<AddressLabelEntity> labels = [
+    AddressLabelEntity(label: "Home", svg: Images.addressHome),
+    AddressLabelEntity(label: "Work", svg: Images.addressWork),
+  ];
+
+  AddressLabelEntity? selectedLabel;
+  isLabelSelected(String label) {
+    return selectedLabel?.label == label;
+  }
+
+  void changeLabel(String label) {
+    selectedLabel = labels.firstWhere((element) => element.label == label);
+    notifyListeners();
   }
 }
 
