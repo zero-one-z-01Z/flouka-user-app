@@ -10,10 +10,8 @@ class gradiantButton extends StatelessWidget {
   const gradiantButton({
     super.key,
     required this.onTap,
-    required this.text,
     required this.gradiantcolors,
   });
-  final String text;
   final VoidCallback onTap;
   final List<Color> gradiantcolors;
   @override
@@ -36,6 +34,8 @@ class gradiantButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
         ),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
               padding: const EdgeInsets.all(2),
@@ -58,37 +58,42 @@ class gradiantButton extends StatelessWidget {
               ),
             ),
             SizedBox(width: 2.w),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Text("Sold By ", style: TextStyleClass.smallStyle()),
-                    SizedBox(width: 1.w),
-                    Text(
-                      "APPLESTORE",
-                      style: TextStyleClass.smallStyle(color: AppColor.primaryColor),
-                    ),
-                  ],
-                ),
-                // SizedBox(height: 1.h),
-                Row(
-                  children: [
-                    Text("4.6", style: TextStyleClass.smallStyle()),
-                    RatingBar(
-                      itemCount: 1,
-                      itemSize: 16.sp,
-                      initialRating: 1,
-                      ratingWidget: RatingWidget(
-                        full: const Icon(Icons.star, color: Colors.amber),
-                        half: const Icon(Icons.star_half, color: Colors.amber),
-                        empty: const Icon(Icons.star_outline, color: Colors.amber),
+            Padding(
+              padding: const EdgeInsets.only(top: 2),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Text("Sold By ", style: TextStyleClass.smallStyle()),
+                      SizedBox(width: 1.w),
+                      Text(
+                        "APPLESTORE",
+                        style: TextStyleClass.smallStyle(
+                          color: AppColor.primaryColor,
+                        ),
                       ),
-                      onRatingUpdate: (value) {},
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                  // SizedBox(height: 1.h),
+                  Row(
+                    children: [
+                      Text("4.6", style: TextStyleClass.smallStyle()),
+                      RatingBar(
+                        itemCount: 1,
+                        itemSize: 16.sp,
+                        initialRating: 1,
+                        ratingWidget: RatingWidget(
+                          full: const Icon(Icons.star, color: Colors.amber),
+                          half: const Icon(Icons.star_half, color: Colors.amber),
+                          empty: const Icon(Icons.star_outline, color: Colors.amber),
+                        ),
+                        onRatingUpdate: (value) {},
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
             const Spacer(),
             Icon(Icons.arrow_forward_ios, size: 18.sp),

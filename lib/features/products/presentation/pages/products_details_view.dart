@@ -86,16 +86,19 @@ class ProductsDetailsView extends StatelessWidget {
                           const AvgRatingWidget(),
                           SizedBox(height: 2.h),
                           const ReviewContainerWidget(),
-                          gradiantButton(
-                            onTap: () {},
-                            text: "Sold By APPLESTORE",
-                            gradiantcolors: [Colors.white, AppColor.primaryColor],
-                          ),
-
-                          SizedBox(height: 5.h),
                         ],
                       ),
                     ),
+                    Container(
+                      width: 100.w,
+                      height: 7.h,
+                      color: const Color(0xffeffbff),
+                      child: gradiantButton(
+                        onTap: () {},
+                        gradiantcolors: [Colors.white, AppColor.primaryColor],
+                      ),
+                    ),
+                    SizedBox(height: 5.h),
                   ],
                 ),
               );
