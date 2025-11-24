@@ -7,9 +7,11 @@ class PriceWidget extends StatelessWidget {
   const PriceWidget({super.key, required this.price, this.fontSize});
   final num price;
   final double? fontSize;
+  
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Text(
           r"$",

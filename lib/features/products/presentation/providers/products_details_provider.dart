@@ -193,5 +193,15 @@ final fakeProduct = ProductEntity(
       productId: 5,
       image: "https://placehold.co/600x400/000000/FFFFFF/png",
     ),
+    ProductImageEntity(
+      id: 45,
+      productId: 5,
+      image: "https://placehold.co/600x400/000000/FFFFFF/png",
+    ),
+    ProductImageEntity(
+      id: 45,
+      productId: 5,
+      image: "https://placehold.co/600x400/000000/FFFFFF/png",
+    ),
   ],
 );
