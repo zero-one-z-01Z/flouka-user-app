@@ -72,7 +72,7 @@ class AddAddressScreen extends StatelessWidget {
                 SizedBox(width: 2.w),
                 Container(
                   alignment: Alignment.center,
-                  width: 10.w,
+                  width: 12.w,
                   height: 5.5.h,
                   decoration: BoxDecoration(
                     border: Border.all(color: const Color(0xffdbdbdb), width: 1.2),
