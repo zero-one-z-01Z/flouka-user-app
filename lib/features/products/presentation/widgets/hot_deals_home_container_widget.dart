@@ -30,7 +30,7 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
       children: [
         Container(
           margin: EdgeInsets.symmetric(horizontal: 2.w).copyWith(bottom: 0.4.h),
-          width: 40.w,
+          width: 43.w,
           decoration: BoxDecoration(
             color: AppColor.backgroundColor,
             borderRadius: BorderRadius.circular(12),

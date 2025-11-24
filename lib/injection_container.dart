@@ -1,6 +1,8 @@
 import 'package:flouka/features/address/data/repository/address_repository_impl.dart';
 import 'package:flouka/features/categories/data/repositories/category_repo_impl.dart';
 import 'package:flouka/features/categories/domain/usecases/category_usecase.dart';
+import 'package:flouka/features/products/data/repos/product_repo_impl.dart';
+import 'package:flouka/features/products/domain/repo/product_repo.dart';
 import 'package:flouka/features/settings/data/datasources/remote.dart';
 import 'package:flouka/features/settings/data/repositories/settings_repo_impl.dart';
 import 'package:flouka/features/settings/domain/repositories/settings_repo.dart';
@@ -38,6 +40,8 @@ import 'features/orders/data/data_srouce/order_remote_data_source.dart';
 import 'features/orders/data/repos/order_repo_impl.dart';
 import 'features/orders/domain/repos/order_repo.dart';
 import 'features/orders/domain/use_case/order_use_case.dart';
+import 'features/products/data/data_source/product_remote_data_source.dart';
+import 'features/products/domain/user_case/product_use_case.dart';
 import 'features/wallet/data/data_sources/remote.dart';
 import 'features/wallet/data/repositories/wallet_repo.dart';
 import 'features/wallet/domain/repositories/wallet_repo_impl.dart';
@@ -88,11 +92,12 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<SettingsRepo>(SettingsRepoImpl(sl.get()));
   sl.registerSingleton<SettingsUseCases>(SettingsUseCases(sl.get()));
 
-  // sl.registerSingleton<ProductRemoteDataSource>(
-  //   ProductRemoteDataSource(sl.get()),
-  // );
-  // sl.registerSingleton<ProductRepo>(ProductRepoImpl(sl.get()));
-  // sl.registerSingleton<ProductUseCase>(ProductUseCase(sl.get()));
+  // products
+  sl.registerSingleton<ProductRemoteDataSource>(
+    ProductRemoteDataSource(sl.get()),
+  );
+  sl.registerSingleton<ProductRepo>(ProductRepoImpl(sl.get()));
+  sl.registerSingleton<ProductUseCase>(ProductUseCase(sl.get()));
 
   // sl.registerSingleton<MarketRemoteDataSource>(
   //   MarketRemoteDataSource(sl.get()),

@@ -89,15 +89,78 @@ class ProductsProvider extends ChangeNotifier
     await getData();
   }
 
-  Future searchProducts(String query) async {
-    searchQuery = query;
-    clear();
-    await getData();
-  }
-
-  Future clearSearch() async {
-    searchQuery = null;
-    clear();
-    await getData();
-  }
+  List<ProductEntity> get hotDeals => [
+    ProductEntity(
+      id: 1,
+      name: 'Gaming Laptop',
+      description: 'High performance gaming laptop',
+      price: 1299.0,
+      offerPrice: 999.0,
+      active: true,
+      marketId: 1,
+      image: 'https://picsum.photos/200',
+      images: [],
+      rating: 4.5,
+    ),
+    ProductEntity(
+      id: 2,
+      name: 'Wireless Headphones',
+      description: 'Noise cancelling headphones',
+      price: 180.0,
+      offerPrice: 120.0,
+      active: true,
+      marketId: 1,
+      image: 'https://picsum.photos/201',
+      images: [],
+      rating: 4.2,
+    ),
+    ProductEntity(
+      id: 3,
+      name: 'Smartphone',
+      description: 'Latest smartphone model',
+      price: 899.0,
+      offerPrice: 799.0,
+      active: true,
+      marketId: 1,
+      image: 'https://picsum.photos/202',
+      images: [],
+      rating: 4.8,
+    ),
+    ProductEntity(
+      id: 4,
+      name: 'Tablet',
+      description: 'Portable tablet for work and play',
+      price: 599.0,
+      offerPrice: 499.0,
+      active: true,
+      marketId: 1,
+      image: 'https://picsum.photos/203',
+      images: [],
+      rating: 4.1,
+    ),
+    ProductEntity(
+      id: 5,
+      name: 'Gaming Mouse',
+      description: 'Precision gaming mouse',
+      price: 79.0,
+      offerPrice: 59.0,
+      active: true,
+      marketId: 1,
+      image: 'https://picsum.photos/204',
+      images: [],
+      rating: 4.4,
+    ),
+    ProductEntity(
+      id: 6,
+      name: 'Mechanical Keyboard',
+      description: 'Clicky mechanical keyboard',
+      price: 199.0,
+      offerPrice: 150.0,
+      active: true,
+      marketId: 1,
+      image: 'https://picsum.photos/205',
+      images: [],
+      rating: 4.6,
+    ),
+  ];
 }
