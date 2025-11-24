@@ -13,6 +13,7 @@ import '../providers/products_details_provider.dart';
 import '../widgets/avg_rating_widget.dart';
 import '../widgets/frequently_list_widget.dart';
 import '../widgets/rating_with_see_reviews_widget.dart';
+import '../widgets/review_with_images_section.dart';
 
 class ProductsDetailsView extends StatelessWidget {
   const ProductsDetailsView({super.key});
@@ -84,6 +85,8 @@ class ProductsDetailsView extends StatelessWidget {
                           ),
                           SizedBox(height: 2.h),
                           const AvgRatingWidget(),
+                          SizedBox(height: 2.h),
+                          const ReviewWithImagesSection(),
                           SizedBox(height: 2.h),
                           const ReviewContainerWidget(),
                         ],

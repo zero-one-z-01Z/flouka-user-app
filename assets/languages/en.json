@@ -27,7 +27,6 @@
     "profile": "Profile",
     "explore": "Explore"
   },
-
   "filter": {
     "category": "Category",
     "brand": "Brand",
@@ -37,12 +36,10 @@
     "brand_filter": "Brand Filter",
     "search": "Search on Brands ..."
   },
-
-  "categories":{
+  "categories": {
     "search": "Search on Categories ...",
-    "shop_by" : "SHOP BY"
+    "shop_by": "SHOP BY"
   },
-
   "auth": {
     "Forgot password": "Forgot password",
     "New to Habitual?": "New to Habitual?",
@@ -61,7 +58,6 @@
     "no_fees": "No fees, free shipping and amazing customer service. We’ll get you your package within 2 business days no questions asked!",
     "Ask me again later": "Ask me again later"
   },
-
   "filters": {
     "new": "New Gadget",
     "best_selling": "Best Selling",
@@ -69,33 +65,36 @@
   },
   "global": {
     "work": "Work",
+    "APPLESTORE": "APPLESTORE",
+    "Review With Imges": "Review With Imges",
     "home": "Home",
-    "checkout":"Checkout",
+    "checkout": "Checkout",
     "what_are_you_looking_for": "What are you looking for ?",
     "see reviews": "See reviews",
-    "total":"Total",
-    "Description":"Description",
-    "Personal information":"Personal information",
-    "Name":"Name",
-    "Frequently Bought Together":"Frequently Bought Together",
-    "Order ID":"Order ID",
-    "Address":"Address",
-    "Address Lable (Optional)":"Address Lable (Optional)",
-    "Mobile number":"Mobile number",
-    "Pay With":"Pay With",
-    "ADD NEW ADDRESS":"ADD NEW ADDRESS",
-    "Share Your Experience":"Share Your Experience",
-    "Tracking Details":"Tracking Details",
-    "Deliver To":"Deliver To",
-    "Shipment":"Shipment",
-    "Debit/CreditCards":"Debit/CreditCards",
-    "PAY NOW":"PAY NOW",
-    "Cach On Delivery":"Cach On Delivery",
-    "Wallet App":"Wallet App",
-    "Shiping":"Shiping",
-    "Taxes":"Taxes",
-    "of":"of",
-    "address":"Address"
+    "total": "Total",
+    "Description": "Description",
+    "Personal information": "Personal information",
+    "Name": "Name",
+    "Frequently Bought Together": "Frequently Bought Together",
+    "Order ID": "Order ID",
+    "Address": "Address",
+    "Address Lable (Optional)": "Address Lable (Optional)",
+    "Proudact Reating & Reviwes": "Proudact Reating & Reviwes",
+    "Mobile number": "Mobile number",
+    "Pay With": "Pay With",
+    "ADD NEW ADDRESS": "ADD NEW ADDRESS",
+    "Share Your Experience": "Share Your Experience",
+    "Tracking Details": "Tracking Details",
+    "Deliver To": "Deliver To",
+    "Shipment": "Shipment",
+    "Debit/CreditCards": "Debit/CreditCards",
+    "PAY NOW": "PAY NOW",
+    "Cach On Delivery": "Cach On Delivery",
+    "Wallet App": "Wallet App",
+    "Shiping": "Shiping",
+    "Taxes": "Taxes",
+    "of": "of",
+    "address": "Address"
   },
   "empty": {},
   "error": {
@@ -108,12 +107,11 @@
     "open_gps": "Please enable location services to complete the process"
   },
   "inputs": {
-    "Email":"Email",
-    "First Name":"First Name",
-    "Number":"Number",
-    "Password":"Password"
+    "Email": "Email",
+    "First Name": "First Name",
+    "Number": "Number",
+    "Password": "Password"
   },
-
   "time": {
     "ago": "ago",
     "year": "year",
@@ -124,16 +122,15 @@
     "sec": "second",
     "today": "today"
   },
-
   "buttons": {
     "Login": "Login",
     "shop_now": "Shop Now",
     "Sign up": "Sign up",
     "Get started": "Get started",
     "EDIT": "EDIT",
-    "Seller":"Seller",
-    "Product":"Product",
-    "Delivery":"Delivery",
+    "Seller": "Seller",
+    "Product": "Product",
+    "Delivery": "Delivery",
     "next": "Next",
     "Active": "Active",
     "ADD NEW ADDRESS": "ADD NEW ADDRESS",
@@ -156,8 +153,7 @@
     "wait_for_user": "Waiting for User",
     "closed": "Closed"
   },
-
- "validation": {
+  "validation": {
     "name_required": "Name is required.",
     "otp_required": "OTP code is required.",
     "government": "Please select your city/government.",
@@ -182,4 +178,3 @@
     "english_phone": "Phone number must contain digits only"
   }
 }
-

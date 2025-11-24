@@ -1,4 +1,5 @@
 import 'package:flouka/core/widgets/svg_widget.dart';
+import 'package:flouka/features/language/presentation/provider/language_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flouka/core/config/app_color.dart';
 import 'package:flouka/core/config/app_styles.dart';
@@ -68,7 +69,7 @@ class gradiantButton extends StatelessWidget {
                       Text("Sold By ", style: TextStyleClass.smallStyle()),
                       SizedBox(width: 1.w),
                       Text(
-                        "APPLESTORE",
+                        LanguageProvider.translate("global", "APPLESTORE"),
                         style: TextStyleClass.smallStyle(
                           color: AppColor.primaryColor,
                         ),
