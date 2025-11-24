@@ -4,7 +4,7 @@ import 'package:flouka/features/products/domain/entity/product_entity.dart';
 import '../../../../core/helper_function/navigation.dart';
 import '../../../../core/models/provider_structure_model.dart';
 import '../../domain/user_case/product_use_case.dart';
-import '../pages/product_details_view.dart';
+import '../pages/products_details_view.dart';
 
 class ProductDetailsProvider extends ChangeNotifier
     implements ProviderStructureModel<ProductEntity> {
@@ -14,7 +14,8 @@ class ProductDetailsProvider extends ChangeNotifier
   @override
   Map? inputs;
 
-  bool isLoading = false;
+  // bool isLoading = false;
+  PageController pageController = PageController();
 
   final ProductUseCase productUseCase;
 
@@ -32,10 +33,11 @@ class ProductDetailsProvider extends ChangeNotifier
 
   @override
   Future getData() async {
-    if (inputs == null || inputs!['product_id'] == null) return;
-    isLoading = true;
-    notifyListeners();
+    // if (inputs == null || inputs!['product_id'] == null) return;
+    // isLoading = true;
+    data = null;
     data = fakeProduct;
+    notifyListeners();
     // final result = await productUseCase.getProductDetails({
     //   'product_id': productsIDs.isEmpty ? inputs!['product_id'] : productsIDs.last,
     // });
@@ -57,8 +59,8 @@ class ProductDetailsProvider extends ChangeNotifier
     //   }
     // });
 
-    isLoading = false;
-    notifyListeners();
+    // isLoading = false;
+    // notifyListeners();
   }
 
   void backToLastProduct() {
@@ -72,14 +74,15 @@ class ProductDetailsProvider extends ChangeNotifier
 
   @override
   void goToPage([Map<String, dynamic>? inputs]) async {
-    this.inputs = inputs;
-    if (!inputs!['is_similar']) {
-      navP(const ProductsDetailsView());
-    } else {
-      productsIDs.add(inputs['product_id']);
-    }
+    // this.inputs = inputs;
+    // if (!inputs!['is_similar']) {
+    //   navP(const ProductsDetailsView());
+    // } else {
+    //   productsIDs.add(inputs['product_id']);
+    // }
 
     await refresh();
+    navP(const ProductsDetailsView());
   }
 
   @override

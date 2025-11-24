@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../providers/on_boarding_provider.dart';
-import '../widgets/custon_dots_indicator.dart';
+import '../widgets/custom_dots_indicator.dart';
 import '../widgets/on_boarding_item_widget.dart';
 import '../widgets/skip_with_logo_widget.dart';
 
