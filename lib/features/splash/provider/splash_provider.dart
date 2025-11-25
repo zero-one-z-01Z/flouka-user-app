@@ -47,16 +47,18 @@ class SplashProvider extends ChangeNotifier {
     bool isFirstTime = !(sharedPreferences.getBool('onBoarding') ?? false);
     String? isLoggedIn = sharedPreferences.getString('token');
     // if (!isFirstTime) {
-    Provider.of<OnBoardingProvider>(
+    // Provider.of<OnBoardingProvider>(
+    //   Constants.globalContext(),
+    //   listen: false,
+    // ).goToOnBoardingView();
+    Provider.of<NavBarProvider>(
       Constants.globalContext(),
       listen: false,
-    ).goToOnBoardingView();
+    ).goToNavView();
     // if (isFirstTime) {
-    // Provider.of<OnBoardingProvider>(Constants.globalContext(), listen: false,).goToOnBoardingView();
 
     // }else{
     // Provider.of<NavBarProvider>(Constants.globalContext(), listen: false,).currentIndex = 0;
-    // Provider.of<NavBarProvider>(Constants.globalContext(), listen: false,).goToNavView();
     // }
   }
 }

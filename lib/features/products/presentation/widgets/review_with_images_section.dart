@@ -1,15 +1,18 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../core/config/app_styles.dart';
 import '../../../language/presentation/provider/language_provider.dart';
+import '../../../reviews/presentation/providres/review_provider.dart';
 
 class ReviewWithImagesSection extends StatelessWidget {
   const ReviewWithImagesSection({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final reviewProvider = Provider.of<ReviewProvider>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -25,18 +28,26 @@ class ReviewWithImagesSection extends StatelessWidget {
               5,
               (index) => Padding(
                 padding: EdgeInsets.only(right: 2.w),
-                child: Container(
-                  width: 20.w,
-                  height: 20.w,
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: CachedNetworkImage(
-                      fit: BoxFit.cover,
-                      imageUrl: "https://placehold.co/600x400/000000/FFFFFF/png",
-                      width: 20.w,
-                      height: 20.w,
-                      errorWidget: (context, url, error) => const Icon(Icons.error),
+                child: InkWell(
+                  onTap: () {
+                    reviewProvider.gotoReviewPage();
+                  },
+                  child: Container(
+                    width: 20.w,
+                    height: 20.w,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: CachedNetworkImage(
+                        fit: BoxFit.cover,
+                        imageUrl: "https://placehold.co/600x400/000000/FFFFFF/png",
+                        width: 20.w,
+                        height: 20.w,
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
+                      ),
                     ),
                   ),
                 ),

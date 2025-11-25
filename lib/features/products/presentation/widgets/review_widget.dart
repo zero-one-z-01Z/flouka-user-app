@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:sizer/sizer.dart';
 
-class ReviewContainerWidget extends StatelessWidget {
-  const ReviewContainerWidget({super.key});
-
+class ReviewItemWidget extends StatelessWidget {
+  const ReviewItemWidget({super.key, this.textColor});
+  final Color? textColor;
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      decoration: const BoxDecoration(color: Colors.white),
+      decoration: const BoxDecoration(color: Colors.transparent),
       padding: const EdgeInsets.all(12),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,7 +30,11 @@ class ReviewContainerWidget extends StatelessWidget {
                 children: [
                   Text(
                     "3omran el m4t4t",
-                    style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontSize: 15.sp,
+                      fontWeight: FontWeight.bold,
+                      color: textColor,
+                    ),
                   ),
                   const SizedBox(height: 4),
                   Row(
@@ -50,7 +54,10 @@ class ReviewContainerWidget extends StatelessWidget {
                         onRatingUpdate: (_) {},
                       ),
                       SizedBox(width: 1.w),
-                      const Text('(${3.5})', style: TextStyle(fontSize: 12)),
+                      Text(
+                        '(${3.5})',
+                        style: TextStyle(fontSize: 12, color: textColor),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 4),
@@ -59,12 +66,12 @@ class ReviewContainerWidget extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 8),
-          const Text(
+          Text(
             "this laptolaptop has been working out for me and my car and I was going over to see if you can come in tomorrow I ",
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w400,
-              color: Colors.black,
+              color: textColor ?? Colors.black,
               height: 2,
             ),
             maxLines: 2,

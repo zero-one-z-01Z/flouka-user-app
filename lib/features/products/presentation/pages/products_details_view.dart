@@ -88,7 +88,7 @@ class ProductsDetailsView extends StatelessWidget {
                           SizedBox(height: 2.h),
                           const ReviewWithImagesSection(),
                           SizedBox(height: 2.h),
-                          const ReviewContainerWidget(),
+                          const ReviewItemWidget(),
                         ],
                       ),
                     ),
