@@ -5,4 +5,5 @@ abstract class AppColor {
   static Color secondaryColor = const Color(0xff2d2c2c);
   static Color backgroundColor = const Color(0xffFFFFFF);
   static Color tertiaryColor = const Color(0xffAEB1C1);
+  static Color DealColor = const Color(0xffDF0033);
 }

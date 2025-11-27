@@ -30,17 +30,23 @@ class NewCategoriesHomeWidget extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.symmetric(
               vertical: 0.2.h,
-            ).copyWith(bottom: 2.h),
+            ).copyWith(bottom: 1.h),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  LanguageProvider.translate('global', title),
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.bold,
+                SizedBox(
+                  width: 20.w,
+                  child: Text(
+                    LanguageProvider.translate('global', title),
+                    style: TextStyle(
+                      color: Colors.black54,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ],

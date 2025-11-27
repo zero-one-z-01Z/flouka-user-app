@@ -1,8 +1,8 @@
-import 'package:flouka/core/config/app_color.dart';
 import 'package:flouka/features/language/presentation/provider/language_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import '../../../../core/widgets/see_all_button.dart';
 import '../providers/stores_provider.dart';
 import 'stores_container_home_widget.dart';
 
@@ -31,20 +31,7 @@ class StoresHomeSection extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                TextButton(
-                  onPressed: () {
-                    context.read<StoresProvider>().goToStoreDetailsPage();
-                  },
-                  child: Text(
-                    LanguageProvider.translate('home', 'see_all'),
-                    style: TextStyle(
-                      fontSize: 15.sp,
-                      fontWeight: FontWeight.w600,
-                      color: AppColor.tertiaryColor,
-                      decoration: TextDecoration.underline,
-                    ),
-                  ),
-                ),
+                const SeeAllButton(),
               ],
             ),
           ),

@@ -22,7 +22,7 @@ class ShopProductsGrid extends StatelessWidget {
         child: StaggeredGrid.count(
           crossAxisCount: 2,
           mainAxisSpacing: 2.h,
-          crossAxisSpacing: 1.w,
+          crossAxisSpacing: 0.w,
           children: [
             for (int i = 0; i < hotDeals.length; i++) ...[
               StaggeredGridTile.fit(
@@ -38,6 +38,7 @@ class ShopProductsGrid extends StatelessWidget {
                     return Padding(
                       padding: EdgeInsets.only(top: topPadding),
                       child: HotDealsHomeContainerWidget(
+                        madeIn: false,
                         imageUrl: hotDeals[i].image ?? '',
                         title: hotDeals[i].name ?? '',
                         priceAfterOffer: (hotDeals[i].offerPrice ?? 0)

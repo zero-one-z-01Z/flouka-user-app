@@ -1,12 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flouka/core/config/app_color.dart';
 import 'package:flouka/core/constants/app_images.dart';
+import 'package:flouka/core/widgets/price_widget.dart';
 import 'package:flouka/core/widgets/svg_widget.dart';
+import 'package:flouka/features/language/presentation/provider/language_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../core/config/app_styles.dart';
+
 class HotDealsHomeContainerWidget extends StatelessWidget {
-  const HotDealsHomeContainerWidget({
+  HotDealsHomeContainerWidget({
     super.key,
     required this.imageUrl,
     required this.title,
@@ -14,6 +18,7 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
     required this.priceBeforeOffer,
     required this.rating,
     this.imageHeight,
+    this.madeIn = true,
   });
 
   final String imageUrl;
@@ -22,14 +27,18 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
   final double priceBeforeOffer;
   final double rating;
   final double? imageHeight;
+  bool madeIn;
 
   @override
   Widget build(BuildContext context) {
+    const double fillPercent = 56.23;
+    const double fillStop = (100 - fillPercent) / 100;
+    const List<double> stops = [0.0, fillStop, fillStop, 1.0];
     return Stack(
       clipBehavior: Clip.none,
       children: [
         Container(
-          margin: EdgeInsets.symmetric(horizontal: 2.w).copyWith(bottom: 0.4.h),
+          margin: EdgeInsets.symmetric(horizontal: 2.w),
           width: 43.w,
           decoration: BoxDecoration(
             color: AppColor.backgroundColor,
@@ -54,27 +63,47 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
                     width: double.infinity,
                     height: imageHeight ?? 10.h,
                     fit: BoxFit.cover,
-                    errorWidget: (context, url, error) => const Icon(Icons.error),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
                   ),
                 ),
-                SizedBox(height: 1.h),
-                SizedBox(
-                  width: 20.w,
-                  child: Text(
-                    title,
-                    style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600),
-                    softWrap: true,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-                SizedBox(height: 1.h),
+                SizedBox(height: 0.6.h),
                 Row(
                   children: [
-                    Text(
-                      priceAfterOffer.toString(),
-                      style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600),
+                    Container(
+                      width: 14.w,
+                      height: 5.w,
+                      decoration: BoxDecoration(
+                        color: const Color(0xffDF0033),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          '3% Off',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
                     ),
+                    SizedBox(width: 1.w),
+                    Text(
+                      LanguageProvider.translate('global', 'white_friday_deal'),
+                      style: TextStyleClass.normalStyle().copyWith(
+                        color: AppColor.DealColor,
+                        fontSize: 13.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 0.6.h),
+                Row(
+                  children: [
+                    PriceWidget(price: priceAfterOffer),
+
                     const Spacer(),
                     Text(
                       priceBeforeOffer.toString(),
@@ -87,25 +116,81 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 1.h),
+                SizedBox(
+                  width: 90.w,
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    softWrap: true,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                SizedBox(height: 0.2.h),
                 Row(
                   children: [
                     const SvgWidget(svg: Images.star),
                     Text(rating.toString()),
                   ],
                 ),
+                SizedBox(height: 0.5.h),
+                if (madeIn)
+                  Container(
+                    width: 26.w,
+                    height: 5.w,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          AppColor.primaryColor,
+                          AppColor.primaryColor,
+                          Colors.black,
+                          Colors.black,
+                        ],
+                        stops: stops,
+                        end: Alignment.centerLeft,
+                        begin: Alignment.centerRight,
+                      ),
+                      borderRadius: const BorderRadius.only(
+                        topRight: Radius.circular(0),
+                        topLeft: Radius.circular(10),
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(20),
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 4,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child: Text(
+                        LanguageProvider.translate('global', 'made_in') +
+                            "        China",
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
               ],
             ),
           ),
         ),
         Positioned(
-          top: 1.h,
-          right: 3.w,
+          top: madeIn ? 1.h : 10.h,
+          right: 4.w,
           child: Container(
             width: 7.w,
             height: 7.w,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: AppColor.primaryColor,
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
@@ -115,9 +200,44 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
                 ),
               ],
             ),
-            child: Icon(Icons.favorite_border, size: 4.w, color: Colors.black),
+            child: Icon(Icons.add, size: 4.w, color: Colors.white),
           ),
         ),
+        if (madeIn)
+          Positioned(
+            top: 1.5.h,
+            left: 6.w,
+            child: Container(
+              width: 18.w,
+              height: 5.w,
+              decoration: BoxDecoration(
+                color: const Color(0xff5A5A5A),
+                borderRadius: const BorderRadius.only(
+                  topRight: Radius.circular(0),
+                  topLeft: Radius.circular(10),
+                  bottomLeft: Radius.circular(10),
+                  bottomRight: Radius.circular(20),
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 4,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Center(
+                child: Text(
+                  LanguageProvider.translate('global', 'best_seller'),
+                  style: TextStyle(
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ),
       ],
     );
   }
