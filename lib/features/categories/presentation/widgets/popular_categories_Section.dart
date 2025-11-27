@@ -3,7 +3,6 @@ import 'package:flouka/features/language/presentation/provider/language_provider
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../domain/entity/category_entity.dart';
 import '../providers/categories_provider.dart';
 import 'popular_category_container_widget.dart';
@@ -46,7 +45,7 @@ class PopularCategoriesSection extends StatelessWidget {
             builder: (context, provider, _) {
               final List<CategoryEntity> popular = provider.popularCategories;
 
-              if (popular.isEmpty && provider.isLoading) {
+              if (popular.isEmpty && provider.categories.isEmpty) {
                 return const Center(child: CircularProgressIndicator());
               }
 

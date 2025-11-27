@@ -1,3 +1,4 @@
+import 'package:flouka/core/constants/app_images.dart';
 import 'package:flutter/material.dart';
 import '../../domain/entity/category_entity.dart';
 import '../../domain/usecases/category_usecase.dart';
@@ -6,22 +7,22 @@ class CategoryProvider extends ChangeNotifier {
   final CategoryUsecase categoryUseCases;
 
   CategoryProvider(this.categoryUseCases);
-
   List<CategoryEntity> _categories = [];
   List<CategoryEntity> _popularCategories = [];
-  bool _isLoading = false;
-  String? _error;
   CategoryEntity? _selectedCategory;
 
   List<CategoryEntity> get categories => _categories;
   List<CategoryEntity> get popularCategories => _popularCategories;
-  bool get isLoading => _isLoading;
-  String? get error => _error;
   CategoryEntity? get selectedCategory => _selectedCategory;
 
+  List<CategoryEntity> homeCategories = [
+    CategoryEntity(id: 1, image: Images.offer, name: 'offers_products'),
+    CategoryEntity(id: 2, image: Images.bestSeller, name: 'best_sellers'),
+    CategoryEntity(id: 3, image: Images.categories, name: 'categories'),
+    CategoryEntity(id: 4, image: Images.exploreCategories, name: 'explore'),
+  ];
+
   Future<void> getCategories() async {
-    _isLoading = true;
-    _error = null;
     notifyListeners();
 
     // Fake categories instead of API call
@@ -67,8 +68,6 @@ class CategoryProvider extends ChangeNotifier {
 
     // response.fold((l) => showToast(l.message ?? "Error loading banners"), (r) {
     //   bannersList.addAll(r);
-
-    _isLoading = false;
     notifyListeners();
   }
 
@@ -118,8 +117,6 @@ class CategoryProvider extends ChangeNotifier {
   void clear() {
     _categories = [];
     _selectedCategory = null;
-    _error = null;
-    _isLoading = false;
     notifyListeners();
   }
 }

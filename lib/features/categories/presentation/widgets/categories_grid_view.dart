@@ -16,7 +16,7 @@ class CategoriesGridView extends StatelessWidget {
       builder: (context, provider, _) {
         final List<CategoryEntity> categories = provider.categories;
 
-        if (categories.isEmpty && provider.isLoading) {
+        if (categories.isEmpty && provider.categories.isEmpty) {
           return const Center(child: CircularProgressIndicator());
         }
 
