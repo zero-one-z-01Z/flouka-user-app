@@ -59,6 +59,7 @@ abstract class Images {
   static const String exploreCategories =
       'assets/images/categories/explore.png';
   static const String offer = 'assets/images/categories/offer.png';
+  static const String aiSearch = 'assets/images/categories/ai_search.svg';
 
   //Checkout
   static const String arrowRight = 'assets/images/checkout/arrow_right.png';

@@ -25,8 +25,11 @@
   },
   "chat": {
     "chat": "Chat",
+    "ai_chat": "AI Chat",
+    "start": "Get Started",
     "online": "Online",
     "type_your_message": "Type your message...",
+    "ask_me": "Ask me anything...",
     "typing": "typing..."
   },
   "navbar": {

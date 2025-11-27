@@ -8,7 +8,6 @@ import 'package:flouka/features/categories/presentation/widgets/categories_home_
 import 'package:flouka/features/categories/presentation/widgets/categories_view_all_filter_widget.dart';
 import 'package:flouka/core/widgets/searchbar_container.dart';
 import 'package:flouka/features/categories/presentation/widgets/shop_by_container_widget.dart';
-import 'package:flouka/features/products/presentation/widgets/hot_deals_home_section.dart';
 import 'package:flouka/features/products/presentation/widgets/shop_products_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -31,7 +30,15 @@ class CategoriesViewAllPage extends StatelessWidget {
               SizedBox(height: 6.h),
               Row(
                 children: [
-                  const Expanded(child: SearchbarContainer()),
+                  Expanded(
+                    child: SearchbarContainer(
+                      suffixIcon: SvgWidget(
+                        svg: Images.aiSearch,
+                        width: 1.w,
+                        height: 1.h,
+                      ),
+                    ),
+                  ),
                   SizedBox(width: 2.w),
                   Container(
                     width: 12.w,

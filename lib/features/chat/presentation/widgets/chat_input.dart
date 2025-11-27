@@ -1,3 +1,4 @@
+import 'package:flouka/core/widgets/svg_widget.dart';
 import 'package:flouka/features/language/presentation/provider/language_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
@@ -6,8 +7,14 @@ import '../../../../core/config/app_color.dart';
 class ChatInput extends StatelessWidget {
   final TextEditingController controller;
   final VoidCallback onSend;
+  String title;
 
-  const ChatInput({super.key, required this.controller, required this.onSend});
+  ChatInput({
+    super.key,
+    this.title = 'type_your_message',
+    required this.controller,
+    required this.onSend,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +34,7 @@ class ChatInput extends StatelessWidget {
                 cursorColor: Colors.black,
                 controller: controller,
                 decoration: InputDecoration(
-                  hintText: LanguageProvider.translate(
-                    'chat',
-                    'type_your_message',
-                  ),
+                  hintText: LanguageProvider.translate('chat', title),
                   border: InputBorder.none,
                 ),
                 onSubmitted: (_) => onSend(),
@@ -43,11 +47,7 @@ class ChatInput extends StatelessWidget {
             child: CircleAvatar(
               radius: 4.w,
               backgroundColor: AppColor.primaryColor,
-              child: Transform(
-                alignment: Alignment.center,
-                transform: Matrix4.rotationY(3.1416),
-                child: const Icon(Icons.arrow_back, color: Colors.white),
-              ),
+              child: const SvgWidget(svg: 'assets/images/home/send.svg'),
             ),
           ),
         ],
