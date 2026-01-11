@@ -14,9 +14,7 @@ class AddressUseCases {
     return addressRepo.createAddress(data);
   }
 
-  Future<Either<DioException, bool>> deleteAddress(
-    Map<String, dynamic> data,
-  ) async {
+  Future<Either<DioException, bool>> deleteAddress(Map<String, dynamic> data) async {
     return addressRepo.deleteAddress(data);
   }
 
