@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../language/presentation/provider/language_provider.dart';
 import '../../../../core/config/app_styles.dart';
 import '../../../../core/widgets/button_widget.dart';
 
@@ -18,7 +19,7 @@ class CustomOrderActionButtonsWidget extends StatelessWidget {
 
             color: const Color(0xffdff7ff),
             onTap: () {},
-            text: "Seller",
+            text: LanguageProvider.translate("buttons", "Seller"),
             textStyle: TextStyleClass.smallStyle(),
             height: 4.h,
           ),
@@ -29,7 +30,7 @@ class CustomOrderActionButtonsWidget extends StatelessWidget {
 
             color: const Color(0xffdff7ff),
             onTap: () {},
-            text: "Product",
+            text: LanguageProvider.translate("buttons", "Product"),
             textStyle: TextStyleClass.smallStyle(),
             height: 4.h,
           ),
@@ -40,7 +41,7 @@ class CustomOrderActionButtonsWidget extends StatelessWidget {
 
             color: const Color(0xffdff7ff),
             onTap: () {},
-            text: "Delivery",
+            text: LanguageProvider.translate("buttons", "Delivery"),
             textStyle: TextStyleClass.smallStyle(),
             height: 4.h,
           ),

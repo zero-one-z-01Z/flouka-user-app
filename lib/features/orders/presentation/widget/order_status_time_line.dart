@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
+import '../../../language/presentation/provider/language_provider.dart';
+
 class OrderStatusTimeLine extends StatelessWidget {
   const OrderStatusTimeLine({super.key});
 
@@ -17,26 +19,25 @@ class OrderStatusTimeLine extends StatelessWidget {
           _buildTimelineTile(
             isFirst: true,
             isLast: false,
-            title: "تم قبول طلبك",
-            date: "14 أكتوبر",
+            title: LanguageProvider.translate("orders", "order_accepted"),
+            date: LanguageProvider.translate("orders", "date_oct_14"),
             icon: Icons.check_circle,
             iconColor: Colors.green,
           ),
           _buildTimelineTile(
             isFirst: false,
             isLast: false,
-            title: "تم شحن طلبك",
-            date: "14 أكتوبر",
-            description:
-                "تم إرسال شحنتك إلى المركز النهائي. سنرسل لك إشعارًا عند إرسالها للتسليم. بعد أن تكون شحنتك جاهزة للتسليم ونكون على وشك الوصول، نعرض لك رقم هاتف شركة الشحن.",
+            title: LanguageProvider.translate("orders", "order_shipped"),
+            date: LanguageProvider.translate("orders", "date_oct_14"),
+            description: LanguageProvider.translate("orders", "order_shipped_desc"),
             icon: Icons.local_shipping,
             iconColor: Colors.green,
           ),
           _buildTimelineTile(
             isFirst: false,
             isLast: true,
-            title: "توقع التوصيل",
-            date: "17 أكتوبر",
+            title: LanguageProvider.translate("orders", "expected_delivery"),
+            date: LanguageProvider.translate("orders", "date_oct_17"),
             icon: Icons.inventory_2_outlined,
             iconColor: Colors.grey,
           ),

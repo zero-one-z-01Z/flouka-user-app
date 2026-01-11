@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../language/presentation/provider/language_provider.dart';
 import '../../../../core/config/app_styles.dart';
 import '../../../../core/constants/app_images.dart';
 import '../../../../core/widgets/svg_widget.dart';
@@ -37,13 +38,16 @@ class OrderStatusWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                orderStatus.name,
+                LanguageProvider.translate("orders", orderStatus.text),
                 style: TextStyleClass.normalStyle().copyWith(
                   color: const Color(0xff077933),
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Text("On Monday 13th ,12:45 PM", style: TextStyleClass.smallStyle()),
+              Text(
+                LanguageProvider.translate("orders", "date_oct_14"),
+                style: TextStyleClass.smallStyle(),
+              ),
             ],
           ),
         ],

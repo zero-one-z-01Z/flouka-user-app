@@ -51,7 +51,10 @@ class OrdersView extends StatelessWidget {
                 children: [
                   SizedBox(height: 1.h),
                   TextFieldWidget(
-                    hintText: "Search on Categories ...",
+                    hintText: LanguageProvider.translate(
+                      "orders",
+                      "search_categories",
+                    ),
                     prefix: const Icon(Icons.search, size: 24),
                     controller: ordersProvider.searchController,
                     borderColor: const Color(0xffd3d2d2),
@@ -80,7 +83,7 @@ class OrdersView extends StatelessWidget {
                     onTap: () {
                       updateOrderProvider.gotoPage();
                     },
-                    text: "fake button",
+                    text: LanguageProvider.translate("orders", "fake_button"),
                   ),
                   SizedBox(height: 10.h),
                 ],

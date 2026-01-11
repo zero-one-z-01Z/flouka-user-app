@@ -39,7 +39,7 @@ class UpdateOrderItemWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "new product",
+                          "Lenovo Yoga 920 13/Core i7/16GB/SSD 1TB",
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
                           style: TextStyleClass.normalStyle().copyWith(
@@ -61,7 +61,10 @@ class UpdateOrderItemWidget extends StatelessWidget {
                                 ),
                                 height: 3.5.h,
                                 onTap: () {},
-                                text: "Available",
+                                text: LanguageProvider.translate(
+                                  "global",
+                                  "available",
+                                ),
                               ),
                           ],
                         ),
@@ -75,10 +78,7 @@ class UpdateOrderItemWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      LanguageProvider.translate(
-                        "global",
-                        "This item is currently unavailable",
-                      ),
+                      LanguageProvider.translate("global", "this_item_unavailable"),
                       style: TextStyleClass.normalStyle().copyWith(
                         fontSize: 15.sp,
                         color: const Color(0xffFF0000),
@@ -93,7 +93,7 @@ class UpdateOrderItemWidget extends StatelessWidget {
                       ),
                       height: 3.5.h,
                       onTap: () {},
-                      text: "Out of stock",
+                      text: LanguageProvider.translate("global", "out_of_stock"),
                     ),
                   ],
                 ),
