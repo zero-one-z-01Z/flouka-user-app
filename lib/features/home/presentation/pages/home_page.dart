@@ -37,7 +37,7 @@ class HomePage extends StatelessWidget {
             const RecommendedSection(),
             const BrandStoreContainerWidget(),
 
-            SizedBox(height: 10.h),
+            SizedBox(height: 2.h),
           ],
         ),
       ),

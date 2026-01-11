@@ -49,10 +49,7 @@ class HotDealsHomeSection extends StatelessWidget {
                 children: [
                   Text(
                     'Hot Deals',
-                    style: TextStyle(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600),
                   ),
                   TextButton(
                     onPressed: () {

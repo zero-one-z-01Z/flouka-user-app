@@ -28,10 +28,7 @@ class RecommendedSection extends StatelessWidget {
                 children: [
                   Text(
                     LanguageProvider.translate('home', 'recommended'),
-                    style: TextStyle(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600),
                   ),
                   const SeeAllButton(),
                 ],
