@@ -47,6 +47,7 @@ class OrderDetailsView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  SizedBox(height: 2.h),
                   OrderInfoItemWidget(
                     title: LanguageProvider.translate("global", "Order ID"),
                     info: orderDetailsProvider.data?.id.toString() ?? "",

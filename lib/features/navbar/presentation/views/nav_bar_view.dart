@@ -31,10 +31,7 @@ class NavBarView extends StatelessWidget {
                   ],
                 ),
                 child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 2.w,
-                    vertical: 0.5.h,
-                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 0.5.h),
                   child: GNav(
                     gap: 8,
                     rippleColor: Colors.grey[200]!,
@@ -42,10 +39,7 @@ class NavBarView extends StatelessWidget {
                     activeColor: AppColor.primaryColor,
                     color: AppColor.tertiaryColor,
                     tabBackgroundColor: Colors.transparent,
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 4.w,
-                      vertical: 1.h,
-                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
                     selectedIndex: nav.currentIndex,
                     onTabChange: nav.changeIndex,
                     tabs: [
@@ -62,10 +56,7 @@ class NavBarView extends StatelessWidget {
                               : AppColor.tertiaryColor;
 
                           return GButton(
-                            leading: SvgWidget(
-                              svg: item.svgImage,
-                              color: iconColor,
-                            ),
+                            leading: SvgWidget(svg: item.svgImage, color: iconColor),
                             icon: Icons.circle, // not used when leading is set
                             text: item.label,
                             textStyle: TextStyle(

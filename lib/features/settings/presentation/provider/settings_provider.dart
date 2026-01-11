@@ -55,9 +55,7 @@ class SettingsProvider extends ChangeNotifier {
   }
 
   void goToPrivacy() {
-    navP(
-      WebViewPage(title: 'privacy', link: settingsEntity?.privacyLink ?? ""),
-    );
+    navP(WebViewPage(title: 'privacy', link: settingsEntity?.privacyLink ?? ""));
   }
 
   void goToTerms() {
