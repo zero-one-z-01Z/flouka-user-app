@@ -67,14 +67,17 @@ class OrderItemWidget extends StatelessWidget {
                       ),
                       SizedBox(height: .5.h),
                       Text(
-                        orderEntity.status?.name ?? "",
+                        LanguageProvider.translate(
+                          "orders",
+                          orderEntity.status?.text ?? "",
+                        ),
                         style: TextStyleClass.smallStyle(
                           color: Colors.green,
                         ).copyWith(fontWeight: FontWeight.bold),
                       ),
                       SizedBox(height: .2.h),
                       Text(
-                        "On Monday 13th ,12:45 PM",
+                        LanguageProvider.translate("orders", "date_oct_14"),
                         style: TextStyleClass.smallStyle(),
                       ),
                     ],

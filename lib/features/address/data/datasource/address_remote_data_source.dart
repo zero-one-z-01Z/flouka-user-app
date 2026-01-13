@@ -39,9 +39,7 @@ class AddressRemoteDataSource {
     });
   }
 
-  Future<Either<DioException, bool>> deleteAddress(
-    Map<String, dynamic> data,
-  ) async {
+  Future<Either<DioException, bool>> deleteAddress(Map<String, dynamic> data) async {
     var response = await apiHandel.post('user/delete_address', data);
     return response.fold((l) => Left(l), (r) {
       return const Right(true);

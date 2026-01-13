@@ -31,13 +31,13 @@ class CheckoutProvider extends ChangeNotifier {
 
   late num delivery = 15;
 
-  late num cartPrice;
+  late num cartPrice = 0;
 
-  late num subTotalTax;
+  late num subTotalTax = 0;
 
   CouponEntity? couponEntity;
 
-  late num total;
+  late num total =222;
 
   Future createOrder() async {
     NavBarProvider navBarProvider = Provider.of<NavBarProvider>(

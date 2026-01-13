@@ -1,4 +1,5 @@
 import 'package:flouka/core/constants/app_lotties.dart';
+import 'package:flouka/core/widgets/button_widget.dart';
 import 'package:flouka/core/widgets/text_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,6 +10,7 @@ import '../../../../core/widgets/empty_animation.dart';
 import '../../../../core/widgets/loading_animation_widget.dart';
 import '../../../../core/widgets/loading_widget.dart';
 import '../../../language/presentation/provider/language_provider.dart';
+import '../provider/update_order_provider.dart';
 import '../widget/oreder_item_widget.dart';
 
 class OrdersView extends StatelessWidget {
@@ -17,6 +19,7 @@ class OrdersView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final OrderProvider ordersProvider = Provider.of(context);
+    final UpdateOrderProvider updateOrderProvider = Provider.of(context);
     ordersProvider.pagination();
     return Scaffold(
       backgroundColor: const Color(0xffeffbff),
@@ -48,7 +51,10 @@ class OrdersView extends StatelessWidget {
                 children: [
                   SizedBox(height: 1.h),
                   TextFieldWidget(
-                    hintText: "Search on Categories ...",
+                    hintText: LanguageProvider.translate(
+                      "orders",
+                      "search_categories",
+                    ),
                     prefix: const Icon(Icons.search, size: 24),
                     controller: ordersProvider.searchController,
                     borderColor: const Color(0xffd3d2d2),
@@ -72,6 +78,14 @@ class OrdersView extends StatelessWidget {
                   ),
                   if (ordersProvider.paginationStarted)
                     const Center(child: LoadingWidget()),
+
+                  ButtonWidget(
+                    onTap: () {
+                      updateOrderProvider.gotoPage();
+                    },
+                    text: LanguageProvider.translate("orders", "fake_button"),
+                  ),
+                  SizedBox(height: 10.h),
                 ],
               );
             },

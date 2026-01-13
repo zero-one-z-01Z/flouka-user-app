@@ -7,7 +7,7 @@ class PriceWidget extends StatelessWidget {
   const PriceWidget({super.key, required this.price, this.fontSize});
   final num price;
   final double? fontSize;
-  
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -21,6 +21,7 @@ class PriceWidget extends StatelessWidget {
             color: fontSize == 15.99.sp ? Colors.green : Colors.black,
           ),
         ),
+        SizedBox(width: 1.w),
         Text(
           price.toString(),
           style: TextStyleClass.normalStyle().copyWith(

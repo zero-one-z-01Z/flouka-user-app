@@ -63,38 +63,43 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
                     width: double.infinity,
                     height: imageHeight ?? 10.h,
                     fit: BoxFit.cover,
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
+                    errorWidget: (context, url, error) => const Icon(Icons.error),
                   ),
                 ),
                 SizedBox(height: 0.6.h),
                 Row(
                   children: [
                     Container(
-                      width: 14.w,
+                      padding: EdgeInsets.symmetric(horizontal: 2.w),
                       height: 5.w,
                       decoration: BoxDecoration(
                         color: const Color(0xffDF0033),
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child: const Center(
-                        child: Text(
-                          '3% Off',
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white,
+                      child: Center(
+                        child: FittedBox(
+                          child: Text(
+                            '3% Off',
+                            style: TextStyle(
+                              fontSize: 10.sp,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
                     ),
                     SizedBox(width: 1.w),
-                    Text(
-                      LanguageProvider.translate('global', 'white_friday_deal'),
-                      style: TextStyleClass.normalStyle().copyWith(
-                        color: AppColor.DealColor,
-                        fontSize: 13.sp,
-                        fontWeight: FontWeight.w600,
+                    Expanded(
+                      child: Text(
+                        LanguageProvider.translate('global', 'white_friday_deal'),
+                        style: TextStyleClass.normalStyle().copyWith(
+                          color: AppColor.DealColor,
+                          fontSize: 10.sp,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
                   ],
@@ -102,32 +107,29 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
                 SizedBox(height: 0.6.h),
                 Row(
                   children: [
-                    PriceWidget(price: priceAfterOffer),
-
-                    const Spacer(),
-                    Text(
-                      priceBeforeOffer.toString(),
-                      style: TextStyle(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w600,
-                        color: AppColor.tertiaryColor,
-                        decoration: TextDecoration.lineThrough,
+                    Flexible(child: PriceWidget(price: priceAfterOffer)),
+                    SizedBox(width: 1.w),
+                    Flexible(
+                      child: Text(
+                        priceBeforeOffer.toString(),
+                        style: TextStyle(
+                          fontSize: 11.sp,
+                          fontWeight: FontWeight.w500,
+                          color: AppColor.tertiaryColor,
+                          decoration: TextDecoration.lineThrough,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
                   ],
                 ),
-                SizedBox(
-                  width: 90.w,
-                  child: Text(
-                    title,
-                    style: TextStyle(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w600,
-                    ),
-                    softWrap: true,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
+                Text(
+                  title,
+                  style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600),
+                  softWrap: true,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
                 SizedBox(height: 0.2.h),
                 Row(
@@ -139,7 +141,7 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
                 SizedBox(height: 0.5.h),
                 if (madeIn)
                   Container(
-                    width: 26.w,
+                    width: 32.w,
                     height: 5.w,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
@@ -167,14 +169,16 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
                         ),
                       ],
                     ),
+                    padding: EdgeInsets.symmetric(horizontal: 2.w),
                     child: Center(
-                      child: Text(
-                        LanguageProvider.translate('global', 'made_in') +
-                            "        China",
-                        style: TextStyle(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
+                      child: FittedBox(
+                        child: Text(
+                          "${LanguageProvider.translate('global', 'made_in')}  China",
+                          style: TextStyle(
+                            fontSize: 10.sp,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
@@ -208,7 +212,7 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
             top: 1.5.h,
             left: 6.w,
             child: Container(
-              width: 18.w,
+              padding: EdgeInsets.symmetric(horizontal: 2.w),
               height: 5.w,
               decoration: BoxDecoration(
                 color: const Color(0xff5A5A5A),
@@ -227,12 +231,14 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
                 ],
               ),
               child: Center(
-                child: Text(
-                  LanguageProvider.translate('global', 'best_seller'),
-                  style: TextStyle(
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
+                child: FittedBox(
+                  child: Text(
+                    LanguageProvider.translate('global', 'best_seller'),
+                    style: TextStyle(
+                      fontSize: 10.sp,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),

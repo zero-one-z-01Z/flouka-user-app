@@ -26,7 +26,6 @@ class ProfileView extends StatelessWidget {
               const ProfileHeaderWidget(),
               const ProfilePagesSection(),
               SizedBox(height: 1.h),
-
               Text(
                 LanguageProvider.translate('global', 'settings'),
                 style: TextStyleClass.normalStyle().copyWith(

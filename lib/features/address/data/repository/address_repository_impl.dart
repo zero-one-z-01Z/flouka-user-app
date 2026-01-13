@@ -17,9 +17,7 @@ class AddressRepoImpl implements AddressRepo {
   }
 
   @override
-  Future<Either<DioException, bool>> deleteAddress(
-    Map<String, dynamic> data,
-  ) async {
+  Future<Either<DioException, bool>> deleteAddress(Map<String, dynamic> data) async {
     return addressRemoteDataSource.deleteAddress(data);
   }
 
