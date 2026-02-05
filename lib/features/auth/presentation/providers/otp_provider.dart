@@ -41,10 +41,6 @@ class OtpProvider extends ChangeNotifier {
   }
 
   OtpProvider(this.authUsceCase);
-  AuthProvider authProvider = Provider.of<AuthProvider>(
-    Constants.globalContext(),
-    listen: false,
-  );
 
   void goToOTPView() {
     otpController = TextEditingController();
@@ -66,6 +62,10 @@ class OtpProvider extends ChangeNotifier {
     final result = await authUsceCase.checkCode(data);
     navPop();
     result.fold((l) => showToast(l.message!), (r) {
+      AuthProvider authProvider = Provider.of<AuthProvider>(
+        Constants.globalContext(),
+        listen: false,
+      );
       authProvider.loginSuccess(r);
     });
   }
@@ -84,6 +84,10 @@ class OtpProvider extends ChangeNotifier {
     final result = await authUsceCase.updateProfile(data);
     navPop();
     result.fold((l) => showToast(l.message!), (r) {
+      AuthProvider authProvider = Provider.of<AuthProvider>(
+        Constants.globalContext(),
+        listen: false,
+      );
       authProvider.loginSuccess(r);
       // authProvider.userEntity = r;
       navPop();

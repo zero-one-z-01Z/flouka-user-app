@@ -19,7 +19,7 @@ class SocialMediaIconButton extends StatelessWidget {
         border: Border.all(color: Colors.black),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Image.asset(socialAuthEntity.image, width: 4.w),
           Text(
