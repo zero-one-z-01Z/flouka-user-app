@@ -55,7 +55,7 @@ class CompleteInfoView extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 4.w),
+        padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 4.w),
         child: ButtonWidget(
           height: 6.h,
           width: 80.w,

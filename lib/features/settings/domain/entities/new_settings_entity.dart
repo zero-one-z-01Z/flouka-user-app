@@ -1,12 +1,12 @@
 import 'package:flutter/painting.dart';
 
-class NewSettingsEntity {
+class ProfileSettingsEntity {
   final String svgImage;
   final String text;
   final VoidCallback onTap;
   final Color? color;
 
-  NewSettingsEntity({
+  ProfileSettingsEntity({
     required this.svgImage,
     required this.text,
     required this.onTap,

@@ -12,7 +12,7 @@ class SettingsWidget extends StatelessWidget {
     required this.settingsEntity,
     this.isLast = false,
   });
-  final NewSettingsEntity settingsEntity;
+  final ProfileSettingsEntity settingsEntity;
   final bool isLast;
   @override
   Widget build(BuildContext context) {

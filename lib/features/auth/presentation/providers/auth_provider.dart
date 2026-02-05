@@ -24,6 +24,7 @@ import '../../../navbar/presentation/provider/nav_provider.dart';
 import '../../domain/entities/social_auth_entity.dart';
 import '../../domain/entities/user_entity.dart';
 import '../../domain/usecases/auth_use_case.dart';
+import '../views/complete_info_view.dart';
 
 class AuthProvider extends ChangeNotifier {
   UserEntity? userEntity;
@@ -69,15 +70,15 @@ class AuthProvider extends ChangeNotifier {
     goToLoginView();
   }
 
-  void loginSuccess(UserEntity userEntity, {bool fromSplash = false}) {
+  void loginSuccess(UserEntity userEntity) {
+    this.userEntity = userEntity;
     if (userEntity.token != null) {
       ApiHandel.getInstance.updateHeader(userEntity.token!);
       sharedPreferences.setString('token', userEntity.token!);
     }
-    if (this.userEntity != null && !fromSplash) {
-      this.userEntity = userEntity;
+    if (userEntity.name == null || userEntity.name!.isEmpty) {
+      navPARU(const CompleteInfoView(isEdit: false));
     } else {
-      this.userEntity = userEntity;
       Provider.of<NavBarProvider>(
         Constants.globalContext(),
         listen: false,

@@ -62,7 +62,7 @@ class SettingsProvider extends ChangeNotifier {
     navP(WebViewPage(title: 'terms', link: settingsEntity?.termsLink ?? ""));
   }
 
-  List<NewSettingsEntity> get settingsList => [
+  List<ProfileSettingsEntity> get settingsList => [
     // NewSettingsEntity(
     //   svgImage: Assets.images.settings.wallet.path,
     //   text: "wallet",
@@ -83,7 +83,7 @@ class SettingsProvider extends ChangeNotifier {
     //     ).showLanguageDialog();
     //   },
     // ),
-    NewSettingsEntity(
+    ProfileSettingsEntity(
       svgImage: Images.settingsNotification,
       text: "notification",
       color: const Color(0xff11BD57),
@@ -94,7 +94,7 @@ class SettingsProvider extends ChangeNotifier {
         // ).goToNotificationPage();
       },
     ),
-    NewSettingsEntity(
+    ProfileSettingsEntity(
       svgImage: Images.settingsLanguage,
       text: "language",
       color: const Color(0xff144B86),
@@ -105,7 +105,7 @@ class SettingsProvider extends ChangeNotifier {
         ).showLanguageDialog();
       },
     ),
-    NewSettingsEntity(
+    ProfileSettingsEntity(
       svgImage: Images.settingsSupport,
       text: "support",
       color: const Color(0xff254AA5),
@@ -116,7 +116,7 @@ class SettingsProvider extends ChangeNotifier {
         ).goToTicketsPage();
       },
     ),
-    NewSettingsEntity(
+    ProfileSettingsEntity(
       svgImage: Images.settingsPrivacyPolicy,
       text: "privacy_policy",
       color: const Color(0xff70C090),
@@ -136,7 +136,7 @@ class SettingsProvider extends ChangeNotifier {
     //   text: "rate_app",
     //   onTap: () {},
     // ),
-    NewSettingsEntity(
+    ProfileSettingsEntity(
       svgImage: Images.settingsDeleteAccount,
       text: "delete_account",
       color: const Color(0xffF44336),
@@ -147,7 +147,7 @@ class SettingsProvider extends ChangeNotifier {
         ).confirmDeleteAccount();
       },
     ),
-    NewSettingsEntity(
+    ProfileSettingsEntity(
       svgImage: Images.settingsDeleteAccount,
       text: "logout",
       color: const Color(0xffF44336),
