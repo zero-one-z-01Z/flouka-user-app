@@ -4,7 +4,7 @@ import 'package:sizer/sizer.dart';
 import '../../../../../core/config/app_styles.dart';
 import '../../../../core/widgets/svg_widget.dart';
 import '../../../language/presentation/provider/language_provider.dart';
-import '../../domain/entities/new_settings_entity.dart';
+import '../../domain/entities/profile_settings_entity.dart';
 
 class SettingsWidget extends StatelessWidget {
   const SettingsWidget({

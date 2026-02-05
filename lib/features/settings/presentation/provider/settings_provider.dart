@@ -9,7 +9,7 @@ import '../../../../../core/dialog/snack_bar.dart';
 import '../../../../../core/helper_function/navigation.dart';
 import '../../../auth/presentation/providers/auth_provider.dart';
 import '../../../language/presentation/provider/language_provider.dart';
-import '../../domain/entities/new_settings_entity.dart';
+import '../../domain/entities/profile_settings_entity.dart';
 import '../../domain/entities/settings_entity.dart';
 import '../../domain/usecases/settings_usecases.dart';
 import '../views/web_view.dart';

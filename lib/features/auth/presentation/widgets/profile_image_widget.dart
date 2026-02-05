@@ -1,9 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../core/config/app_color.dart';
+import '../../../../core/widgets/button_widget.dart';
 import '../providers/complete_info_provider.dart';
 
 class ProfileImageWidget extends StatelessWidget {
@@ -31,6 +31,16 @@ class ProfileImageWidget extends StatelessWidget {
           ),
         ),
         SizedBox(height: 1.h),
+        Center(
+          child: ButtonWidget(
+            width: 35.w,
+            height: 3.5.h,
+            text: "upload_image",
+            onTap: () async {
+              await completeDataProvider.selectImage();
+            },
+          ),
+        ),
       ],
     );
   }

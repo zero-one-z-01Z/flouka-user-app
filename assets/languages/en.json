@@ -175,7 +175,7 @@
   "inputs": {
     "phone": "Phone Number",
     "Email": "Email",
-    "First Name": "First Name",
+    "Name": "Name",
     "Number": "Number",
     "Password": "Password"
   },
@@ -192,6 +192,7 @@
   "buttons": {
     "Login": "Login",
     "shop_now": "Shop Now",
+    "upload_image": "Upload Image",
     "Sign up": "Sign up",
     "sign_up": "Sign Up",
     "save": "Save Edit",
