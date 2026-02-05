@@ -37,7 +37,7 @@ class CheckoutProvider extends ChangeNotifier {
 
   CouponEntity? couponEntity;
 
-  late num total =222;
+  late num total = 222;
 
   Future createOrder() async {
     NavBarProvider navBarProvider = Provider.of<NavBarProvider>(
@@ -115,17 +115,17 @@ class CheckoutProvider extends ChangeNotifier {
 
   List<PaymentMethodEntity> paymentMethods = [
     PaymentMethodEntity(
-      image: Images.visa,
+      image: AppImages.visa,
       paymentMethod: "Debit/CreditCards",
       toAPI: "online",
     ),
     PaymentMethodEntity(
-      image: Images.cash,
+      image: AppImages.cash,
       paymentMethod: "Cach On Delivery",
       toAPI: "cash",
     ),
     PaymentMethodEntity(
-      image: Images.wallet,
+      image: AppImages.wallet,
       paymentMethod: "Wallet App",
       toAPI: "wallet",
     ),

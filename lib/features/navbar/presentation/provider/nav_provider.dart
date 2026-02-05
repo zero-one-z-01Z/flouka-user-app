@@ -21,19 +21,19 @@ class NavBarProvider extends ChangeNotifier {
 
   final List<BottomNaBarEntity> bottomNavigationBarItemEntity = [
     BottomNaBarEntity(
-      svgImage: Images.navbarHome,
+      svgImage: AppImages.navbarHome,
       label: LanguageProvider.translate('navbar', 'home'),
     ),
     BottomNaBarEntity(
-      svgImage: Images.navbarCategories,
+      svgImage: AppImages.navbarCategories,
       label: LanguageProvider.translate('navbar', 'categories'),
     ),
     BottomNaBarEntity(
-      svgImage: Images.navbarCart,
+      svgImage: AppImages.navbarCart,
       label: LanguageProvider.translate('navbar', 'cart'),
     ),
     BottomNaBarEntity(
-      svgImage: Images.navbarProfile,
+      svgImage: AppImages.navbarProfile,
       label: LanguageProvider.translate('navbar', 'profile'),
     ),
   ];

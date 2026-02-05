@@ -166,8 +166,8 @@ class AddressProvider extends ChangeNotifier {
   }
 
   final List<AddressLabelEntity> labels = [
-    AddressLabelEntity(label: "Home", svg: Images.addressHome),
-    AddressLabelEntity(label: "Work", svg: Images.addressWork),
+    AddressLabelEntity(label: "Home", svg: AppImages.addressHome),
+    AddressLabelEntity(label: "Work", svg: AppImages.addressWork),
   ];
 
   AddressLabelEntity? selectedLabel;

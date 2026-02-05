@@ -29,7 +29,7 @@ class OrderStatusWidget extends StatelessWidget {
             radius: 7.w,
             backgroundColor: const Color(0xff077933),
             child: SvgWidget(
-              svg: Images.settingsOrders,
+              svg: AppImages.settingsOrders,
               color: Colors.white,
               width: 4.5.w,
             ),

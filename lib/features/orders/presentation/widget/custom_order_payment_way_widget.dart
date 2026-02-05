@@ -30,7 +30,7 @@ class CustomOrderPaymentWayWidget extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          const SvgWidget(svg: Images.wallet),
+          const SvgWidget(svg: AppImages.wallet),
           Text(LanguageProvider.translate("global", "Wallet App")),
         ],
       ),

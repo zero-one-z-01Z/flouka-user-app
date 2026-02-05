@@ -39,7 +39,7 @@ class ShopProductsPage extends StatelessWidget {
                     ),
                     child: Center(
                       child: SvgWidget(
-                        svg: Images.filter,
+                        svg: AppImages.filter,
                         color: AppColor.primaryColor,
                       ),
                     ),

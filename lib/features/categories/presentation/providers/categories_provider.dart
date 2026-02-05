@@ -16,10 +16,10 @@ class CategoryProvider extends ChangeNotifier {
   CategoryEntity? get selectedCategory => _selectedCategory;
 
   List<CategoryEntity> homeCategories = [
-    CategoryEntity(id: 1, image: Images.offer, name: 'offers_products'),
-    CategoryEntity(id: 2, image: Images.bestSeller, name: 'best_sellers'),
-    CategoryEntity(id: 3, image: Images.categories, name: 'categories'),
-    CategoryEntity(id: 4, image: Images.exploreCategories, name: 'explore'),
+    CategoryEntity(id: 1, image: AppImages.offer, name: 'offers_products'),
+    CategoryEntity(id: 2, image: AppImages.bestSeller, name: 'best_sellers'),
+    CategoryEntity(id: 3, image: AppImages.categories, name: 'categories'),
+    CategoryEntity(id: 4, image: AppImages.exploreCategories, name: 'explore'),
   ];
 
   Future<void> getCategories() async {

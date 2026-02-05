@@ -18,9 +18,9 @@ class OperationEntity extends Equatable {
 
   String transactionIcon() {
     if (operation == "deposited" || operation == "deducted") {
-      return Images.arrowDown;
+      return AppImages.arrowDown;
     } else {
-      return Images.arrowUp;
+      return AppImages.arrowUp;
     }
   }
 

@@ -60,7 +60,7 @@ class CartProvider extends ChangeNotifier
           marketId: 1,
           image: "https://placehold.co/600x400",
           images: [
-            ProductImageEntity(id: 1, productId: 1, image: Images.testLaptop1),
+            ProductImageEntity(id: 1, productId: 1, image: AppImages.testLaptop1),
           ],
         ),
       ),
@@ -77,7 +77,7 @@ class CartProvider extends ChangeNotifier
           marketId: 1,
           image: "",
           images: [
-            ProductImageEntity(id: 1, productId: 1, image: Images.testLaptop1),
+            ProductImageEntity(id: 1, productId: 1, image: AppImages.testLaptop1),
           ],
         ),
       ),

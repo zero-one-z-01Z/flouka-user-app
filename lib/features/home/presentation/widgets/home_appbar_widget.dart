@@ -21,13 +21,13 @@ class HomeAppbarWidget extends StatelessWidget {
         children: [
           const DeliveryDropdownWidget(),
           const Spacer(),
-          const SvgWidget(svg: Images.search),
+          const SvgWidget(svg: AppImages.search),
           SizedBox(width: 4.w),
           InkWell(
             onTap: () {
               addressProvider.goToAddressPage();
             },
-            child: const SvgWidget(svg: Images.cart),
+            child: const SvgWidget(svg: AppImages.cart),
           ),
         ],
       ),

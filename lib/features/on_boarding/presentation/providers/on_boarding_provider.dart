@@ -39,20 +39,20 @@ class OnBoardingProvider extends ChangeNotifier {
     const OnBoardingEntity(
       title: "Welcome!",
       description: "on_boarding_1",
-      image: Images.onboardingImage1,
-      backGroundImage: Images.yellowCircle,
+      image: AppImages.onboardingImage1,
+      backGroundImage: AppImages.yellowCircle,
     ),
     const OnBoardingEntity(
       title: "Irrelevant results again?",
       description: "on_boarding_2",
-      image: Images.onboardingImage2,
-      backGroundImage: Images.greenCircle,
+      image: AppImages.onboardingImage2,
+      backGroundImage: AppImages.greenCircle,
     ),
     const OnBoardingEntity(
       title: "Your interests working with you.",
       description: "on_boarding_3",
-      image: Images.onboardingImage3,
-      backGroundImage: Images.pinkCircle,
+      image: AppImages.onboardingImage3,
+      backGroundImage: AppImages.pinkCircle,
     ),
   ];
 }

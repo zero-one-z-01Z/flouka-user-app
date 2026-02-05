@@ -32,7 +32,10 @@ class BrandStoreContainerWidget extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        CircleAvatar(radius: 14, child: Image.asset(Images.preson)),
+                        CircleAvatar(
+                          radius: 14,
+                          child: Image.asset(AppImages.preson),
+                        ),
                         SizedBox(width: 1.w),
                         Text(
                           'BrandStore',

@@ -134,7 +134,7 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
                 SizedBox(height: 0.2.h),
                 Row(
                   children: [
-                    const SvgWidget(svg: Images.star),
+                    const SvgWidget(svg: AppImages.star),
                     Text(rating.toString()),
                   ],
                 ),

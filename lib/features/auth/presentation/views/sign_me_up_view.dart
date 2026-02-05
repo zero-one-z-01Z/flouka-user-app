@@ -19,10 +19,10 @@ class SignMeUpView extends StatelessWidget {
           SizedBox(height: 8.h),
           Transform.scale(
             scale: 1.3,
-            child: Image.asset(Images.bigLogo, width: 30.w),
+            child: Image.asset(AppImages.bigLogo, width: 30.w),
           ),
           SizedBox(height: 10.h),
-          Image.asset(Images.signup2, width: 60.w),
+          Image.asset(AppImages.signup2, width: 60.w),
           SizedBox(height: 4.h),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 22.w),

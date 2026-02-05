@@ -33,7 +33,7 @@ class CategoriesViewAllPage extends StatelessWidget {
                   Expanded(
                     child: SearchbarContainer(
                       suffixIcon: SvgWidget(
-                        svg: Images.aiSearch,
+                        svg: AppImages.aiSearch,
                         width: 1.w,
                         height: 1.h,
                       ),
@@ -51,7 +51,7 @@ class CategoriesViewAllPage extends StatelessWidget {
                     ),
                     child: Center(
                       child: SvgWidget(
-                        svg: Images.navbarCart,
+                        svg: AppImages.navbarCart,
                         color: AppColor.primaryColor,
                       ),
                     ),

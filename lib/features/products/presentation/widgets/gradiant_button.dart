@@ -54,7 +54,7 @@ class gradiantButton extends StatelessWidget {
                   color: Colors.white,
                 ),
                 child: ClipOval(
-                  child: SvgWidget(svg: Images.apple, width: 8.w, height: 8.w),
+                  child: SvgWidget(svg: AppImages.apple, width: 8.w, height: 8.w),
                 ),
               ),
             ),

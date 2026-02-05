@@ -17,7 +17,7 @@ class StoreDetailsSection extends StatelessWidget {
           StoreStatItem(
             title: 'seller_ratings',
             value: '4.5',
-            icon: SvgWidget(svg: Images.star, color: Colors.amber, width: 5.w),
+            icon: SvgWidget(svg: AppImages.star, color: Colors.amber, width: 5.w),
           ),
           const StoreStatItem(title: 'customers', value: '20K+'),
           const StoreStatItem(title: 'products', value: '150+'),

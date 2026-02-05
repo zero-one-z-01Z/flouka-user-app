@@ -260,10 +260,14 @@ class AuthProvider extends ChangeNotifier {
   }
 
   late List<SocialAuthEntity> authImages = [
-    SocialAuthEntity(image: Images.apple, onTap: () => appleLogin(), text: "Apple"),
-    SocialAuthEntity(image: Images.facebook, onTap: () => {}, text: "Facebook"),
     SocialAuthEntity(
-      image: Images.google,
+      image: AppImages.apple,
+      onTap: () => appleLogin(),
+      text: "Apple",
+    ),
+    SocialAuthEntity(image: AppImages.facebook, onTap: () => {}, text: "Facebook"),
+    SocialAuthEntity(
+      image: AppImages.google,
       onTap: () => googleLogin(),
       text: "Google",
     ),

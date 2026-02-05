@@ -45,7 +45,7 @@ class SavedAddressContainerWidget extends StatelessWidget {
                     color: AppColor.primaryColor,
                   ).copyWith(fontWeight: FontWeight.bold),
                 ),
-                const SvgWidget(svg: Images.addressEdit),
+                const SvgWidget(svg: AppImages.addressEdit),
               ],
             ),
             const Divider(thickness: 1.5, color: Color(0xffe3e3e3)),

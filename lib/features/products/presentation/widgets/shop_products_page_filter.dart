@@ -19,13 +19,7 @@ class ShopProductsPageFilter extends StatelessWidget {
           final selected = provider.selectedFilter;
 
           // Brand chips data (e.g. HP, Lenovo, Apple, ...)
-          final brandFilters = <String>[
-            'HP',
-            'Lenovo',
-            'Apple',
-            'Dell',
-            'Asus',
-          ];
+          final brandFilters = <String>['HP', 'Lenovo', 'Apple', 'Dell', 'Asus'];
 
           if (provider.isLoading) {
             return const Center(child: CircularProgressIndicator());
@@ -62,7 +56,7 @@ class ShopProductsPageFilter extends StatelessWidget {
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const SvgWidget(svg: Images.brand),
+                        const SvgWidget(svg: AppImages.brand),
                         SizedBox(width: 1.w),
                         Text(
                           filterLabel,
@@ -71,17 +65,13 @@ class ShopProductsPageFilter extends StatelessWidget {
                             fontWeight: isSelected
                                 ? FontWeight.w600
                                 : FontWeight.w400,
-                            color: isSelected
-                                ? AppColor.primaryColor
-                                : Colors.black,
+                            color: isSelected ? AppColor.primaryColor : Colors.black,
                           ),
                         ),
                         Icon(
                           Icons.keyboard_arrow_down_rounded,
                           size: 18.sp,
-                          color: isSelected
-                              ? AppColor.primaryColor
-                              : Colors.black,
+                          color: isSelected ? AppColor.primaryColor : Colors.black,
                         ),
                       ],
                     ),
@@ -112,10 +102,8 @@ class ShopProductsPageFilter extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         SvgWidget(
-                          svg: Images.price,
-                          color: isSelected
-                              ? AppColor.primaryColor
-                              : Colors.black,
+                          svg: AppImages.price,
+                          color: isSelected ? AppColor.primaryColor : Colors.black,
                         ),
                         SizedBox(width: 1.w),
                         Text(
@@ -125,18 +113,14 @@ class ShopProductsPageFilter extends StatelessWidget {
                             fontWeight: isSelected
                                 ? FontWeight.w600
                                 : FontWeight.w400,
-                            color: isSelected
-                                ? AppColor.primaryColor
-                                : Colors.black,
+                            color: isSelected ? AppColor.primaryColor : Colors.black,
                           ),
                         ),
                         SizedBox(width: 1.w),
                         Icon(
                           Icons.keyboard_arrow_down_rounded,
                           size: 18.sp,
-                          color: isSelected
-                              ? AppColor.primaryColor
-                              : Colors.black,
+                          color: isSelected ? AppColor.primaryColor : Colors.black,
                         ),
                       ],
                     ),
@@ -167,9 +151,7 @@ class ShopProductsPageFilter extends StatelessWidget {
                     filter,
                     style: TextStyleClass.normalStyle().copyWith(
                       fontSize: 15.sp,
-                      fontWeight: isSelected
-                          ? FontWeight.w600
-                          : FontWeight.w400,
+                      fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
                       color: isSelected ? AppColor.primaryColor : Colors.black,
                     ),
                   ),

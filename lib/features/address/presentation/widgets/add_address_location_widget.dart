@@ -39,7 +39,7 @@ class AddAddressLocationWidget extends StatelessWidget {
         Stack(
           children: [
             Image.asset(
-              Images.locationMap,
+              AppImages.locationMap,
               width: 17.w,
               height: 17.w,
               fit: BoxFit.cover,

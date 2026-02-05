@@ -57,7 +57,7 @@ class BrandFilterPage extends StatelessWidget {
                     child: Row(
                       children: [
                         const SvgWidget(
-                          svg: Images.search,
+                          svg: AppImages.search,
                           color: Color(0xff7A7979),
                         ),
                         SizedBox(width: 2.w),

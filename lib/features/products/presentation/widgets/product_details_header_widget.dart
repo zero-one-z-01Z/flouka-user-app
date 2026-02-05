@@ -34,7 +34,7 @@ class ProductDetailsHeaderWidget extends StatelessWidget {
           // the dots indicators of number of images
           Positioned.fill(
             bottom: -35.h,
-            child:  const Align(
+            child: const Align(
               alignment: Alignment.center,
               child: CustomProductDetailsDotsIndicators(),
             ),
@@ -52,8 +52,8 @@ class ProductDetailsHeaderWidget extends StatelessWidget {
             child: Column(
               spacing: 2.h,
               children: [
-                const CircleActionButtonWidget(svgImage: Images.share),
-                const CircleActionButtonWidget(svgImage: Images.heart),
+                const CircleActionButtonWidget(svgImage: AppImages.share),
+                const CircleActionButtonWidget(svgImage: AppImages.heart),
               ],
             ),
           ),

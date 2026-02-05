@@ -90,7 +90,7 @@ class _DraggableImageButtonState extends State<DraggableImageButton> {
                         ),
                       )
                     : Image.asset(
-                        Images.arrowRight,
+                        AppImages.arrowRight,
                         key: const ValueKey("arrow"),
                         width: 23.sp,
                         height: 23.sp,

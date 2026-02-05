@@ -91,9 +91,9 @@ class CartItemWidget extends StatelessWidget {
             ),
             const Spacer(),
 
-            const CustomIconWidget(svg: Images.heart),
+            const CustomIconWidget(svg: AppImages.heart),
             SizedBox(width: 2.w),
-            const CustomIconWidget(svg: Images.trash),
+            const CustomIconWidget(svg: AppImages.trash),
           ],
         ),
       ],

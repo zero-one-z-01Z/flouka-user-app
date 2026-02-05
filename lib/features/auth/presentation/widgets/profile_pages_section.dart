@@ -18,7 +18,7 @@ class ProfilePagesSection extends StatelessWidget {
       {
         "title": "orders",
         "subTitle": "manage_orders",
-        "svg": Images.settingsOrders,
+        "svg": AppImages.settingsOrders,
         "onTap": () {
           final ordersProvider = Provider.of<OrderProvider>(
             Constants.globalContext(),
@@ -30,7 +30,7 @@ class ProfilePagesSection extends StatelessWidget {
       {
         "title": "favorite",
         "subTitle": "manage_favorites",
-        "svg": Images.settingsFavorite,
+        "svg": AppImages.settingsFavorite,
         "onTap": () {
           final chatProvider = Provider.of<ChatProvider>(
             Constants.globalContext(),
@@ -42,7 +42,7 @@ class ProfilePagesSection extends StatelessWidget {
       {
         "title": "wallet",
         "subTitle": "0.0 US \$",
-        "svg": Images.settingsWallet,
+        "svg": AppImages.settingsWallet,
         "onTap": () {
           final walletProvider = Provider.of<WalletProvider>(
             Constants.globalContext(),
@@ -54,7 +54,7 @@ class ProfilePagesSection extends StatelessWidget {
       {
         "title": "address",
         "subTitle": "added",
-        "svg": Images.settingsAddress,
+        "svg": AppImages.settingsAddress,
         "onTap": () {
           final addressProvider = Provider.of<AddressProvider>(context);
           addressProvider.goToAddressPage();

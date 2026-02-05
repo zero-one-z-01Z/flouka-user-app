@@ -13,7 +13,7 @@ class DeliveryDropdownWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        SvgWidget(svg: Images.location, height: 4.h, width: 4.h),
+        SvgWidget(svg: AppImages.location, height: 4.h, width: 4.h),
         SizedBox(width: 4.w),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,

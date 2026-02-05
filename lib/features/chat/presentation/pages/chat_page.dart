@@ -31,7 +31,7 @@ class ChatPage extends StatelessWidget {
             CircleAvatar(
               radius: 20,
               backgroundColor: AppColor.primaryColor,
-              child: Image.asset(Images.preson, fit: BoxFit.cover),
+              child: Image.asset(AppImages.preson, fit: BoxFit.cover),
             ),
             SizedBox(width: 2.w),
             Column(
@@ -39,10 +39,7 @@ class ChatPage extends StatelessWidget {
               children: [
                 Text(
                   "عبد العزيز الحامد",
-                  style: TextStyle(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
                 ),
                 Text(
                   LanguageProvider.translate('chat', 'online'),
@@ -60,11 +57,9 @@ class ChatPage extends StatelessWidget {
             child: ListView.builder(
               padding: const EdgeInsets.all(8),
               itemCount:
-                  chatProvider.messages.length +
-                  (chatProvider.isTyping ? 1 : 0),
+                  chatProvider.messages.length + (chatProvider.isTyping ? 1 : 0),
               itemBuilder: (context, index) {
-                if (chatProvider.isTyping &&
-                    index == chatProvider.messages.length) {
+                if (chatProvider.isTyping && index == chatProvider.messages.length) {
                   return Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(

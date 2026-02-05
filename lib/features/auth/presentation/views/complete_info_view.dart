@@ -1,14 +1,13 @@
 import 'package:flouka/core/config/app_styles.dart';
-import 'package:flouka/core/constants/app_images.dart';
 import 'package:flouka/core/widgets/button_widget.dart';
 import 'package:flouka/core/widgets/list_text_field_widget.dart';
-import 'package:flouka/features/auth/presentation/widgets/edit_button_widget.dart';
 import 'package:flouka/features/language/presentation/provider/language_provider.dart';
 import 'package:flouka/features/navbar/presentation/provider/nav_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../providers/complete_info_provider.dart';
+import '../widgets/profile_image_widget.dart';
 
 class CompleteInfoView extends StatelessWidget {
   const CompleteInfoView({super.key, required this.isEdit});
@@ -32,21 +31,7 @@ class CompleteInfoView extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: 4.h),
-            Stack(
-              children: [
-                Image.asset(Images.onboardingImage1, width: 20.w),
-                Positioned(
-                  bottom: 0,
-                  left: 2.w,
-                  right: 2.w,
-                  child: EditButtonWidget(
-                    onTap: () {
-                      completeInfoProvider.isEdit = isEdit;
-                    },
-                  ),
-                ),
-              ],
-            ),
+            const ProfileImageWidget(),
             SizedBox(height: 2.h),
             ListTextFieldWidget(
               inputs: completeInfoProvider.completeInfoTextFieldList,

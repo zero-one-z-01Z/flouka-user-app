@@ -62,22 +62,18 @@ class SearchbarContainer extends StatelessWidget {
           style: TextStyleClass.normalStyle(),
           cursorColor: Colors.black,
           decoration: InputDecoration(
-            hintText:
-                hintText ?? LanguageProvider.translate('categories', 'search'),
+            hintText: hintText ?? LanguageProvider.translate('categories', 'search'),
             hintStyle: TextStyleClass.normalStyle(
               color: AppColor.primaryColor,
             ).copyWith(fontSize: 15.sp),
             prefixIcon: Padding(
               padding: EdgeInsets.all(3.w),
               child: const SvgWidget(
-                svg: Images.search,
+                svg: AppImages.search,
                 color: Color(0xff7A7979),
               ),
             ),
-            suffixIcon: Padding(
-              padding: EdgeInsets.all(3.w),
-              child: suffixIcon,
-            ),
+            suffixIcon: Padding(padding: EdgeInsets.all(3.w), child: suffixIcon),
             border: InputBorder.none,
             contentPadding: EdgeInsets.symmetric(vertical: 1.3.h),
           ),

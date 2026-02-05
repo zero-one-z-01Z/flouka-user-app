@@ -20,7 +20,7 @@ class ProfileHeaderWidget extends StatelessWidget {
       ),
       child: Row(
         children: [
-          CircleAvatar(child: Image.asset(Images.preson)),
+          CircleAvatar(child: Image.asset(AppImages.preson)),
           SizedBox(width: 2.w),
           Text(
             "MOAZ MOHAMED",

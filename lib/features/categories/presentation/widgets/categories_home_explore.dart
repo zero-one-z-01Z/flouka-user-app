@@ -25,9 +25,7 @@ class CategoriesHomeExplore extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           }
 
-          final itemCount = showExplore
-              ? categories.length + 1
-              : categories.length;
+          final itemCount = showExplore ? categories.length + 1 : categories.length;
 
           return ListView.builder(
             scrollDirection: Axis.horizontal,
@@ -37,7 +35,7 @@ class CategoriesHomeExplore extends StatelessWidget {
               if (showExplore && index == 0) {
                 final exploreCategory = CategoryEntity(
                   id: 0,
-                  image: Images.explore,
+                  image: AppImages.explore,
                   name: LanguageProvider.translate('home', 'explore'),
                 );
                 return Padding(

@@ -68,7 +68,7 @@ class StoreDetailsPage extends StatelessWidget {
                       children: [
                         const CircleAvatar(
                           radius: 34,
-                          backgroundImage: AssetImage(Images.preson),
+                          backgroundImage: AssetImage(AppImages.preson),
                         ),
                         SizedBox(width: 2.w),
                         ButtonWidget(
@@ -96,7 +96,7 @@ class StoreDetailsPage extends StatelessWidget {
                             ],
                           ),
                           child: const SvgWidget(
-                            svg: Images.share,
+                            svg: AppImages.share,
                             color: Color(0xff00A8E1),
                           ),
                         ),
@@ -105,10 +105,7 @@ class StoreDetailsPage extends StatelessWidget {
                     const SizedBox(height: 10),
                     const Text(
                       'John Doe',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 1.h),
                     RichText(
@@ -119,9 +116,7 @@ class StoreDetailsPage extends StatelessWidget {
                           color: Colors.black,
                         ),
                         children: [
-                          const TextSpan(
-                            text: 'This store has been open since ',
-                          ),
+                          const TextSpan(text: 'This store has been open since '),
                           TextSpan(
                             text: 'April 2020',
                             style: TextStyle(

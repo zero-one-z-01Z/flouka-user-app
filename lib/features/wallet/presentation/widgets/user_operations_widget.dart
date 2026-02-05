@@ -33,8 +33,8 @@ class OperationWidgets extends StatelessWidget {
                     Center(
                       child: Image.asset(
                         myOperation.operation == "deducted"
-                            ? Images.arrowDown
-                            : Images.arrowUp,
+                            ? AppImages.arrowDown
+                            : AppImages.arrowUp,
                         width: 15.w,
                         height: 15.w,
                       ),

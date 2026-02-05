@@ -84,7 +84,7 @@ class SettingsProvider extends ChangeNotifier {
     //   },
     // ),
     ProfileSettingsEntity(
-      svgImage: Images.settingsNotification,
+      svgImage: AppImages.settingsNotification,
       text: "notification",
       color: const Color(0xff11BD57),
       onTap: () {
@@ -95,7 +95,7 @@ class SettingsProvider extends ChangeNotifier {
       },
     ),
     ProfileSettingsEntity(
-      svgImage: Images.settingsLanguage,
+      svgImage: AppImages.settingsLanguage,
       text: "language",
       color: const Color(0xff144B86),
       onTap: () {
@@ -106,7 +106,7 @@ class SettingsProvider extends ChangeNotifier {
       },
     ),
     ProfileSettingsEntity(
-      svgImage: Images.settingsSupport,
+      svgImage: AppImages.settingsSupport,
       text: "support",
       color: const Color(0xff254AA5),
       onTap: () {
@@ -117,7 +117,7 @@ class SettingsProvider extends ChangeNotifier {
       },
     ),
     ProfileSettingsEntity(
-      svgImage: Images.settingsPrivacyPolicy,
+      svgImage: AppImages.settingsPrivacyPolicy,
       text: "privacy_policy",
       color: const Color(0xff70C090),
       onTap: () {
@@ -137,7 +137,7 @@ class SettingsProvider extends ChangeNotifier {
     //   onTap: () {},
     // ),
     ProfileSettingsEntity(
-      svgImage: Images.settingsDeleteAccount,
+      svgImage: AppImages.settingsDeleteAccount,
       text: "delete_account",
       color: const Color(0xffF44336),
       onTap: () {
@@ -148,7 +148,7 @@ class SettingsProvider extends ChangeNotifier {
       },
     ),
     ProfileSettingsEntity(
-      svgImage: Images.settingsDeleteAccount,
+      svgImage: AppImages.settingsDeleteAccount,
       text: "logout",
       color: const Color(0xffF44336),
       onTap: () {

@@ -26,7 +26,7 @@ class PriceFilterPage extends StatelessWidget {
             SizedBox(height: 2.h),
             Row(
               children: [
-                SvgWidget(svg: Images.price, color: AppColor.primaryColor),
+                SvgWidget(svg: AppImages.price, color: AppColor.primaryColor),
                 SizedBox(width: 1.w),
                 Text(
                   LanguageProvider.translate("filter", "price"),

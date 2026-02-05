@@ -86,7 +86,7 @@ class SuggestedProductContainer extends StatelessWidget {
                     Row(
                       children: [
                         SvgWidget(
-                          svg: Images.star,
+                          svg: AppImages.star,
                           color: Colors.amber,
                           width: 16.sp,
                         ),
@@ -103,10 +103,7 @@ class SuggestedProductContainer extends StatelessWidget {
                           ),
                           child: Center(
                             child: Text(
-                              LanguageProvider.translate(
-                                'global',
-                                'staff_pick',
-                              ),
+                              LanguageProvider.translate('global', 'staff_pick'),
                               style: TextStyle(
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.bold,

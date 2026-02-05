@@ -36,7 +36,7 @@ class MyAddressWidget extends StatelessWidget {
             child: Row(
               spacing: 3.w,
               children: [
-                const SvgWidget(svg: Images.locationFilled),
+                const SvgWidget(svg: AppImages.locationFilled),
                 Expanded(
                   flex: 2,
                   child: Column(

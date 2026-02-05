@@ -23,7 +23,7 @@ class SkipWithLogoWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SizedBox(width: 10.w),
-          Transform.scale(scale: 1.1, child: Image.asset(Images.logo)),
+          Transform.scale(scale: 1.1, child: Image.asset(AppImages.logo)),
           InkWell(
             onTap: () {
               onBoardingProvider.skipButtonPressed();

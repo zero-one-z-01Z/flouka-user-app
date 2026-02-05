@@ -35,7 +35,7 @@ class RegisterView extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 8.h),
-              Image.asset(Images.logo2, width: 40.w),
+              Image.asset(AppImages.logo2, width: 40.w),
               SizedBox(height: 8.h),
               ListTextFieldWidget(inputs: authProvider.registerTextFieldList),
               SizedBox(height: 2.h),

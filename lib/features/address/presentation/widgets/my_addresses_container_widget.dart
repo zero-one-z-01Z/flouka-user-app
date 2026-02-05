@@ -23,7 +23,7 @@ class MyAddressesContainerWidget extends StatelessWidget {
         child: Row(
           children: [
             SvgWidget(
-              svg: Images.location,
+              svg: AppImages.location,
               color: AppColor.primaryColor,
               width: 6.w,
             ),

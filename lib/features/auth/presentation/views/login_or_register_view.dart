@@ -19,7 +19,7 @@ class LoginOrRegisterView extends StatelessWidget {
         children: [
           const AuthStackImagesWidget(),
           SizedBox(height: 5.h),
-          Image.asset(Images.bigLogo),
+          Image.asset(AppImages.bigLogo),
           SizedBox(height: 2.h),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.w),

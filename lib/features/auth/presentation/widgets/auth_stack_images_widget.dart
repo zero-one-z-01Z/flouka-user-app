@@ -13,17 +13,22 @@ class AuthStackImagesWidget extends StatelessWidget {
       width: 100.w,
       child: Stack(
         children: [
-          Positioned.fill(child: Image.asset(Images.circles, fit: BoxFit.fill)),
+          Positioned.fill(child: Image.asset(AppImages.circles, fit: BoxFit.fill)),
           Positioned(
             left: 0,
             right: 0,
             bottom: -5.h,
             child: Transform.scale(
               scale: 1.3,
-              child: Image.asset(Images.onboardingImage1, width: 50.w),
+              child: Image.asset(AppImages.onboardingImage1, width: 50.w),
             ),
           ),
-          Positioned(left: 0, right: 0, top: 4.h, child: Image.asset(Images.logo)),
+          Positioned(
+            left: 0,
+            right: 0,
+            top: 4.h,
+            child: Image.asset(AppImages.logo),
+          ),
         ],
       ),
     );
