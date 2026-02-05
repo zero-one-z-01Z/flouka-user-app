@@ -2,7 +2,6 @@ import 'package:flouka/core/config/app_styles.dart';
 import 'package:flouka/core/widgets/button_widget.dart';
 import 'package:flouka/core/widgets/list_text_field_widget.dart';
 import 'package:flouka/features/language/presentation/provider/language_provider.dart';
-import 'package:flouka/features/navbar/presentation/provider/nav_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -26,17 +25,20 @@ class CompleteInfoView extends StatelessWidget {
           style: TextStyleClass.headStyle().copyWith(fontSize: 17.sp),
         ),
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 4.w),
-        child: Column(
-          children: [
-            SizedBox(height: 4.h),
-            const ProfileImageWidget(),
-            SizedBox(height: 2.h),
-            ListTextFieldWidget(
-              inputs: completeInfoProvider.completeInfoTextFieldList,
-            ),
-          ],
+      body: Form(
+        key: completeInfoProvider.formKey,
+        child: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: 4.w),
+          child: Column(
+            children: [
+              SizedBox(height: 4.h),
+              const ProfileImageWidget(),
+              SizedBox(height: 2.h),
+              ListTextFieldWidget(
+                inputs: completeInfoProvider.completeInfoTextFieldList,
+              ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: Padding(
@@ -45,10 +47,7 @@ class CompleteInfoView extends StatelessWidget {
           height: 6.h,
           width: 80.w,
           onTap: () {
-            if (isEdit) {
-            } else {
-              Provider.of<NavBarProvider>(context, listen: false).goToNavView();
-            }
+            completeInfoProvider.updateProfileButton();
           },
           text: isEdit ? "save" : "sign_up",
         ),

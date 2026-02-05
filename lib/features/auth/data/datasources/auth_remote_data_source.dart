@@ -40,7 +40,7 @@ class AuthRemoteDataSource {
   Future<Either<DioException, UserModel>> updateProfile(
     Map<String, dynamic> data,
   ) async {
-    var response = await apiHandel.post('user/update_profile', data);
+    var response = await apiHandel.post('user/update-profile', data);
     return response.fold(
       (l) => Left(l),
       (r) => Right(UserModel.fromJson(r.data['data'])),
