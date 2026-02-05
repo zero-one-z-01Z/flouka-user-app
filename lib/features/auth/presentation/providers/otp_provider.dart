@@ -6,13 +6,12 @@ import '../../../../core/dialog/snack_bar.dart';
 import '../../../../core/helper_function/loading.dart';
 import '../../../../core/helper_function/navigation.dart';
 import '../../../language/presentation/provider/language_provider.dart';
-import '../../domain/usecases/user_usecases.dart';
+import '../../domain/usecases/auth_use_case.dart';
 import '../views/otp_view.dart';
 import 'auth_provider.dart';
 
 class OtpProvider extends ChangeNotifier {
   final AuthUseCase authUsceCase;
-  late String theHashCode;
   Timer? timer;
   int counter = 60;
   late bool isEdit;
@@ -47,25 +46,22 @@ class OtpProvider extends ChangeNotifier {
     navP(const OTPView());
   }
 
-  final GlobalKey<FormState> createAccountFormKey = GlobalKey<FormState>();
-
-  String otpNumber = "";
-
   late TextEditingController otpController;
 
   Future<void> checkCode({bool isRegister = true}) async {
+    AuthProvider authProvider = Provider.of<AuthProvider>(
+      Constants.globalContext(),
+      listen: false,
+    );
+
     Map<String, dynamic> data = {};
-    data["hashed_code"] = theHashCode;
-    data["code"] = otpController.text.trim();
+    data["otp"] = otpController.text.trim();
+    data["phone"] = authProvider.loginTextFieldList[0].controller.text;
 
     loading();
     final result = await authUsceCase.checkCode(data);
     navPop();
     result.fold((l) => showToast(l.message!), (r) {
-      AuthProvider authProvider = Provider.of<AuthProvider>(
-        Constants.globalContext(),
-        listen: false,
-      );
       authProvider.loginSuccess(r);
     });
   }
@@ -76,6 +72,22 @@ class OtpProvider extends ChangeNotifier {
     } else {
       return "${LanguageProvider.translate("login", "after")} $value ${LanguageProvider.translate("time", "sec")}";
     }
+  }
+
+  Future<void> resendCode() async {
+    AuthProvider authProvider = Provider.of<AuthProvider>(
+      Constants.globalContext(),
+      listen: false,
+    );
+
+    Map<String, dynamic> data = {};
+    data["phone"] = authProvider.loginTextFieldList[0].controller.text;
+    loading();
+    final result = await authUsceCase.sendOtp(data);
+    navPop();
+    result.fold((l) => showToast(l.message!), (r) {
+      startTimer();
+    });
   }
 
   Future<void> updateProfile() async {
@@ -89,7 +101,6 @@ class OtpProvider extends ChangeNotifier {
         listen: false,
       );
       authProvider.loginSuccess(r);
-      // authProvider.userEntity = r;
       navPop();
     });
   }

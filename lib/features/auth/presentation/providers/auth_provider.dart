@@ -23,15 +23,15 @@ import '../../../language/presentation/provider/language_provider.dart';
 import '../../../navbar/presentation/provider/nav_provider.dart';
 import '../../domain/entities/social_auth_entity.dart';
 import '../../domain/entities/user_entity.dart';
-import '../../domain/usecases/user_usecases.dart';
+import '../../domain/usecases/auth_use_case.dart';
 
 class AuthProvider extends ChangeNotifier {
   UserEntity? userEntity;
-  final AuthUseCase userUseCase;
+  final AuthUseCase authUseCase;
 
   bool isUser = true;
 
-  AuthProvider(this.userUseCase);
+  AuthProvider(this.authUseCase);
 
   void goToLoginView() {
     navPR(const LoginView());
@@ -52,7 +52,7 @@ class AuthProvider extends ChangeNotifier {
     }
     data['token'] = await FirebaseMessaging.instance.getToken() ?? "123";
     loading();
-    final result = await userUseCase.socialLogin(data);
+    final result = await authUseCase.socialLogin(data);
     navPop();
     result.fold((l) => showToast(l.message!), (r) {
       loginSuccess(r);
@@ -62,7 +62,7 @@ class AuthProvider extends ChangeNotifier {
 
   Future<void> deleteAccount() async {
     loading();
-    await userUseCase.deleteAccount();
+    await authUseCase.deleteAccount();
     await sharedPreferences.remove('token');
     navPop();
     ApiHandel.getInstance.updateHeader('');
@@ -151,7 +151,7 @@ class AuthProvider extends ChangeNotifier {
   }
 
   Future getProfile() async {
-    final result = await userUseCase.getProfile();
+    final result = await authUseCase.getProfile();
     result.fold(
       (l) {
         showToast(l.message!);
@@ -168,7 +168,7 @@ class AuthProvider extends ChangeNotifier {
   Future refreshToken() async {
     String token = sharedPreferences.getString('token')!;
     Map<String, dynamic> data = {'token': token};
-    final result = await userUseCase.refreshToken(data);
+    final result = await authUseCase.refreshToken(data);
     result.fold((l) => showToast(l.message!), (r) {
       sharedPreferences.setString('token', r);
       ApiHandel.getInstance.updateHeader(r);
@@ -179,7 +179,7 @@ class AuthProvider extends ChangeNotifier {
     showPopUpDialog(
       title: LanguageProvider.translate('global', 'تسجيل الخروج'),
       onConfirm: () {
-        final result = userUseCase.logout({
+        final result = authUseCase.logout({
           "token": FirebaseMessaging.instance.getToken(),
         });
         successLogout();
@@ -190,9 +190,9 @@ class AuthProvider extends ChangeNotifier {
   List<TextFieldModel> loginTextFieldList = [
     TextFieldModel(
       label: LanguageProvider.translate("inputs", "Number"),
-      key: "name",
+      key: "phone",
       controller: TextEditingController(),
-      textInputType: TextInputType.name,
+      textInputType: TextInputType.phone,
       validator: (value) => validatePhone(value),
     ),
   ];
@@ -223,14 +223,15 @@ class AuthProvider extends ChangeNotifier {
       data[element.key] = element.controller.text.trim();
     }
     loading();
-    final result = await userUseCase.sendOtp(data);
+    final result = await authUseCase.sendOtp(data);
     navPop();
     result.fold(
       (l) {
         showToast(l.message!);
       },
       (r) {
-        // loginSuccess(r);
+        otpProvider.goToOTPView();
+        otpProvider.startTimer();
       },
     );
   }

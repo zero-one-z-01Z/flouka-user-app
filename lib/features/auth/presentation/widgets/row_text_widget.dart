@@ -24,11 +24,13 @@ class RowTextWidget extends StatelessWidget {
             fontSize: 15.sp,
           ),
         ),
-        Text(
-          highlightedTextWithonTap,
-          style: TextStyleClass.headStyle().copyWith(
-            color: Colors.black,
-            fontSize: 15.sp,
+        Expanded(
+          child: Text(
+            highlightedTextWithonTap,
+            style: TextStyleClass.headStyle().copyWith(
+              color: Colors.black,
+              fontSize: 15.sp,
+            ),
           ),
         ),
       ],

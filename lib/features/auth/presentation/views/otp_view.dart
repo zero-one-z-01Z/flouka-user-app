@@ -6,7 +6,6 @@ import '../../../../core/config/app_styles.dart';
 import '../../../../core/config/app_theme.dart';
 import '../../../../core/constants/app_images.dart';
 import '../../../language/presentation/provider/language_provider.dart';
-import '../widgets/custom_text_with_under_line_login_text.dart';
 import '../widgets/otp_container_with_button_widget.dart';
 
 class OTPView extends StatelessWidget {
@@ -36,17 +35,17 @@ class OTPView extends StatelessWidget {
                 Image.asset(Images.logo2, width: 40.w),
                 SizedBox(height: 8.h),
                 const OtpContainerWithButton(),
-                SizedBox(height: 4.h),
-                Align(
-                  alignment: AlignmentDirectional.centerStart,
-                  child: CustomTextWithUnderLineText(
-                    customText: "Already have an account?",
-                    underLineText: "Login",
-                    onTap: () {
-                      authProvider.goToLoginView();
-                    },
-                  ),
-                ),
+                // SizedBox(height: 4.h),
+                // Align(
+                //   alignment: AlignmentDirectional.centerStart,
+                //   child: CustomTextWithUnderLineText(
+                //     customText: "Already have an account?",
+                //     underLineText: "Login",
+                //     onTap: () {
+                //       authProvider.goToLoginView();
+                //     },
+                //   ),
+                // ),
               ],
             ),
           ),

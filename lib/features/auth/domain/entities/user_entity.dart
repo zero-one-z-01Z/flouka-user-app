@@ -1,10 +1,10 @@
 class UserEntity {
   final int id;
+  String? name;
   String? phone;
   String? email;
   String? image;
-  String? firstName;
-  String? lastName;
+  int? LastReadNotification;
   num wallet;
   String? token;
 
@@ -13,9 +13,9 @@ class UserEntity {
     required this.phone,
     required this.email,
     required this.image,
-    required this.firstName,
-    required this.lastName,
+    required this.name,
     required this.wallet,
-    this.token,
+    this.LastReadNotification,
+    required this.token,
   });
 }

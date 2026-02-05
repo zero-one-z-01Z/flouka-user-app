@@ -25,7 +25,7 @@ import 'features/address/domain/usecase/address_usecase.dart';
 import 'features/auth/data/datasources/auth_remote_data_source.dart';
 import 'features/auth/data/repo/user_repo_impl.dart';
 import 'features/auth/domain/repo/auth_repo.dart';
-import 'features/auth/domain/usecases/user_usecases.dart';
+import 'features/auth/domain/usecases/auth_use_case.dart';
 import 'features/banners/data/datasource/remote.dart';
 import 'features/banners/data/repositories/banners_repo_impl.dart';
 import 'features/banners/domain/repositories/banner_repository.dart';

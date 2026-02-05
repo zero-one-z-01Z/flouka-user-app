@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Constants {
-  static const String baseUri = "https://raval.zeroonez.com/";
+  static const String baseUri = "https://veda-crumblier-sparkishly.ngrok-free.dev/";
   static const String domain = '${baseUri}api/';
   //! for navigation
   static final GlobalKey<NavigatorState> navState = GlobalKey<NavigatorState>();

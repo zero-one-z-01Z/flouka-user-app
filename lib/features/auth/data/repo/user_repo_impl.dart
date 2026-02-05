@@ -52,7 +52,7 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<Either<DioException, String>> sendOtpCode(Map<String, dynamic> data) {
+  Future<Either<DioException, bool>> sendOtpCode(Map<String, dynamic> data) {
     return userRemoteDatasource.sendOtp(data);
   }
 

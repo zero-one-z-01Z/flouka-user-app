@@ -20,7 +20,7 @@ class AuthRemoteDataSource {
   }
 
   Future<Either<DioException, UserModel>> getProfile() async {
-    var response = await apiHandel.get('user/get_profile');
+    var response = await apiHandel.get('user/get-profile');
     return response.fold(
       (l) => Left(l),
       (r) => Right(UserModel.fromJson(r.data['data'])),
@@ -50,23 +50,23 @@ class AuthRemoteDataSource {
   Future<Either<DioException, String>> refreshToken(
     Map<String, dynamic> data,
   ) async {
-    var response = await apiHandel.post('refresh_token', data);
-    return response.fold((l) => Left(l), (r) => Right(r.data['token']));
+    var response = await apiHandel.post('user/refresh-token', data);
+    return response.fold((l) => Left(l), (r) => Right(r.data['data']['token']));
   }
 
   Future<Either<DioException, UserEntity>> checkCode(
     Map<String, dynamic> data,
   ) async {
-    var response = await apiHandel.post('user/check_code', data);
+    var response = await apiHandel.post('user/check-code', data);
     return response.fold(
       (l) => Left(l),
       (r) => Right(UserModel.fromJson(r.data['data'])),
     );
   }
 
-  Future<Either<DioException, String>> sendOtp(Map<String, dynamic> data) async {
-    var response = await apiHandel.post('user/send_otp_code', data);
-    return response.fold((l) => Left(l), (r) => Right(r.data['data']));
+  Future<Either<DioException, bool>> sendOtp(Map<String, dynamic> data) async {
+    var response = await apiHandel.post('user/send-otp', data);
+    return response.fold((l) => Left(l), (r) => const Right(true));
   }
 
   Future<Either<DioException, UserEntity>> login(Map<String, dynamic> data) async {

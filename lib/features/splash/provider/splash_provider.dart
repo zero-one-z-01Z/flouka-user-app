@@ -1,6 +1,7 @@
 // ignore_for_file: unused_import
 
 import 'package:flouka/core/constants/constants.dart';
+import 'package:flouka/core/helper_function/navigation.dart';
 import 'package:flouka/features/auth/presentation/providers/auth_provider.dart';
 import 'package:flouka/features/banners/presentation/provider/banners_provider.dart';
 import 'package:flouka/features/cart/presentation/providers/cart_provider.dart';
@@ -14,6 +15,7 @@ import '../../address/presentation/providers/address_provider.dart';
 import '../../categories/presentation/providers/categories_provider.dart';
 import '../../navbar/presentation/provider/nav_provider.dart';
 import '../../on_boarding/presentation/providers/on_boarding_provider.dart';
+import '../../on_boarding/presentation/views/on_boarding_view.dart';
 
 class SplashProvider extends ChangeNotifier {
   void startApp() async {
@@ -46,18 +48,17 @@ class SplashProvider extends ChangeNotifier {
     ]);
 
     bool isFirstTime = !(sharedPreferences.getBool('onBoarding') ?? false);
+    final context = Constants.globalContext();
+    var auth = Provider.of<AuthProvider>(context, listen: false);
     String? isLoggedIn = sharedPreferences.getString('token');
-
     if (isFirstTime) {
-      Provider.of<OnBoardingProvider>(
-        Constants.globalContext(),
-        listen: false,
-      ).goToOnBoardingView();
+      navPARU(const OnBoardingView());
     } else {
-      Provider.of<AuthProvider>(
-        Constants.globalContext(),
-        listen: false,
-      ).goToLoginView();
+      if (isLoggedIn != null) {
+        auth.getProfile();
+      } else {
+        auth.goToLoginView();
+      }
     }
   }
 }

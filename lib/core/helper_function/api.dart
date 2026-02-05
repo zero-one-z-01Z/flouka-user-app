@@ -1,11 +1,12 @@
 import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:jwt_decode/jwt_decode.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
+import 'package:provider/provider.dart';
 // import 'package:provider/provider.dart';
 // import '../../features/auth/presentation/providers/auth_provider.dart';
+import '../../features/auth/presentation/providers/auth_provider.dart';
 import '../constants/constants.dart';
 import 'convert.dart';
 import 'helper_function.dart';
@@ -37,7 +38,7 @@ class ApiHandel {
         headers: {
           "lang": lang ?? "ar",
           'Content-Type': 'application/json',
-          "Authorization": token,
+          "Authorization": {'Bearer $token'},
         },
       ),
     );
@@ -66,7 +67,7 @@ class ApiHandel {
       baseUrl: Constants.domain,
       // baseUrl: Constants.domain,
       headers: {
-        "Authorization": token,
+        "Authorization": {'Bearer $token'},
         "lang": lang ?? "ar",
         'Content-Type': 'application/json',
       },
@@ -197,13 +198,15 @@ class ApiHandel {
   }
 
   Future reLogin(String url) async {
-    String? token = ApiHandel.getInstance.dio.options.headers['Authorization'];
-    if ((url.contains('user')) &&
-        !url.contains('social') &&
+    String? token = sharedPreferences.getString('token');
+    if (!url.contains('refresh_token') &&
         token != null &&
         token.isNotEmpty &&
-        Jwt.isExpired(token)) {
-      // await Provider.of<AuthProvider>(Constants.globalContext(), listen: false,).refreshToken();
+        JwtDecoder.isExpired(token)) {
+      await Provider.of<AuthProvider>(
+        Constants.globalContext(),
+        listen: false,
+      ).refreshToken();
     }
   }
 }

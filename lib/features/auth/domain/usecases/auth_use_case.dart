@@ -37,7 +37,7 @@ class AuthUseCase {
     return await userRepo.updateProfile(data);
   }
 
-  Future<Either<DioException, String>> sendOtp(
+  Future<Either<DioException, bool>> sendOtp(
     Map<String, dynamic> data,
   ) async {
     return await userRepo.sendOtpCode(data);

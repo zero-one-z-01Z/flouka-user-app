@@ -5,6 +5,7 @@ import '../../../../core/config/app_color.dart';
 import '../../../../core/config/app_styles.dart';
 import '../../../../core/widgets/button_widget.dart';
 import '../../../language/presentation/provider/language_provider.dart';
+import '../providers/auth_provider.dart';
 import '../providers/complete_info_provider.dart';
 import '../providers/otp_provider.dart';
 import 'custom_otp_field.dart';
@@ -20,6 +21,7 @@ class OtpContainerWithButton extends StatelessWidget {
       context,
       listen: false,
     );
+    AuthProvider authProvider = Provider.of<AuthProvider>(context, listen: false);
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
       decoration: BoxDecoration(
@@ -35,7 +37,8 @@ class OtpContainerWithButton extends StatelessWidget {
               "auth",
               "Enter the verification code sent to",
             ),
-            highlightedTextWithonTap: otpProvider.otpNumber,
+            highlightedTextWithonTap:
+                "(${authProvider.loginTextFieldList[0].controller.text})",
           ),
           const CustomOTPField(),
           Selector<OtpProvider, int>(
@@ -62,9 +65,8 @@ class OtpContainerWithButton extends StatelessWidget {
               fontSize: 15.sp,
             ),
             onTap: () {
-              completeInfoProvider.goToCompleteInfoView();
-
-              // otpProvider.checkCode();
+              // completeInfoProvider.goToCompleteInfoView();
+              otpProvider.checkCode();
             },
           ),
         ],

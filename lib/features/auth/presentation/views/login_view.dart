@@ -1,7 +1,6 @@
 import 'package:flouka/core/config/app_styles.dart';
 import 'package:flouka/core/widgets/list_text_field_widget.dart';
 import 'package:flouka/features/auth/presentation/providers/auth_provider.dart';
-import 'package:flouka/features/auth/presentation/widgets/custom_text_with_under_line_login_text.dart';
 import 'package:flouka/features/language/presentation/provider/language_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -53,16 +52,16 @@ class LoginView extends StatelessWidget {
               const OrDividerWidget(),
               SizedBox(height: 3.h),
               const LoginSocialMediaListWidget(),
-              Align(
-                alignment: AlignmentDirectional.centerStart,
-                child: CustomTextWithUnderLineText(
-                  customText: "New to Habitual?",
-                  underLineText: "Sign up",
-                  onTap: () {
-                    authProvider.goToRegisterView();
-                  },
-                ),
-              ),
+              // Align(
+              //   alignment: AlignmentDirectional.centerStart,
+              //   child: CustomTextWithUnderLineText(
+              //     customText: "New to Habitual?",
+              //     underLineText: "Sign up",
+              //     onTap: () {
+              //       authProvider.goToRegisterView();
+              //     },
+              //   ),
+              // ),
             ],
           ),
         ),
