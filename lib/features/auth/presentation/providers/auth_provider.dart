@@ -1,10 +1,14 @@
 import 'dart:developer';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flouka/features/auth/presentation/providers/otp_provider.dart';
 import 'package:flouka/features/auth/presentation/views/login_view.dart';
 import 'package:flouka/features/auth/presentation/views/register_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:provider/provider.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import '../../../../core/constants/app_images.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/dialog/confirm_dialog.dart';
 import '../../../../core/dialog/confirm_pop_up_dialog.dart';
@@ -17,6 +21,7 @@ import '../../../../core/helper_function/text_form_field_validation.dart';
 import '../../../../core/models/text_field_model.dart';
 import '../../../language/presentation/provider/language_provider.dart';
 import '../../../navbar/presentation/provider/nav_provider.dart';
+import '../../domain/entities/social_auth_entity.dart';
 import '../../domain/entities/user_entity.dart';
 import '../../domain/usecases/user_usecases.dart';
 
@@ -96,6 +101,43 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
+  Future<void> appleLogin() async {
+    try {
+      String redirectUrl = "${Constants.domain}callback_sign_in_with_apple";
+      final credential = await SignInWithApple.getAppleIDCredential(
+        scopes: [
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName,
+        ],
+        webAuthenticationOptions: WebAuthenticationOptions(
+          clientId: "com.zeroonez.raval.apple",
+          redirectUri: Uri.parse(redirectUrl),
+        ),
+      );
+
+      String yourToken = credential.identityToken!;
+      Map<String, dynamic> decodedToken = JwtDecoder.decode(yourToken); // email, sub
+      String? email = decodedToken['email'];
+      String appleIdentifier = decodedToken['sub'];
+      String? name;
+      if (credential.givenName != null) {
+        name = '${credential.givenName} ${credential.familyName}';
+      } else {
+        if (decodedToken.containsKey('email')) {
+          name = decodedToken['email'].toString().split('@').first;
+        }
+      }
+
+      log("Apple user authenticated: $email");
+      // Call socialLogin with the extracted Apple credentials
+      await socialLogin(loginFrom: 'apple');
+    } catch (error, stackTrace) {
+      log("Apple login error: $error");
+      log("Stack trace: $stackTrace");
+      showToast("Apple login failed: $error");
+    }
+  }
+
   Future<void> googleLogin() async {
     await _initGoogle();
     try {
@@ -153,13 +195,6 @@ class AuthProvider extends ChangeNotifier {
       textInputType: TextInputType.name,
       validator: (value) => validatePhone(value),
     ),
-    TextFieldModel(
-      label: LanguageProvider.translate("inputs", "Password"),
-      controller: TextEditingController(),
-      textInputType: const TextInputType.numberWithOptions(),
-      validator: (value) => validatePassword(value),
-      key: "phone",
-    ),
   ];
 
   List<TextFieldModel> registerTextFieldList = [
@@ -176,21 +211,26 @@ class AuthProvider extends ChangeNotifier {
 
   final GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
 
-  Future<void> login() async {
+  OtpProvider otpProvider = Provider.of(Constants.globalContext(), listen: false);
+
+  Future<void> sendOTP() async {
+    if (!loginFormKey.currentState!.validate()) {
+      return;
+    }
     Map<String, dynamic> data = {};
-    data["token"] = await FirebaseMessaging.instance.getToken() ?? "123";
+    // data["token"] = await FirebaseMessaging.instance.getToken() ?? "123";
     for (var element in loginTextFieldList) {
       data[element.key] = element.controller.text.trim();
     }
     loading();
-    final result = await userUseCase.login(data);
+    final result = await userUseCase.sendOtp(data);
     navPop();
     result.fold(
       (l) {
         showToast(l.message!);
       },
       (r) {
-        loginSuccess(r);
+        // loginSuccess(r);
       },
     );
   }
@@ -212,4 +252,14 @@ class AuthProvider extends ChangeNotifier {
       },
     );
   }
+
+  late List<SocialAuthEntity> authImages = [
+    SocialAuthEntity(image: Images.apple, onTap: () => appleLogin(), text: "Apple"),
+    SocialAuthEntity(image: Images.facebook, onTap: () => {}, text: "Facebook"),
+    SocialAuthEntity(
+      image: Images.google,
+      onTap: () => googleLogin(),
+      text: "Google",
+    ),
+  ];
 }

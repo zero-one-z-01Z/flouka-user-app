@@ -23,7 +23,7 @@ class LoginView extends StatelessWidget {
           key: authProvider.loginFormKey,
           child: Column(
             children: [
-              SizedBox(height: 5.h),
+              SizedBox(height: 8.h),
               Text(
                 LanguageProvider.translate("auth", "Login"),
                 style: TextStyleClass.smallStyle().copyWith(
@@ -36,20 +36,20 @@ class LoginView extends StatelessWidget {
               SizedBox(height: 3.h),
               ListTextFieldWidget(inputs: authProvider.loginTextFieldList),
               SizedBox(height: 2.h),
-              ButtonWidget(onTap: () {}, text: "Login"),
+              ButtonWidget(onTap: () => authProvider.sendOTP(), text: "Login"),
               SizedBox(height: 2.h),
-              Align(
-                alignment: AlignmentDirectional.centerStart,
-                child: Text(
-                  LanguageProvider.translate("auth", "Forgot password"),
-                  style: TextStyleClass.normalStyle().copyWith(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15.sp,
-                    decoration: TextDecoration.underline,
-                  ),
-                ),
-              ),
-              SizedBox(height: 2.h),
+              // Align(
+              //   alignment: AlignmentDirectional.centerStart,
+              //   child: Text(
+              //     LanguageProvider.translate("auth", "Forgot password"),
+              //     style: TextStyleClass.normalStyle().copyWith(
+              //       fontWeight: FontWeight.bold,
+              //       fontSize: 15.sp,
+              //       decoration: TextDecoration.underline,
+              //     ),
+              //   ),
+              // ),
+              // SizedBox(height: 2.h),
               const OrDividerWidget(),
               SizedBox(height: 3.h),
               const LoginSocialMediaListWidget(),

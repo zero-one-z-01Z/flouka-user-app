@@ -5,27 +5,22 @@ abstract class Images {
   static const String bigLogo = 'assets/images/big_logo.png';
 
   //onboarding
-  static const String onboardingImage1 =
-      'assets/images/onboarding/onboarding1.png';
-  static const String onboardingImage2 =
-      'assets/images/onboarding/onboarding2.png';
-  static const String onboardingImage3 =
-      'assets/images/onboarding/onboarding3.png';
-  static const String onboardingImage4 =
-      'assets/images/onboarding/onboarding4.png';
-  static const String yellowCircle =
-      'assets/images/onboarding/yellow_circle.png';
+  static const String onboardingImage1 = 'assets/images/onboarding/onboarding1.png';
+  static const String onboardingImage2 = 'assets/images/onboarding/onboarding2.png';
+  static const String onboardingImage3 = 'assets/images/onboarding/onboarding3.png';
+  static const String onboardingImage4 = 'assets/images/onboarding/onboarding4.png';
+  static const String yellowCircle = 'assets/images/onboarding/yellow_circle.png';
   static const String greenCircle = 'assets/images/onboarding/green_circle.png';
   static const String pinkCircle = 'assets/images/onboarding/pink_circle.png';
   static const String circles = 'assets/images/onboarding/3circles.png';
 
   //Auth
-  static const String apple = 'assets/images/auth/apple.svg';
-  static const String google = 'assets/images/auth/google.svg';
-  static const String facebook = 'assets/images/auth/facebook.svg';
   static const String signup = 'assets/images/auth/signup.png';
   static const String signup2 = 'assets/images/auth/signup2.png';
   static const String preson = 'assets/images/auth/person.png';
+  static const String google = 'assets/images/auth/google.png';
+  static const String facebook = 'assets/images/auth/facebook.png';
+  static const String apple = 'assets/images/auth/apple.png';
 
   //Home
   static const String cart = 'assets/images/home/cart.svg';
@@ -56,8 +51,7 @@ abstract class Images {
   static const String background = 'assets/images/categories/background.svg';
   static const String bestSeller = 'assets/images/categories/best_seller.png';
   static const String categories = 'assets/images/categories/categories.png';
-  static const String exploreCategories =
-      'assets/images/categories/explore.png';
+  static const String exploreCategories = 'assets/images/categories/explore.png';
   static const String offer = 'assets/images/categories/offer.png';
   static const String aiSearch = 'assets/images/categories/ai_search.svg';
 
@@ -66,8 +60,7 @@ abstract class Images {
   static const String cash = 'assets/images/checkout/cash.svg';
   static const String visa = 'assets/images/checkout/visa.svg';
   static const String wallet = 'assets/images/checkout/wallet.svg';
-  static const String locationFilled =
-      'assets/images/checkout/location_filled.svg';
+  static const String locationFilled = 'assets/images/checkout/location_filled.svg';
 
   //Wallet
   static const String arrowDown = 'assets/images/wallet/arrow_down.png';

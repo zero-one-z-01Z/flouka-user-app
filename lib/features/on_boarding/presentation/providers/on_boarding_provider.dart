@@ -30,7 +30,7 @@ class OnBoardingProvider extends ChangeNotifier {
   void skipButtonPressed() {
     // navigation
     navPARU(const LoginOrRegisterView());
-    // sharedPreferences.setBool("onBoarding", true);
+    sharedPreferences.setBool("onBoarding", true);
   }
 
   final PageController pageController = PageController();
