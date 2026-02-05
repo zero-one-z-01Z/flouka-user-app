@@ -44,7 +44,7 @@ class OtpContainerWithButton extends StatelessWidget {
           Selector<OtpProvider, int>(
             builder: (context, value, child) => InkWell(
               onTap: () {
-                // otpProvider.sendOtp(isResend: true);
+                authProvider.sendOTP(isResend: true);
               },
               child: Text(
                 "${LanguageProvider.translate("auth", "resend_otp_after")} ${otpProvider.sendCode(value)}",

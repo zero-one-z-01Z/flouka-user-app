@@ -177,7 +177,7 @@ class AuthProvider extends ChangeNotifier {
 
   showLogoutDialog() {
     showPopUpDialog(
-      title: LanguageProvider.translate('global', 'تسجيل الخروج'),
+      title: LanguageProvider.translate('settings', 'logout'),
       onConfirm: () {
         final result = authUseCase.logout({
           "token": FirebaseMessaging.instance.getToken(),
@@ -213,7 +213,7 @@ class AuthProvider extends ChangeNotifier {
 
   OtpProvider otpProvider = Provider.of(Constants.globalContext(), listen: false);
 
-  Future<void> sendOTP() async {
+  Future<void> sendOTP({bool isResend = false}) async {
     if (!loginFormKey.currentState!.validate()) {
       return;
     }
@@ -230,8 +230,12 @@ class AuthProvider extends ChangeNotifier {
         showToast(l.message!);
       },
       (r) {
-        otpProvider.goToOTPView();
-        otpProvider.startTimer();
+        if (isResend) {
+          otpProvider.startTimer();
+        } else {
+          otpProvider.goToOTPView();
+          otpProvider.startTimer();
+        }
       },
     );
   }

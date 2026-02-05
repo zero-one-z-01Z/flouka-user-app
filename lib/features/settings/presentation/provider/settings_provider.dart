@@ -147,5 +147,16 @@ class SettingsProvider extends ChangeNotifier {
         ).confirmDeleteAccount();
       },
     ),
+    NewSettingsEntity(
+      svgImage: Images.settingsDeleteAccount,
+      text: "logout",
+      color: const Color(0xffF44336),
+      onTap: () {
+        Provider.of<AuthProvider>(
+          Constants.globalContext(),
+          listen: false,
+        ).showLogoutDialog();
+      },
+    ),
   ];
 }
