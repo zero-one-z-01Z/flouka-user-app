@@ -4,6 +4,8 @@ import 'package:flouka/features/auth/presentation/views/login_view.dart';
 import 'package:flouka/features/auth/presentation/views/register_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
+import '../../../../core/constants/constants.dart';
 import '../../../../core/dialog/confirm_dialog.dart';
 import '../../../../core/dialog/confirm_pop_up_dialog.dart';
 import '../../../../core/dialog/snack_bar.dart';
@@ -14,6 +16,7 @@ import '../../../../core/helper_function/prefs.dart';
 import '../../../../core/helper_function/text_form_field_validation.dart';
 import '../../../../core/models/text_field_model.dart';
 import '../../../language/presentation/provider/language_provider.dart';
+import '../../../navbar/presentation/provider/nav_provider.dart';
 import '../../domain/entities/user_entity.dart';
 import '../../domain/usecases/user_usecases.dart';
 
@@ -61,10 +64,19 @@ class AuthProvider extends ChangeNotifier {
     goToLoginView();
   }
 
-  void loginSuccess(UserEntity userEntity) {
+  void loginSuccess(UserEntity userEntity, {bool fromSplash = false}) {
     if (userEntity.token != null) {
       ApiHandel.getInstance.updateHeader(userEntity.token!);
       sharedPreferences.setString('token', userEntity.token!);
+    }
+    if (this.userEntity != null && !fromSplash) {
+      this.userEntity = userEntity;
+    } else {
+      this.userEntity = userEntity;
+      Provider.of<NavBarProvider>(
+        Constants.globalContext(),
+        listen: false,
+      ).goToNavView();
     }
   }
 
