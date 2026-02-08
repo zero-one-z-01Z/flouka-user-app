@@ -6,10 +6,7 @@ import 'package:sizer/sizer.dart';
 import '../../domain/entity/category_entity.dart';
 
 class PopularCategoryContainerWidget extends StatelessWidget {
-  const PopularCategoryContainerWidget({
-    super.key,
-    required this.category,
-  });
+  const PopularCategoryContainerWidget({super.key, required this.category});
 
   final CategoryEntity category;
 
@@ -28,7 +25,8 @@ class PopularCategoryContainerWidget extends StatelessWidget {
               fit: BoxFit.cover,
               imageUrl: category.image,
               errorWidget: (context, url, error) => const Icon(Icons.error),
-              placeholder: (context, url) => const CircularProgressIndicator(),
+              placeholder: (context, url) =>
+                  const Center(child: CircularProgressIndicator()),
             ),
             // Gradient overlay
             Container(

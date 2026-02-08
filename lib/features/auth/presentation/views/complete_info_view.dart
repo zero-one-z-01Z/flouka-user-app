@@ -16,6 +16,7 @@ class CompleteInfoView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final completeInfoProvider = Provider.of<CompleteInfoProvider>(context);
+
     completeInfoProvider.isEdit = isEdit;
     return Scaffold(
       appBar: AppBar(

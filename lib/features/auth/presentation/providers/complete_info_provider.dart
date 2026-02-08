@@ -86,6 +86,7 @@ class CompleteInfoProvider extends ChangeNotifier {
       },
       (r) async {
         authProvider.loginSuccess(r);
+        authProvider.rebuild();
       },
     );
   }
