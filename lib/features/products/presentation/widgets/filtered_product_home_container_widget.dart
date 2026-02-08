@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flouka/features/products/domain/entity/product_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
@@ -8,19 +9,9 @@ import '../../../../core/config/app_styles.dart';
 import '../providers/products_details_provider.dart';
 
 class FilteredProductHomeContainerWidget extends StatelessWidget {
-  const FilteredProductHomeContainerWidget({
-    super.key,
-    required this.imageUrl,
-    required this.title,
-    required this.price,
-    required this.rating,
-  });
+  const FilteredProductHomeContainerWidget({super.key, required this.productEntity});
 
-  final String imageUrl;
-  final String title;
-  final double price;
-  final double rating;
-
+  final ProductEntity productEntity;
   @override
   Widget build(BuildContext context) {
     final ProductDetailsProvider productDetailsProvider = Provider.of(context);
@@ -49,10 +40,12 @@ class FilteredProductHomeContainerWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CachedNetworkImage(
-                imageUrl: imageUrl,
+                imageUrl: productEntity.image ?? "",
                 height: 12.h,
                 width: 12.h,
                 errorWidget: (context, url, error) => const Icon(Icons.error),
+                placeholder: (context, url) =>
+                    const Center(child: CircularProgressIndicator()),
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,7 +54,7 @@ class FilteredProductHomeContainerWidget extends StatelessWidget {
                     width: 48.w,
                     height: 4.h,
                     child: Text(
-                      title,
+                      productEntity.title ?? "",
                       style: TextStyleClass.normalStyle().copyWith(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w400,
@@ -75,7 +68,7 @@ class FilteredProductHomeContainerWidget extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        '\$${price.toString()}',
+                        '\$${productEntity.price.toString()}',
                         style: TextStyleClass.normalStyle().copyWith(
                           fontSize: 18.sp,
                           fontWeight: FontWeight.bold,
@@ -84,7 +77,7 @@ class FilteredProductHomeContainerWidget extends StatelessWidget {
                       ),
                       SizedBox(width: 13.w),
                       RatingBarIndicator(
-                        rating: rating,
+                        rating: productEntity.avgRating ?? 0,
                         itemBuilder: (context, index) =>
                             const Icon(Icons.star, color: Colors.amber),
                         itemCount: 5,
