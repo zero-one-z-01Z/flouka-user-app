@@ -1,16 +1,17 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flouka/core/config/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../domain/entity/category_entity.dart';
+
 class PopularCategoryContainerWidget extends StatelessWidget {
   const PopularCategoryContainerWidget({
     super.key,
-    required this.imageUrl,
-    required this.title,
+    required this.category,
   });
 
-  final String imageUrl;
-  final String title;
+  final CategoryEntity category;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,12 @@ class PopularCategoryContainerWidget extends StatelessWidget {
           fit: StackFit.expand,
           children: [
             // Background image
-            Image.network(imageUrl, fit: BoxFit.cover),
+            CachedNetworkImage(
+              fit: BoxFit.cover,
+              imageUrl: category.image,
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+              placeholder: (context, url) => const CircularProgressIndicator(),
+            ),
             // Gradient overlay
             Container(
               decoration: BoxDecoration(
@@ -45,7 +51,7 @@ class PopularCategoryContainerWidget extends StatelessWidget {
               child: Align(
                 alignment: Alignment.bottomLeft,
                 child: Text(
-                  title,
+                  category.name,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(

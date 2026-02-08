@@ -61,10 +61,7 @@ class PopularCategoriesSection extends StatelessWidget {
                   final category = popular[index];
                   return Padding(
                     padding: EdgeInsets.only(right: 3.w),
-                    child: PopularCategoryContainerWidget(
-                      imageUrl: category.image,
-                      title: category.name,
-                    ),
+                    child: PopularCategoryContainerWidget(category: category),
                   );
                 },
               );
