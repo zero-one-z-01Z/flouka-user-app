@@ -3,11 +3,10 @@
 import 'package:flouka/core/constants/app_images.dart';
 import 'package:flouka/core/helper_function/navigation.dart';
 import 'package:flouka/core/helper_function/prefs.dart';
+import 'package:flouka/features/auth/presentation/views/login_view.dart';
 import 'package:flouka/features/on_boarding/domain/entity/on_boarding_entity.dart';
 import 'package:flouka/features/on_boarding/presentation/views/on_boarding_view.dart';
 import 'package:flutter/material.dart';
-
-import '../../../auth/presentation/views/login_or_register_view.dart';
 
 class OnBoardingProvider extends ChangeNotifier {
   void goToOnBoardingView() {
@@ -29,7 +28,7 @@ class OnBoardingProvider extends ChangeNotifier {
 
   void skipButtonPressed() {
     // navigation
-    navPARU(const LoginOrRegisterView());
+    navPARU(const LoginView());
     sharedPreferences.setBool("onBoarding", true);
   }
 

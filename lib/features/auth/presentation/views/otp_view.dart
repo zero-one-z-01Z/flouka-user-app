@@ -2,10 +2,8 @@ import 'package:flouka/features/auth/presentation/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-import '../../../../core/config/app_styles.dart';
 import '../../../../core/config/app_theme.dart';
 import '../../../../core/constants/app_images.dart';
-import '../../../language/presentation/provider/language_provider.dart';
 import '../widgets/otp_container_with_button_widget.dart';
 
 class OTPView extends StatelessWidget {
@@ -24,13 +22,13 @@ class OTPView extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(height: 5.h),
-                Text(
-                  LanguageProvider.translate("auth", "sign Up"),
-                  style: TextStyleClass.smallStyle().copyWith(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15.sp,
-                  ),
-                ),
+                // Text(
+                //   LanguageProvider.translate("auth", "sign Up"),
+                //   style: TextStyleClass.smallStyle().copyWith(
+                //     fontWeight: FontWeight.bold,
+                //     fontSize: 15.sp,
+                //   ),
+                // ),
                 SizedBox(height: 8.h),
                 Image.asset(AppImages.logo2, width: 40.w),
                 SizedBox(height: 8.h),
