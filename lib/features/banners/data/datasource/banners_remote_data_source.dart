@@ -10,7 +10,7 @@ class BannersRemoteDataSource {
   Future<Either<DioException, List<BannersModel>>> getBanners(
     Map<String, dynamic> data,
   ) async {
-    var response = await apiHandel.get('get_banners', data);
+    var response = await apiHandel.get('banners', data);
 
     return response.fold(
       (l) {

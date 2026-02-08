@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../domain/entity/category_entity.dart';
-import '../providers/categories_provider.dart';
+import '../providers/popular_categoey_provider.dart';
 import 'popular_category_container_widget.dart';
 
 class PopularCategoriesSection extends StatelessWidget {
@@ -41,11 +41,11 @@ class PopularCategoriesSection extends StatelessWidget {
         SizedBox(height: 2.h),
         SizedBox(
           height: 13.h,
-          child: Consumer<CategoryProvider>(
+          child: Consumer<PopularCategoryProvider>(
             builder: (context, provider, _) {
               final List<CategoryEntity> popular = provider.popularCategories;
 
-              if (popular.isEmpty && provider.categories.isEmpty) {
+              if (popular.isEmpty && provider.popularCategories.isEmpty) {
                 return const Center(child: CircularProgressIndicator());
               }
 

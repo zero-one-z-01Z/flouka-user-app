@@ -34,7 +34,7 @@ import 'features/cart/data/data_source/cart_remote_data_source.dart';
 import 'features/cart/data/repo/cart_repo_impl.dart';
 import 'features/cart/domain/repo/cart_repo.dart';
 import 'features/cart/domain/use_case/cart_use_case.dart';
-import 'features/categories/data/datasource/remote.dart';
+import 'features/categories/data/datasource/category_remote_date_source.dart';
 import 'features/categories/domain/repositories/category_repo.dart';
 import 'features/orders/data/data_srouce/order_remote_data_source.dart';
 import 'features/orders/data/repos/order_repo_impl.dart';
@@ -61,9 +61,7 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<CartRepo>(CartRepoImpl(sl.get()));
   sl.registerSingleton<CartUseCase>(CartUseCase(sl.get()));
   // addresses
-  sl.registerSingleton<AddressRemoteDataSource>(
-    AddressRemoteDataSource(sl.get()),
-  );
+  sl.registerSingleton<AddressRemoteDataSource>(AddressRemoteDataSource(sl.get()));
   sl.registerSingleton<AddressRepo>(AddressRepoImpl(sl.get()));
   sl.registerSingleton<AddressUseCases>(AddressUseCases(sl.get()));
   // order
@@ -72,34 +70,24 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<OrderUseCase>(OrderUseCase(sl.get()));
 
   // wallet
-  sl.registerSingleton<WalletRemoteDataSource>(
-    WalletRemoteDataSource(sl.get()),
-  );
+  sl.registerSingleton<WalletRemoteDataSource>(WalletRemoteDataSource(sl.get()));
   sl.registerSingleton<WalletRepo>(WalletRepoImpl(sl.get()));
   sl.registerSingleton<WalletUseCases>(WalletUseCases(sl.get()));
 
-    // product
-  sl.registerSingleton<ProductRemoteDataSource>(
-    ProductRemoteDataSource(sl.get()),
-  );
+  // product
+  sl.registerSingleton<ProductRemoteDataSource>(ProductRemoteDataSource(sl.get()));
   sl.registerSingleton<ProductRepo>(ProductRepoImpl(sl.get()));
   sl.registerSingleton<ProductUseCase>(ProductUseCase(sl.get()));
 
-
   // tickets
-  sl.registerSingleton<RemoteTicketsDataSource>(
-    RemoteTicketsDataSource(sl.get()),
-  );
+  sl.registerSingleton<RemoteTicketsDataSource>(RemoteTicketsDataSource(sl.get()));
   sl.registerSingleton<TicketsRepository>(TicketsRepoImpl(sl.get()));
   sl.registerSingleton<TicketsUseCase>(TicketsUseCase(sl.get()));
 
   // Settings
-  sl.registerSingleton<SettingsRemoteDataSource>(
-    SettingsRemoteDataSource(sl.get()),
-  );
+  sl.registerSingleton<SettingsRemoteDataSource>(SettingsRemoteDataSource(sl.get()));
   sl.registerSingleton<SettingsRepo>(SettingsRepoImpl(sl.get()));
   sl.registerSingleton<SettingsUseCases>(SettingsUseCases(sl.get()));
-
 
   // sl.registerSingleton<MarketRemoteDataSource>(
   //   MarketRemoteDataSource(sl.get()),
@@ -128,9 +116,7 @@ Future<void> initializeDependencies() async {
   // sl.registerSingleton<CityUseCases>(CityUseCases(sl.get()));
 
   //banners
-  sl.registerSingleton<BannersRemoteDataSource>(
-    BannersRemoteDataSource(sl.get()),
-  );
+  sl.registerSingleton<BannersRemoteDataSource>(BannersRemoteDataSource(sl.get()));
   sl.registerSingleton<BannersRepository>(BannersRepoImpl(sl.get()));
   sl.registerSingleton<BannersUseCase>(BannersUseCase(sl.get()));
 
@@ -142,9 +128,7 @@ Future<void> initializeDependencies() async {
   // sl.registerSingleton<SettingsUseCases>(SettingsUseCases(sl.get()));
 
   //categories
-  sl.registerSingleton<CategoryRemoteDataSource>(
-    CategoryRemoteDataSource(sl.get()),
-  );
+  sl.registerSingleton<CategoryRemoteDataSource>(CategoryRemoteDataSource(sl.get()));
   sl.registerSingleton<CategoryRepo>(CategoryRepoImpl(sl.get()));
   sl.registerSingleton<CategoryUsecase>(CategoryUsecase(sl.get()));
 

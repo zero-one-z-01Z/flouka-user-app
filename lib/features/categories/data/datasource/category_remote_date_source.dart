@@ -9,7 +9,7 @@ class CategoryRemoteDataSource {
   CategoryRemoteDataSource(this.apiHandel);
 
   Future<Either<DioException, List<CategoryModel>>> getCategories() async {
-    var response = await apiHandel.get('get_categories', {});
+    var response = await apiHandel.get('categories', {});
     return response.fold((l) => Left(l), (r) {
       List<CategoryModel> list = [];
       for (var i in r.data['data']) {

@@ -8,11 +8,9 @@ class CategoryProvider extends ChangeNotifier {
 
   CategoryProvider(this.categoryUseCases);
   List<CategoryEntity> _categories = [];
-  List<CategoryEntity> _popularCategories = [];
   CategoryEntity? _selectedCategory;
 
   List<CategoryEntity> get categories => _categories;
-  List<CategoryEntity> get popularCategories => _popularCategories;
   CategoryEntity? get selectedCategory => _selectedCategory;
 
   List<CategoryEntity> homeCategories = [
@@ -68,34 +66,6 @@ class CategoryProvider extends ChangeNotifier {
 
     // response.fold((l) => showToast(l.message ?? "Error loading banners"), (r) {
     //   bannersList.addAll(r);
-    notifyListeners();
-  }
-
-  Future<void> getPopularCategories() async {
-    // Fake popular categories instead of API call
-    _popularCategories = [
-      CategoryEntity(
-        id: 101,
-        image: 'https://placehold.co/600x400/FF5722/FFFFFF/png',
-        name: 'popular_1',
-      ),
-      CategoryEntity(
-        id: 102,
-        image: 'https://placehold.co/600x400/3F51B5/FFFFFF/png',
-        name: 'popular_2',
-      ),
-      CategoryEntity(
-        id: 103,
-        image: 'https://placehold.co/600x400/4CAF50/FFFFFF/png',
-        name: 'popular_3',
-      ),
-      CategoryEntity(
-        id: 104,
-        image: 'https://placehold.co/600x400/FFC107/000000/png',
-        name: 'popular_4',
-      ),
-    ];
-
     notifyListeners();
   }
 
