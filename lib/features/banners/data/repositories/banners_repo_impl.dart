@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import '../../domain/entities/banner_entity.dart';
 import '../../domain/repositories/banner_repository.dart';
-import '../datasource/remote.dart';
+import '../datasource/banners_remote_data_source.dart';
 
 class BannersRepoImpl implements BannersRepository {
   final BannersRemoteDataSource bannersRemoteDataSource;

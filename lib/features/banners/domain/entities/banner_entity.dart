@@ -1,16 +1,7 @@
-import 'package:equatable/equatable.dart';
-
-class BannersEntity extends Equatable {
+class BannersEntity {
   final int id;
   final String image;
   final String? link;
 
-  const BannersEntity({
-    required this.id,
-    required this.image,
-    required this.link,
-  });
-
-  @override
-  List<Object?> get props => [id, image, link];
+  const BannersEntity({required this.id, required this.image, required this.link});
 }
