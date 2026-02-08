@@ -1,4 +1,3 @@
-import 'package:flouka/features/products/domain/entity/product_image_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flouka/features/products/domain/entity/product_entity.dart';
 import '../../../../core/helper_function/navigation.dart';
@@ -174,34 +173,10 @@ class ProductDetailsProvider extends ChangeNotifier
 
 final fakeProduct = ProductEntity(
   id: 5,
-  name: 'Lenovo Yoga 920 13/Core i7/16GB/SSD 1TB',
+  title: 'Lenovo Yoga 920 13/Core i7/16GB/SSD 1TB',
   description:
       'For now, the Lenovo Yoga 920 is the highest variant of the Yoga series. The specifications are no joke. With the 8th generation Kaby Lake Refresh Intel Core i7-8550U processor.',
   price: 1000,
   offerPrice: 800,
-  active: true,
-  marketId: 1,
   image: "https://placehold.co/600x400/000000/FFFFFF/png",
-  images: [
-    ProductImageEntity(
-      id: 45,
-      productId: 5,
-      image: "https://placehold.co/600x400/000000/FFFFFF/png",
-    ),
-    ProductImageEntity(
-      id: 45,
-      productId: 5,
-      image: "https://placehold.co/600x400/000000/FFFFFF/png",
-    ),
-    ProductImageEntity(
-      id: 45,
-      productId: 5,
-      image: "https://placehold.co/600x400/000000/FFFFFF/png",
-    ),
-    ProductImageEntity(
-      id: 45,
-      productId: 5,
-      image: "https://placehold.co/600x400/000000/FFFFFF/png",
-    ),
-  ],
 );

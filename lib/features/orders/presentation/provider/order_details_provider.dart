@@ -4,7 +4,6 @@ import '../../../../core/dialog/snack_bar.dart';
 import '../../../../core/helper_function/navigation.dart';
 import '../../../../core/models/provider_structure_model.dart';
 import '../../../products/domain/entity/product_entity.dart';
-import '../../../products/domain/entity/product_image_entity.dart';
 import '../../domain/entity/order_details_entity.dart';
 import '../../domain/use_case/order_use_case.dart';
 import '../views/order_details_view.dart';
@@ -68,7 +67,7 @@ class OrderDetailsProvider extends ChangeNotifier
     }
 
     // Navigate first
-     navP(const OrderDetailsView());
+    navP(const OrderDetailsView());
 
     // Fetch data safely
     await refresh();
@@ -86,20 +85,11 @@ final OrderEntity orderEntity = OrderEntity(
     OrderDetailsEntity(
       productEntity: ProductEntity(
         id: 55555,
-        name: 'Lenovo Yoga 920 13/Core i7/16GB/SSD 1TB',
+        title: 'Lenovo Yoga 920 13/Core i7/16GB/SSD 1TB',
         description: '',
         price: 1000,
         offerPrice: 1000,
-        active: true,
-        marketId: 55555,
         image: 'mohsen',
-        images: [
-          ProductImageEntity(
-            id: 55555,
-            productId: 55555,
-            image: 'mohsen',
-          ),
-        ],
       ),
       id: 55555,
       price: 1000,

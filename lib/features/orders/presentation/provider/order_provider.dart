@@ -11,7 +11,6 @@ import '../../../../core/models/pagination_class.dart';
 import '../../../../core/models/provider_structure_model.dart';
 import '../../../language/presentation/provider/language_provider.dart';
 import '../../../products/domain/entity/product_entity.dart';
-import '../../../products/domain/entity/product_image_entity.dart';
 import '../../domain/entity/order_details_entity.dart';
 import '../../domain/entity/order_entity.dart';
 import '../../domain/use_case/order_use_case.dart';
@@ -155,14 +154,11 @@ final fakeOrder = OrderEntity(
       size: 'asdasd',
       productEntity: ProductEntity(
         id: 55,
-        name: 'Lenovod Yoga 920 13/Core i7/16GB/SSD 1TB',
+        title: 'Lenovod Yoga 920 13/Core i7/16GB/SSD 1TB',
         description: 'asdasd',
         image: 'asdasd',
         price: 5654,
         offerPrice: 656,
-        active: true,
-        marketId: 55,
-        images: [ProductImageEntity(id: 55, productId: 55, image: 'asdasd')],
       ),
     ),
   ],

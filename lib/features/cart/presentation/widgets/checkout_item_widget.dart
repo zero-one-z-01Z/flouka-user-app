@@ -51,7 +51,7 @@ class CheckoutItemWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        cartEntity.product?.name ?? "",
+                        cartEntity.product?.title ?? "",
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                         style: TextStyleClass.normalStyle().copyWith(

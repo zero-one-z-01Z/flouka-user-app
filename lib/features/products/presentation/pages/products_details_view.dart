@@ -49,7 +49,7 @@ class ProductsDetailsView extends StatelessWidget {
                         children: [
                           SizedBox(height: 2.h),
                           Text(
-                            productDetailsProvider.data!.name!,
+                            productDetailsProvider.data!.title!,
                             style: TextStyleClass.headStyle(),
                           ),
                           SizedBox(height: 2.h),

@@ -58,7 +58,7 @@ class OrderDetailsItemWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      orderDetailsEntity.productEntity?.name ?? "",
+                      orderDetailsEntity.productEntity?.title ?? "",
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                       style: TextStyleClass.normalStyle().copyWith(

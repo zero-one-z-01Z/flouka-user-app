@@ -60,7 +60,7 @@ class OrderItemWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        orderEntity.orderDetails.first.productEntity?.name ?? "ss ",
+                        orderEntity.orderDetails.first.productEntity?.title ?? "ss ",
                         style: TextStyleClass.smallStyle(
                           color: const Color(0xff333542),
                         ),

@@ -22,11 +22,11 @@ class ProductDetailsHeaderWidget extends StatelessWidget {
           // Images of the product
           PageView.builder(
             controller: productDetailsProvider.pageController,
-            itemCount: productDetailsProvider.data!.images!.length,
+            itemCount: 3,
             itemBuilder: (context, index) {
               return CachedNetworkImage(
                 fit: BoxFit.cover,
-                imageUrl: productDetailsProvider.data!.images![index]!.image,
+                imageUrl: "",
                 errorWidget: (context, url, error) => const Icon(Icons.error),
               );
             },

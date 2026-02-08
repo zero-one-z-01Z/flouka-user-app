@@ -40,11 +40,10 @@ class ShopProductsGrid extends StatelessWidget {
                       child: HotDealsHomeContainerWidget(
                         madeIn: false,
                         imageUrl: hotDeals[i].image ?? '',
-                        title: hotDeals[i].name ?? '',
-                        priceAfterOffer: (hotDeals[i].offerPrice ?? 0)
-                            .toDouble(),
+                        title: hotDeals[i].title ?? '',
+                        priceAfterOffer: (hotDeals[i].offerPrice ?? 0).toDouble(),
                         priceBeforeOffer: (hotDeals[i].price ?? 0).toDouble(),
-                        rating: hotDeals[i].rating ?? 0.0,
+                        rating: hotDeals[i].avgRating ?? 0.0,
                         imageHeight: imageHeight,
                       ),
                     );

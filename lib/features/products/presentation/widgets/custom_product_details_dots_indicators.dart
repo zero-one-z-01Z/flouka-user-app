@@ -14,7 +14,7 @@ class CustomProductDetailsDotsIndicators extends StatelessWidget {
     final ProductDetailsProvider productDetailsProvider = Provider.of(context);
     return SmoothPageIndicator(
       controller: productDetailsProvider.pageController,
-      count: productDetailsProvider.data!.images!.length,
+      count: 3,
       axisDirection: Axis.horizontal,
       effect: WormEffect(
         spacing: 8.0,

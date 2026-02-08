@@ -1,42 +1,37 @@
-import 'package:flouka/core/helper_function/convert.dart';
-import 'package:flouka/features/products/data/models/product_image_model.dart';
 import 'package:flouka/features/products/domain/entity/product_entity.dart';
 
 class ProductModel extends ProductEntity {
   ProductModel({
     super.id,
-    super.name,
+    super.title,
     super.description,
     super.price,
     super.offerPrice,
-    super.active,
-    super.marketId,
     super.image,
-    super.images,
-    super.rating,
+    super.avgRating,
+    super.isFavorite,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
-    List<ProductImageModel> images = [];
-    if (json.containsKey('images') && json['images'] != null) {
-      for (var i in json['images']) {
-        images.add(ProductImageModel.fromJson(i));
-      }
-    }
-
     return ProductModel(
       id: json['id'],
-      name: json['name'],
+      title: json['title'],
       description: json['description'],
       price: json['price'],
-      offerPrice: json['offerPrice'],
-      active: convertDataToBool(json['active']),
-      marketId: json['marketId'],
+      offerPrice: json['offer_price'],
       image: json['image'],
-      images: images,
-      rating: json['rating'] != null
-          ? (json['rating'] as num).toDouble()
-          : null,
+      avgRating: json['rating'] != null ? (json['rating'] as num).toDouble() : null,
+      isFavorite: json['is_favorite'],
     );
   }
 }
+
+// {
+//     "id": 7,
+//     "title": "test title ar",
+//     "price": "300.00",
+//     "offer_price": "340.00",
+//     "avg_rating": "0.00",
+//     "image": "http://floka_laravel.test/images/place_holder/default.png",
+//     "is_favorite": false
+// },

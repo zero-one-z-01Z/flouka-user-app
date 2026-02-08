@@ -2,13 +2,11 @@ import 'package:flouka/features/products/domain/entity/product_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flouka/features/cart/presentation/providers/coupon_provider.dart';
-import '../../../../core/constants/app_images.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/dialog/guest_dialog.dart';
 import '../../../../core/helper_function/navigation.dart';
 import '../../../../core/models/provider_structure_model.dart';
 import '../../../auth/presentation/providers/auth_provider.dart';
-import '../../../products/domain/entity/product_image_entity.dart';
 import '../../domain/entity/cart_entity.dart';
 import '../../domain/use_case/cart_use_case.dart';
 import '../views/cart_view.dart';
@@ -52,16 +50,11 @@ class CartProvider extends ChangeNotifier
         quantity: 1,
         product: ProductEntity(
           id: 1,
-          name: "Lenovo Yoga 920 13/Core i7/16GB/SSD 1TB",
+          title: "Lenovo Yoga 920 13/Core i7/16GB/SSD 1TB",
           description: "Lenovo Yoga 920 13/Core i7/16GB/SSD 1TB",
           price: 959,
           offerPrice: 959,
-          active: true,
-          marketId: 1,
           image: "https://placehold.co/600x400",
-          images: [
-            ProductImageEntity(id: 1, productId: 1, image: AppImages.testLaptop1),
-          ],
         ),
       ),
       CartEntity(
@@ -69,16 +62,11 @@ class CartProvider extends ChangeNotifier
         quantity: 1,
         product: ProductEntity(
           id: 1,
-          name: "Lenovo Yoga 920 13/Core i7/16GB/SSD 1TB",
+          title: "Lenovo Yoga 920 13/Core i7/16GB/SSD 1TB",
           description: "Lenovo Yoga 920 13/Core i7/16GB/SSD 1TB",
           price: 959,
           offerPrice: 959,
-          active: true,
-          marketId: 1,
           image: "",
-          images: [
-            ProductImageEntity(id: 1, productId: 1, image: AppImages.testLaptop1),
-          ],
         ),
       ),
     ]);
