@@ -38,7 +38,7 @@ class NavBarProvider extends ChangeNotifier {
       label: LanguageProvider.translate('navbar', 'cart'),
     ),
     BottomNaBarEntity(
-      index: 3,
+      index: 4,
       svgImage: AppImages.navbarProfile,
       label: LanguageProvider.translate('navbar', 'profile'),
     ),
