@@ -5,6 +5,7 @@ import 'package:flouka/core/helper_function/navigation.dart';
 import 'package:flouka/features/auth/presentation/providers/auth_provider.dart';
 import 'package:flouka/features/banners/presentation/provider/banners_provider.dart';
 import 'package:flouka/features/cart/presentation/providers/cart_provider.dart';
+import 'package:flouka/features/navbar/presentation/views/nav_bar_view.dart';
 import 'package:flouka/features/orders/presentation/provider/order_provider.dart';
 import 'package:flouka/features/wallet/presentation/provider/wallet_provider.dart';
 import 'package:flutter/material.dart';
@@ -48,18 +49,19 @@ class SplashProvider extends ChangeNotifier {
       Provider.of<OrderProvider>(Constants.globalContext(), listen: false).getData(),
     ]);
 
-    bool isFirstTime = !(sharedPreferences.getBool('onBoarding') ?? false);
-    final context = Constants.globalContext();
-    var auth = Provider.of<AuthProvider>(context, listen: false);
-    String? isLoggedIn = sharedPreferences.getString('token');
-    if (isFirstTime) {
-      navPARU(const OnBoardingView());
-    } else {
-      if (isLoggedIn != null) {
-        auth.getProfile();
-      } else {
-        auth.goToLoginView();
-      }
-    }
+    // bool isFirstTime = !(sharedPreferences.getBool('onBoarding') ?? false);
+    // final context = Constants.globalContext();
+    // var auth = Provider.of<AuthProvider>(context, listen: false);
+    // String? isLoggedIn = sharedPreferences.getString('token');
+    // if (isFirstTime) {
+    //   navPARU(const OnBoardingView());
+    // } else {
+    //   if (isLoggedIn != null) {
+    //     auth.getProfile();
+    //   } else {
+    //     auth.goToLoginView();
+    //   }
+    // }
+    navPARU(const NavBarView());
   }
 }
