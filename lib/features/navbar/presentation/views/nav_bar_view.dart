@@ -1,7 +1,7 @@
 import 'package:flouka/features/navbar/presentation/provider/nav_bar_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../widgets/bottom_navigation_bar.dart';
+import '../widgets/bottom_navigation_bar_widget.dart';
 
 class NavBarView extends StatelessWidget {
   const NavBarView({super.key});
