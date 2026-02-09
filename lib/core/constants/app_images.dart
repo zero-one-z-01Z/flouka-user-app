@@ -103,4 +103,7 @@ abstract class AppImages {
   static const String testSamsung = 'assets/images/test/samsung.png';
 
   static const String locationMap = "assets/images/location_map.png";
+
+  static const String fakeImageStory =
+      "https://assets.bucketlistly.blog/sites/5adf778b6eabcc00190b75b1/content_entry5adf77af6eabcc00190b75b6/6075185986d092000b192d0a/files/best-free-travel-images-main-image-hd-op.jpg";
 }

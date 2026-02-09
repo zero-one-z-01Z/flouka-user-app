@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:flouka/features/banners/presentation/widgets/carousel_slider_widget.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../stories/presentation/widgets/stories_list_widget.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -25,13 +27,12 @@ class HomePage extends StatelessWidget {
           children: [
             const HomeAppbarWidget(),
             const FarAwayContainerWidget(),
+            const StoriesListWidget(),
             const CarouselSliderWidget(),
             const NewCategoriesHomeSection(),
-            // const CategoriesHomeExplore(),
             const PopularCategoriesSection(),
             const FilterProductsWidget(),
             const FilteredProductsHomeSection(),
-            // const HotDealsHomeSection(),
             const DealsContainerWidget(),
             const StoresHomeSection(),
             const RecommendedSection(),
