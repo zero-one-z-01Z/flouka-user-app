@@ -15,6 +15,7 @@ class NavBarProvider extends ChangeNotifier {
   final List<Widget> body = [
     const HomePage(),
     const CategoriesView(),
+    const SizedBox.shrink(),
     const CartView(),
     const ProfileView(),
   ];
@@ -28,6 +29,7 @@ class NavBarProvider extends ChangeNotifier {
       svgImage: AppImages.navbarCategories,
       label: LanguageProvider.translate('navbar', 'categories'),
     ),
+    BottomNaBarEntity(svgImage: "", label: ""),
     BottomNaBarEntity(
       svgImage: AppImages.navbarCart,
       label: LanguageProvider.translate('navbar', 'cart'),
@@ -44,6 +46,9 @@ class NavBarProvider extends ChangeNotifier {
   }
 
   void changeIndex(int index) {
+    if (index == 2) {
+      return;
+    }
     currentIndex = index;
     notifyListeners();
   }

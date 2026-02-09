@@ -12,7 +12,7 @@ import 'package:flouka/features/cart/presentation/providers/checkout_provider.da
 import 'package:flouka/features/on_boarding/presentation/providers/on_boarding_provider.dart';
 import 'package:flouka/features/banners/presentation/provider/banners_provider.dart';
 import 'package:flouka/features/categories/presentation/providers/categories_provider.dart';
-import 'package:flouka/features/navbar/presentation/provider/nav_provider.dart';
+import 'package:flouka/features/navbar/presentation/provider/nav_bar_provider.dart';
 import 'package:flouka/features/settings/presentation/provider/settings_provider.dart';
 import 'package:flouka/features/tickets/presentation/provider/tickets_provider.dart';
 import 'package:flouka/injection_container.dart';

@@ -15,7 +15,7 @@ import '../../../../core/helper_function/navigation.dart';
 import '../../../../core/widgets/payment_online_page.dart';
 import '../../../language/presentation/provider/language_provider.dart';
 // import '../../../orders/presentation/views/orders_view.dart';
-import '../../../navbar/presentation/provider/nav_provider.dart';
+import '../../../navbar/presentation/provider/nav_bar_provider.dart';
 import '../../../orders/domain/use_case/order_use_case.dart';
 import '../../../orders/presentation/provider/order_provider.dart';
 import '../../../wallet/presentation/provider/wallet_provider.dart';

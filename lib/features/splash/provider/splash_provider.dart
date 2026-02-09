@@ -15,7 +15,7 @@ import '../../../core/helper_function/helper_function.dart';
 import '../../address/presentation/providers/address_provider.dart';
 import '../../categories/presentation/providers/categories_provider.dart';
 import '../../categories/presentation/providers/popular_categoey_provider.dart';
-import '../../navbar/presentation/provider/nav_provider.dart';
+import '../../navbar/presentation/provider/nav_bar_provider.dart';
 import '../../on_boarding/presentation/providers/on_boarding_provider.dart';
 import '../../on_boarding/presentation/views/on_boarding_view.dart';
 

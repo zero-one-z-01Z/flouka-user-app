@@ -20,7 +20,7 @@ import '../../../../core/helper_function/prefs.dart';
 import '../../../../core/helper_function/text_form_field_validation.dart';
 import '../../../../core/models/text_field_model.dart';
 import '../../../language/presentation/provider/language_provider.dart';
-import '../../../navbar/presentation/provider/nav_provider.dart';
+import '../../../navbar/presentation/provider/nav_bar_provider.dart';
 import '../../domain/entities/social_auth_entity.dart';
 import '../../domain/entities/user_entity.dart';
 import '../../domain/usecases/auth_use_case.dart';
