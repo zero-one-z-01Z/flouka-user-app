@@ -26,10 +26,7 @@ class StoresHomeSection extends StatelessWidget {
               children: [
                 Text(
                   LanguageProvider.translate('home', 'retail_stores'),
-                  style: TextStyle(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600),
                 ),
                 const SeeAllButton(),
               ],

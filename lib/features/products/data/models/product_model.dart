@@ -1,3 +1,4 @@
+import 'package:flouka/core/helper_function/convert.dart';
 import 'package:flouka/features/products/domain/entity/product_entity.dart';
 
 class ProductModel extends ProductEntity {
@@ -17,8 +18,8 @@ class ProductModel extends ProductEntity {
       id: json['id'],
       title: json['title'],
       description: json['description'],
-      price: json['price'],
-      offerPrice: json['offer_price'],
+      price: convertDataToNum(json['price']),
+      offerPrice: convertDataToNum(json['offer_price']),
       image: json['image'],
       avgRating: json['rating'] != null ? (json['rating'] as num).toDouble() : null,
       isFavorite: json['is_favorite'],

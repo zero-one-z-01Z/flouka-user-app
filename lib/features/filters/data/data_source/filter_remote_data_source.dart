@@ -23,7 +23,7 @@ class FilterRemoteDataSource {
     int id,
   ) async {
     List<ProductModel> productModels = [];
-    var response = await apiHandel.get('products/filter/$id');
+    var response = await apiHandel.get('filters/products/$id');
     return response.fold((l) => Left(l), (r) {
       for (var i in r.data['data']) {
         productModels.add(ProductModel.fromJson(i));

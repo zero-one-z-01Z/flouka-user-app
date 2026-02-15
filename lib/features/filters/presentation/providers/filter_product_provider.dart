@@ -14,6 +14,7 @@ class FilterProductProvider extends ChangeNotifier {
     response.fold((l) {}, (r) {
       data = r;
       filters.addAll(r);
+      getFilterProducts(filters.first.id);
     });
   }
 
@@ -31,10 +32,7 @@ class FilterProductProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  final List<FilterEntity> filters = [
-    const FilterEntity(id: -1, title: 'For You'),
-    const FilterEntity(id: 0, title: 'New Gadget'),
-  ];
+  final List<FilterEntity> filters = [];
 
   late FilterEntity selectedFilter = filters.first;
 
@@ -46,4 +44,17 @@ class FilterProductProvider extends ChangeNotifier {
   bool isSelected(FilterEntity filter) {
     return selectedFilter.id == filter.id;
   }
+
+  bool get isLoading => isProductLoading;
+
+  ProductEntity fakeProduct = ProductEntity(
+    id: -1,
+    title: 'Loading Product Title...',
+    description: 'Loading Description...',
+    price: 99.99,
+    offerPrice: 0,
+    image: '',
+    avgRating: 4.5,
+    isFavorite: false,
+  );
 }
