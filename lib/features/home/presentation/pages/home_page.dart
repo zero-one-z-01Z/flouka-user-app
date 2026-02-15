@@ -5,7 +5,7 @@ import 'package:flouka/features/home/presentation/widgets/deals_container_widget
 import 'package:flouka/features/home/presentation/widgets/far_away_container_widget.dart';
 import 'package:flouka/features/home/presentation/widgets/home_appbar_widget.dart';
 import 'package:flouka/features/home/presentation/widgets/recommended_section.dart';
-import 'package:flouka/features/products/presentation/widgets/filter_products.dart';
+import 'package:flouka/features/filters/presentation/widgets/filter_products.dart';
 import 'package:flouka/features/products/presentation/widgets/filtered_products_home_section.dart';
 import 'package:flouka/features/stores/presentation/widgets/stores_home_section.dart';
 import 'package:flutter/material.dart';

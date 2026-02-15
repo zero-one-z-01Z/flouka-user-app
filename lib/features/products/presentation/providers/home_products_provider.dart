@@ -25,18 +25,5 @@ class HomeProductsProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  final List<String> filters = const [
-    'For You',
-    'New Gadget',
-    'Best Silling',
-    'Computer',
-    'Mobile',
-  ];
-
-  int selectedIndex = 0;
-
-  void setSelectedIndex(int index) {
-    selectedIndex = index;
-    notifyListeners();
-  }
+  
 }

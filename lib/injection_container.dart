@@ -1,6 +1,9 @@
 import 'package:flouka/features/address/data/repository/address_repository_impl.dart';
 import 'package:flouka/features/categories/data/repositories/category_repo_impl.dart';
 import 'package:flouka/features/categories/domain/usecases/category_usecase.dart';
+import 'package:flouka/features/filters/data/repo/filter_repo_impl.dart';
+import 'package:flouka/features/filters/domain/repo/filter_repo.dart';
+import 'package:flouka/features/filters/domain/use_case/filter_use_case.dart';
 import 'package:flouka/features/products/data/repos/product_repo_impl.dart';
 import 'package:flouka/features/products/domain/repo/product_repo.dart';
 import 'package:flouka/features/settings/data/datasources/remote.dart';
@@ -36,6 +39,7 @@ import 'features/cart/domain/repo/cart_repo.dart';
 import 'features/cart/domain/use_case/cart_use_case.dart';
 import 'features/categories/data/datasource/category_remote_date_source.dart';
 import 'features/categories/domain/repositories/category_repo.dart';
+import 'features/filters/data/data_source/filter_remote_data_source.dart';
 import 'features/orders/data/data_srouce/order_remote_data_source.dart';
 import 'features/orders/data/repos/order_repo_impl.dart';
 import 'features/orders/domain/repos/order_repo.dart';
@@ -56,14 +60,17 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<AuthRemoteDataSource>(AuthRemoteDataSource(sl.get()));
   sl.registerSingleton<AuthRepo>(AuthRepoImpl(sl.get()));
   sl.registerSingleton<AuthUseCase>(AuthUseCase(sl.get()));
+
   // cart
   sl.registerSingleton<CartRemoteDataSource>(CartRemoteDataSource(sl.get()));
   sl.registerSingleton<CartRepo>(CartRepoImpl(sl.get()));
   sl.registerSingleton<CartUseCase>(CartUseCase(sl.get()));
+
   // addresses
   sl.registerSingleton<AddressRemoteDataSource>(AddressRemoteDataSource(sl.get()));
   sl.registerSingleton<AddressRepo>(AddressRepoImpl(sl.get()));
   sl.registerSingleton<AddressUseCases>(AddressUseCases(sl.get()));
+
   // order
   sl.registerSingleton<OrderRemoteDataSource>(OrderRemoteDataSource(sl.get()));
   sl.registerSingleton<OrderRepo>(OrderRepoImpl(sl.get()));
@@ -88,6 +95,11 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<SettingsRemoteDataSource>(SettingsRemoteDataSource(sl.get()));
   sl.registerSingleton<SettingsRepo>(SettingsRepoImpl(sl.get()));
   sl.registerSingleton<SettingsUseCases>(SettingsUseCases(sl.get()));
+
+  // filters
+  sl.registerSingleton<FilterRemoteDataSource>(FilterRemoteDataSource(sl.get()));
+  sl.registerSingleton<FilterRepo>(FilterRepoImpl(sl.get()));
+  sl.registerSingleton<FilterUseCase>(FilterUseCase(sl.get()));
 
   // sl.registerSingleton<MarketRemoteDataSource>(
   //   MarketRemoteDataSource(sl.get()),
