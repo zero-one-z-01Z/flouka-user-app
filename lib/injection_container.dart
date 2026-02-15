@@ -46,6 +46,10 @@ import 'features/orders/domain/repos/order_repo.dart';
 import 'features/orders/domain/use_case/order_use_case.dart';
 import 'features/products/data/data_source/product_remote_data_source.dart';
 import 'features/products/domain/user_case/product_use_case.dart';
+import 'features/stores/data/data_source/store_remote_data_source.dart';
+import 'features/stores/data/repo/store_repo_impl.dart';
+import 'features/stores/domain/repo/store_repo.dart';
+import 'features/stores/domain/use_case/store_use_case.dart';
 import 'features/wallet/data/data_sources/remote.dart';
 import 'features/wallet/data/repositories/wallet_repo.dart';
 import 'features/wallet/domain/repositories/wallet_repo_impl.dart';
@@ -100,6 +104,11 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<FilterRemoteDataSource>(FilterRemoteDataSource(sl.get()));
   sl.registerSingleton<FilterRepo>(FilterRepoImpl(sl.get()));
   sl.registerSingleton<FilterUseCase>(FilterUseCase(sl.get()));
+
+  // stores
+  sl.registerSingleton<StoreRemoteDataSource>(StoreRemoteDataSource(sl.get()));
+  sl.registerSingleton<StoreRepo>(StoreRepoImpl(sl.get()));
+  sl.registerSingleton<StoreUseCase>(StoreUseCase(sl.get()));
 
   // sl.registerSingleton<MarketRemoteDataSource>(
   //   MarketRemoteDataSource(sl.get()),

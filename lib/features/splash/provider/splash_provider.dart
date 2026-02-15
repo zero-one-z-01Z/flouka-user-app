@@ -19,6 +19,7 @@ import '../../filters/presentation/providers/filter_product_provider.dart';
 import '../../navbar/presentation/provider/nav_bar_provider.dart';
 import '../../on_boarding/presentation/providers/on_boarding_provider.dart';
 import '../../on_boarding/presentation/views/on_boarding_view.dart';
+import '../../stores/presentation/providers/stores_provider.dart';
 
 class SplashProvider extends ChangeNotifier {
   void startApp() async {
@@ -49,6 +50,10 @@ class SplashProvider extends ChangeNotifier {
       Provider.of<CartProvider>(Constants.globalContext(), listen: false).getData(),
       Provider.of<OrderProvider>(Constants.globalContext(), listen: false).getData(),
       Provider.of<FilterProductProvider>(
+        Constants.globalContext(),
+        listen: false,
+      ).getData(),
+      Provider.of<StoresProvider>(
         Constants.globalContext(),
         listen: false,
       ).getData(),

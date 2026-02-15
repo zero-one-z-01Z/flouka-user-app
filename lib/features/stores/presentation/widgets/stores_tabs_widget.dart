@@ -59,9 +59,7 @@ class _StoresTabsWidgetState extends State<StoresTabsWidget> {
             child: Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 5.w,
-                  ).copyWith(top: 2.h),
+                  padding: EdgeInsets.symmetric(horizontal: 5.w).copyWith(top: 2.h),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: List.generate(

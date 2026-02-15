@@ -12,7 +12,7 @@ class StoresHomeSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final stores = context.watch<StoresProvider>().stores;
-    final visibleStores = stores.take(3).toList();
+    final visibleStores = stores?.take(3).toList();
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
@@ -35,7 +35,7 @@ class StoresHomeSection extends StatelessWidget {
           SizedBox(height: 1.h),
           Column(
             children: [
-              for (final store in visibleStores) ...[
+              for (final store in visibleStores!) ...[
                 StoresContainerHomeWidget(store: store),
                 if (store != visibleStores.last) SizedBox(height: 1.h),
               ],
