@@ -17,7 +17,7 @@ class CarouselSliderWidget extends StatelessWidget {
     final bannerProvider = context.watch<BannersProvider>();
 
     if (bannerProvider.bannersList.isEmpty) {
-      return const Center(child: LoadingWidget());
+      return const SizedBox(height: 8);
     }
 
     return Padding(

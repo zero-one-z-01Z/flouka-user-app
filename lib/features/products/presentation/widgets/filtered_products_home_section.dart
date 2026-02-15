@@ -1,8 +1,8 @@
-import 'package:flouka/features/products/presentation/providers/home_products_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../filters/presentation/providers/filter_product_provider.dart';
 import 'filtered_product_home_container_widget.dart';
 
 class FilteredProductsHomeSection extends StatelessWidget {
@@ -10,14 +10,14 @@ class FilteredProductsHomeSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<HomeProductsProvider>(
+    return Consumer<FilterProductProvider>(
       builder: (context, provider, child) => Column(
         children: List.generate(
-          provider.productsList.length,
+          provider.products?.length ?? 0,
           (index) => Padding(
             padding: EdgeInsets.symmetric(vertical: 0.8.h),
             child: FilteredProductHomeContainerWidget(
-              productEntity: provider.productsList[index],
+              productEntity: provider.products![index],
             ),
           ),
         ),
