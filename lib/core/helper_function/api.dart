@@ -105,6 +105,38 @@ class ApiHandel {
     }
   }
 
+  Future<Either<DioException, Response>> delete(
+    path, [
+    Map<String, dynamic>? data,
+  ]) async {
+    try {
+      await reLogin(path);
+      cancelToken = CancelToken();
+      Response response = await dio.delete(
+        path,
+        queryParameters: data,
+        cancelToken: cancelToken,
+      );
+      if (response.statusCode == 200 && response.data['code'] == 200) {
+        return Right(response);
+      }
+      debugPrint('error1');
+      return Left(dioException(response));
+    } on DioException catch (e) {
+      log(e.response?.data.toString() ?? "");
+      return Left(e.response == null ? e : dioException(e.response!));
+    } catch (e) {
+      debugPrint('error3');
+      return Left(
+        DioException(
+          requestOptions: RequestOptions(baseUrl: Constants.domain, path: path),
+          message: 'Server Error',
+        ),
+      );
+    }
+  }
+
+
   Future<Either<DioException, Response>> post(
     path,
     Map<String, dynamic> data,
@@ -144,6 +176,8 @@ class ApiHandel {
       );
     }
   }
+
+
 
   DioException dioException(Response response) {
     String msg = 'Server Error';

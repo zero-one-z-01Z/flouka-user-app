@@ -7,7 +7,9 @@ import 'cart_provider.dart';
 
 extension CartOperations on CartProvider {
   Future increaseCart(int cartId) async {
-    Map<String, dynamic> dataToUse = {'id': cartId};
+    Map<String, dynamic> dataToUse = {};
+    dataToUse['id'] = cartId;
+    dataToUse['action'] = 'increase';
     final result = await cartUseCase.increaseCart(dataToUse);
     result.fold(
       (l) {
@@ -23,7 +25,10 @@ extension CartOperations on CartProvider {
   }
 
   Future decreaseCart(int cartId) async {
-    Map<String, dynamic> dataToUse = {'id': cartId};
+    Map<String, dynamic> dataToUse = {};
+    dataToUse['id'] = cartId;
+    dataToUse['action'] = 'decrease';
+
     final result = await cartUseCase.decreaseCart(dataToUse);
     result.fold(
       (l) {
@@ -47,7 +52,8 @@ extension CartOperations on CartProvider {
   }
 
   Future deleteCartItem(int cartId) async {
-    Map<String, dynamic> dataToUse = {'id': cartId};
+    Map<String, dynamic> dataToUse = {};
+    dataToUse['id'] = cartId;
     final result = await cartUseCase.deleteCartItem(dataToUse);
     result.fold(
       (l) {
