@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -76,7 +78,7 @@ class CompleteInfoProvider extends ChangeNotifier {
       data['image'] = await MultipartFile.fromFile(image!.path);
     }
 
-    data["token"] = await FirebaseMessaging.instance.getToken() ?? "123";
+    // data["token"] = await FirebaseMessaging.instance.getToken() ?? "123";
     loading();
     Either<DioException, UserEntity> login = await authUseCase.updateProfile(data);
     navPop();

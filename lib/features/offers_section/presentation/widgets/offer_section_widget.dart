@@ -1,12 +1,13 @@
 import 'package:flouka/core/config/app_styles.dart';
 import 'package:flouka/core/widgets/button_widget.dart';
-import 'package:flouka/features/language/presentation/provider/language_provider.dart';
+import 'package:flouka/features/offers_section/domain/entity/offer_section_entity.dart';
 import 'package:flouka/features/products/presentation/widgets/hot_deals_home_section.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-class DealsContainerWidget extends StatelessWidget {
-  const DealsContainerWidget({super.key});
+class OffersSectionWidget extends StatelessWidget {
+  const OffersSectionWidget({super.key, required this.offerSectionEntity});
+  final OfferSectionEntity offerSectionEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class DealsContainerWidget extends StatelessWidget {
         horizontal: 1.w,
         vertical: 0.2.h,
       ).copyWith(left: 2.5.w, top: 1.h, bottom: 1.h),
-      color: const Color(0xffD30F2D),
+      color: offerSectionEntity.color,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -26,7 +27,7 @@ class DealsContainerWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    LanguageProvider.translate('home', 'craziest'),
+                    offerSectionEntity.title,
                     style: TextStyleClass.normalStyle().copyWith(
                       color: const Color(0xffFFE202),
                       fontSize: 20.sp,
@@ -34,7 +35,7 @@ class DealsContainerWidget extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    LanguageProvider.translate('home', 'black_friday_deals'),
+                    offerSectionEntity.description,
                     style: TextStyleClass.normalStyle().copyWith(
                       color: Colors.white,
                       fontSize: 18.sp,
@@ -60,7 +61,7 @@ class DealsContainerWidget extends StatelessWidget {
               ),
             ],
           ),
-          const HotDealsHomeSection(showTitle: false),
+          HotDealsHomeSection(products: offerSectionEntity.products),
         ],
       ),
     );

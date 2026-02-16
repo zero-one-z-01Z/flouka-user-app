@@ -17,6 +17,7 @@ import '../../categories/presentation/providers/categories_provider.dart';
 import '../../categories/presentation/providers/popular_categoey_provider.dart';
 import '../../filters/presentation/providers/filter_product_provider.dart';
 import '../../navbar/presentation/provider/nav_bar_provider.dart';
+import '../../offers_section/presentation/providers/offer_section_provider.dart';
 import '../../on_boarding/presentation/providers/on_boarding_provider.dart';
 import '../../on_boarding/presentation/views/on_boarding_view.dart';
 import '../../stores/presentation/providers/stores_provider.dart';
@@ -54,6 +55,10 @@ class SplashProvider extends ChangeNotifier {
         listen: false,
       ).getData(),
       Provider.of<StoresProvider>(
+        Constants.globalContext(),
+        listen: false,
+      ).getData(),
+      Provider.of<OfferSectionProvider>(
         Constants.globalContext(),
         listen: false,
       ).getData(),

@@ -1,34 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flouka/core/config/app_color.dart';
-import 'package:flouka/core/constants/app_images.dart';
 import 'package:flouka/core/widgets/price_widget.dart';
-import 'package:flouka/core/widgets/svg_widget.dart';
 import 'package:flouka/features/language/presentation/provider/language_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../core/config/app_styles.dart';
+import '../../domain/entity/product_entity.dart';
 
 class HotDealsHomeContainerWidget extends StatelessWidget {
-  HotDealsHomeContainerWidget({
-    super.key,
-    required this.imageUrl,
-    required this.title,
-    required this.priceAfterOffer,
-    required this.priceBeforeOffer,
-    required this.rating,
-    this.imageHeight,
-    this.madeIn = true,
-  });
-
-  final String imageUrl;
-  final String title;
-  final double priceAfterOffer;
-  final double priceBeforeOffer;
-  final double rating;
-  final double? imageHeight;
-  bool madeIn;
-
+  HotDealsHomeContainerWidget({super.key, required this.product});
+  final ProductEntity product;
   @override
   Widget build(BuildContext context) {
     const double fillPercent = 56.23;
@@ -59,9 +41,9 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(12),
                   child: CachedNetworkImage(
-                    imageUrl: imageUrl,
+                    imageUrl: product.image ?? "",
                     width: double.infinity,
-                    height: imageHeight ?? 10.h,
+                    height: 10.h,
                     fit: BoxFit.cover,
                     errorWidget: (context, url, error) => const Icon(Icons.error),
                   ),
@@ -107,11 +89,11 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
                 SizedBox(height: 0.6.h),
                 Row(
                   children: [
-                    Flexible(child: PriceWidget(price: priceAfterOffer)),
+                    Flexible(child: PriceWidget(price: product.price ?? 0)),
                     SizedBox(width: 1.w),
                     Flexible(
                       child: Text(
-                        priceBeforeOffer.toString(),
+                        product.offerPrice.toString(),
                         style: TextStyle(
                           fontSize: 11.sp,
                           fontWeight: FontWeight.w500,
@@ -125,21 +107,21 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
                   ],
                 ),
                 Text(
-                  title,
+                  product.title ?? "",
                   style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600),
                   softWrap: true,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
                 SizedBox(height: 0.2.h),
-                Row(
-                  children: [
-                    const SvgWidget(svg: AppImages.star),
-                    Text(rating.toString()),
-                  ],
-                ),
+                // Row(
+                //   children: [
+                //     const SvgWidget(svg: AppImages.star),
+                //     Text(rating.toString()),
+                //   ],
+                // ),
                 SizedBox(height: 0.5.h),
-                if (madeIn)
+                if (true)
                   Container(
                     width: 32.w,
                     height: 5.w,
@@ -188,7 +170,7 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: madeIn ? 1.h : 10.h,
+          top: 1.h,
           right: 4.w,
           child: Container(
             width: 7.w,
@@ -207,7 +189,7 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
             child: Icon(Icons.add, size: 4.w, color: Colors.white),
           ),
         ),
-        if (madeIn)
+        if (true)
           Positioned(
             top: 1.5.h,
             left: 6.w,

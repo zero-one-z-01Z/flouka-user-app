@@ -40,6 +40,10 @@ import 'features/cart/domain/use_case/cart_use_case.dart';
 import 'features/categories/data/datasource/category_remote_date_source.dart';
 import 'features/categories/domain/repositories/category_repo.dart';
 import 'features/filters/data/data_source/filter_remote_data_source.dart';
+import 'features/offers_section/data/data_source/offer_section_remote_data_source.dart';
+import 'features/offers_section/data/repo/offer_section_repo_impl.dart';
+import 'features/offers_section/domain/repo/offer_section_repo.dart';
+import 'features/offers_section/domain/use_case/offer_section_usecase.dart';
 import 'features/orders/data/data_srouce/order_remote_data_source.dart';
 import 'features/orders/data/repos/order_repo_impl.dart';
 import 'features/orders/domain/repos/order_repo.dart';
@@ -109,6 +113,11 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<StoreRemoteDataSource>(StoreRemoteDataSource(sl.get()));
   sl.registerSingleton<StoreRepo>(StoreRepoImpl(sl.get()));
   sl.registerSingleton<StoreUseCase>(StoreUseCase(sl.get()));
+  
+  // offer section
+  sl.registerSingleton<OfferSectionRemoteDataSource>(OfferSectionRemoteDataSource(sl.get()));
+  sl.registerSingleton<OfferSectionRepo>(OfferSectionRepoImpl(sl.get()));
+  sl.registerSingleton<OfferSectionUseCase>(OfferSectionUseCase(sl.get()));
 
   // sl.registerSingleton<MarketRemoteDataSource>(
   //   MarketRemoteDataSource(sl.get()),

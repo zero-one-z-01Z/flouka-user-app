@@ -178,5 +178,7 @@ final fakeProduct = ProductEntity(
       'For now, the Lenovo Yoga 920 is the highest variant of the Yoga series. The specifications are no joke. With the 8th generation Kaby Lake Refresh Intel Core i7-8550U processor.',
   price: 1000,
   offerPrice: 800,
+  discountTitle: 'Special Offer',
+  discountPercentage: 20,
   image: "https://placehold.co/600x400/000000/FFFFFF/png",
 );

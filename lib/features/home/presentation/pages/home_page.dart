@@ -1,17 +1,15 @@
 import 'package:flouka/features/categories/presentation/widgets/new_categories_home_section.dart';
 import 'package:flouka/features/categories/presentation/widgets/popular_categories_Section.dart';
-import 'package:flouka/features/home/presentation/widgets/brand_store_container_widget.dart';
-import 'package:flouka/features/home/presentation/widgets/deals_container_widget.dart';
 import 'package:flouka/features/home/presentation/widgets/far_away_container_widget.dart';
 import 'package:flouka/features/home/presentation/widgets/home_appbar_widget.dart';
 import 'package:flouka/features/home/presentation/widgets/recommended_section.dart';
 import 'package:flouka/features/filters/presentation/widgets/filter_list_widget.dart';
-import 'package:flouka/features/products/presentation/widgets/filtered_products_home_section.dart';
 import 'package:flouka/features/stores/presentation/widgets/stores_home_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flouka/features/banners/presentation/widgets/carousel_slider_widget.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../offers_section/presentation/widgets/offer_section_list_widget.dart';
 import '../../../stories/presentation/widgets/stories_list_widget.dart';
 
 class HomePage extends StatelessWidget {
@@ -32,12 +30,10 @@ class HomePage extends StatelessWidget {
             const NewCategoriesHomeSection(),
             const PopularCategoriesSection(),
             const FilterListWidget(),
-            const FilteredProductsHomeSection(),
-            const DealsContainerWidget(),
+            const OfferSectionListWidget(),
             const StoresHomeSection(),
-            const RecommendedSection(),
-            const BrandStoreContainerWidget(),
-
+            // const RecommendedSection(),
+            // const BrandStoreContainerWidget(),
             SizedBox(height: 2.h),
           ],
         ),
