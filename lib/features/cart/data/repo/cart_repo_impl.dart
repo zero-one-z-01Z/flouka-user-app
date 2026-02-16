@@ -10,7 +10,7 @@ class CartRepoImpl implements CartRepo {
   CartRepoImpl(this.cartRemoteDataSource);
 
   @override
-  Future<Either<DioException, List<CartEntity>>> addToCart(
+  Future<Either<DioException, CartEntity>> addToCart(
     Map<String, dynamic> data,
   ) async {
     return await cartRemoteDataSource.addToCart(data);

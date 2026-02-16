@@ -8,32 +8,23 @@ class CartRemoteDataSource {
   final ApiHandel apiHandel;
   CartRemoteDataSource(this.apiHandel);
   // user products
-  Future<Either<DioException, List<CartModel>>> addToCart(
+  Future<Either<DioException, CartModel>> addToCart(
     Map<String, dynamic> data,
   ) async {
-    List<CartModel> cartModels = [];
-
-    var response = await ApiHandel.getInstance.post('user/add_to_cart', data);
+    var response = await ApiHandel.getInstance.post('user/carts', data);
     return response.fold((l) => Left(l), (r) {
-      for (var i in r.data['data']) {
-        cartModels.add(CartModel.fromJson(i));
-      }
-      return Right(cartModels);
+      return Right(CartModel.fromJson(r.data['data']));
     });
   }
 
-  Future<Either<DioException, bool>> increaseCart(
-    Map<String, dynamic> data,
-  ) async {
+  Future<Either<DioException, bool>> increaseCart(Map<String, dynamic> data) async {
     var response = await ApiHandel.getInstance.post('user/increase_cart', data);
     return response.fold((l) => Left(l), (r) {
       return const Right(true);
     });
   }
 
-  Future<Either<DioException, bool>> decreaseCart(
-    Map<String, dynamic> data,
-  ) async {
+  Future<Either<DioException, bool>> decreaseCart(Map<String, dynamic> data) async {
     var response = await ApiHandel.getInstance.post('user/decrease_cart', data);
     return response.fold((l) => Left(l), (r) {
       return const Right(true);
@@ -43,18 +34,13 @@ class CartRemoteDataSource {
   Future<Either<DioException, bool>> deleteCartItem(
     Map<String, dynamic> data,
   ) async {
-    var response = await ApiHandel.getInstance.post(
-      'user/delete_cart_item',
-      data,
-    );
+    var response = await ApiHandel.getInstance.post('user/delete_cart_item', data);
     return response.fold((l) => Left(l), (r) {
       return const Right(true);
     });
   }
 
-  Future<Either<DioException, String>> deleteCart(
-    Map<String, dynamic> data,
-  ) async {
+  Future<Either<DioException, String>> deleteCart(Map<String, dynamic> data) async {
     var response = await ApiHandel.getInstance.post('user/delete_cart', data);
     return response.fold((l) => Left(l), (r) {
       return Right(r.data["data"]);

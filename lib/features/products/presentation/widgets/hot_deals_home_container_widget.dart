@@ -1,8 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flouka/core/config/app_color.dart';
 import 'package:flouka/core/widgets/price_widget.dart';
+import 'package:flouka/features/cart/presentation/providers/cart_operation_provider.dart';
+import 'package:flouka/features/cart/presentation/providers/cart_provider.dart';
 import 'package:flouka/features/language/presentation/provider/language_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../core/config/app_styles.dart';
@@ -13,6 +16,7 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
   final ProductEntity product;
   @override
   Widget build(BuildContext context) {
+    final cartOperations = Provider.of<CartProvider>(context);
     const double fillPercent = 56.23;
     const double fillStop = (100 - fillPercent) / 100;
     const List<double> stops = [0.0, fillStop, fillStop, 1.0];
@@ -172,38 +176,17 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
         Positioned(
           top: 1.h,
           right: 4.w,
-          child: Container(
-            width: 7.w,
-            height: 7.w,
-            decoration: BoxDecoration(
-              color: AppColor.primaryColor,
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  blurRadius: 4,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-            child: Icon(Icons.add, size: 4.w, color: Colors.white),
-          ),
-        ),
-        if (true)
-          Positioned(
-            top: 1.5.h,
-            left: 6.w,
+          child: InkWell(
+            onTap: () {
+              cartOperations.addToCart(productId: product.id!);
+            },
+
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 2.w),
-              height: 5.w,
+              width: 7.w,
+              height: 7.w,
               decoration: BoxDecoration(
-                color: const Color(0xff5A5A5A),
-                borderRadius: const BorderRadius.only(
-                  topRight: Radius.circular(0),
-                  topLeft: Radius.circular(10),
-                  bottomLeft: Radius.circular(10),
-                  bottomRight: Radius.circular(20),
-                ),
+                color: AppColor.primaryColor,
+                shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.1),
@@ -212,20 +195,46 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              child: Center(
-                child: FittedBox(
-                  child: Text(
-                    LanguageProvider.translate('global', 'best_seller'),
-                    style: TextStyle(
-                      fontSize: 10.sp,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
+              child: Icon(Icons.add, size: 4.w, color: Colors.white),
+            ),
+          ),
+        ),
+        Positioned(
+          top: 1.5.h,
+          left: 6.w,
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 2.w),
+            height: 5.w,
+            decoration: BoxDecoration(
+              color: const Color(0xff5A5A5A),
+              borderRadius: const BorderRadius.only(
+                topRight: Radius.circular(0),
+                topLeft: Radius.circular(10),
+                bottomLeft: Radius.circular(10),
+                bottomRight: Radius.circular(20),
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  blurRadius: 4,
+                  offset: const Offset(0, 2),
+                ),
+              ],
+            ),
+            child: Center(
+              child: FittedBox(
+                child: Text(
+                  LanguageProvider.translate('global', 'best_seller'),
+                  style: TextStyle(
+                    fontSize: 10.sp,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
                   ),
                 ),
               ),
             ),
           ),
+        ),
       ],
     );
   }

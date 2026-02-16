@@ -60,7 +60,7 @@ class CartItemWidget extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             PriceWidget(
-                              price: convertDataToNum(cartEntity.subTotal) ?? 999,
+                              price: convertDataToNum(cartEntity.subTotal) ?? 0,
                             ),
                             const Spacer(),
                             const CustomStarRatingWidget(),

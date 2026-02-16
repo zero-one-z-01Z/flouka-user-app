@@ -19,6 +19,7 @@ import '../../../../core/helper_function/navigation.dart';
 import '../../../../core/helper_function/prefs.dart';
 import '../../../../core/helper_function/text_form_field_validation.dart';
 import '../../../../core/models/text_field_model.dart';
+import '../../../cart/presentation/providers/cart_provider.dart';
 import '../../../language/presentation/provider/language_provider.dart';
 import '../../../navbar/presentation/provider/nav_bar_provider.dart';
 import '../../domain/entities/social_auth_entity.dart';
@@ -79,7 +80,7 @@ class AuthProvider extends ChangeNotifier {
     if (userEntity.name == null || userEntity.name!.isEmpty) {
       navPARU(const CompleteInfoView(isEdit: false));
     } else {
-      // Provider.of<CartProvider>(Constants.globalContext(), listen: false).getData();
+      Provider.of<CartProvider>(Constants.globalContext(), listen: false).getData();
 
       Provider.of<NavBarProvider>(
         Constants.globalContext(),

@@ -62,9 +62,7 @@ extension CartOperations on CartProvider {
     rebuild();
   }
 
-  Future addToCart({
-    required int productId,
-  }) async {
+  Future addToCart({required int productId}) async {
     if (Provider.of<AuthProvider>(
           Constants.globalContext(),
           listen: false,
@@ -74,7 +72,6 @@ extension CartOperations on CartProvider {
     } else {
       Map<String, dynamic> dataToUse = {};
       dataToUse['product_id'] = productId;
-      dataToUse['quantity'] = 1;
       final result = await cartUseCase.addToCart(dataToUse);
       result.fold(
         (l) {
