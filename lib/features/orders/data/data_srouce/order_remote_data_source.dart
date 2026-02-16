@@ -9,7 +9,7 @@ class OrderRemoteDataSource {
   OrderRemoteDataSource(this.apiHandel);
 
   Future<Either<DioException, int>> createOrder(Map<String, dynamic> data) async {
-    var response = await apiHandel.post('user/create_order', data);
+    var response = await apiHandel.post('user/orders', data);
     return response.fold((l) => Left(l), (r) {
       return Right(r.data['data']);
     });
@@ -27,7 +27,7 @@ class OrderRemoteDataSource {
   Future<Either<DioException, List<OrderModel>>> getUserOrders(
     Map<String, dynamic> data,
   ) async {
-    var response = await apiHandel.post('user/get_user_orders', data);
+    var response = await apiHandel.get('user/orders', data);
     return response.fold((l) => Left(l), (r) {
       List<OrderModel> orderModels = [];
       for (var i in r.data['data']) {

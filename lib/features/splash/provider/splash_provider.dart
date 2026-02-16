@@ -26,29 +26,28 @@ class SplashProvider extends ChangeNotifier {
   void startApp() async {
     await Future.wait([
       delay(500),
-      Provider.of<BannersProvider>(
-        Constants.globalContext(),
-        listen: false,
-      ).getBanners(),
-      Provider.of<CategoryProvider>(
-        Constants.globalContext(),
-        listen: false,
-      ).getCategories(),
+      // Provider.of<BannersProvider>(
+      //   Constants.globalContext(),
+      //   listen: false,
+      // ).getBanners(),
+      // Provider.of<CategoryProvider>(
+      //   Constants.globalContext(),
+      //   listen: false,
+      // ).getCategories(),
       Provider.of<PopularCategoryProvider>(
         Constants.globalContext(),
         listen: false,
       ).getPopularCategories(),
       Provider.of<OrderProvider>(Constants.globalContext(), listen: false).getData(),
-      Provider.of<AddressProvider>(
-        Constants.globalContext(),
-        listen: false,
-      ).getAddress(),
-      Provider.of<WalletProvider>(
-        Constants.globalContext(),
-        listen: false,
-      ).walletOperations(),
+      // Provider.of<AddressProvider>(
+      //   Constants.globalContext(),
+      //   listen: false,
+      // ).getAddress(),
+      // Provider.of<WalletProvider>(
+      //   Constants.globalContext(),
+      //   listen: false,
+      // ).walletOperations(),
       Provider.of<CartProvider>(Constants.globalContext(), listen: false).getData(),
-      Provider.of<OrderProvider>(Constants.globalContext(), listen: false).getData(),
       Provider.of<FilterProductProvider>(
         Constants.globalContext(),
         listen: false,

@@ -61,9 +61,10 @@ class CheckoutProvider extends ChangeNotifier {
     dataToUse['total'] = total;
     dataToUse['sub_total'] = cartPrice;
     log(cartPrice.toString());
-    dataToUse['delivery'] = delivery;
-    dataToUse["coupon"] = couponProvider.coupon.text;
-    dataToUse["discount"] = (couponProvider.calcCoupon(subTotalTax) ?? 0);
+    // dataToUse['delivery'] = delivery;
+    // dataToUse["coupon"] = couponProvider.coupon.text;
+    // dataToUse["discount"] = (couponProvider.calcCoupon(subTotalTax) ?? 0);
+    dataToUse["fees"] = 0;
     dataToUse["payment_method"] = selectedPaymentMethod.toAPI;
     dataToUse['tax'] = tax;
     final result = await orderUseCase.createOrder(dataToUse);
