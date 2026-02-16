@@ -91,12 +91,12 @@ class ApiHandel {
       }
       debugPrint('error1');
       return Left(dioException(response));
+
     } on DioException catch (e) {
       log(e.response?.data.toString() ?? "");
       return Left(e.response == null ? e : dioException(e.response!));
     } catch (e) {
       debugPrint('error3');
-      // print(e.toString());
       return Left(
         DioException(
           requestOptions: RequestOptions(baseUrl: Constants.domain, path: path),

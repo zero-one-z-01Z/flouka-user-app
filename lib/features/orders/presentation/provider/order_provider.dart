@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flouka/features/address/domain/entities/address_entity.dart';
@@ -77,8 +76,6 @@ class OrderProvider extends ChangeNotifier
     data!.add(fakeOrder);
     data!.add(fakeOrder);
     paginationStarted = false;
-    // log(dataToUse.toString());
-    log(data.toString());
   }
 
   @override

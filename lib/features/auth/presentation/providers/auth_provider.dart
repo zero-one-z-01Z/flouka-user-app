@@ -79,6 +79,8 @@ class AuthProvider extends ChangeNotifier {
     if (userEntity.name == null || userEntity.name!.isEmpty) {
       navPARU(const CompleteInfoView(isEdit: false));
     } else {
+      // Provider.of<CartProvider>(Constants.globalContext(), listen: false).getData();
+
       Provider.of<NavBarProvider>(
         Constants.globalContext(),
         listen: false,

@@ -7,7 +7,7 @@ import 'cart_provider.dart';
 
 extension CartOperations on CartProvider {
   Future increaseCart(int cartId) async {
-    Map<String, dynamic> dataToUse = {'cart_id': cartId};
+    Map<String, dynamic> dataToUse = {'id': cartId};
     final result = await cartUseCase.increaseCart(dataToUse);
     result.fold(
       (l) {
@@ -23,7 +23,7 @@ extension CartOperations on CartProvider {
   }
 
   Future decreaseCart(int cartId) async {
-    Map<String, dynamic> dataToUse = {'cart_id': cartId};
+    Map<String, dynamic> dataToUse = {'id': cartId};
     final result = await cartUseCase.decreaseCart(dataToUse);
     result.fold(
       (l) {
@@ -47,7 +47,7 @@ extension CartOperations on CartProvider {
   }
 
   Future deleteCartItem(int cartId) async {
-    Map<String, dynamic> dataToUse = {'cart_id': cartId};
+    Map<String, dynamic> dataToUse = {'id': cartId};
     final result = await cartUseCase.deleteCartItem(dataToUse);
     result.fold(
       (l) {
@@ -64,8 +64,6 @@ extension CartOperations on CartProvider {
 
   Future addToCart({
     required int productId,
-    required int sizeId,
-    required int colorId,
   }) async {
     if (Provider.of<AuthProvider>(
           Constants.globalContext(),
@@ -77,8 +75,6 @@ extension CartOperations on CartProvider {
       Map<String, dynamic> dataToUse = {};
       dataToUse['product_id'] = productId;
       dataToUse['quantity'] = 1;
-      dataToUse['size_id'] = sizeId;
-      dataToUse['color_id'] = colorId;
       final result = await cartUseCase.addToCart(dataToUse);
       result.fold(
         (l) {

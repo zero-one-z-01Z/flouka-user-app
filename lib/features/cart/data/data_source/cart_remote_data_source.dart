@@ -63,7 +63,7 @@ class CartRemoteDataSource {
 
   Future<Either<DioException, List<CartModel>>> getCart() async {
     List<CartModel> cartModels = [];
-    var response = await ApiHandel.getInstance.get('user/get_cart');
+    var response = await ApiHandel.getInstance.get("user/carts");
     return response.fold((l) => Left(l), (r) {
       for (var i in r.data['data']) {
         cartModels.add(CartModel.fromJson(i));

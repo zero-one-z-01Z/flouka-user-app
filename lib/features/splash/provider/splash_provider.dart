@@ -38,7 +38,6 @@ class SplashProvider extends ChangeNotifier {
         Constants.globalContext(),
         listen: false,
       ).getPopularCategories(),
-      Provider.of<CartProvider>(Constants.globalContext(), listen: false).getData(),
       Provider.of<OrderProvider>(Constants.globalContext(), listen: false).getData(),
       Provider.of<AddressProvider>(
         Constants.globalContext(),

@@ -12,7 +12,7 @@ class StoresHomeSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final stores = context.watch<StoresProvider>().stores;
-    final visibleStores = stores?.take(3).toList();
+    final visibleStores = stores?.take(1).toList();
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),

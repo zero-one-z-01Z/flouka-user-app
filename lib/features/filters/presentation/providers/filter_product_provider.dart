@@ -14,7 +14,7 @@ class FilterProductProvider extends ChangeNotifier {
     response.fold((l) {}, (r) {
       data = r;
       filters.addAll(r);
-      getFilterProducts(filters.first.id);
+      // getFilterProducts(filters.first.id);
     });
   }
 
