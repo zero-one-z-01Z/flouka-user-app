@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:flouka/features/categories/presentation/widgets/new_categories_home_section.dart';
 import 'package:flouka/features/categories/presentation/widgets/popular_categories_Section.dart';
 import 'package:flouka/features/home/presentation/widgets/far_away_container_widget.dart';

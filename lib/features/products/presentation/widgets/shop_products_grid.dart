@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:flouka/features/products/presentation/providers/products_provider.dart';
 import 'package:flouka/features/products/presentation/widgets/suggested_products_container.dart';
 import 'package:flutter/material.dart';

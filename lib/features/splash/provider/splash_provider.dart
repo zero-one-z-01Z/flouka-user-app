@@ -64,19 +64,19 @@ class SplashProvider extends ChangeNotifier {
       ).getData(),
     ]);
 
-    // bool isFirstTime = !(sharedPreferences.getBool('onBoarding') ?? false);
-    // final context = Constants.globalContext();
-    // var auth = Provider.of<AuthProvider>(context, listen: false);
-    // String? isLoggedIn = sharedPreferences.getString('token');
-    // if (isFirstTime) {
-    //   navPARU(const OnBoardingView());
-    // } else {
-    //   if (isLoggedIn != null) {
-    //     auth.getProfile();
-    //   } else {
-    //     auth.goToLoginView();
-    //   }
-    // }
-    navPARU(const NavBarView());
+    bool isFirstTime = !(sharedPreferences.getBool('onBoarding') ?? false);
+    final context = Constants.globalContext();
+    var auth = Provider.of<AuthProvider>(context, listen: false);
+    String? isLoggedIn = sharedPreferences.getString('token');
+    if (isFirstTime) {
+      navPARU(const OnBoardingView());
+    } else {
+      if (isLoggedIn != null) {
+        auth.getProfile();
+      } else {
+        auth.goToLoginView();
+      }
+    }
+    // navPARU(const NavBarView());
   }
 }
