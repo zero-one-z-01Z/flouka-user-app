@@ -10,7 +10,7 @@ class CategoryRepoImpl implements CategoryRepo {
   CategoryRepoImpl(this.categoryRemoteDataSource);
 
   @override
-  Future<Either<DioException, List<CategoryEntity>>> getCategories() async {
-    return await categoryRemoteDataSource.getCategories();
+  Future<Either<DioException, List<CategoryEntity>>> getCategories(Map<String, dynamic> data) async {
+    return await categoryRemoteDataSource.getCategories(data);
   }
 }

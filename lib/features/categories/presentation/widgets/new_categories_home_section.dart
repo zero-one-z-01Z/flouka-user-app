@@ -1,16 +1,15 @@
+import 'package:flouka/features/categories/presentation/providers/categories_provider.dart';
 import 'package:flouka/features/categories/presentation/widgets/new_categories_home_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-
-import '../providers/popular_categoey_provider.dart';
 
 class NewCategoriesHomeSection extends StatelessWidget {
   const NewCategoriesHomeSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final categories = context.read<HomeCategoreyProvider>().homeCategories;
+    final categories = context.read<CategoryProvider>().homeCategories;
     return Padding(
       padding: EdgeInsets.only(bottom: 1.h),
       child: SizedBox(

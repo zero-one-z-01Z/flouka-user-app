@@ -1,9 +1,10 @@
-import 'package:flouka/features/categories/domain/entity/subcategory_entity.dart';
 import 'package:flouka/features/categories/presentation/providers/subcategory_provider.dart';
 import 'package:flouka/features/categories/presentation/widgets/subcategory_tiles.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../domain/entity/category_entity.dart';
 
 class SubcategoriesListView extends StatelessWidget {
   const SubcategoriesListView({super.key});
@@ -12,7 +13,7 @@ class SubcategoriesListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<SubcategoryProvider>(
       builder: (context, provider, _) {
-        final List<SubcategoryEntity> subcategories = provider.subcategories;
+        final List<CategoryEntity> subcategories = provider.subcategories;
 
         if (subcategories.isEmpty && provider.isLoading) {
           return const Center(child: CircularProgressIndicator());

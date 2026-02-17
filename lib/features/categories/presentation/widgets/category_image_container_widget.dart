@@ -15,12 +15,13 @@ class CategoryImageContainerWidget extends StatelessWidget {
         Container(
           width: 34.w,
           height: 18.h,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(3),
-            image: DecorationImage(
-              fit: BoxFit.cover,
-              image: CachedNetworkImageProvider(category.image),
-            ),
+          child: CachedNetworkImage(
+            imageUrl: category.image,
+            fit: BoxFit.cover,
+            placeholder: (context, url) =>
+                const Center(child: CircularProgressIndicator()),
+            errorWidget: (context, url, error) =>
+                const Center(child: Icon(Icons.error)),
           ),
         ),
         SizedBox(height: 1.h),

@@ -1,4 +1,8 @@
+import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import '../../../../core/constants/app_images.dart';
+import '../../../../core/dialog/snack_bar.dart';
 import '../../domain/entity/category_entity.dart';
 import '../../domain/usecases/category_usecase.dart';
 
@@ -8,53 +12,26 @@ class CategoryProvider extends ChangeNotifier {
   CategoryProvider(this.categoryUseCases);
   List<CategoryEntity> _categories = [];
   CategoryEntity? _selectedCategory;
+  List<CategoryEntity> homeCategories = [
+    CategoryEntity(id: 1, image: AppImages.offer, name: 'offers_products', subCategories: []),
+    CategoryEntity(id: 2, image: AppImages.bestSeller, name: 'best_sellers', subCategories: []),
+    CategoryEntity(id: 3, image: AppImages.categories, name: 'categories', subCategories: []),
+    CategoryEntity(id: 4, image: AppImages.exploreCategories, name: 'explore', subCategories: []),
+  ];
 
   List<CategoryEntity> get categories => _categories;
   CategoryEntity? get selectedCategory => _selectedCategory;
 
- 
   Future<void> getCategories() async {
     notifyListeners();
+    Map<String, dynamic> data = {"with_children": 1};
+    Either<DioException, List<CategoryEntity>> response = await categoryUseCases
+        .getCategories(data);
 
-    // Fake categories instead of API call
-    _categories = [
-      CategoryEntity(
-        id: 1,
-        image: 'https://placehold.co/600x400/000000/FFFFFF/png',
-        name: 'category_1',
-        subCategories: [],
-      ),
-      CategoryEntity(
-        id: 2,
-        image: 'https://placehold.co/600x400/FFFFFF/000000/png',
-        name: 'category_2',
-        subCategories: [],
-      ),
-      CategoryEntity(
-        id: 3,
-        image: 'https://placehold.co/600x400/0000FF/FFFFFF/png',
-        name: 'category_3',
-        subCategories: [],
-      ),
-      CategoryEntity(
-        id: 4,
-        image: 'https://placehold.co/600x400/FFFF00/000000/png',
-        name: 'category_4',
-        subCategories: [],
-      ),
-      CategoryEntity(
-        id: 5,
-        image: 'https://placehold.co/600x400/FFFF011/000000/png',
-        name: 'category_5',
-        subCategories: [],
-      ),
-      CategoryEntity(
-        id: 6,
-        image: 'https://placehold.co/600x400/FFFF011/000000/png',
-        name: 'category_6',
-        subCategories: [],
-      ),
-    ];
+    response.fold((l) => showToast(l.message ?? "Error loading categories"), (r) {
+      _categories.addAll(r);
+      notifyListeners();
+    });
 
     if (_categories.isNotEmpty && _selectedCategory == null) {
       _selectedCategory = null; // default = show all

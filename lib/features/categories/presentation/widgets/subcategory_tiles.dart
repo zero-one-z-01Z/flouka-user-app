@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flouka/core/config/app_styles.dart';
 import 'package:flouka/core/helper_function/navigation.dart';
 import 'package:flouka/features/categories/domain/entity/category_entity.dart';
-import 'package:flouka/features/categories/domain/entity/subcategory_entity.dart';
 import 'package:flouka/features/categories/presentation/providers/categories_provider.dart';
 import 'package:flouka/features/categories/presentation/providers/subcategory_provider.dart';
 import 'package:flouka/features/categories/presentation/view/categories_view_all_page.dart';
@@ -13,7 +12,7 @@ import 'package:sizer/sizer.dart';
 class SubcategoryTile extends StatelessWidget {
   const SubcategoryTile({super.key, this.subcategory, this.isAll = false});
 
-  final SubcategoryEntity? subcategory;
+  final CategoryEntity? subcategory;
   final bool isAll;
 
   @override
@@ -37,7 +36,7 @@ class SubcategoryTile extends StatelessWidget {
             ),
             SizedBox(width: 2.w),
             Text(
-              subcategory!.title,
+              subcategory!.name,
               style: TextStyleClass.normalStyle(
                 color: Colors.black,
               ).copyWith(fontWeight: FontWeight.bold),

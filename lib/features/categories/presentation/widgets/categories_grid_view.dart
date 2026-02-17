@@ -61,7 +61,7 @@ class CategoriesGridView extends StatelessWidget {
                           subcategoryProvider.subcategories.isNotEmpty) {
                         subcategoryProvider.clear();
                       } else {
-                        subcategoryProvider.getSubcategories(category.id);
+                        subcategoryProvider.getSubcategories(category);
                       }
                     },
                     child: CategoryImageContainerWidget(category: category),
