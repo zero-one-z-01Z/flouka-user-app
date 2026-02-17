@@ -12,10 +12,10 @@ class HomeCategoreyProvider extends ChangeNotifier {
   HomeCategoreyProvider(this.categoryUseCases);
   final List<CategoryEntity> _popularCategories = [];
   List<CategoryEntity> homeCategories = [
-    CategoryEntity(id: 1, image: AppImages.offer, name: 'offers_products'),
-    CategoryEntity(id: 2, image: AppImages.bestSeller, name: 'best_sellers'),
-    CategoryEntity(id: 3, image: AppImages.categories, name: 'categories'),
-    CategoryEntity(id: 4, image: AppImages.exploreCategories, name: 'explore'),
+    CategoryEntity(id: 1, image: AppImages.offer, name: 'offers_products', subCategories: []),
+    CategoryEntity(id: 2, image: AppImages.bestSeller, name: 'best_sellers', subCategories: []),
+    CategoryEntity(id: 3, image: AppImages.categories, name: 'categories', subCategories: []),
+    CategoryEntity(id: 4, image: AppImages.exploreCategories, name: 'explore', subCategories: []),
   ];
 
   List<CategoryEntity> get popularCategories => _popularCategories;

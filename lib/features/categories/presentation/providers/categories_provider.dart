@@ -22,31 +22,37 @@ class CategoryProvider extends ChangeNotifier {
         id: 1,
         image: 'https://placehold.co/600x400/000000/FFFFFF/png',
         name: 'category_1',
+        subCategories: [],
       ),
       CategoryEntity(
         id: 2,
         image: 'https://placehold.co/600x400/FFFFFF/000000/png',
         name: 'category_2',
+        subCategories: [],
       ),
       CategoryEntity(
         id: 3,
         image: 'https://placehold.co/600x400/0000FF/FFFFFF/png',
         name: 'category_3',
+        subCategories: [],
       ),
       CategoryEntity(
         id: 4,
         image: 'https://placehold.co/600x400/FFFF00/000000/png',
         name: 'category_4',
+        subCategories: [],
       ),
       CategoryEntity(
         id: 5,
         image: 'https://placehold.co/600x400/FFFF011/000000/png',
         name: 'category_5',
+        subCategories: [],
       ),
       CategoryEntity(
         id: 6,
         image: 'https://placehold.co/600x400/FFFF011/000000/png',
         name: 'category_6',
+        subCategories: [],
       ),
     ];
 
