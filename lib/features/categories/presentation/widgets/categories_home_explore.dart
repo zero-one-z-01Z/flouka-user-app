@@ -37,7 +37,6 @@ class CategoriesHomeExplore extends StatelessWidget {
                   id: 0,
                   image: AppImages.explore,
                   name: LanguageProvider.translate('home', 'explore'),
-                  subCategories: [],
                 );
                 return Padding(
                   padding: EdgeInsets.zero,

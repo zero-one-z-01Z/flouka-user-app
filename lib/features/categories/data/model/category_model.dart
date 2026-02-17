@@ -5,21 +5,36 @@ class CategoryModel extends CategoryEntity {
     required super.id,
     required super.image,
     required super.name,
-    required super.subCategories,
+    super.children = const [],
   });
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) {
-    List<CategoryEntity> subCategories = [];
-    if (json['children'] != null) {
-      subCategories = List<CategoryEntity>.from(
-        json['children'].map((x) => CategoryModel.fromJson(x)),
+    List<CategoryEntity> children = [];
+    if (json['children'] != null && json['children'] is List) {
+      children = List<CategoryEntity>.from(
+        (json['children'] as List).map((x) => CategoryModel.fromJson(x)),
       );
     }
     return CategoryModel(
       id: json['id'],
-      image: json['image'],
-      name: json['name'],
-      subCategories: subCategories,
+      image: json['image'] ?? '',
+      name: json['name'] ?? '',
+      children: children,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'image': image,
+      'children': children
+          .map(
+            (child) => child is CategoryModel
+                ? child.toJson()
+                : {'id': child.id, 'name': child.name, 'image': child.image},
+          )
+          .toList(),
+    };
   }
 }

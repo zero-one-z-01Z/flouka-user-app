@@ -2,12 +2,12 @@ class CategoryEntity {
   final int id;
   final String name;
   final String image;
-  final List<CategoryEntity>? subCategories;
+  final List<CategoryEntity> children;
 
   CategoryEntity({
     required this.id,
     required this.image,
     required this.name,
-    required this.subCategories,
+    this.children = const [],
   });
 }

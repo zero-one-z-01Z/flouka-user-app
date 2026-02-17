@@ -8,10 +8,8 @@ class CategoryRemoteDataSource {
 
   CategoryRemoteDataSource(this.apiHandel);
 
-  Future<Either<DioException, List<CategoryModel>>> getCategories(
-    Map<String, dynamic> data,
-  ) async {
-    var response = await apiHandel.get('categories', data);
+  Future<Either<DioException, List<CategoryModel>>> getCategories() async {
+    var response = await apiHandel.get('categories', {'with_children': 1});
     return response.fold((l) => Left(l), (r) {
       List<CategoryModel> list = [];
       for (var i in r.data['data']) {
