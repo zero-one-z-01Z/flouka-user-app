@@ -1,32 +1,31 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:flouka/core/constants/app_lotties.dart';
-import 'package:flouka/features/address/presentation/views/map_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flouka/core/dialog/new_success_dialog.dart';
-import 'package:flouka/features/address/domain/usecase/city_usecase.dart';
-import 'package:flouka/features/address/presentation/providers/area_provider.dart';
-import 'package:flouka/features/address/presentation/providers/city_provider.dart';
-import 'package:flouka/features/address/presentation/providers/parts_provider.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-import '../../../../../../core/constants/constants.dart';
-import '../../../../../../core/dialog/custom_snack_bar.dart';
-import '../../../../../../core/dialog/snack_bar.dart';
-import '../../../../../../core/dialog/success_dialog.dart';
-import '../../../../../../core/helper_function/loading.dart';
-import '../../../../../../core/helper_function/location.dart';
-import '../../../../../../core/helper_function/navigation.dart';
-import '../../../../../../core/helper_function/text_form_field_validation.dart';
-import '../../../../../../core/models/text_field_model.dart';
-import '../../../../../../injection_container.dart';
+import '../../../../../core/constants/constants.dart';
+import '../../../../../core/dialog/snack_bar.dart';
+import '../../../../../core/dialog/success_dialog.dart';
+import '../../../../../core/helper_function/loading.dart';
+import '../../../../../core/helper_function/location.dart';
+import '../../../../../core/helper_function/navigation.dart';
+import '../../../../../core/helper_function/text_form_field_validation.dart';
+import '../../../../../core/models/text_field_model.dart';
+import '../../../../../injection_container.dart';
+import '../../../../core/constants/app_lotties.dart';
+import '../../../../core/dialog/new_success_dialog.dart';
 import '../../../auth/presentation/providers/auth_provider.dart';
 import '../../../language/presentation/provider/language_provider.dart';
 import '../../domain/entities/address_entity.dart';
 import '../../domain/entities/city_entity.dart';
 import '../../domain/usecase/address_usecase.dart';
+import '../../domain/usecase/city_usecase.dart';
+import '../views/select_address_map_page.dart';
 import 'address_provider.dart';
+import 'area_provider.dart';
+import 'city_provider.dart';
+import 'parts_provider.dart';
 
 class AddressDetailsProvider extends ChangeNotifier {
   final CityUseCases cityUseCases = CityUseCases(sl());
@@ -83,19 +82,13 @@ class AddressDetailsProvider extends ChangeNotifier {
   List<TextFieldModel> inputs = [
     TextFieldModel(
       controller: TextEditingController(),
-      key: 'block_number',
-      label: 'block_number',
-      validator: (value) => validateAddressName(value),
-    ),
-    TextFieldModel(
-      controller: TextEditingController(),
-      key: 'address_name',
+      key: 'name',
       label: 'address_name',
       validator: (value) => validateAddressName(value),
     ),
     TextFieldModel(
       controller: TextEditingController(),
-      key: 'street_name',
+      key: 'street',
       label: 'street_name',
       validator: (value) => validateStreetName(value),
     ),
@@ -103,6 +96,7 @@ class AddressDetailsProvider extends ChangeNotifier {
       controller: TextEditingController(),
       key: 'apartment',
       label: 'apartment',
+      textInputType: TextInputType.number,
       width: 40.w,
       validator: (value) => validateApartment(value),
     ),
@@ -110,6 +104,7 @@ class AddressDetailsProvider extends ChangeNotifier {
       controller: TextEditingController(),
       key: 'building',
       label: 'building',
+      textInputType: TextInputType.number,
       width: 40.w,
       validator: (value) => validateBuilding(value),
     ),
@@ -189,7 +184,7 @@ class AddressDetailsProvider extends ChangeNotifier {
 
     if (nameError.isEmpty) {
     } else {
-      errorSnackBar(title: nameError.trim());
+      showToast(nameError.trim());
     }
   }
 
@@ -211,7 +206,7 @@ class AddressDetailsProvider extends ChangeNotifier {
         );
         addressProvider.addAddress(r);
         newSuccessDialog(
-          lottie: Lotties.loading,
+          lottie: Lotties.videoAnimation,
           then: () {
             clear();
             navPop();
@@ -335,10 +330,10 @@ class AddressDetailsProvider extends ChangeNotifier {
       if (addressEntity != null) {
         title = "edit_address";
         this.addressEntity = addressEntity;
-        setData(addressEntity.lat, addressEntity.lng);
+        setData(addressEntity.lat!, addressEntity.lng!);
         setInputsData();
         navP(
-          const MapScreen(),
+          const SelectAddressMapPage(),
           then: (val) async {
             resetData();
           },
@@ -350,7 +345,7 @@ class AddressDetailsProvider extends ChangeNotifier {
         navPop();
         setData(position.latitude, position.longitude);
         navP(
-          const MapScreen(),
+          const SelectAddressMapPage(),
           then: (val) async {
             resetData();
           },
@@ -371,35 +366,32 @@ class AddressDetailsProvider extends ChangeNotifier {
       Constants.globalContext(),
       listen: false,
     );
-    final partsProvider = Provider.of<PartsProvider>(
-      Constants.globalContext(),
-      listen: false,
-    );
+    // final partsProvider = Provider.of<PartsProvider>(Constants.globalContext(), listen: false,);
+
     if (addressEntity!.areaEntity != null) {
       cityProvider.cityEntity = cityProvider.cities.firstWhere(
         (element) => element.id == addressEntity!.areaEntity!.cityId,
       );
-      await areaProvider.getArea(id: cityProvider.cityEntity!.id);
+      await areaProvider.getArea(id: cityProvider.cityEntity!.id, fromAddress: true);
       areaProvider.areaEntity = areaProvider.areas.firstWhere(
         (element) => element.id == addressEntity!.areaEntity!.id,
       );
-      await partsProvider.getParts(numbers: areaProvider.areaEntity!.partNumber);
     }
 
-    partsProvider.selectedPart = partsProvider.parts.firstWhere(
-      (element) => element == addressEntity!.partNumber,
-    );
+    // partsProvider.selectedPart = partsProvider.parts.firstWhere(
+    //   (element) => element == addressEntity!.partNumber,
+    // );
 
     inputs.firstWhere((element) => element.key == 'address_name').controller.text =
-        addressEntity!.addressName;
+        addressEntity!.addressName ?? "";
     inputs.firstWhere((element) => element.key == 'street_name').controller.text =
-        addressEntity!.streetName;
+        addressEntity!.streetName ?? "";
     inputs.firstWhere((element) => element.key == 'building').controller.text =
-        addressEntity!.building;
+        addressEntity!.building ?? "";
     inputs.firstWhere((element) => element.key == 'apartment').controller.text =
-        addressEntity!.apartment;
+        addressEntity!.apartment ?? "";
     inputs.firstWhere((element) => element.key == 'notes').controller.text =
-        addressEntity!.notes;
+        addressEntity!.notes ?? "";
   }
 
   void animateToMyLocation() async {

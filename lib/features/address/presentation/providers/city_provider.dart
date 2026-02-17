@@ -4,8 +4,9 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../../../../core/constants/constants.dart';
-import '../../../../../../core/models/drop_down_class.dart';
+import '../../../../../core/constants/constants.dart';
+import '../../../../../core/models/drop_down_class.dart';
+import '../../../../core/dialog/snack_bar.dart';
 import '../../../language/presentation/provider/language_provider.dart';
 import '../../domain/entities/city_entity.dart';
 import '../../domain/usecase/city_usecase.dart';
@@ -36,7 +37,7 @@ class CityProvider extends ChangeNotifier implements DropDownClass<CityEntity> {
     Either<DioException, List<CityEntity>> value = await cityUseCases.getCities();
     value.fold(
       (l) async {
-        // showToast(l.message!);
+        showToast(l.message!);
       },
       (r) {
         cities = r;
@@ -77,7 +78,7 @@ class CityProvider extends ChangeNotifier implements DropDownClass<CityEntity> {
       Provider.of<AreaProvider>(
         Constants.globalContext(),
         listen: false,
-      ).getArea(id: cityEntity!.id);
+      ).getArea(id: cityEntity!.id,fromAddress: false);
     }
     log(data!.id.toString());
     notifyListeners();

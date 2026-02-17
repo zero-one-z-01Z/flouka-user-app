@@ -5,7 +5,6 @@ import 'package:sizer/sizer.dart';
 import '../../../../core/config/app_styles.dart';
 import '../../../../core/widgets/draggable_image_button_widget.dart';
 import '../../../address/presentation/providers/address_provider.dart';
-import '../../../address/presentation/widgets/my_address_widget.dart';
 import '../../../language/presentation/provider/language_provider.dart';
 import '../../domain/entity/cart_entity.dart';
 import '../providers/cart_provider.dart';
@@ -42,7 +41,7 @@ class CheckoutView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const MyAddressWidget(),
+                    // const MyAddressWidget(),
                     SizedBox(height: 2.h),
                     CheckoutItemWidget(
                       cartEntity: cartProvider.data?[0] ?? CartEntity(),

@@ -1,11 +1,10 @@
-import 'package:flouka/core/config/app_color.dart';
-import 'package:flouka/core/config/app_styles.dart';
-import 'package:flouka/core/constants/app_lotties.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-import '../../../../../core/widgets/button_widget.dart';
-import '../../../../../core/widgets/loading_animation_widget.dart';
+import '../../../../core/constants/app_lotties.dart';
+import '../../../../core/widgets/button_widget.dart';
+import '../../../../core/widgets/empty_animation.dart';
+import '../../../../core/widgets/loading_animation_widget.dart';
 import '../../../language/presentation/provider/language_provider.dart';
 import '../providers/address_provider.dart';
 import '../providers/map_provider.dart';
@@ -17,37 +16,28 @@ class SavedAddressesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final addressProvider = context.watch<AddressProvider>();
-    final MapProvider mapProvider = Provider.of(context);
+    final mapProvider = context.watch<MapProvider>();
+
     return Scaffold(
-      appBar: AppBar(title: Text(LanguageProvider.translate('global', 'address'))),
+      appBar: AppBar(
+        title: Text(LanguageProvider.translate('global', 'saved_addresses')),
+      ),
 
       body: Builder(
         builder: (context) {
-          if (addressProvider.address.isEmpty) {
-            return const Center(child: LoadingAnimationWidget(gif: Lotties.loading));
+          if(addressProvider.address==null){
+            return const Center(child:  LoadingAnimationWidget(gif: Lotties.loading));
+          } else if (addressProvider.address!.isEmpty) {
+            return const Center(
+              child: EmptyAnimation(gif: Lotties.address, title: 'no_address'),
+            );
           }
-          return Column(
-            children: [
-              SizedBox(height: 2.h),
-              BorderButtonWidget(
-                onTap: () {
-                  mapProvider.goToMapPage();
-                },
-                text: "ADD NEW ADDRESS",
-                textStyle: TextStyleClass.normalStyle(
-                  color: AppColor.primaryColor,
-                ).copyWith(fontWeight: FontWeight.bold).copyWith(fontSize: 15.sp),
-              ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: addressProvider.address.length,
-                  itemBuilder: (context, index) {
-                    final address = addressProvider.address[index];
-                    return SavedAddressContainerWidget(address: address);
-                  },
-                ),
-              ),
-            ],
+          return ListView.builder(
+            itemCount: addressProvider.address!.length,
+            itemBuilder: (context, index) {
+              final address = addressProvider.address![index];
+              return SavedAddressContainerWidget(address: address);
+            },
           );
         },
       ),
@@ -58,7 +48,7 @@ class SavedAddressesPage extends StatelessWidget {
           onTap: () {
             mapProvider.goToMapPage();
           },
-          text: "apply",
+          text: LanguageProvider.translate('global', 'add_location'),
           height: 7.h,
           borderRadius: 12,
         ),

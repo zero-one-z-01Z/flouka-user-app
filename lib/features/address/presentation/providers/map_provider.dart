@@ -1,9 +1,10 @@
-import 'package:flouka/features/address/presentation/views/map_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import '../../../../../../core/helper_function/location.dart';
-import '../../../../../../core/helper_function/navigation.dart';
-import '../../../../../../core/models/pagination_class.dart';
+// import '../../../../../core/constants/constants.dart';
+import '../../../../../core/helper_function/location.dart';
+import '../../../../../core/helper_function/navigation.dart';
+import '../../../../../core/models/pagination_class.dart';
+import '../views/select_address_map_page.dart';
 
 class MapProvider with ChangeNotifier implements PaginationClass {
   ScrollController scrollController = ScrollController();
@@ -24,7 +25,6 @@ class MapProvider with ChangeNotifier implements PaginationClass {
   Future<void> initLocation() async {
     LatLng latLng = await determinePosition();
     _center = latLng;
-
     notifyListeners();
   }
 
@@ -42,7 +42,8 @@ class MapProvider with ChangeNotifier implements PaginationClass {
   }
 
   void goToMapPage() {
-    navP(const MapScreen());
+    navP(const SelectAddressMapPage());
+    initLocation();
   }
 
   void onMapCreated(GoogleMapController controller) {

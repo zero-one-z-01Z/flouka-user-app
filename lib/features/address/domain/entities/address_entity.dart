@@ -1,19 +1,20 @@
 import 'package:equatable/equatable.dart';
-import 'package:flouka/features/address/domain/entities/area_entity.dart';
+
+import 'area_entity.dart';
 
 class AddressEntity extends Equatable {
-  final int id;
-  final int userId;
-  final int areaId;
-  final int partNumber;
-  final String addressName;
-  final String streetName;
-  final double lat;
-  final double lng;
-  final String building;
-  final String apartment;
-  final String notes;
-  final String createdAt;
+  final int? id;
+  final int? userId;
+  final int? areaId;
+  final int? partNumber;
+  final String? addressName;
+  final String? streetName;
+  final double? lat;
+  final double? lng;
+  final String? building;
+  final String? apartment;
+  final String? notes;
+  final String? createdAt;
   final AreaEntity? areaEntity;
 
   const AddressEntity({

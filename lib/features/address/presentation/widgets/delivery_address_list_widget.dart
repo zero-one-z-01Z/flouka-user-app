@@ -13,21 +13,33 @@ class DeliveryAddressListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final AddressProvider addressProvider = Provider.of(context);
     final AddressDetailsProvider addressDetailsProvider = Provider.of(context);
-    return Column(
-      spacing: 1.h,
-      children: [
-        ...List.generate(addressProvider.address.length, (index) {
-          return DeliveryAddressCheckout(
-            addressEntity: addressProvider.address[index],
-          );
-        }),
-        ButtonWidget(
-          onTap: () {
-            addressDetailsProvider.goToAddressDetailsPage();
-          },
-          text: "add_address",
-        ),
-      ],
+    return Builder(
+      builder: (context) {
+
+        return Column(
+          spacing: 1.h,
+          children: [
+            Builder(builder: (context) {
+              if(addressProvider.address  ==null ||(addressProvider.address !=null &&addressProvider.address!.isEmpty )){
+                return const SizedBox();
+              }
+              return Column(spacing: 1.h,
+                children: List.generate(addressProvider.address!.length, (index) {
+                  return DeliveryAddressCheckout(
+                    addressEntity: addressProvider.address![index],
+                  );
+                }),
+              );
+            },),
+            ButtonWidget(
+              onTap: () {
+                addressDetailsProvider.goToAddressDetailsPage();
+              },
+              text: "add_address",
+            ),
+          ],
+        );
+      }
     );
   }
 }

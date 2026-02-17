@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:flouka/features/address/data/model/city_model.dart';
 import '../../domain/repository/city_repo.dart';
 import '../datasource/city_remote.dart';
 import '../model/area_model.dart';
+import '../model/city_model.dart';
 
 class CityRepoImpl implements CityRepo {
   final CityRemoteDataSource cityRemoteDataSource;

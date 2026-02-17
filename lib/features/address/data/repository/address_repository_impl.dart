@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:flouka/features/address/data/datasource/address_remote_data_source.dart';
-import 'package:flouka/features/address/domain/repository/address_repository.dart';
 import '../../domain/entities/address_entity.dart';
+import '../../domain/repository/address_repository.dart';
+import '../datasource/address_remote_data_source.dart';
 
 class AddressRepoImpl implements AddressRepo {
   final AddressRemoteDataSource addressRemoteDataSource;
@@ -17,7 +17,9 @@ class AddressRepoImpl implements AddressRepo {
   }
 
   @override
-  Future<Either<DioException, bool>> deleteAddress(Map<String, dynamic> data) async {
+  Future<Either<DioException, bool>> deleteAddress(
+    Map<String, dynamic> data,
+  ) async {
     return addressRemoteDataSource.deleteAddress(data);
   }
 

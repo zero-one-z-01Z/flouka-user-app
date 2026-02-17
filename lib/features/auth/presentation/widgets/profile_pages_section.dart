@@ -56,7 +56,10 @@ class ProfilePagesSection extends StatelessWidget {
         "subTitle": "added",
         "svg": AppImages.settingsAddress,
         "onTap": () {
-          final addressProvider = Provider.of<AddressProvider>(context);
+          final addressProvider = Provider.of<AddressProvider>(
+            Constants.globalContext(),
+            listen: false,
+          );
           addressProvider.goToAddressPage();
         },
       },

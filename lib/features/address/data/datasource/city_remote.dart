@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import '../../../../../core/helper_function/api.dart';
+import '../../../../core/helper_function/api.dart';
 import '../model/area_model.dart';
 import '../model/city_model.dart';
 

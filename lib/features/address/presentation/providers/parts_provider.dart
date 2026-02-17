@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'package:flouka/features/language/presentation/provider/language_provider.dart';
 import 'package:flutter/material.dart';
-import '../../../../../../core/models/drop_down_class.dart';
+import '../../../../../core/models/drop_down_class.dart';
+import '../../../language/presentation/provider/language_provider.dart';
 
 class PartsProvider extends ChangeNotifier implements DropDownClass<int> {
   List<int> parts = [];

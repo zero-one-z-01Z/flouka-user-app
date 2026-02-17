@@ -1,13 +1,11 @@
-import 'package:flouka/core/constants/app_images.dart';
-import 'package:flouka/core/widgets/svg_widget.dart';
-import 'package:flouka/features/address/presentation/providers/address_provider.dart';
-import 'package:flouka/features/language/presentation/provider/language_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-import '../../../../../core/config/app_color.dart';
-import '../../../../core/config/app_styles.dart';
+
+import '../../../../core/config/app_color.dart';
 import '../../domain/entities/address_entity.dart';
+import '../providers/address_details_provider.dart';
+import '../providers/address_provider.dart';
 
 class SavedAddressContainerWidget extends StatelessWidget {
   final AddressEntity address;
@@ -15,96 +13,52 @@ class SavedAddressContainerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AddressProvider addressProvider = Provider.of<AddressProvider>(context);
-    return GestureDetector(
-      onTap: () {
-        addressProvider.onSelectAddressEntity(address);
-      },
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
-        margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: const Color(0xfff1f1f1),
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: addressProvider.isAddressEntitySeleted(address)
-                ? AppColor.primaryColor
-                : Colors.transparent,
+    final addressProvider = context.read<AddressProvider>();
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      padding: const EdgeInsets.all(16),
+      decoration: const BoxDecoration(color: Color(0xffE7F3E5)),
+      child: Row(
+        children: [
+          InkWell(
+            onTap: (){
+              Provider.of<AddressDetailsProvider>(context,listen: false).goToAddressDetailsPage(addressEntity: address);
+            },
+            child: Container(
+              padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 1.w),
+              decoration: const BoxDecoration(color: Colors.black),
+              child: const Icon(Icons.edit, color: Colors.white),
+            ),
           ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  LanguageProvider.translate("global", "Home"),
-                  style: TextStyleClass.normalStyle(
-                    color: AppColor.primaryColor,
-                  ).copyWith(fontWeight: FontWeight.bold),
-                ),
-                const SvgWidget(svg: AppImages.addressEdit),
-              ],
+          SizedBox(width: 2.w),
+          InkWell(
+            onTap: () => addressProvider.deleteAddress(address.id!),
+            child: Container(
+              padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 1.w),
+              decoration: const BoxDecoration(color: Colors.red),
+              child: const Icon(Icons.delete, color: Colors.white),
             ),
-            const Divider(thickness: 1.5, color: Color(0xffe3e3e3)),
-
-            Row(
-              spacing: 25.w,
-              children: [
-                Text(
-                  "Name",
-                  style: TextStyleClass.normalStyle(
-                    color: const Color(0xff595959),
-                  ).copyWith(fontSize: 17.sp),
+          ),
+          SizedBox(width: 2.w),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                address.addressName ?? "Address Name",
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  color: AppColor.primaryColor,
                 ),
-                Expanded(
-                  child: Text(
-                    "3omran ba4a",
-                    style: TextStyleClass.normalStyle().copyWith(fontSize: 15.sp),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 1.h),
-            Row(
-              spacing: 21.w,
-              children: [
-                Text(
-                  LanguageProvider.translate("global", "Address"),
-                  style: TextStyleClass.normalStyle(
-                    color: const Color(0xff595959),
-                  ).copyWith(fontSize: 17.sp),
-                ),
-                Expanded(
-                  child: Text(
-                    "3omran ba4a",
-                    style: TextStyleClass.normalStyle().copyWith(fontSize: 15.sp),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 1.h),
-            Row(
-              spacing: 7.w,
-              children: [
-                Text(
-                  LanguageProvider.translate("global", "Mobile number"),
-                  style: TextStyleClass.normalStyle(
-                    color: const Color(0xff595959),
-                  ).copyWith(fontSize: 17.sp),
-                ),
-                Expanded(
-                  child: Text(
-                    "01229804760",
-                    style: TextStyleClass.normalStyle().copyWith(fontSize: 15.sp),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
+              ),
+              Text(
+                address.streetName ?? "Streat name ",
+                style: TextStyle(color: Colors.grey[600]),
+              ),
+            ],
+          ),
+          const Spacer(),
+          Icon(Icons.my_location, color: AppColor.primaryColor),
+        ],
       ),
     );
   }

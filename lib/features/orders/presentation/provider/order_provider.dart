@@ -173,7 +173,7 @@ final fakeOrder = OrderEntity(
   address: AddressEntity(
     id: 55,
     userId: 55,
-    areaEntity: AreaEntity(cityId: 655, partNumber: 20, id: 55, name: 'asdasd'),
+    areaEntity: AreaEntity(cityId: 655, id: 55, name: 'asdasd'),
     areaId: 55,
     partNumber: 55,
     addressName: 'asdasd',

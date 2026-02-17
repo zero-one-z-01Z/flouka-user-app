@@ -1,6 +1,8 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import '../../../../../core/helper_function/api.dart';
+import '../../../../core/helper_function/api.dart';
 import '../model/address_model.dart';
 import '../model/city_model.dart';
 
@@ -41,6 +43,7 @@ class AddressRemoteDataSource {
 
   Future<Either<DioException, bool>> deleteAddress(Map<String, dynamic> data) async {
     var response = await apiHandel.post('user/delete_address', data);
+    log(response.toString());
     return response.fold((l) => Left(l), (r) {
       return const Right(true);
     });

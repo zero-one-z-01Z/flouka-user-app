@@ -3,11 +3,11 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flouka/core/helper_function/loading.dart';
-import 'package:flouka/core/helper_function/navigation.dart';
-import '../../../../../../core/constants/constants.dart';
-import '../../../../../../core/dialog/snack_bar.dart';
-import '../../../../../../core/models/drop_down_class.dart';
+import '../../../../../core/constants/constants.dart';
+import '../../../../../core/dialog/snack_bar.dart';
+import '../../../../../core/models/drop_down_class.dart';
+import '../../../../core/helper_function/loading.dart';
+import '../../../../core/helper_function/navigation.dart';
 import '../../../language/presentation/provider/language_provider.dart';
 import '../../domain/entities/area_entity.dart';
 import '../../domain/usecase/city_usecase.dart';
@@ -41,13 +41,13 @@ class AreaProvider extends ChangeNotifier implements DropDownClass<AreaEntity> {
     notifyListeners();
   }
 
-  Future getArea({required int id}) async {
+  Future getArea({required int id, required bool fromAddress}) async {
     Map<String, dynamic> data = {};
     data['city_id'] = id;
     areas.clear();
-    loading();
+    if (!fromAddress) loading();
     Either<DioException, List<AreaEntity>> value = await areaUseCases.getArea(data);
-    navPop();
+    if (!fromAddress) navPop();
     value.fold(
       (l) async {
         showToast(l.message!);
@@ -91,7 +91,7 @@ class AreaProvider extends ChangeNotifier implements DropDownClass<AreaEntity> {
       Provider.of<PartsProvider>(
         Constants.globalContext(),
         listen: false,
-      ).getParts(numbers: areaEntity!.partNumber);
+      ).getParts(numbers: areaEntity!.id);
     }
     notifyListeners();
   }

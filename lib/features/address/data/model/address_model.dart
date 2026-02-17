@@ -1,8 +1,6 @@
-
-import 'package:flouka/features/address/data/model/area_model.dart';
-
-import '../../../../../core/helper_function/convert.dart';
+import '../../../../core/helper_function/convert.dart';
 import '../../domain/entities/address_entity.dart';
+import 'area_model.dart';
 
 class AddressModel extends AddressEntity {
   const AddressModel({
@@ -28,8 +26,8 @@ class AddressModel extends AddressEntity {
     return AddressModel(
       id: data['id'],
       userId: data['user_id'],
-      areaId: data['area_id'],
-      partNumber: data['block_number'],
+      areaId: data['area_id'] ?? 0,
+      partNumber: data['block_number'] ?? 0,
       areaEntity: areaModel,
       addressName: data['address_name'],
       streetName: data['street_name'],

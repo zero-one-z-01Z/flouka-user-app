@@ -5,7 +5,6 @@ class AreaModel extends AreaEntity {
     required super.id,
     required super.name,
     required super.cityId,
-    required super.partNumber,
   });
 
   factory AreaModel.fromJson(Map data) {
@@ -13,7 +12,6 @@ class AreaModel extends AreaEntity {
       id: data['id'],
       name: data['name'],
       cityId: data['city_id'],
-      partNumber: data['block_number'],
     );
   }
 }
