@@ -155,7 +155,8 @@ class ApiHandel {
         data: FormData.fromMap(data),
         cancelToken: cancelToken,
       );
-      if (response.statusCode == 200 &&
+      if (response.statusCode == 200 ||
+          response.statusCode == 201 ||
           ((!response.data.containsKey('code')) || response.data['code'] == 200)) {
         return Right(response);
       }

@@ -1,24 +1,23 @@
-import 'dart:developer';
-
-import 'package:flouka/core/constants/app_images.dart';
-import 'package:flouka/core/constants/app_lotties.dart';
-import 'package:flouka/features/navbar/presentation/views/nav_bar_view.dart';
+import 'package:flouka/features/cart/presentation/providers/coupon_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flouka/core/constants/constants.dart';
-import 'package:flouka/core/dialog/new_success_dialog.dart';
-import 'package:flouka/core/models/text_field_model.dart';
-import 'package:flouka/features/cart/domain/entity/coupon_entity.dart';
-import 'package:flouka/features/cart/presentation/providers/coupon_provider.dart';
+import '../../../../core/constants/app_images.dart';
+import '../../../../core/constants/app_lotties.dart';
+import '../../../../core/constants/constants.dart';
+import '../../../../core/dialog/new_success_dialog.dart';
 import '../../../../core/dialog/snack_bar.dart';
+import '../../../../core/helper_function/loading.dart';
 import '../../../../core/helper_function/navigation.dart';
+import '../../../../core/models/text_field_model.dart';
 import '../../../../core/widgets/payment_online_page.dart';
+import '../../../address/presentation/providers/address_provider.dart';
+import '../../../auth/presentation/providers/auth_provider.dart';
 import '../../../language/presentation/provider/language_provider.dart';
-// import '../../../orders/presentation/views/orders_view.dart';
-import '../../../navbar/presentation/provider/nav_bar_provider.dart';
 import '../../../orders/domain/use_case/order_use_case.dart';
 import '../../../orders/presentation/provider/order_provider.dart';
+import '../../../settings/presentation/provider/settings_provider.dart';
 import '../../../wallet/presentation/provider/wallet_provider.dart';
+import '../../domain/entity/coupon_entity.dart';
 import '../../domain/entity/payment_method_entity.dart';
 import '../views/checkout_view.dart';
 import 'cart_provider.dart';
@@ -27,82 +26,86 @@ class CheckoutProvider extends ChangeNotifier {
   final OrderUseCase orderUseCase;
   CheckoutProvider(this.orderUseCase);
 
-  late num tax = 15;
+  num subtotal() {
+    num sub = 0;
+    for (var element in cart.data ?? []) {
+      sub += element.subTotal;
+    }
+    return sub;
+  }
 
-  late num delivery = 15;
+  num tax() {
+    return (10 / 100) * subtotal();
+  }
 
-  late num cartPrice = 0;
+  num fees() {
+    return (10 / 100) * subtotal();
+  }
 
-  late num subTotalTax = 0;
+  num total() {
+    return subtotal() + tax() + fees();
+  }
 
   CouponEntity? couponEntity;
 
-  late num total = 0;
-
-  Future createOrder() async {
-    NavBarProvider navBarProvider = Provider.of<NavBarProvider>(
-      Constants.globalContext(),
-      listen: false,
-    );
-    OrderProvider ordersProvider = Provider.of<OrderProvider>(
-      Constants.globalContext(),
-      listen: false,
-    );
-    // AddressProvider addressProvider = Provider.of<AddressProvider>(
-    //   Constants.globalContext(),
-    //   listen: false,
-    // );
-    final couponProvider = Provider.of<CouponProvider>(
-      Constants.globalContext(),
-      listen: false,
-    );
+  OrderProvider ordersProvider = Provider.of<OrderProvider>(
+    Constants.globalContext(),
+    listen: false,
+  );
+  AddressProvider addressProvider = Provider.of<AddressProvider>(
+    Constants.globalContext(),
+    listen: false,
+  );
+  final couponProvider = Provider.of<CouponProvider>(
+    Constants.globalContext(),
+    listen: false,
+  );
+  Future<int?> createOrder() async {
+    int? orderId;
     Map<String, dynamic> dataToUse = {};
     dataToUse['address_id'] = 1;
-    dataToUse['total'] = total;
-    dataToUse['sub_total'] = cartPrice;
-    log(cartPrice.toString());
+    dataToUse['total'] = total();
+    dataToUse['sub_total'] = subtotal();
+    dataToUse['fees'] = fees();
+    dataToUse['tax'] = tax();
+    // log(cartPrice.toString());
     // dataToUse['delivery'] = delivery;
     // dataToUse["coupon"] = couponProvider.coupon.text;
     // dataToUse["discount"] = (couponProvider.calcCoupon(subTotalTax) ?? 0);
-    dataToUse["fees"] = 15;
     dataToUse["payment_method"] = selectedPaymentMethod.toAPI;
-    dataToUse['tax'] = tax;
+    // dataToUse['tax'] = tax;
+    loading();
     final result = await orderUseCase.createOrder(dataToUse);
+    navPop();
     result.fold(
       (l) {
         showToast(l.message!);
+        return null;
       },
       (r) {
-        WalletProvider walletProvider = Provider.of(
-          Constants.globalContext(),
-          listen: false,
-        );
-        walletProvider.decreaseWallet(total);
-        newSuccessDialog(lottie: Lotties.loading);
-        notifyListeners();
-        navPARU(const NavBarView());
-        navBarProvider.changeIndex(3);
-        ordersProvider.goToPage();
-        cart.clear();
+        if (selectedPaymentMethod.toAPI == 'wallet') {
+          WalletProvider walletProvider = Provider.of(
+            Constants.globalContext(),
+            listen: false,
+          );
+          walletProvider.decreaseWallet(total());
+        }
+        if (selectedPaymentMethod.toAPI != 'online') {
+          newSuccessDialog(lottie: Lotties.loading);
+          notifyListeners();
+          navPU();
+          cart.clear();
+        }
+        orderId = r;
+        return r;
       },
     );
     notifyListeners();
+    return orderId;
   }
 
   void goToPage([Map<String, dynamic>? inputs]) async {
-    final couponProvider = Provider.of<CouponProvider>(
-      Constants.globalContext(),
-      listen: false,
-    );
-    // delivery = settings.settingsEntity!.delivery;
-    cartPrice = cart.caluclateTotal();
-    // tax = (settings.settingsEntity!.tax / 100) * cartPrice;
-    subTotalTax = cartPrice + tax;
-    total = cartPrice + tax - (couponProvider.calcCoupon(subTotalTax) ?? 0);
-
     navP(const CheckoutView());
-    // await refresh();
-    notifyListeners();
   }
 
   List<TextFieldModel> coupon = [
@@ -142,29 +145,43 @@ class CheckoutProvider extends ChangeNotifier {
     return selectedPaymentMethod.paymentMethod == paymentMethodEntity.paymentMethod;
   }
 
-  // final settings = Provider.of<SettingsProvider>(
-  //   Constants.globalContext(),
-  //   listen: false,
-  // );
+  final settings = Provider.of<SettingsProvider>(
+    Constants.globalContext(),
+    listen: false,
+  );
   final cart = Provider.of<CartProvider>(Constants.globalContext(), listen: false);
 
   void makeOrder() async {
-    if (selectedPaymentMethod.toAPI == "online") {
-      navP(
-        PaymentOnlinePage(total: total, type: 'order'),
-        then: (val) {
-          if (val == 'paid') {
-            createOrder();
-          } else if (val == 'filed') {
-            showToast(LanguageProvider.translate('error', 'error'));
-          }
-        },
-      );
+    if (['online'].contains(selectedPaymentMethod.toAPI)) {
+      createOrder().then((value) {
+        print('errrrrrrrrrrrrrr${value}');
+        print('errrrrrrrrrrrrrr${total()}');
+
+        navP(
+          PaymentOnlinePage(total: total(), type: "order_$value"),
+          then: (val) {
+            if (val == 'paid') {
+              navPU();
+              cart.clear();
+            } else if (val == 'filed') {
+              showToast(LanguageProvider.translate('error', 'error'));
+            }
+            navPU();
+            cart.clear();
+          },
+        );
+      });
     } else if (selectedPaymentMethod.toAPI == 'wallet') {
+      print('aaaaaaaaaaa${total()}');
+      AuthProvider authProvider = Provider.of(
+        Constants.globalContext(),
+        listen: false,
+      );
+      print('aaaaaaaaaaa${authProvider.userEntity?.wallet}');
       bool check = await Provider.of<WalletProvider>(
         Constants.globalContext(),
         listen: false,
-      ).checkWallet(moneyAmount: total);
+      ).checkWallet(moneyAmount: total());
       if (!check) {
         return;
       }
@@ -174,3 +191,21 @@ class CheckoutProvider extends ChangeNotifier {
     }
   }
 }
+
+// List<PaymentMethodEntity> paymentMethods = [
+//   PaymentMethodEntity(
+//     image: AppImages.visa,
+//     paymentMethod: "Debit/CreditCards",
+//     toAPI: "online",
+//   ),
+//   PaymentMethodEntity(
+//     image: AppImages.cash,
+//     paymentMethod: "Cach On Delivery",
+//     toAPI: "cash",
+//   ),
+//   PaymentMethodEntity(
+//     image: AppImages.wallet,
+//     paymentMethod: "Wallet App",
+//     toAPI: "wallet",
+//   ),
+// ];
