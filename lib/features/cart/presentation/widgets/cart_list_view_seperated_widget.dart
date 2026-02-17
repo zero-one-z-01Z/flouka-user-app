@@ -17,13 +17,17 @@ class CartListViewSeperatedWidget extends StatelessWidget {
     return Builder(
       builder: (context) {
         if (cartProvider.data == null) {
-          return const Center(child: LoadingAnimationWidget(gif: Lotties.loading));
+          return const Center(
+            child: Center(child: LoadingAnimationWidget(gif: Lotties.loading)),
+          );
         }
         if (cartProvider.data!.isEmpty) {
-          return EmptyAnimation(
-            title: LanguageProvider.translate("global", "cart_is_empty"),
+          return Center(
+            child: EmptyAnimation(
+              title: LanguageProvider.translate("global", "cart_is_empty"),
 
-            gif: Lotties.cartAnimation,
+              gif: Lotties.cartAnimation,
+            ),
           );
         }
         return ListView.separated(

@@ -17,15 +17,10 @@ class CartRemoteDataSource {
     });
   }
 
-  Future<Either<DioException, bool>> increaseCart(Map<String, dynamic> data) async {
-    var response = await ApiHandel.getInstance.post('user/increase_cart', data);
-    return response.fold((l) => Left(l), (r) {
-      return const Right(true);
-    });
-  }
-
-  Future<Either<DioException, bool>> decreaseCart(Map<String, dynamic> data) async {
-    var response = await ApiHandel.getInstance.post('user/decrease_cart', data);
+  Future<Either<DioException, bool>> decreaseAndIncreaseCart(
+    Map<String, dynamic> data,
+  ) async {
+    var response = await ApiHandel.getInstance.post('user/carts/quantity', data);
     return response.fold((l) => Left(l), (r) {
       return const Right(true);
     });

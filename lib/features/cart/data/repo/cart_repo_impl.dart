@@ -17,16 +17,7 @@ class CartRepoImpl implements CartRepo {
   }
 
   @override
-  Future<Either<DioException, bool>> decreaseCart(
-    Map<String, dynamic> data,
-  ) async {
-    return await cartRemoteDataSource.decreaseCart(data);
-  }
-
-  @override
-  Future<Either<DioException, String>> deleteCart(
-    Map<String, dynamic> data,
-  ) async {
+  Future<Either<DioException, String>> deleteCart(Map<String, dynamic> data) async {
     return await cartRemoteDataSource.deleteCart(data);
   }
 
@@ -43,10 +34,10 @@ class CartRepoImpl implements CartRepo {
   }
 
   @override
-  Future<Either<DioException, bool>> increaseCart(
+  Future<Either<DioException, bool>> decreaseAndIncreaseCart(
     Map<String, dynamic> data,
   ) async {
-    return await cartRemoteDataSource.increaseCart(data);
+    return await cartRemoteDataSource.decreaseAndIncreaseCart(data);
   }
 
   @override

@@ -86,16 +86,18 @@ class ApiHandel {
         queryParameters: data,
         cancelToken: cancelToken,
       );
-      if (response.statusCode == 200 && response.data['code'] == 200) {
+      if (response.statusCode == 200) {
         return Right(response);
       }
-      debugPrint('error1');
+      log('error1');
+      log(path.toString());
       return Left(dioException(response));
     } on DioException catch (e) {
       log(e.response?.data.toString() ?? "");
       return Left(e.response == null ? e : dioException(e.response!));
     } catch (e) {
-      debugPrint('error3');
+      log('error3');
+      log(path.toString());
       return Left(
         DioException(
           requestOptions: RequestOptions(baseUrl: Constants.domain, path: path),
@@ -117,16 +119,19 @@ class ApiHandel {
         queryParameters: data,
         cancelToken: cancelToken,
       );
-      if (response.statusCode == 200 && response.data['code'] == 200) {
+      if (response.statusCode == 200) {
         return Right(response);
       }
-      debugPrint('error1');
+      log('error1');
+      log(path.toString());
       return Left(dioException(response));
     } on DioException catch (e) {
       log(e.response?.data.toString() ?? "");
       return Left(e.response == null ? e : dioException(e.response!));
     } catch (e) {
-      debugPrint('error3');
+      log('error3');
+      log(path.toString());
+
       return Left(
         DioException(
           requestOptions: RequestOptions(baseUrl: Constants.domain, path: path),
@@ -135,7 +140,6 @@ class ApiHandel {
       );
     }
   }
-
 
   Future<Either<DioException, Response>> post(
     path,
@@ -155,17 +159,18 @@ class ApiHandel {
           ((!response.data.containsKey('code')) || response.data['code'] == 200)) {
         return Right(response);
       }
-      debugPrint('error1');
+      log('error1');
+      log(path.toString());
       return Left(dioException(response));
     } on DioException catch (e) {
       log(e.response?.data.toString() ?? "");
       // print(" ON $e");
-      debugPrint('error2');
+      log('error2');
       return Left(e.response == null ? e : dioException(e.response!));
     } catch (e, line) {
-      debugPrint(line.toString());
-      debugPrint('error3');
-      debugPrint(e.toString());
+      log(line.toString());
+      log('error3');
+      log(e.toString());
       // print("dioException ON ${e}");
 
       return Left(
@@ -176,8 +181,6 @@ class ApiHandel {
       );
     }
   }
-
-
 
   DioException dioException(Response response) {
     String msg = 'Server Error';

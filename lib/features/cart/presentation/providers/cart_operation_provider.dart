@@ -10,7 +10,7 @@ extension CartOperations on CartProvider {
     Map<String, dynamic> dataToUse = {};
     dataToUse['id'] = cartId;
     dataToUse['action'] = 'increase';
-    final result = await cartUseCase.increaseCart(dataToUse);
+    final result = await cartUseCase.decreaseAndIncreaseCart(dataToUse);
     result.fold(
       (l) {
         showToast(l.message!);
@@ -29,7 +29,7 @@ extension CartOperations on CartProvider {
     dataToUse['id'] = cartId;
     dataToUse['action'] = 'decrease';
 
-    final result = await cartUseCase.decreaseCart(dataToUse);
+    final result = await cartUseCase.decreaseAndIncreaseCart(dataToUse);
     result.fold(
       (l) {
         showToast(l.message!);
