@@ -29,7 +29,7 @@ class CheckoutProvider extends ChangeNotifier {
 
   late num tax = 15;
 
-  late num delivery = 15;
+  // late num delivery = 15;
 
   late num cartPrice = 0;
 
@@ -37,7 +37,7 @@ class CheckoutProvider extends ChangeNotifier {
 
   CouponEntity? couponEntity;
 
-  late num total = 222;
+  late num total = 0;
 
   Future createOrder() async {
     NavBarProvider navBarProvider = Provider.of<NavBarProvider>(
@@ -64,7 +64,7 @@ class CheckoutProvider extends ChangeNotifier {
     // dataToUse['delivery'] = delivery;
     // dataToUse["coupon"] = couponProvider.coupon.text;
     // dataToUse["discount"] = (couponProvider.calcCoupon(subTotalTax) ?? 0);
-    dataToUse["fees"] = 0;
+    dataToUse["fees"] = 15;
     dataToUse["payment_method"] = selectedPaymentMethod.toAPI;
     dataToUse['tax'] = tax;
     final result = await orderUseCase.createOrder(dataToUse);
@@ -98,8 +98,7 @@ class CheckoutProvider extends ChangeNotifier {
     cartPrice = cart.caluclateTotal();
     // tax = (settings.settingsEntity!.tax / 100) * cartPrice;
     subTotalTax = cartPrice + tax;
-    total =
-        cartPrice + delivery + tax - (couponProvider.calcCoupon(subTotalTax) ?? 0);
+    total = cartPrice + tax - (couponProvider.calcCoupon(subTotalTax) ?? 0);
 
     navP(const CheckoutView());
     // await refresh();

@@ -78,7 +78,7 @@ class CheckoutView extends StatelessWidget {
             ),
             DraggableImageButton(
               onComplete: () {
-                orderProvider.goToPage();
+                checkoutProvider.createOrder();
               },
             ),
             SizedBox(height: 2.h),
