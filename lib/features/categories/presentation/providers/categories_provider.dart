@@ -1,4 +1,3 @@
-import 'package:flouka/core/constants/app_images.dart';
 import 'package:flutter/material.dart';
 import '../../domain/entity/category_entity.dart';
 import '../../domain/usecases/category_usecase.dart';
@@ -13,13 +12,7 @@ class CategoryProvider extends ChangeNotifier {
   List<CategoryEntity> get categories => _categories;
   CategoryEntity? get selectedCategory => _selectedCategory;
 
-  List<CategoryEntity> homeCategories = [
-    CategoryEntity(id: 1, image: AppImages.offer, name: 'offers_products'),
-    CategoryEntity(id: 2, image: AppImages.bestSeller, name: 'best_sellers'),
-    CategoryEntity(id: 3, image: AppImages.categories, name: 'categories'),
-    CategoryEntity(id: 4, image: AppImages.exploreCategories, name: 'explore'),
-  ];
-
+ 
   Future<void> getCategories() async {
     notifyListeners();
 

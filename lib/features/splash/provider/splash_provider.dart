@@ -30,11 +30,11 @@ class SplashProvider extends ChangeNotifier {
       //   Constants.globalContext(),
       //   listen: false,
       // ).getBanners(),
-      // Provider.of<CategoryProvider>(
-      //   Constants.globalContext(),
-      //   listen: false,
-      // ).getCategories(),
-      Provider.of<PopularCategoryProvider>(
+      Provider.of<CategoryProvider>(
+        Constants.globalContext(),
+        listen: false,
+      ).getCategories(),
+      Provider.of<HomeCategoreyProvider>(
         Constants.globalContext(),
         listen: false,
       ).getPopularCategories(),

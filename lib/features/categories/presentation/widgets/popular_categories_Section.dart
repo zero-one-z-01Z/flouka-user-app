@@ -41,7 +41,7 @@ class PopularCategoriesSection extends StatelessWidget {
         SizedBox(height: 2.h),
         SizedBox(
           height: 13.h,
-          child: Consumer<PopularCategoryProvider>(
+          child: Consumer<HomeCategoreyProvider>(
             builder: (context, provider, _) {
               final List<CategoryEntity> popular = provider.popularCategories;
 

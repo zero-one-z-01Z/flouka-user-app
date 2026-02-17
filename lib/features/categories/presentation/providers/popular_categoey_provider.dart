@@ -1,15 +1,22 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import '../../../../core/constants/app_images.dart';
 import '../../../../core/dialog/snack_bar.dart';
 import '../../domain/entity/category_entity.dart';
 import '../../domain/usecases/category_usecase.dart';
 
-class PopularCategoryProvider extends ChangeNotifier {
+class HomeCategoreyProvider extends ChangeNotifier {
   final CategoryUsecase categoryUseCases;
 
-  PopularCategoryProvider(this.categoryUseCases);
+  HomeCategoreyProvider(this.categoryUseCases);
   final List<CategoryEntity> _popularCategories = [];
+  List<CategoryEntity> homeCategories = [
+    CategoryEntity(id: 1, image: AppImages.offer, name: 'offers_products'),
+    CategoryEntity(id: 2, image: AppImages.bestSeller, name: 'best_sellers'),
+    CategoryEntity(id: 3, image: AppImages.categories, name: 'categories'),
+    CategoryEntity(id: 4, image: AppImages.exploreCategories, name: 'explore'),
+  ];
 
   List<CategoryEntity> get popularCategories => _popularCategories;
 
