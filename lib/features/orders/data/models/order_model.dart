@@ -1,58 +1,47 @@
 import '../../../../core/helper_function/convert.dart';
-import '../../../address/data/model/address_model.dart';
+import '../../../products/data/models/product_model.dart';
 import '../../domain/entity/order_entity.dart';
-import 'order_details_model.dart';
 
 class OrderModel extends OrderEntity {
   OrderModel({
-    required super.orderDetails,
-    required super.delivery,
+    required super.product,
     required super.id,
-    required super.subTotal,
-    required super.tax,
     required super.createdAt,
-    required super.discount,
-    required super.total,
+    required super.price,
     required super.status,
-    required super.date,
-    required super.phone,
-    required super.name,
-    required super.address,
   });
 
   factory OrderModel.fromJson(Map<String, dynamic> json) {
     DateTime? date;
-    AddressModel? address;
-    List<OrderDetailsModel> orderDetails = [];
-
-    if (json.containsKey('products') && json['products'] != null) {
-      for (var i in json['products']) {
-        orderDetails.add(OrderDetailsModel.fromJson(i));
-      }
-    }
 
     if (json.containsKey('date') && json['date'] != null) {
       date = DateTime.parse(json['date']);
     }
 
-    if (json.containsKey('address') && json['address'] != null) {
-      address = AddressModel.fromJson(json['address']);
-    }
+    // log(json['items'][0]['product']['name']);
 
     return OrderModel(
       id: json['id'],
-      subTotal: json['sub_total'],
-      tax: json['tax'],
-      orderDetails: orderDetails,
-      discount: json['discount'],
-      total: json['total'],
-      delivery: json['delivery'],
+      product: ProductModel.fromJson(json["product"]),
+      price: convertDataToNum(json['price']),
       status: OrderStatus.getFromString(json['status']),
       createdAt: convertStringToDateTime(json['created_at']),
-      date: date,
-      phone: json['phone'],
-      name: json['name'],
-      address: address,
     );
   }
 }
+// {
+//           "id": 3,
+//           "price": "300.00",
+//           "status": "pending",
+//           "created_at": "يوم الثلاثاء 17 ,5:44 م",
+//           "product": {
+//               "id": 1,
+//               "title": "هدية عيد ميلاد",
+//               "description": "test description ar",
+//               "price": "300.00",
+//               "offer_price": "340.00",
+//               "avg_rating": "0.00",
+//               "image": "https://floka.devalm.com/uploads/products/712d41e1-36d4-4890-88e9-3fdb34241bb9.png",
+//               "is_favorite": false
+//           }
+//       },

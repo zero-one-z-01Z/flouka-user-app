@@ -21,30 +21,30 @@ class OrderPriceDetailsWidget extends StatelessWidget {
         children: [
           PaymentPriceWidget(
             title: LanguageProvider.translate("global", "price"),
-            price: orderDetailsProvider.data!.subTotal.toString(),
+            price: orderDetailsProvider.data!.price.toString(),
           ),
 
           Divider(color: Colors.grey.shade400, endIndent: 32, indent: 32),
           PaymentPriceWidget(
             title: LanguageProvider.translate("global", "delivery"),
-            price: orderDetailsProvider.data!.delivery.toString(),
+            price: orderDetailsProvider.data!.price.toString(),
           ),
           Divider(color: Colors.grey.shade400, endIndent: 32, indent: 32),
           PaymentPriceWidget(
             title: LanguageProvider.translate("global", "tax"),
-            price: orderDetailsProvider.data!.tax.toString(),
+            price: orderDetailsProvider.data!.price.toString(),
           ),
           Divider(color: Colors.grey.shade400, endIndent: 32, indent: 32),
-          if (orderDetailsProvider.data!.discount != 0) ...[
+          if (orderDetailsProvider.data!.price != 0) ...[
             PaymentPriceWidget(
               title: LanguageProvider.translate("global", "discount"),
-              price: orderDetailsProvider.data!.discount.toString(),
+              price: orderDetailsProvider.data!.price.toString(),
             ),
             Divider(color: Colors.grey.shade400, endIndent: 32, indent: 32),
           ],
           PaymentPriceWidget(
             title: LanguageProvider.translate("global", "total"),
-            price: orderDetailsProvider.data!.total.toString(),
+            price: orderDetailsProvider.data!.price.toString(),
             isGreen: true,
           ),
         ],

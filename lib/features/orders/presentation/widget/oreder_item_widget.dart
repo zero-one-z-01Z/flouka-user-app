@@ -51,7 +51,7 @@ class OrderItemWidget extends StatelessWidget {
               children: [
                 CachedNetworkImage(
                   imageUrl:
-                      orderEntity.orderDetails.first.productEntity?.image ?? " ",
+                      orderEntity.product.image ?? " ",
                   errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
                 SizedBox(width: 10.w),
@@ -60,7 +60,7 @@ class OrderItemWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        orderEntity.orderDetails.first.productEntity?.title ?? "ss ",
+                        orderEntity.product.title ?? "ss ",
                         style: TextStyleClass.smallStyle(
                           color: const Color(0xff333542),
                         ),

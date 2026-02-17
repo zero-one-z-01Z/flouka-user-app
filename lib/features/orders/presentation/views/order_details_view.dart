@@ -11,7 +11,6 @@ import '../../domain/entity/order_entity.dart';
 import '../provider/order_details_provider.dart';
 import '../provider/order_provider.dart';
 import '../widget/custom_order_payment_way_widget.dart';
-import '../widget/order_details_item_widget.dart';
 import '../widget/order_info_widget.dart';
 import '../widget/order_status_widget.dart';
 // import '../widget/order_price_item_widget.dart';
@@ -88,10 +87,10 @@ class OrderDetailsView extends StatelessWidget {
                   //     fontWeight: FontWeight.bold,
                   //   ),
                   // ),
-                  OrderDetailsItemWidget(
-                    orderDetailsEntity:
-                        orderDetailsProvider.data!.orderDetails.first,
-                  ),
+                  // OrderDetailsItemWidget(
+                  //   orderDetailsEntity:
+                  //       orderDetailsProvider.data!.orderDetails.first,
+                  // ),
                   const CustomOrderPaymentWayWidget(),
                   SizedBox(height: 1.3.h),
                   const PriceDetailesList(isBold: true),
