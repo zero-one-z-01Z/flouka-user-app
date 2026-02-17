@@ -12,7 +12,9 @@ class CustomOTPField extends StatelessWidget {
     final OtpProvider otpProvider = Provider.of(context);
     return Directionality(
       textDirection: TextDirection.ltr,
+
       child: PinCodeTextField(
+        keyboardType: TextInputType.number,
         appContext: context,
         length: 4,
         obscureText: false,
@@ -21,9 +23,7 @@ class CustomOTPField extends StatelessWidget {
         enablePinAutofill: true,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         separatorBuilder: (context, position) => Column(
-          children: [
-            Container(width: 10, height: 80, color: Colors.grey.shade200),
-          ],
+          children: [Container(width: 10, height: 80, color: Colors.grey.shade200)],
         ),
         pinTheme: PinTheme(
           borderRadius: BorderRadius.circular(12),

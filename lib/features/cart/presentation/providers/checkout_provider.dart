@@ -29,7 +29,7 @@ class CheckoutProvider extends ChangeNotifier {
 
   late num tax = 15;
 
-  // late num delivery = 15;
+  late num delivery = 15;
 
   late num cartPrice = 0;
 

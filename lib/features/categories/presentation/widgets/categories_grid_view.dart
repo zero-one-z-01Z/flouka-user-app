@@ -80,8 +80,7 @@ class CategoriesGridView extends StatelessWidget {
             ),
           );
 
-          if (selectedRow == row &&
-              subcategoryProvider.subcategories.isNotEmpty) {
+          if (selectedRow == row && subcategoryProvider.subcategories.isNotEmpty) {
             // Small gap between categories row and its subcategories
             rows.add(const SubcategoriesListView());
 

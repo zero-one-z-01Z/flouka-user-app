@@ -93,7 +93,12 @@ class CartItemWidget extends StatelessWidget {
 
             const CustomIconWidget(svg: AppImages.heart),
             SizedBox(width: 2.w),
-            const CustomIconWidget(svg: AppImages.trash),
+            GestureDetector(
+              onTap: () {
+                cartProvider.deleteCartItem(cartEntity.id!);
+              },
+              child: const CustomIconWidget(svg: AppImages.trash),
+            ),
           ],
         ),
       ],

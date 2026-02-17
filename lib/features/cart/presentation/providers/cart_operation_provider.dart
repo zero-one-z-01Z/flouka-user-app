@@ -1,3 +1,5 @@
+import 'package:flouka/core/helper_function/loading.dart';
+import 'package:flouka/core/helper_function/navigation.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/dialog/snack_bar.dart';
@@ -78,7 +80,9 @@ extension CartOperations on CartProvider {
     } else {
       Map<String, dynamic> dataToUse = {};
       dataToUse['product_id'] = productId;
+      loading();
       final result = await cartUseCase.addToCart(dataToUse);
+      navPop();
       result.fold(
         (l) {
           showToast(l.message!);

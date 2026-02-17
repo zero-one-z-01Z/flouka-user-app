@@ -29,14 +29,14 @@ class CartRemoteDataSource {
   Future<Either<DioException, bool>> deleteCartItem(
     Map<String, dynamic> data,
   ) async {
-    var response = await ApiHandel.getInstance.post('user/delete_cart_item', data);
+    var response = await ApiHandel.getInstance.delete('user/carts', data);
     return response.fold((l) => Left(l), (r) {
       return const Right(true);
     });
   }
 
   Future<Either<DioException, String>> deleteCart(Map<String, dynamic> data) async {
-    var response = await ApiHandel.getInstance.post('user/delete_cart', data);
+    var response = await ApiHandel.getInstance.delete('user/carts', data);
     return response.fold((l) => Left(l), (r) {
       return Right(r.data["data"]);
     });
