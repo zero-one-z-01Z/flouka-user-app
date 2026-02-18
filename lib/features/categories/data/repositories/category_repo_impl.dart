@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import '../datasource/category_remote_date_source.dart';
+import '../datasource/category_remote_data_source.dart';
 import '../../domain/entity/category_entity.dart';
 import '../../domain/repositories/category_repo.dart';
 

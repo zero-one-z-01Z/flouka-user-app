@@ -11,9 +11,11 @@ class CategoryModel extends CategoryEntity {
   factory CategoryModel.fromJson(Map<String, dynamic> json) {
     List<CategoryEntity> children = [];
     if (json['children'] != null && json['children'] is List) {
-      children = List<CategoryEntity>.from(
-        (json['children'] as List).map((x) => CategoryModel.fromJson(x)),
-      );
+      List<CategoryModel> list = [];
+      for (var i in json['children']) {
+        list.add(CategoryModel.fromJson(i));
+      }
+      children = list;
     }
     return CategoryModel(
       id: json['id'],
@@ -21,20 +23,5 @@ class CategoryModel extends CategoryEntity {
       name: json['name'] ?? '',
       children: children,
     );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'image': image,
-      'children': children
-          ?.map(
-            (child) => child is CategoryModel
-                ? child.toJson()
-                : {'id': child.id, 'name': child.name, 'image': child.image},
-          )
-          .toList(),
-    };
   }
 }

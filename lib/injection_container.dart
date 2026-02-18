@@ -37,7 +37,7 @@ import 'features/cart/data/data_source/cart_remote_data_source.dart';
 import 'features/cart/data/repo/cart_repo_impl.dart';
 import 'features/cart/domain/repo/cart_repo.dart';
 import 'features/cart/domain/use_case/cart_use_case.dart';
-import 'features/categories/data/datasource/category_remote_date_source.dart';
+import 'features/categories/data/datasource/category_remote_data_source.dart';
 import 'features/categories/domain/repositories/category_repo.dart';
 import 'features/filters/data/data_source/filter_remote_data_source.dart';
 import 'features/offers_section/data/data_source/offer_section_remote_data_source.dart';
