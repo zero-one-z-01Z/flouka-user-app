@@ -12,4 +12,9 @@ class StoreRepoImpl implements StoreRepo {
   Future<Either<DioException, List<StoreEntity>>> getStores() async {
     return await storeRemoteDataSource.getStores();
   }
+
+  @override
+  Future<Either<DioException, List<StoreEntity>>> getFollowedStores() async {
+    return await storeRemoteDataSource.getFollowedStores();
+  }
 }

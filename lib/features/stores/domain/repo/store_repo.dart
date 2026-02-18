@@ -4,4 +4,5 @@ import 'package:flouka/features/stores/domain/entity/store_entity.dart';
 
 abstract class StoreRepo {
   Future<Either<DioException, List<StoreEntity>>> getStores();
+  Future<Either<DioException, List<StoreEntity>>> getFollowedStores();
 }

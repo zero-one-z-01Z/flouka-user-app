@@ -34,6 +34,7 @@ import 'features/products/presentation/providers/products_details_provider.dart'
 import 'features/products/presentation/providers/products_provider.dart';
 import 'features/reviews/presentation/providres/review_provider.dart';
 import 'features/splash/provider/splash_provider.dart';
+import 'features/stores/presentation/providers/followed_stores_provider.dart';
 import 'features/stores/presentation/providers/reviews_provider.dart';
 import 'features/stores/presentation/providers/stores_provider.dart';
 import 'features/stories/presentation/provider/story_provider.dart';
@@ -64,12 +65,13 @@ class AppProviders extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => SettingsProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => StoryProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => TicketsProvider(sl.get())),
-        ChangeNotifierProvider(create: (_) => AuthProvider(sl.get())),
+        ChangeNotifierProvider(create: (_) => AddressProvider(sl.get())),
+        ChangeNotifierProvider(create: (_) => FollowedStoresProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => CompleteInfoProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => CartProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => CouponProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => HomeProductsProvider(sl.get())),
-        ChangeNotifierProvider(create: (_) => AddressProvider(sl.get())),
+        ChangeNotifierProvider(create: (_) => AuthProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => AreaProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => CityProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => OtpProvider(sl.get())),

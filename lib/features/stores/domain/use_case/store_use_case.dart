@@ -9,4 +9,8 @@ class StoreUseCase {
   Future<Either<DioException, List<StoreEntity>>> getStores() async {
     return await storeRepo.getStores();
   }
+
+  Future<Either<DioException, List<StoreEntity>>> getFollowedStores() async {
+    return await storeRepo.getFollowedStores();
+  }
 }

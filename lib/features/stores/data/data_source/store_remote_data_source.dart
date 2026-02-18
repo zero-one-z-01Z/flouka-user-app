@@ -16,4 +16,15 @@ class StoreRemoteDataSource {
       return Right(storeModels);
     });
   }
+
+  Future<Either<DioException, List<StoreModel>>> getFollowedStores() async {
+    List<StoreModel> storeModels = [];
+    var response = await ApiHandel.getInstance.get('user/store/followed-stores');
+    return response.fold((l) => Left(l), (r) {
+      for (var i in r.data['data']) {
+        storeModels.add(StoreModel.fromJson(i));
+      }
+      return Right(storeModels);
+    });
+  }
 }

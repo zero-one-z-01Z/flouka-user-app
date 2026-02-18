@@ -7,6 +7,7 @@ import 'package:sizer/sizer.dart';
 import '../../../address/presentation/providers/address_provider.dart';
 import '../../../chat/presentation/providers/chat_provider.dart';
 import '../../../orders/presentation/provider/order_provider.dart';
+import '../../../stores/presentation/providers/followed_stores_provider.dart';
 import '../../../wallet/presentation/provider/wallet_provider.dart';
 
 class ProfilePagesSection extends StatelessWidget {
@@ -44,11 +45,11 @@ class ProfilePagesSection extends StatelessWidget {
         "subTitle": "0.0 US \$",
         "svg": AppImages.settingsWallet,
         "onTap": () {
-          final walletProvider = Provider.of<WalletProvider>(
+          final followedStoresProvider = Provider.of<FollowedStoresProvider>(
             Constants.globalContext(),
             listen: false,
           );
-          walletProvider.goToWalletPage();
+          followedStoresProvider.goToPage();
         },
       },
       {
