@@ -25,7 +25,7 @@ class OrderModel extends OrderEntity {
       product: ProductModel.fromJson(json["product"]),
       price: convertDataToNum(json['price']),
       status: OrderStatus.getFromString(json['status']),
-      createdAt: convertStringToDateTime(json['created_at']),
+      createdAt: json['created_at'],
     );
   }
 }

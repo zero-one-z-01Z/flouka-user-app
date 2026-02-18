@@ -23,6 +23,7 @@ class OrderItemWidget extends StatelessWidget {
         log("order details");
       },
       child: Container(
+        margin: const EdgeInsets.only(bottom: 16),
         padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
         decoration: BoxDecoration(
           color: Colors.white,
@@ -71,12 +72,12 @@ class OrderItemWidget extends StatelessWidget {
                           orderEntity.status?.text ?? "",
                         ),
                         style: TextStyleClass.smallStyle(
-                          color: Colors.green,
+                          color: orderEntity.status?.info["color"],
                         ).copyWith(fontWeight: FontWeight.bold),
                       ),
                       SizedBox(height: .2.h),
                       Text(
-                        LanguageProvider.translate("orders", "date_oct_14"),
+                        orderEntity.createdAt.toString(),
                         style: TextStyleClass.smallStyle(),
                       ),
                     ],

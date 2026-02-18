@@ -1,19 +1,12 @@
 import 'package:flutter/material.dart';
-import '../../../../core/helper_function/convert.dart';
 import '../../../products/domain/entity/product_entity.dart';
 
 class OrderEntity {
   int? id;
   OrderStatus? status;
   num? price;
-  DateTime? createdAt;
+  String? createdAt;
   ProductEntity product;
-
-  late List<String> infoList = [
-    price?.toString() ?? "",
-    id?.toString() ?? "",
-    createdAt != null ? convertDateTimeToString(createdAt!) : "",
-  ];
 
   OrderEntity({
     required this.product,

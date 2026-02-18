@@ -37,16 +37,6 @@ class OrderProvider extends ChangeNotifier
 
   TextEditingController searchController = TextEditingController();
 
-  List<OrderEntity> get newOrders =>
-      data?.where((order) => order.status == 'new').toList() ?? [];
-
-  List<OrderEntity> get activeOrders =>
-      data
-          ?.where((order) => order.status != 'new' && order.status != 'cancelled')
-          .toList() ??
-      [];
-
-  @override
   void clear() {
     data = null;
     inputs = null;
@@ -56,19 +46,19 @@ class OrderProvider extends ChangeNotifier
     notifyListeners();
   }
 
-  @override
+    @override
   Future getData() async {
     Map<String, dynamic> dataToUse = {'page': pageIndex};
     final result = await orderUseCase.getUserOrders(dataToUse);
 
-    result.fold((l) => showToast(l.message ?? "Failed to loa d orders"), (r) {
+    result.fold((l) => showToast(l.message ?? "Failed to load orders"), (r) {
       pageIndex++;
       data ??= [];
       data!.addAll(r);
       if (r.isEmpty) paginationFinished = true;
       notifyListeners();
     });
-    data = [];
+
     paginationStarted = false;
   }
 
