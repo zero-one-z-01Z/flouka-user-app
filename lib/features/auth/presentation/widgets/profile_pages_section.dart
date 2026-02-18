@@ -8,7 +8,6 @@ import '../../../address/presentation/providers/address_provider.dart';
 import '../../../chat/presentation/providers/chat_provider.dart';
 import '../../../orders/presentation/provider/order_provider.dart';
 import '../../../stores/presentation/providers/followed_stores_provider.dart';
-import '../../../wallet/presentation/provider/wallet_provider.dart';
 
 class ProfilePagesSection extends StatelessWidget {
   const ProfilePagesSection({super.key});
