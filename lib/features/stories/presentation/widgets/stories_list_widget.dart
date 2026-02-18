@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import '../provider/story_provider.dart';
 import 'story_item_widget.dart';
 
 class StoriesListWidget extends StatelessWidget {
@@ -7,6 +9,7 @@ class StoriesListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var storyProvider = Provider.of<StoryProvider>(context);
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       physics: const BouncingScrollPhysics(),
@@ -17,7 +20,10 @@ class StoriesListWidget extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 4.w),
             child: Row(
               spacing: 3.w,
-              children: List.generate(10, (index) => const StoryItemWidget()),
+              children: List.generate(
+                10,
+                (index) => StoryItemWidget(storyEntity: storyProvider.data![index]),
+              ),
             ),
           ),
         ],

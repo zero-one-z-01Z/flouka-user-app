@@ -1,3 +1,4 @@
+import 'package:flouka/features/stories/domain/entity/story_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -5,7 +6,8 @@ import '../../../../core/constants/app_images.dart';
 import '../views/stories_view.dart';
 
 class StoryItemWidget extends StatelessWidget {
-  const StoryItemWidget({super.key});
+  const StoryItemWidget({super.key, required this.storyEntity});
+  final StoryEntity storyEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,7 @@ class StoryItemWidget extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const StoriesView()),
+          MaterialPageRoute(builder: (context) => StoriesView(story: storyEntity)),
         );
       },
       child: Container(

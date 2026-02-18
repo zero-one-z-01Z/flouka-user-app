@@ -20,6 +20,7 @@ import '../../offers_section/presentation/providers/offer_section_provider.dart'
 import '../../on_boarding/presentation/providers/on_boarding_provider.dart';
 import '../../on_boarding/presentation/views/on_boarding_view.dart';
 import '../../stores/presentation/providers/stores_provider.dart';
+import '../../stories/presentation/provider/story_provider.dart';
 
 class SplashProvider extends ChangeNotifier {
   void startApp() async {
@@ -54,6 +55,8 @@ class SplashProvider extends ChangeNotifier {
         Constants.globalContext(),
         listen: false,
       ).getData(),
+
+      Provider.of<StoryProvider>(Constants.globalContext(), listen: false).getData(),
     ]);
 
     bool isFirstTime = !(sharedPreferences.getBool('onBoarding') ?? false);
