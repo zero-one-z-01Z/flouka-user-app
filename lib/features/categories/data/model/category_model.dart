@@ -29,7 +29,7 @@ class CategoryModel extends CategoryEntity {
       'name': name,
       'image': image,
       'children': children
-          .map(
+          ?.map(
             (child) => child is CategoryModel
                 ? child.toJson()
                 : {'id': child.id, 'name': child.name, 'image': child.image},

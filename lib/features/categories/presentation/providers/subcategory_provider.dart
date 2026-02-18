@@ -23,7 +23,7 @@ class SubcategoryProvider extends ChangeNotifier {
     _categoryId = category.id;
     notifyListeners();
 
-    _subcategories = category.children;
+    _subcategories = category.children ?? [];
 
     if (_subcategories.isNotEmpty && _selectedSubcategory == null) {
       _selectedSubcategory = null; // default = show all
