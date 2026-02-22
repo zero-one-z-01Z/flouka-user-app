@@ -63,10 +63,20 @@ import 'features/wallet/data/repositories/wallet_repo.dart';
 import 'features/wallet/domain/repositories/wallet_repo_impl.dart';
 import 'features/wallet/domain/use_cases/wallet_use_cases.dart';
 
+import 'features/reels/data/data_source/reel_remote_data_source.dart';
+import 'features/reels/data/repo/reel_repo_impl.dart';
+import 'features/reels/domain/repo/reel_repo.dart';
+import 'features/reels/domain/use_case/reel_use_case.dart';
+
 final sl = GetIt.instance;
 
 Future<void> initializeDependencies() async {
   sl.registerSingleton<ApiHandel>(ApiHandel.getInstance);
+
+  // reels
+  sl.registerSingleton<ReelRemoteDataSource>(ReelRemoteDataSource(sl.get()));
+  sl.registerSingleton<ReelRepo>(ReelRepoImpl(sl.get()));
+  sl.registerSingleton<ReelUseCase>(ReelUseCase(sl.get()));
 
   // auth
   sl.registerSingleton<AuthRemoteDataSource>(AuthRemoteDataSource(sl.get()));

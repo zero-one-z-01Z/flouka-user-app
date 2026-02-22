@@ -32,6 +32,7 @@ import 'features/orders/presentation/provider/update_order_provider.dart';
 import 'features/products/presentation/providers/home_products_provider.dart';
 import 'features/products/presentation/providers/products_details_provider.dart';
 import 'features/products/presentation/providers/products_provider.dart';
+import 'features/reels/presentation/providers/video_provider.dart';
 import 'features/reviews/presentation/providres/review_provider.dart';
 import 'features/splash/provider/splash_provider.dart';
 import 'features/stores/presentation/providers/followed_stores_provider.dart';
@@ -88,6 +89,7 @@ class AppProviders extends StatelessWidget {
           create: (_) => ProductDetailsProvider(productUseCase: sl.get()),
         ),
         ChangeNotifierProvider(create: (_) => ReviewProvider()),
+        ChangeNotifierProvider(create: (_) => VideoProvider(sl.get())),
       ],
       child: child,
     );

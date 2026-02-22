@@ -275,4 +275,7 @@ class AuthProvider extends ChangeNotifier {
       text: "Google",
     ),
   ];
+  bool isGuest() {
+    return this.userEntity == null;
+  }
 }
