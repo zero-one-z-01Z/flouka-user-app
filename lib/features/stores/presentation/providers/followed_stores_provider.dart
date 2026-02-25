@@ -1,5 +1,4 @@
 import 'package:flouka/core/helper_function/navigation.dart';
-import 'package:flouka/features/stores/presentation/pages/store_details_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/entity/store_entity.dart';
@@ -12,7 +11,7 @@ class FollowedStoresProvider with ChangeNotifier {
 
   List<StoreEntity>? stores;
   void goToStoreDetailsPage() {
-    navP(const StoreDetailsPage());
+    navP(const FollowedStoreView());
   }
 
   Future<void> getData() async {

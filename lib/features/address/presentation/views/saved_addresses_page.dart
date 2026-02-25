@@ -29,7 +29,7 @@ class SavedAddressesPage extends StatelessWidget {
             return const Center(child: LoadingAnimationWidget(gif: Lotties.loading));
           } else if (addressProvider.address!.isEmpty) {
             return const Center(
-              child: EmptyAnimation(gif: Lotties.address, title: 'no_address'),
+              child: EmptyAnimation(gif: Lotties.address, title: ''),
             );
           }
           return ListView.builder(

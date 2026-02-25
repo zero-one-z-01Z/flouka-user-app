@@ -3,6 +3,8 @@ import 'package:dio/dio.dart';
 import 'package:flouka/core/helper_function/api.dart';
 import 'package:flouka/features/stores/data/data/store_model.dart';
 
+import '../data/store_details_model.dart';
+
 class StoreRemoteDataSource {
   final ApiHandel apiHandel;
   StoreRemoteDataSource(this.apiHandel);
@@ -24,6 +26,14 @@ class StoreRemoteDataSource {
       for (var i in r.data['data']) {
         storeModels.add(StoreModel.fromJson(i));
       }
+      return Right(storeModels);
+    });
+  }
+    Future<Either<DioException, StoreDetailsModel>> getStoreDetails(int id) async {
+    StoreDetailsModel storeModels ;
+    var response = await ApiHandel.getInstance.get('store/$id');
+    return response.fold((l) => Left(l), (r) {
+      storeModels = StoreDetailsModel.fromJson(r.data['data']);
       return Right(storeModels);
     });
   }

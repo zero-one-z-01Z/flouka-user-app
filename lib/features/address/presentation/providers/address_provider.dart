@@ -79,7 +79,7 @@ class AddressProvider extends ChangeNotifier {
 
   void deleteAddress(int id) async {
     Map<String, dynamic> data = {};
-    data['address_id'] = id;
+    data['id'] = id;
     loading();
     Either<DioException, bool> value = await addressUseCases.deleteAddress(data);
     navPop();
