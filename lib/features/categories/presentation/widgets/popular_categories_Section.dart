@@ -3,6 +3,7 @@ import 'package:flouka/features/language/presentation/provider/language_provider
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import '../../../navbar/presentation/provider/nav_bar_provider.dart';
 import '../../domain/entity/category_entity.dart';
 import '../providers/categories_provider.dart';
 import 'popular_category_container_widget.dart';
@@ -12,6 +13,10 @@ class PopularCategoriesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final NavBarProvider navBarProvider = Provider.of<NavBarProvider>(
+      context,
+      listen: false,
+    );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -27,12 +32,17 @@ class PopularCategoriesSection extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              Text(
-                LanguageProvider.translate('home', 'see_all'),
-                style: TextStyleClass.normalStyle().copyWith(
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w500,
-                  color: const Color(0xffAEB1C1),
+              GestureDetector(
+                onTap: () {
+                  navBarProvider.changeIndex(1);
+                },
+                child: Text(
+                  LanguageProvider.translate('home', 'see_all'),
+                  style: TextStyleClass.normalStyle().copyWith(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w500,
+                    color: const Color(0xffAEB1C1),
+                  ),
                 ),
               ),
             ],
