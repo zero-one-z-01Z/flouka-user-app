@@ -162,6 +162,7 @@ class CheckoutProvider extends ChangeNotifier {
           then: (val) {
             if (val == 'paid') {
               navPU();
+              // ordersProvider.goToPage();
               cart.clear();
             } else if (val == 'filed') {
               showToast(LanguageProvider.translate('error', 'error'));

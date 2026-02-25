@@ -20,23 +20,29 @@ class CartView extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 1.5.h),
-                    if (cartProvider.data != null &&
-                        cartProvider.data!.isNotEmpty) ...[
-                      Text(
-                        LanguageProvider.translate("global", "coupon"),
-                        style: TextStyleClass.normalStyle(),
-                      ),
-                      SizedBox(height: 1.3.h),
+              child: RefreshIndicator(
+                onRefresh: () async {
+                  cartProvider.refresh();
+                },
+                child: SingleChildScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 1.5.h),
+                      if (cartProvider.data != null &&
+                          cartProvider.data!.isNotEmpty) ...[
+                        Text(
+                          LanguageProvider.translate("global", "coupon"),
+                          style: TextStyleClass.normalStyle(),
+                        ),
+                        SizedBox(height: 1.3.h),
+                      ],
+                      SizedBox(height: 3.h),
+                      const CartListViewSeperatedWidget(),
                     ],
-                    SizedBox(height: 3.h),
-                    const CartListViewSeperatedWidget(),
-                  ],
+                  ),
                 ),
               ),
             ),
