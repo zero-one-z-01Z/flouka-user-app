@@ -20,7 +20,6 @@ class AddressProvider extends ChangeNotifier {
 
   bool isFirstTime = false;
   Future getAddress() async {
-    address == null;
     final response = await addressUseCases.getAddress();
     response.fold(
       (l) async {
