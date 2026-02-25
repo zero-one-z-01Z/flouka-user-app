@@ -7,6 +7,7 @@ import 'package:flouka/features/banners/presentation/provider/banners_provider.d
 import 'package:flouka/features/cart/presentation/providers/cart_provider.dart';
 import 'package:flouka/features/navbar/presentation/views/nav_bar_view.dart';
 import 'package:flouka/features/orders/presentation/provider/order_provider.dart';
+import 'package:flouka/features/reels/presentation/providers/video_provider.dart';
 import 'package:flouka/features/wallet/presentation/provider/wallet_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -55,6 +56,10 @@ class SplashProvider extends ChangeNotifier {
         Constants.globalContext(),
         listen: false,
       ).getData(),
+      Provider.of<VideoProvider>(
+        Constants.globalContext(),
+        listen: false,
+      ).getReels(),
 
       Provider.of<StoryProvider>(Constants.globalContext(), listen: false).getData(),
     ]);

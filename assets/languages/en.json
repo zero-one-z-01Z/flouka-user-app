@@ -76,6 +76,7 @@
     "filter": "Filter"
   },
   "global": {
+    "no_stores_followed_yet": "No stores followed yet",
     "settings": "Settings",
     "choose_lang": "\uD83C\uDF0D Choose Your Language",
     "choose_lang_content": "Please choose the language you prefer to use in the app. You can change it anytime from settings",

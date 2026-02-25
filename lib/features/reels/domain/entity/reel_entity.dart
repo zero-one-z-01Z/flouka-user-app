@@ -7,7 +7,7 @@ class ReelEntity {
   final int likesCount;
   final int commentsCount;
   final VendorEntity vendor;
-  final ProductEntity product;
+  final ProductEntity? product;
   ReelEntity({
     required this.id,
     required this.path,

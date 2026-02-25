@@ -1,7 +1,9 @@
+import 'package:flouka/features/reels/presentation/providers/video_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../core/constants/app_images.dart';
+import '../../../../core/constants/constants.dart';
 import '../provider/nav_bar_provider.dart';
 import 'bottom_nav_bar_item_widget.dart';
 
@@ -84,10 +86,18 @@ class CustomBottomNavBarWidget extends StatelessWidget {
               top: -20,
               left: 0,
               right: 0,
-              child: CircleAvatar(
-                backgroundColor: Colors.white,
-                radius: 7.w,
-                child: Image.asset(AppImages.vedio),
+              child: GestureDetector(
+                onTap: () {
+                  Provider.of<VideoProvider>(
+                    Constants.globalContext(),
+                    listen: false,
+                  ).goToVideosPage();
+                },
+                child: CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 7.w,
+                  child: Image.asset(AppImages.vedio),
+                ),
               ),
             ),
           ],

@@ -6,6 +6,7 @@ import 'package:flouka/features/home/presentation/widgets/far_away_container_wid
 import 'package:flouka/features/home/presentation/widgets/home_appbar_widget.dart';
 import 'package:flouka/features/home/presentation/widgets/recommended_section.dart';
 import 'package:flouka/features/filters/presentation/widgets/filter_list_widget.dart';
+import 'package:flouka/features/products/presentation/widgets/filtered_products_home_section.dart';
 import 'package:flouka/features/stores/presentation/widgets/stores_home_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flouka/features/banners/presentation/widgets/carousel_slider_widget.dart';
@@ -32,6 +33,7 @@ class HomePage extends StatelessWidget {
             const NewCategoriesHomeSection(),
             const PopularCategoriesSection(),
             const FilterListWidget(),
+            const FilteredProductsHomeSection(),
             const OfferSectionListWidget(),
             const StoresHomeSection(),
             // const RecommendedSection(),

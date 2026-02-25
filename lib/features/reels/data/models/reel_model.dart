@@ -20,7 +20,9 @@ class ReelModel extends ReelEntity {
       likesCount: json['likes_count'],
       commentsCount: json['comments_count'],
       vendor: VendorModel.fromJson(json['vendor']),
-      product: ProductModel.fromJson(json['product']),
+      product: json['product'] != null
+          ? ProductModel.fromJson(json['product'])
+          : null,
     );
   }
 }

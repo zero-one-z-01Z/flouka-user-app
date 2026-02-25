@@ -191,21 +191,3 @@ class CheckoutProvider extends ChangeNotifier {
     }
   }
 }
-
-// List<PaymentMethodEntity> paymentMethods = [
-//   PaymentMethodEntity(
-//     image: AppImages.visa,
-//     paymentMethod: "Debit/CreditCards",
-//     toAPI: "online",
-//   ),
-//   PaymentMethodEntity(
-//     image: AppImages.cash,
-//     paymentMethod: "Cach On Delivery",
-//     toAPI: "cash",
-//   ),
-//   PaymentMethodEntity(
-//     image: AppImages.wallet,
-//     paymentMethod: "Wallet App",
-//     toAPI: "wallet",
-//   ),
-// ];

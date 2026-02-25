@@ -56,9 +56,6 @@ class NavBarProvider extends ChangeNotifier {
     if (index == 3) {
       Provider.of<CartProvider>(Constants.globalContext(), listen: false).refresh();
     }
-    if (index == 2) {
-      return;
-    }
     currentIndex = index;
     notifyListeners();
   }
