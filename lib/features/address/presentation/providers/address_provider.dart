@@ -18,33 +18,23 @@ class AddressProvider extends ChangeNotifier {
   final AddressUseCases addressUseCases;
   AddressProvider(this.addressUseCases);
 
-  bool isFirstTime = false;
-  Future getAddress() async {
-    final response = await addressUseCases.getAddress();
+  Future<void> getData() async {
+    var response = await addressUseCases.getAddress();
     response.fold(
-      (l) async {
-        showToast(l.message!);
+      (l) {
+        showToast(l.toString());
       },
       (r) {
-        address ??= [];
-        address!.addAll(r);
-        if (address!.isEmpty) {
-          addressEntity = null;
-          isFirstTime = true;
-        } else {
-          addressEntity = address!.first;
-          isFirstTime = false;
-        }
+        address = r;
         notifyListeners();
       },
     );
-    notifyListeners();
   }
 
   void refresh() async {
-    address = null;
+    address = [];
     notifyListeners();
-    await getAddress();
+    await getData();
   }
 
   void updateAddress(AddressEntity addressEntity) {
