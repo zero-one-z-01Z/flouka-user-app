@@ -20,16 +20,14 @@ class AddressProvider extends ChangeNotifier {
 
   bool isFirstTime = false;
   Future getAddress() async {
-    address ==null;
-    Map<String, dynamic> data = {};
-    Either<DioException, List<AddressEntity>> value = await addressUseCases
-        .getAddress(data);
-    value.fold(
+    address == null;
+    final response = await addressUseCases.getAddress();
+    response.fold(
       (l) async {
         showToast(l.message!);
       },
       (r) {
-        address ??=[];
+        address ??= [];
         address!.addAll(r);
         if (address!.isEmpty) {
           addressEntity = null;
@@ -42,11 +40,10 @@ class AddressProvider extends ChangeNotifier {
       },
     );
     notifyListeners();
-
   }
 
   void refresh() async {
-    address =null;
+    address = null;
     notifyListeners();
     await getAddress();
   }
@@ -121,7 +118,7 @@ class AddressProvider extends ChangeNotifier {
   }
 
   void addAddress(AddressEntity newAddress) {
-    address ??=[];
+    address ??= [];
     if (address!.isEmpty) {
       addressEntity = newAddress;
     }

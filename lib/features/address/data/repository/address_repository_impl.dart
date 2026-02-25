@@ -17,17 +17,13 @@ class AddressRepoImpl implements AddressRepo {
   }
 
   @override
-  Future<Either<DioException, bool>> deleteAddress(
-    Map<String, dynamic> data,
-  ) async {
+  Future<Either<DioException, bool>> deleteAddress(Map<String, dynamic> data) async {
     return addressRemoteDataSource.deleteAddress(data);
   }
 
   @override
-  Future<Either<DioException, List<AddressEntity>>> getAddress(
-    Map<String, dynamic> data,
-  ) async {
-    return addressRemoteDataSource.getAddress(data);
+  Future<Either<DioException, List<AddressEntity>>> getAddress() async {
+    return addressRemoteDataSource.getAddress();
   }
 
   @override

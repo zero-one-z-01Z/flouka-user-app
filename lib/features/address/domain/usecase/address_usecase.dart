@@ -20,10 +20,8 @@ class AddressUseCases {
     return addressRepo.deleteAddress(data);
   }
 
-  Future<Either<DioException, List<AddressEntity>>> getAddress(
-    Map<String, dynamic> data,
-  ) async {
-    return addressRepo.getAddress(data);
+  Future<Either<DioException, List<AddressEntity>>> getAddress() async {
+    return addressRepo.getAddress();
   }
 
   Future<Either<DioException, AddressEntity>> updateAddress(

@@ -29,8 +29,8 @@ class AddressModel extends AddressEntity {
       areaId: data['area_id'] ?? 0,
       partNumber: data['block_number'] ?? 0,
       areaEntity: areaModel,
-      addressName: data['address_name'],
-      streetName: data['street_name'],
+      addressName: data['name'],
+      streetName: data['street'],
       lat: convertDataToDouble(data['lat']),
       lng: convertDataToDouble(data['lng']),
       building: data['building'],
@@ -40,3 +40,57 @@ class AddressModel extends AddressEntity {
     );
   }
 }
+        // {
+        //     "id": 3,
+        //     "lat": "23.32324230",
+        //     "lng": "28.33333000",
+        //     "name": "test",
+        //     "street": "eee eee 12",
+        //     "building": "12",
+        //     "apartment": "22",
+        //     "notes": "test",
+        //     "default": 0,
+        //     "area": {
+        //         "id": 1,
+        //         "city_id": 1,
+        //         "name": {
+        //             "ar": "مدينة نصر",
+        //             "en": "Nasr City"
+        //         },
+        //         "city": {
+        //             "id": 1,
+        //             "name": {
+        //                 "ar": "القاهرة",
+        //                 "en": "Cairo"
+        //             },
+        //             "deleted_at": null
+        //         }
+        //     }
+        // },
+        // {
+        //     "id": 2,
+        //     "lat": "23.32324230",
+        //     "lng": "28.33333000",
+        //     "name": "test",
+        //     "street": "eee eee 12",
+        //     "building": "12",
+        //     "apartment": "22",
+        //     "notes": "test",
+        //     "default": 0,
+        //     "area": {
+        //         "id": 1,
+        //         "city_id": 1,
+        //         "name": {
+        //             "ar": "مدينة نصر",
+        //             "en": "Nasr City"
+        //         },
+        //         "city": {
+        //             "id": 1,
+        //             "name": {
+        //                 "ar": "القاهرة",
+        //                 "en": "Cairo"
+        //             },
+        //             "deleted_at": null
+        //         }
+        //     }
+        // }

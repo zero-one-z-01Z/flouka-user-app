@@ -3,9 +3,7 @@ import 'package:dio/dio.dart';
 import '../entities/address_entity.dart';
 
 abstract class AddressRepo {
-  Future<Either<DioException, List<AddressEntity>>> getAddress(
-    Map<String, dynamic> data,
-  );
+  Future<Either<DioException, List<AddressEntity>>> getAddress();
   Future<Either<DioException, AddressEntity>> createAddress(
     Map<String, dynamic> data,
   );

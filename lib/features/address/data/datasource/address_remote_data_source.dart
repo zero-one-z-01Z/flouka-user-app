@@ -10,10 +10,8 @@ class AddressRemoteDataSource {
   final ApiHandel apiHandel;
   AddressRemoteDataSource(this.apiHandel);
 
-  Future<Either<DioException, List<AddressModel>>> getAddress(
-    Map<String, dynamic> data,
-  ) async {
-    var response = await apiHandel.get('user/get_address', data);
+  Future<Either<DioException, List<AddressModel>>> getAddress() async {
+    var response = await apiHandel.get('user/addresses');
     return response.fold((l) => Left(l), (r) {
       List<AddressModel> list = [];
       for (var i in r.data['data']) {
