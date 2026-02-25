@@ -76,9 +76,12 @@
     "filter": "Filter"
   },
   "global": {
+    "saved_addresses": "Saved Addresses",
     "no_stores_followed_yet": "No stores followed yet",
     "settings": "Settings",
+    "no_address": "No Address",
     "choose_lang": "\uD83C\uDF0D Choose Your Language",
+    "add_location": "Add Location",
     "choose_lang_content": "Please choose the language you prefer to use in the app. You can change it anytime from settings",
     "suggested_products": "Suggested Products",
     "see_all": "See All",
