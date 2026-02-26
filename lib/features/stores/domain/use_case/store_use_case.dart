@@ -19,4 +19,11 @@ class StoreUseCase {
   Future<Either<DioException, StoreDetailsEntity>> getStoreDetails(int id) async {
     return await storeRepo.getStoreDetails(id);
   }
+
+  Future<Either<DioException, bool>> follow(int id) async {
+    return await storeRepo.follow(id);
+  }
+    Future<Either<DioException, bool>> unfollow(int id) async {
+    return await storeRepo.unfollow(id);
+  }
 }

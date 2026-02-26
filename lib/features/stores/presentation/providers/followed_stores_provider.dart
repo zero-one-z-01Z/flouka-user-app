@@ -1,3 +1,5 @@
+import 'package:flouka/core/dialog/snack_bar.dart';
+import 'package:flouka/core/helper_function/loading.dart';
 import 'package:flouka/core/helper_function/navigation.dart';
 import 'package:flutter/material.dart';
 
@@ -34,5 +36,30 @@ class FollowedStoresProvider with ChangeNotifier {
   refresh() async {
     clear();
     await getData();
+  }
+
+  Future<void> follow(int id) async {
+    loading();
+    var response = await storeUseCase.follow(id);
+    response.fold(
+      (l) {
+        showToast(l.toString());
+      },
+      (r) {
+        getData();
+      },
+    );
+  }
+
+  Future<void> unFollow(int id) async {
+    var response = await storeUseCase.unfollow(id);
+    response.fold(
+      (l) {
+        showToast(l.toString());
+      },
+      (r) {
+        getData();
+      },
+    );
   }
 }

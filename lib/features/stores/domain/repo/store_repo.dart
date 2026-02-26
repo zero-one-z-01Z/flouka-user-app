@@ -7,4 +7,6 @@ abstract class StoreRepo {
   Future<Either<DioException, List<StoreEntity>>> getStores();
   Future<Either<DioException, List<StoreEntity>>> getFollowedStores();
   Future<Either<DioException, StoreDetailsEntity>> getStoreDetails(int id);
+  Future<Either<DioException, bool>> follow(int id);
+  Future<Either<DioException, bool>> unfollow(int id);
 }

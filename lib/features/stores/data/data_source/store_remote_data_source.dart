@@ -29,12 +29,31 @@ class StoreRemoteDataSource {
       return Right(storeModels);
     });
   }
-    Future<Either<DioException, StoreDetailsModel>> getStoreDetails(int id) async {
-    StoreDetailsModel storeModels ;
+
+  Future<Either<DioException, StoreDetailsModel>> getStoreDetails(int id) async {
+    StoreDetailsModel storeModels;
     var response = await ApiHandel.getInstance.get('store/$id');
     return response.fold((l) => Left(l), (r) {
       storeModels = StoreDetailsModel.fromJson(r.data['data']);
       return Right(storeModels);
+    });
+  }
+
+  Future<Either<DioException, bool>> follow(int id) async {
+    StoreDetailsModel storeModels;
+    var response = await ApiHandel.getInstance.get('user/store/$id/follow');
+    return response.fold((l) => Left(l), (r) {
+      storeModels = StoreDetailsModel.fromJson(r.data['data']);
+      return const Right(true);
+    });
+  }
+
+  Future<Either<DioException, bool>> unfollow(int id) async {
+    StoreDetailsModel storeModels;
+    var response = await ApiHandel.getInstance.get('user/store/$id/unfollow');
+    return response.fold((l) => Left(l), (r) {
+      storeModels = StoreDetailsModel.fromJson(r.data['data']);
+      return const Right(true);
     });
   }
 }
