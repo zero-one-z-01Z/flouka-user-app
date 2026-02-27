@@ -6,7 +6,7 @@ class StoreDetailsEntity {
   final num? avgRating;
   final num? customersCount;
   final num? productsCount;
-  final bool isFollowed;
+   bool isFollowed;
   StoreDetailsEntity({
     required this.id,
     required this.name,

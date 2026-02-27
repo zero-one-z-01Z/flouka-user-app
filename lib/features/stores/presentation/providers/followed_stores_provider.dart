@@ -38,28 +38,5 @@ class FollowedStoresProvider with ChangeNotifier {
     await getData();
   }
 
-  Future<void> follow(int id) async {
-    loading();
-    var response = await storeUseCase.follow(id);
-    response.fold(
-      (l) {
-        showToast(l.toString());
-      },
-      (r) {
-        getData();
-      },
-    );
-  }
 
-  Future<void> unFollow(int id) async {
-    var response = await storeUseCase.unfollow(id);
-    response.fold(
-      (l) {
-        showToast(l.toString());
-      },
-      (r) {
-        getData();
-      },
-    );
-  }
 }

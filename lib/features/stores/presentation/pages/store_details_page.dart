@@ -91,7 +91,19 @@ class StoreDetailsPage extends StatelessWidget {
                               ),
                               SizedBox(width: 2.w),
                               ButtonWidget(
-                                onTap: () {},
+                                onTap: () {
+                                  if (storeDetailsProvider
+                                      .storeDetailsEntity!
+                                      .isFollowed) {
+                                    storeDetailsProvider.unFollow(
+                                      storeDetailsProvider.storeDetailsEntity!.id,
+                                    );
+                                  } else {
+                                    storeDetailsProvider.follow(
+                                      storeDetailsProvider.storeDetailsEntity!.id,
+                                    );
+                                  }
+                                },
                                 text:
                                     storeDetailsProvider
                                         .storeDetailsEntity!
