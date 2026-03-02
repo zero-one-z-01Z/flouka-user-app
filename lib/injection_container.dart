@@ -40,6 +40,10 @@ import 'features/cart/domain/use_case/cart_use_case.dart';
 import 'features/categories/data/datasource/category_remote_data_source.dart';
 import 'features/categories/domain/repositories/category_repo.dart';
 import 'features/filters/data/data_source/filter_remote_data_source.dart';
+import 'features/notification/data/data_sources/remote.dart';
+import 'features/notification/data/repositories/notification_repo_impl.dart';
+import 'features/notification/domain/repositories/notification_repo.dart';
+import 'features/notification/domain/use_cases/notification_usecaese.dart';
 import 'features/offers_section/data/data_source/offer_section_remote_data_source.dart';
 import 'features/offers_section/data/repo/offer_section_repo_impl.dart';
 import 'features/offers_section/domain/repo/offer_section_repo.dart';
@@ -127,9 +131,11 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<StoreRemoteDataSource>(StoreRemoteDataSource(sl.get()));
   sl.registerSingleton<StoreRepo>(StoreRepoImpl(sl.get()));
   sl.registerSingleton<StoreUseCase>(StoreUseCase(sl.get()));
-  
+
   // offer section
-  sl.registerSingleton<OfferSectionRemoteDataSource>(OfferSectionRemoteDataSource(sl.get()));
+  sl.registerSingleton<OfferSectionRemoteDataSource>(
+    OfferSectionRemoteDataSource(sl.get()),
+  );
   sl.registerSingleton<OfferSectionRepo>(OfferSectionRepoImpl(sl.get()));
   sl.registerSingleton<OfferSectionUseCase>(OfferSectionUseCase(sl.get()));
 
@@ -138,6 +144,12 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<StoryRepo>(StoryRepoImpl(sl.get()));
   sl.registerSingleton<StoryUseCase>(StoryUseCase(sl.get()));
 
+  // notification
+  sl.registerSingleton<NotificationRemoteDataSource>(
+    NotificationRemoteDataSource(sl.get()),
+  );
+  sl.registerSingleton<NotificationRepo>(NotificationRepoImpl(sl.get()));
+  sl.registerSingleton<NotificationUseCases>(NotificationUseCases(sl.get()));
   // sl.registerSingleton<MarketRemoteDataSource>(
   //   MarketRemoteDataSource(sl.get()),
   // );
