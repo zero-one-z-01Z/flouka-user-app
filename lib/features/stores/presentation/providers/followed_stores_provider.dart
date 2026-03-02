@@ -1,5 +1,3 @@
-import 'package:flouka/core/dialog/snack_bar.dart';
-import 'package:flouka/core/helper_function/loading.dart';
 import 'package:flouka/core/helper_function/navigation.dart';
 import 'package:flutter/material.dart';
 
@@ -37,6 +35,4 @@ class FollowedStoresProvider with ChangeNotifier {
     clear();
     await getData();
   }
-
-
 }

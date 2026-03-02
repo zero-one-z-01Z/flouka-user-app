@@ -33,22 +33,29 @@ class StoreDetailsProvider extends ChangeNotifier {
   Future<void> follow(int id) async {
     loading();
     var response = await storeUseCase.follow(id);
-    response.fold((l) {
-      showToast(l.toString());
-    }, (r) 
-    {
-      this.storeDetailsEntity!.isFollowed = true;
-      notifyListeners();
-    });
+    response.fold(
+      (l) {
+        showToast(l.toString());
+      },
+      (r) {
+        this.storeDetailsEntity!.isFollowed = true;
+        notifyListeners();
+      },
+    );
   }
 
   Future<void> unFollow(int id) async {
+    loading();
     var response = await storeUseCase.unfollow(id);
-    response.fold((l) {
-      showToast(l.toString());
-    }, (r) {
-      this.storeDetailsEntity!.isFollowed = false;
-      notifyListeners();
-    });
+    navPop();
+    response.fold(
+      (l) {
+        showToast(l.toString());
+      },
+      (r) {
+        this.storeDetailsEntity!.isFollowed = false;
+        notifyListeners();
+      },
+    );
   }
 }

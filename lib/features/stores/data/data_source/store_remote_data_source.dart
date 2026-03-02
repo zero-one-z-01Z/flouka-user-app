@@ -41,7 +41,7 @@ class StoreRemoteDataSource {
 
   Future<Either<DioException, bool>> follow(int id) async {
     StoreDetailsModel storeModels;
-    var response = await ApiHandel.getInstance.get('user/store/$id/follow');
+    var response = await ApiHandel.getInstance.post('user/store/$id/follow', {});
     return response.fold((l) => Left(l), (r) {
       storeModels = StoreDetailsModel.fromJson(r.data['data']);
       return const Right(true);
@@ -50,7 +50,7 @@ class StoreRemoteDataSource {
 
   Future<Either<DioException, bool>> unfollow(int id) async {
     StoreDetailsModel storeModels;
-    var response = await ApiHandel.getInstance.get('user/store/$id/unfollow');
+    var response = await ApiHandel.getInstance.post('user/store/$id/unfollow', {});
     return response.fold((l) => Left(l), (r) {
       storeModels = StoreDetailsModel.fromJson(r.data['data']);
       return const Right(true);

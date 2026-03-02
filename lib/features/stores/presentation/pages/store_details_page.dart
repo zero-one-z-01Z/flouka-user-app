@@ -110,7 +110,7 @@ class StoreDetailsPage extends StatelessWidget {
                                         .isFollowed
                                     ? 'unfollow'
                                     : 'follow',
-                                width: 16.w,
+                                width: 20.w,
                                 height: 3.h,
                                 borderRadius: 4,
                                 textStyle: TextStyleClass.normalStyle(
