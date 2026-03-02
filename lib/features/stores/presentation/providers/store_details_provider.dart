@@ -17,6 +17,7 @@ class StoreDetailsProvider extends ChangeNotifier {
     response.fold((l) {}, (r) {
       storeDetailsEntity = r;
     });
+    notifyListeners();
   }
 
   Future<void> refresh(int id) async {
