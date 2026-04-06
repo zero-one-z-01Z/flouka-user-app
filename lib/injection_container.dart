@@ -144,6 +144,7 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<StoryRepo>(StoryRepoImpl(sl.get()));
   sl.registerSingleton<StoryUseCase>(StoryUseCase(sl.get()));
 
+
   // notification
   sl.registerSingleton<NotificationRemoteDataSource>(
     NotificationRemoteDataSource(sl.get()),
