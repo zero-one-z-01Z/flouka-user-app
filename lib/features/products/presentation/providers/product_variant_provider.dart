@@ -17,10 +17,10 @@ extension ProductVariantProvider on ProductDetailsProvider{
   bool hide(int index,int id){
     List<VariantEntity> stocks = data!.variants;
     List<int> ids = variants.values.toList();
-    if(ids.isNotEmpty){
+    if(ids.isNotEmpty||index==0){
       return false;
     }
-    // ids.removeRange(0, (index + 1).clamp(0, ids.length));
+    ids.removeRange(index.clamp(0, ids.length), ids.length);
     ids.add(id);
     List<VariantEntity> available = stocks.where((list) {
       final comboSet = list.combination.toSet();
