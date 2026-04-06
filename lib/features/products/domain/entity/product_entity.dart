@@ -1,3 +1,6 @@
+import 'package:flouka/features/products/domain/entity/attribute_entity.dart';
+import 'package:flouka/features/products/domain/entity/variant_entity.dart';
+
 import '../../../reels/domain/entity/reel_entity.dart';
 import 'product_review_entity.dart';
 
@@ -9,6 +12,8 @@ class ProductEntity {
   final num? price;
   final num? offerPrice;
   final num? discountPercentage;
+  final List<AttributeEntity> attributes;
+  final List<VariantEntity> variants;
   final List<ProductImage> images;
   final List<ProductImage> reviewImages;
   final String? image;
@@ -34,6 +39,8 @@ class ProductEntity {
     required this.images,
     this.avgRating,
     this.isFavorite,
+    required this.attributes,
+    required this.variants,
   });
 }
 class ProductImage {

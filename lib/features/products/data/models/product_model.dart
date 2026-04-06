@@ -2,7 +2,9 @@
 import 'dart:developer';
 
 import 'package:flouka/core/helper_function/convert.dart';
+import 'package:flouka/features/products/data/models/attribute_model.dart';
 import 'package:flouka/features/products/data/models/product_review_model.dart';
+import 'package:flouka/features/products/data/models/variant_model.dart';
 import 'package:flouka/features/products/domain/entity/product_entity.dart';
 
 import '../../../reels/data/models/reel_model.dart';
@@ -23,13 +25,15 @@ class ProductModel extends ProductEntity {
     required super.related,
     required super.reviewImages,
     required super.discountTitle,
-    required super.discountPercentage,
+    required super.discountPercentage, required super.attributes, required super.variants,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     List<ProductImageModel> images=[];
     List<ProductImageModel> reviewsImages=[];
     List<ProductReviewModel> reviews=[];
+    List<AttributeModel> attributes =[];
+    List<VariantModel> variants =[];
 
     if(json['images'] !=null){
       for(var element in json['images']){
@@ -47,6 +51,16 @@ class ProductModel extends ProductEntity {
         reviews.add(ProductReviewModel.fromJson(element));
       }
     }
+    if(json['attributes'] !=null){
+      for(var element in json['attributes']){
+        attributes.add(AttributeModel.fromJson(element));
+      }
+    }
+    if(json['variants'] !=null){
+      for(var element in json['variants']){
+        variants.add(VariantModel.fromJson(element));
+      }
+    }
 
     try {
       return ProductModel(
@@ -58,7 +72,7 @@ class ProductModel extends ProductEntity {
         offerPrice: convertDataToNum(json['offer_price']),
         reviewImages: reviewsImages,
         reviews: reviews,
-
+        attributes: attributes,
         images: images,
         avgRating: json['avg_rating'] != null
             ? convertDataToNum(json['avg_rating'])
@@ -68,6 +82,7 @@ class ProductModel extends ProductEntity {
         discountPercentage: convertDataToNum(json['discount_percentage']) ?? 0,
         vendor:json['vendor'] !=null ? VendorModel.fromJson(json['vendor']) : null,
         related: [],
+        variants: variants,
       );
     } catch (e, l) {
       log(l.toString());

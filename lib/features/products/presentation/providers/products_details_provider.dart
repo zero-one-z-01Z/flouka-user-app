@@ -16,6 +16,8 @@ class ProductDetailsProvider extends ChangeNotifier
   @override
   Map? inputs;
 
+
+  Map<int,int> variants = {};
   // bool isLoading = false;
   PageController pageController = PageController();
 
@@ -93,6 +95,10 @@ class ProductDetailsProvider extends ChangeNotifier
 
   bool isColorSelected(Color color) {
     return selectedColor == color;
+  }
+
+  void rebuild(){
+    notifyListeners();
   }
 
   // ColorEntity? colorEntity;

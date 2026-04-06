@@ -63,5 +63,7 @@ class FilterProductProvider extends ChangeNotifier {
     images: [],
     avgRating: 4.5,
     isFavorite: false,
+    attributes: [],
+    variants: []
   );
 }
