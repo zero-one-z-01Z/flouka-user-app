@@ -51,7 +51,7 @@ class OrderItemWidget extends StatelessWidget {
             Row(
               children: [
                 CachedNetworkImage(
-                  imageUrl: orderEntity.product.image ?? " ",
+                  imageUrl: orderEntity.product.images.first.image ?? " ",
                   errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
                 SizedBox(width: 10.w),

@@ -5,6 +5,7 @@ class CategoryModel extends CategoryEntity {
     required super.id,
     required super.image,
     required super.name,
+    required super.parentId,
     super.children = const [],
   });
 
@@ -20,6 +21,7 @@ class CategoryModel extends CategoryEntity {
     return CategoryModel(
       id: json['id'],
       image: json['image'] ?? '',
+      parentId: json['parent_id'],
       name: json['name'] ?? '',
       children: children,
     );

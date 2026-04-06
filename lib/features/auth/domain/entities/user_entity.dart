@@ -1,3 +1,5 @@
+import '../../../address/domain/entities/address_entity.dart';
+
 class UserEntity {
   final int id;
   String? name;
@@ -7,6 +9,7 @@ class UserEntity {
   int? LastReadNotification;
   num wallet;
   String? token;
+  AddressEntity? addressEntity;
 
   UserEntity({
     required this.id,
@@ -17,5 +20,7 @@ class UserEntity {
     required this.wallet,
     this.LastReadNotification,
     required this.token,
+    required this.addressEntity,
+
   });
 }

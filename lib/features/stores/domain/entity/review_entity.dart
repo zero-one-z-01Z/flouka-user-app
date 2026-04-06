@@ -6,7 +6,7 @@ class ReviewEntity {
   final DateTime date;
   final String avatarUrl;
 
-  ReviewEntity({
+  const ReviewEntity({
     required this.id,
     required this.reviewerName,
     required this.rating,

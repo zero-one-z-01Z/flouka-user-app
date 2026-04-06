@@ -34,6 +34,7 @@ class ImagesPreviewWidget extends StatelessWidget {
                     width: 100.w,
                     height: 100.h,
                     decoration: BoxDecoration(
+                      color: Colors.grey.shade200,
                       image: DecorationImage(
                         image: CachedNetworkImageProvider(images[index].image),
                         fit: BoxFit.contain,

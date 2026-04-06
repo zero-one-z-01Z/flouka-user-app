@@ -27,55 +27,30 @@ class SplashProvider extends ChangeNotifier {
   void startApp() async {
     await Future.wait([
       delay(500),
-      // Provider.of<BannersProvider>(
-      //   Constants.globalContext(),
-      //   listen: false,
-      // ).getBanners(),
-      Provider.of<CategoryProvider>(
-        Constants.globalContext(),
-        listen: false,
-      ).getCategories(),
-      Provider.of<OrderProvider>(Constants.globalContext(), listen: false).getData(),
-      // Provider.of<AddressProvider>(
-      //   Constants.globalContext(),
-      //   listen: false,
-      // ).getAddress(),
-      // Provider.of<WalletProvider>(
-      //   Constants.globalContext(),
-      //   listen: false,
-      // ).walletOperations(),
-      Provider.of<FilterProductProvider>(
-        Constants.globalContext(),
-        listen: false,
-      ).getData(),
-      Provider.of<StoresProvider>(
-        Constants.globalContext(),
-        listen: false,
-      ).getData(),
-      Provider.of<OfferSectionProvider>(
-        Constants.globalContext(),
-        listen: false,
-      ).getData(),
-      Provider.of<VideoProvider>(
-        Constants.globalContext(),
-        listen: false,
-      ).getReels(),
-
+      // Provider.of<BannersProvider>(Constants.globalContext(),listen: false,).getBanners(),
+      // Provider.of<OrderProvider>(Constants.globalContext(), listen: false).getData(),
+      // Provider.of<AddressProvider>(Constants.globalContext(),listen: false,).getAddress(),
+      // Provider.of<WalletProvider>(Constants.globalContext(),listen: false,).walletOperations(),
+      Provider.of<FilterProductProvider>(Constants.globalContext(), listen: false,).getData(),
+      Provider.of<StoresProvider>(Constants.globalContext(), listen: false,).getData(),
+      Provider.of<OfferSectionProvider>(Constants.globalContext(), listen: false,).getData(),
+      Provider.of<VideoProvider>(Constants.globalContext(), listen: false,).getReels(),
       Provider.of<StoryProvider>(Constants.globalContext(), listen: false).getData(),
+      Provider.of<CategoryProvider>(Constants.globalContext(), listen: false,).getCategories(),
     ]);
 
     bool isFirstTime = !(sharedPreferences.getBool('onBoarding') ?? false);
     final context = Constants.globalContext();
     var auth = Provider.of<AuthProvider>(context, listen: false);
     String? isLoggedIn = sharedPreferences.getString('token');
-    if (isFirstTime) {
-      navPARU(const OnBoardingView());
-    } else {
+    // if (isFirstTime) {
+    //   navPARU(const OnBoardingView());
+    // } else {
       if (isLoggedIn != null) {
         auth.getProfile();
       } else {
         auth.goToLoginView();
-      }
+      // }
     }
     // navPARU(const NavBarView());
   }

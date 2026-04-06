@@ -1,6 +1,7 @@
 import 'package:flouka/core/constants/app_images.dart';
 import 'package:flouka/features/auth/presentation/views/profile_view.dart';
 import 'package:flouka/features/cart/presentation/providers/cart_provider.dart';
+import 'package:flouka/features/categories/presentation/providers/subcategory_provider.dart';
 import 'package:flouka/features/categories/presentation/view/categories_view.dart';
 import 'package:flouka/features/home/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ import 'package:provider/provider.dart';
 import '../../../../../core/helper_function/navigation.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../cart/presentation/views/cart_view.dart';
+import '../../../categories/presentation/providers/categories_provider.dart';
 import '../../../language/presentation/provider/language_provider.dart';
 import '../../domain/entities/bottom_nav_bar_entity.dart';
 import '../views/nav_bar_view.dart';
@@ -49,12 +51,16 @@ class NavBarProvider extends ChangeNotifier {
 
   void goToNavView() {
     currentIndex = 0;
+    Provider.of<CategoryProvider>(Constants.globalContext(), listen: false).completeCategoryItems();
     navPARU(const NavBarView());
   }
 
   void changeIndex(int index) {
     if (index == 3) {
       Provider.of<CartProvider>(Constants.globalContext(), listen: false).refresh();
+    }
+    if(index==1){
+      Provider.of<SubcategoryProvider>(Constants.globalContext(),listen: false).clear();
     }
     currentIndex = index;
     notifyListeners();

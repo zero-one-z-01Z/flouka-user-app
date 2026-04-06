@@ -81,68 +81,13 @@ class ProductsProvider extends ChangeNotifier
   }
 
   @override
-  void goToPage([Map<String, dynamic>? inputs]) {}
+  void goToPage([Map<String, dynamic>? inputs]) {
+
+  }
 
   void setCategory(int? categoryId) async {
     selectedCategoryId = categoryId;
     clear();
     await getData();
   }
-
-  List<ProductEntity> get hotDeals => [
-    ProductEntity(
-      id: 1,
-      title: 'Gaming Laptop',
-      description: 'High performance gaming laptop',
-      price: 1299.0,
-      offerPrice: 999.0,
-      image: 'https://picsum.photos/200',
-      avgRating: 4.5,
-    ),
-    ProductEntity(
-      id: 2,
-      title: 'Wireless Headphones',
-      description: 'Noise cancelling headphones',
-      price: 180.0,
-      offerPrice: 120.0,
-      image: 'https://picsum.photos/201',
-      avgRating: 4.2,
-    ),
-    ProductEntity(
-      id: 3,
-      title: 'Smartphone',
-      description: 'Latest smartphone model',
-      price: 899.0,
-      offerPrice: 799.0,
-      image: 'https://picsum.photos/202',
-      avgRating: 4.8,
-    ),
-    ProductEntity(
-      id: 4,
-      title: 'Tablet',
-      description: 'Portable tablet for work and play',
-      price: 599.0,
-      offerPrice: 499.0,
-      image: 'https://picsum.photos/203',
-      avgRating: 4.1,
-    ),
-    ProductEntity(
-      id: 5,
-      title: 'Gaming Mouse',
-      description: 'Precision gaming mouse',
-      price: 79.0,
-      offerPrice: 59.0,
-      image: 'https://picsum.photos/204',
-      avgRating: 4.4,
-    ),
-    ProductEntity(
-      id: 6,
-      title: 'Mechanical Keyboard',
-      description: 'Clicky mechanical keyboard',
-      price: 199.0,
-      offerPrice: 150.0,
-      image: 'https://picsum.photos/205',
-      avgRating: 4.6,
-    ),
-  ];
 }

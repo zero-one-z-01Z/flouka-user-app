@@ -32,7 +32,7 @@ class StoreRemoteDataSource {
 
   Future<Either<DioException, StoreDetailsModel>> getStoreDetails(int id) async {
     StoreDetailsModel storeModels;
-    var response = await ApiHandel.getInstance.get('store/$id');
+    var response = await ApiHandel.getInstance.get('store_details/$id');
     return response.fold((l) => Left(l), (r) {
       storeModels = StoreDetailsModel.fromJson(r.data['data']);
       return Right(storeModels);

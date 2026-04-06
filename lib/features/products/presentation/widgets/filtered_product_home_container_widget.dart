@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flouka/core/constants/app_images.dart';
 import 'package:flouka/features/products/domain/entity/product_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -16,7 +17,10 @@ class FilteredProductHomeContainerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final ProductDetailsProvider productDetailsProvider = Provider.of(context);
     return InkWell(
-      onTap: () => productDetailsProvider.goToPage(),
+      onTap: () => productDetailsProvider.goToPage({
+        'product_id': productEntity.id,
+        'is_similar': false,
+      }),
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 2.w),
         height: 12.h,
@@ -39,13 +43,13 @@ class FilteredProductHomeContainerWidget extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CachedNetworkImage(
-                imageUrl: productEntity.image ?? "",
+              Container(
                 height: 12.h,
                 width: 12.h,
-                errorWidget: (context, url, error) => const Icon(Icons.error),
-                placeholder: (context, url) =>
-                    const Center(child: CircularProgressIndicator()),
+                decoration: BoxDecoration(
+                  image: DecorationImage(image:productEntity.images.isNotEmpty ?
+                  CachedNetworkImageProvider(productEntity.images.first.image) :const AssetImage(AppImages.logo))
+                ),
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,7 +81,7 @@ class FilteredProductHomeContainerWidget extends StatelessWidget {
                       ),
                       SizedBox(width: 13.w),
                       RatingBarIndicator(
-                        rating: productEntity.avgRating ?? 0,
+                        rating: (productEntity.avgRating ?? 0).toDouble(),
                         itemBuilder: (context, index) =>
                             const Icon(Icons.star, color: Colors.amber),
                         itemCount: 5,

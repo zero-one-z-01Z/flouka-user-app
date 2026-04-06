@@ -12,7 +12,6 @@ import '../../../language/presentation/provider/language_provider.dart';
 import '../providers/products_details_provider.dart';
 import '../widgets/avg_rating_widget.dart';
 import '../widgets/frequently_list_widget.dart';
-import '../widgets/rating_with_see_reviews_widget.dart';
 import '../widgets/review_with_images_section.dart';
 
 class ProductsDetailsView extends StatelessWidget {
@@ -26,7 +25,9 @@ class ProductsDetailsView extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            LanguageProvider.translate("global", "What are you looking for ?"),
+              productDetailsProvider.data !=null?
+              "${productDetailsProvider.data?.title??""}":
+              LanguageProvider.translate("global", "What are you looking for ?"),
           ),
         ),
         body: SingleChildScrollView(
@@ -41,7 +42,7 @@ class ProductsDetailsView extends StatelessWidget {
               return SingleChildScrollView(
                 child: Column(
                   children: [
-                    const ProductDetailsHeaderWidget(),
+                    ProductDetailsHeaderWidget(productEntity: productDetailsProvider.data!,),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 4.w),
                       child: Column(
@@ -50,11 +51,11 @@ class ProductsDetailsView extends StatelessWidget {
                           SizedBox(height: 2.h),
                           Text(
                             productDetailsProvider.data!.title!,
-                            style: TextStyleClass.headStyle(),
+                            style: TextStyleClass.headStyle(color: Colors.grey.shade400),
                           ),
                           SizedBox(height: 2.h),
-                          const RatingWithSeeReviewsWidget(),
-                          SizedBox(height: 2.5.h),
+                          // const RatingWithSeeReviewsWidget(),
+                          // SizedBox(height: 2.5.h),
                           Text(
                             LanguageProvider.translate("global", "Description"),
                             style: TextStyleClass.headStyle(),
@@ -62,20 +63,23 @@ class ProductsDetailsView extends StatelessWidget {
                           Text(
                             productDetailsProvider.data!.description!,
                             style: TextStyleClass.normalStyle(
-                              color: const Color(0xffaeb1c1),
+                              color: Colors.grey.shade400,
                             ).copyWith(height: 2),
                           ),
                           SizedBox(height: 3.h),
-                          Text(
-                            LanguageProvider.translate(
-                              "global",
-                              "Frequently Bought Together",
-                            ),
-                            style: TextStyleClass.normalStyle(),
-                          ),
-                          SizedBox(height: 2.h),
-                          const FrequentlyListWidget(),
-                          SizedBox(height: 2.h),
+                          if(productDetailsProvider.data!.related.isNotEmpty)
+                            ...[
+                              Text(
+                                LanguageProvider.translate(
+                                  "global",
+                                  "Frequently Bought Together",
+                                ),
+                                style: TextStyleClass.normalStyle(),
+                              ),
+                              SizedBox(height: 2.h),
+                              FrequentlyListWidget(relatedProducts: productDetailsProvider.data!.related),
+                              SizedBox(height: 2.h),
+                            ],
                           Text(
                             LanguageProvider.translate(
                               "global",
@@ -84,11 +88,16 @@ class ProductsDetailsView extends StatelessWidget {
                             style: TextStyleClass.normalStyle(),
                           ),
                           SizedBox(height: 2.h),
-                          const AvgRatingWidget(),
+                          AvgRatingWidget(rating: productDetailsProvider.data!.avgRating??0,),
                           SizedBox(height: 2.h),
-                          const ReviewWithImagesSection(),
+                          if(productDetailsProvider.data!.reviewImages.isNotEmpty)...[
+                            ReviewWithImagesSection(reviewImages: productDetailsProvider.data!.reviewImages),
+                            SizedBox(height: 2.h),
+                          ],
+                          Wrap(children: List.generate(productDetailsProvider.data!.reviews.length,
+                                (index) =>ReviewItemWidget(review: productDetailsProvider.data!.reviews[index],) ,),),
                           SizedBox(height: 2.h),
-                          const ReviewItemWidget(),
+
                         ],
                       ),
                     ),
@@ -97,6 +106,7 @@ class ProductsDetailsView extends StatelessWidget {
                       height: 7.h,
                       color: const Color(0xffeffbff),
                       child: gradiantButton(
+                        vendor: productDetailsProvider.data!.vendor!,
                         onTap: () {},
                         gradiantcolors: [Colors.white, AppColor.primaryColor],
                       ),

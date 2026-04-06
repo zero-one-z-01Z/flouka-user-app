@@ -1,6 +1,7 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flouka/core/widgets/price_widget.dart';
+import 'package:flouka/features/products/domain/entity/product_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -8,8 +9,8 @@ import '../../../../core/config/app_color.dart';
 import '../../../../core/config/app_styles.dart';
 
 class FrequentlyItemWidget extends StatelessWidget {
-  const FrequentlyItemWidget({super.key});
-
+  const FrequentlyItemWidget({super.key, required this.relatedProduct});
+  final ProductEntity relatedProduct;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -26,17 +27,17 @@ class FrequentlyItemWidget extends StatelessWidget {
                 width: 20.w,
                 height: 10.h,
                 fit: BoxFit.cover,
-                imageUrl: "https://placehold.co/600x400/000000/FFFFFF/png",
+                imageUrl: relatedProduct.image!,
                 errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
               SizedBox(height: 1.h),
-              const PriceWidget(price: 200),
+              PriceWidget(price: relatedProduct.price!),
               SizedBox(height: 1.h),
               SizedBox(
                 width: 20.w,
                 child: Text(
                   textAlign: TextAlign.center,
-                  "AIRPODS APPLE PRO V2",
+                  "${relatedProduct.title}",
                   style: TextStyleClass.smallStyle(
                     color: Colors.grey,
                   ).copyWith(fontSize: 13.sp),
@@ -45,15 +46,15 @@ class FrequentlyItemWidget extends StatelessWidget {
             ],
           ),
         ),
-        Container(
-          width: 4.w,
-          height: 4.w,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4),
-            color: AppColor.primaryColor,
-          ),
-          child: const Icon(Icons.check, color: Colors.white, size: 15),
-        ),
+        // Container(
+        //   width: 4.w,
+        //   height: 4.w,
+        //   decoration: BoxDecoration(
+        //     borderRadius: BorderRadius.circular(4),
+        //     color: AppColor.primaryColor,
+        //   ),
+        //   child: const Icon(Icons.check, color: Colors.white, size: 15),
+        // ),
       ],
     );
   }

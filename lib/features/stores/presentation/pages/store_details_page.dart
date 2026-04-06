@@ -19,7 +19,7 @@ class StoreDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final StoreDetailsProvider storeDetailsProvider =
-        Provider.of<StoreDetailsProvider>(context);
+    Provider.of<StoreDetailsProvider>(context);
     return Scaffold(
       backgroundColor: const Color(0xffEFFBFF),
       body: Builder(
@@ -85,9 +85,9 @@ class StoreDetailsPage extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              const CircleAvatar(
-                                radius: 34,
-                                backgroundImage: AssetImage(AppImages.preson),
+                              CircleAvatar(
+                                radius: 34,backgroundColor: Colors.grey.shade300,
+                                backgroundImage: CachedNetworkImageProvider(storeDetailsProvider.storeDetailsEntity!.image!),
                               ),
                               SizedBox(width: 2.w),
                               ButtonWidget(
@@ -139,9 +139,9 @@ class StoreDetailsPage extends StatelessWidget {
                             ],
                           ),
                           const SizedBox(height: 10),
-                          const Text(
-                            'John Doe',
-                            style: TextStyle(
+                          Text(
+                            '${storeDetailsProvider.storeDetailsEntity!.name}',
+                            style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),

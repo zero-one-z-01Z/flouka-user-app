@@ -7,7 +7,9 @@ class SubcategoryProvider extends ChangeNotifier {
   bool _isLoading = false;
   String? _error;
   CategoryEntity? _selectedSubcategory;
+  CategoryEntity? selectedCategory;
   int? _categoryId;
+
 
   List<CategoryEntity> get subcategories => _subcategories;
   bool get isLoading => _isLoading;
@@ -22,7 +24,7 @@ class SubcategoryProvider extends ChangeNotifier {
     _error = null;
     _categoryId = category.id;
     notifyListeners();
-
+    selectedCategory = category;
     _subcategories = category.children ?? [];
 
     if (_subcategories.isNotEmpty && _selectedSubcategory == null) {

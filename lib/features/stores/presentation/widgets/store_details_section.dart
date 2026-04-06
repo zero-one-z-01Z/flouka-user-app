@@ -25,12 +25,11 @@ class StoreDetailsSection extends StatelessWidget {
           ),
           StoreStatItem(
             title: 'customers',
-            value: storeDetailsProvider.storeDetailsEntity!.customersCount
-                .toString(),
+            value: "${storeDetailsProvider.storeDetailsEntity?.customersCount??0}",
           ),
           StoreStatItem(
             title: 'products',
-            value: storeDetailsProvider.storeDetailsEntity!.productsCount.toString(),
+            value: "${storeDetailsProvider.storeDetailsEntity?.productsCount??0}",
           ),
         ],
       ),

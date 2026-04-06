@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../products/domain/entity/product_review_entity.dart';
 import '../../../products/presentation/widgets/review_widget.dart';
 
 class RatingBottomSheetWidget extends StatelessWidget {
-  const RatingBottomSheetWidget({super.key});
-
+  const RatingBottomSheetWidget({super.key, required this.review});
+  final ProductReviewEntity review;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,7 +23,7 @@ class RatingBottomSheetWidget extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: 5.h),
-            const ReviewItemWidget(textColor: Colors.white),
+            ReviewItemWidget(textColor: Colors.white,review: review,),
           ],
         ),
       ),

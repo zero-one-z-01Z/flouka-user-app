@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const HomeAppbarWidget(),
-            const FarAwayContainerWidget(),
+            // const FarAwayContainerWidget(),
             const StoriesListWidget(),
             const CarouselSliderWidget(),
             const NewCategoriesHomeSection(),

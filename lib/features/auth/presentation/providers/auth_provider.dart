@@ -75,17 +75,17 @@ class AuthProvider extends ChangeNotifier {
     this.userEntity = userEntity;
     if (userEntity.token != null) {
       ApiHandel.getInstance.updateHeader(userEntity.token!);
-      sharedPreferences.setString('token', userEntity.token!);
     }
     if (userEntity.name == null || userEntity.name!.isEmpty) {
       navPARU(const CompleteInfoView(isEdit: false));
     } else {
       Provider.of<CartProvider>(Constants.globalContext(), listen: false).getData();
+      Provider.of<NavBarProvider>(Constants.globalContext(), listen: false,).goToNavView();
+      if (userEntity.token != null) {
+        ApiHandel.getInstance.updateHeader(userEntity.token!);
+        sharedPreferences.setString('token', userEntity.token!);
+      }
 
-      Provider.of<NavBarProvider>(
-        Constants.globalContext(),
-        listen: false,
-      ).goToNavView();
     }
   }
 
@@ -173,7 +173,7 @@ class AuthProvider extends ChangeNotifier {
     String token = sharedPreferences.getString('token')!;
     Map<String, dynamic> data = {'token': token};
     final result = await authUseCase.refreshToken(data);
-    result.fold((l) => showToast(l.message!), (r) {
+    result.fold((l){}, (r) {
       sharedPreferences.setString('token', r);
       ApiHandel.getInstance.updateHeader(r);
     });

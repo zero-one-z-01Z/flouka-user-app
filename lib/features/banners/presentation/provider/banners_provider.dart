@@ -21,6 +21,11 @@ class BannersProvider with ChangeNotifier {
 
     response.fold((l) => showToast(l.message ?? "Error loading banners"), (r) {
       bannersList.addAll(r);
+      bannersList.add(const BannersEntity(
+            id: 1,
+            image: 'https://placehold.co/600x400/000000/FFFFFF/png',
+            link: null,
+          ));
     });
 
     notifyListeners();

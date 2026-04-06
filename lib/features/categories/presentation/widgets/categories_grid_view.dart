@@ -42,8 +42,7 @@ class CategoriesGridView extends StatelessWidget {
                   children: List.generate(itemsPerRow, (index) {
                     if (index < rowCategories.length) {
                       final category = rowCategories[index];
-                      final isSelected =
-                          subcategoryProvider.categoryId == category.id;
+                      final isSelected = subcategoryProvider.categoryId == category.id;
 
                       return Expanded(
                         child: GestureDetector(
@@ -67,14 +66,14 @@ class CategoriesGridView extends StatelessWidget {
                 // Subcategories logic
                 if (isSubcategoryOpenInThisRow) ...[
                   SizedBox(
-                    height: 0.5.h,
+                    height: 2.h,
                   ), // Smaller spacing between row and its subcategories
                   const SubcategoriesListView(),
                   SizedBox(
-                    height: 2.h,
+                    height: 0.h,
                   ), // Larger spacing after subcategories before next row
                 ] else ...[
-                  SizedBox(height: 1.5.h), // Normal spacing between rows
+                  SizedBox(height: 0.h), // Normal spacing between rows
                 ],
               ],
             ),

@@ -18,9 +18,16 @@ class NewCategoriesHomeSection extends StatelessWidget {
           itemCount: categories.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
-            return NewCategoriesHomeWidget(
-              title: categories[index].name,
-              image: categories[index].image,
+            return InkWell(
+            onTap: (){
+              if(categories[index].onTap !=null){
+                categories[index].onTap!();
+              }
+            },
+              child: NewCategoriesHomeWidget(
+                title: categories[index].name,
+                image: categories[index].image,
+              ),
             );
           },
         ),

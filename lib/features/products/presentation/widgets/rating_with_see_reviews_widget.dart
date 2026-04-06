@@ -13,7 +13,7 @@ class RatingWithSeeReviewsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        CustomStarRatingWidget(itemSize: 20.sp),
+        CustomStarRatingWidget(itemSize: 20.sp, rating: 0, readOnly: true,),
         SizedBox(width: 2.w),
         Text("153,254", style: TextStyleClass.normalStyle(color: Colors.grey)),
         const Spacer(),

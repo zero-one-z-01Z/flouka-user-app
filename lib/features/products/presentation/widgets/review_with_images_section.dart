@@ -4,12 +4,16 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../core/config/app_styles.dart';
+import '../../../../core/helper_function/navigation.dart';
+import '../../../../core/widgets/img_preview_widget.dart';
+import '../../../../core/widgets/imgs_preview_widget.dart';
 import '../../../language/presentation/provider/language_provider.dart';
 import '../../../reviews/presentation/providres/review_provider.dart';
+import '../../domain/entity/product_entity.dart';
 
 class ReviewWithImagesSection extends StatelessWidget {
-  const ReviewWithImagesSection({super.key});
-
+  const ReviewWithImagesSection({super.key, required this.reviewImages});
+  final List<ProductImage> reviewImages;
   @override
   Widget build(BuildContext context) {
     final reviewProvider = Provider.of<ReviewProvider>(context);
@@ -21,32 +25,40 @@ class ReviewWithImagesSection extends StatelessWidget {
           style: TextStyleClass.normalStyle(),
         ),
         SizedBox(height: 2.h),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: List.generate(
-              5,
-              (index) => Padding(
-                padding: EdgeInsets.only(right: 2.w),
-                child: InkWell(
-                  onTap: () {
-                    reviewProvider.gotoReviewPage();
-                  },
-                  child: Container(
-                    width: 20.w,
-                    height: 20.w,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: CachedNetworkImage(
-                        fit: BoxFit.cover,
-                        imageUrl: "https://placehold.co/600x400/000000/FFFFFF/png",
-                        width: 20.w,
-                        height: 20.w,
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
+        SizedBox(
+          width: 100.w,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              spacing: 2.w,
+              children: List.generate(
+                reviewImages.length,
+                (index) => Padding(
+                  padding: EdgeInsets.only(right: 2.w),
+                  child: InkWell(
+                    onTap: () {
+                      navP(ImagesPreviewWidget(
+                        images: reviewImages,
+                        index: index,
+                      ));
+                    },
+                    child: Container(
+                      width: 20.w,
+                      height: 20.w,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.grey.shade200
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: CachedNetworkImage(
+                          fit: BoxFit.contain,
+                          imageUrl: "${reviewImages[index].image}",
+                          width: 20.w,
+                          height: 20.w,
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error),
+                        ),
                       ),
                     ),
                   ),

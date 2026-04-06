@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flouka/core/helper_function/navigation.dart';
 import 'package:flouka/features/auth/presentation/providers/auth_provider.dart';
 import 'package:flouka/features/auth/presentation/views/complete_info_view.dart';
@@ -22,12 +21,14 @@ class ProfileHeaderWidget extends StatelessWidget {
       ),
       child: Row(
         children: [
-          CircleAvatar(
-            radius: 6.w,
-            child: CachedNetworkImage(
-              imageUrl: authProvider.userEntity?.image ?? "",
-              errorWidget: (context, url, error) => const Icon(Icons.error),
-              placeholder: (context, url) => const CircularProgressIndicator(),
+          Container(width: 10.w,height: 10.w,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                image: NetworkImage(authProvider.userEntity?.image ?? ""),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           SizedBox(width: 2.w),

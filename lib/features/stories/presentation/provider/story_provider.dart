@@ -21,7 +21,11 @@ class StoryProvider extends ChangeNotifier {
 
     result.fold((l) => showToast(l.message ?? "Failed to load stories"), (r) {
       data ??= [];
-      data!.addAll(r);
+      for (var i in r) {
+        if(i.stories.isNotEmpty){
+          data!.add(i);
+        }
+      }
       notifyListeners();
     });
   }

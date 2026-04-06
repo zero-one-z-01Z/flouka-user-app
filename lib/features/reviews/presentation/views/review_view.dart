@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import '../../../products/domain/entity/product_review_entity.dart';
 import '../providres/review_provider.dart';
 import '../widgets/images_page_view_builder.dart';
 import '../widgets/rating_bottom_sheet_widget.dart';
 
 class ReviewView extends StatelessWidget {
-  const ReviewView({super.key});
-
+  const ReviewView({super.key, required this.review});
+  final ProductReviewEntity review;
   @override
   Widget build(BuildContext context) {
     final reviewProvider = Provider.of<ReviewProvider>(context);
@@ -18,11 +19,11 @@ class ReviewView extends StatelessWidget {
         child: Stack(
           children: [
             const ImagesPageViewBuilder(),
-            const Positioned(
+            Positioned(
               bottom: 0,
               left: 0,
               right: 0,
-              child: RatingBottomSheetWidget(),
+              child: RatingBottomSheetWidget(review: review,),
             ),
             Positioned(
               left: 4.w,

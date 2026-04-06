@@ -34,7 +34,11 @@ class CategoriesHomeExplore extends StatelessWidget {
             itemBuilder: (context, index) {
               if (showExplore && index == 0) {
                 final exploreCategory = CategoryEntity(
+                  onTap: (){
+
+                  },
                   id: 0,
+                  parentId: null,
                   image: AppImages.explore,
                   name: LanguageProvider.translate('home', 'explore'),
                 );
@@ -58,6 +62,7 @@ class CategoriesHomeExplore extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 child: CategoryHomeContainerWidget(
                   category: category,
+                  ishome: false,
                   showText: showExplore,
                 ),
               );

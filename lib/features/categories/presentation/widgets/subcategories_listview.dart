@@ -14,14 +14,14 @@ class SubcategoriesListView extends StatelessWidget {
     return Consumer<SubcategoryProvider>(
       builder: (context, provider, _) {
         final List<CategoryEntity> subcategories = provider.subcategories;
-
-        if (subcategories.isEmpty && provider.isLoading) {
-          return const Center(child: CircularProgressIndicator());
-        }
-
-        if (subcategories.isEmpty) {
-          return const SizedBox.shrink();
-        }
+        //
+        // if (subcategories.isEmpty && provider.isLoading) {
+        //   return const Center(child: CircularProgressIndicator());
+        // }
+        //
+        // if (subcategories.isEmpty) {
+        //   return const SizedBox.shrink();
+        // }
 
         final itemCount = subcategories.length + 1; // last one is "view all"
 

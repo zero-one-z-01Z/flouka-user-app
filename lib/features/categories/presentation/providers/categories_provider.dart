@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flouka/core/constants/app_images.dart';
 import 'package:flouka/core/dialog/snack_bar.dart';
 import 'package:flutter/material.dart';
@@ -20,12 +22,21 @@ class CategoryProvider extends ChangeNotifier {
   String? get error => _error;
 
   /// Static home navigation tiles (not from API)
-  List<CategoryEntity> homeCategories = [
-    CategoryEntity(id: 1, image: AppImages.offer, name: 'offers_products'),
-    CategoryEntity(id: 2, image: AppImages.bestSeller, name: 'best_sellers'),
-    CategoryEntity(id: 3, image: AppImages.categories, name: 'categories'),
-    CategoryEntity(id: 4, image: AppImages.exploreCategories, name: 'explore'),
-  ];
+  // List<CategoryEntity> homeCategories = [];
+  List<CategoryEntity> get homeCategories => completeCategoryItems();
+
+  List<CategoryEntity> completeCategoryItems(){
+  return   [
+      // CategoryEntity(id: 1, image: AppImages.offer, name: 'offers_products',onTap: (){
+      //
+      // }),
+      CategoryEntity(id: 2,parentId: null, image: AppImages.bestSeller, name: 'best_sellers',onTap: (){
+
+      }),
+      CategoryEntity(id: 3,parentId: null, image: AppImages.categories, name: 'categories',onTap: (){}),
+      CategoryEntity(id: 4,parentId: null, image: AppImages.exploreCategories, name: 'explore',onTap: (){}),
+    ];
+  }
 
   Future<void> getCategories() async {
     _isLoading = true;
@@ -74,4 +85,6 @@ class CategoryProvider extends ChangeNotifier {
     _isLoading = false;
     notifyListeners();
   }
+
+
 }

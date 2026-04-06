@@ -47,7 +47,7 @@ class OrderDetailsItemWidget extends StatelessWidget {
               CachedNetworkImage(
                 width: 20.w,
                 imageUrl:
-                    orderDetailsEntity.productEntity?.image ??
+                    orderDetailsEntity.productEntity?.images.first.image ??
                     "https://placehold.co/600x400",
                 errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
@@ -73,7 +73,7 @@ class OrderDetailsItemWidget extends StatelessWidget {
                           price: convertDataToNum(orderDetailsEntity.price) ?? 999,
                         ),
                         const Spacer(),
-                        const CustomStarRatingWidget(),
+                        CustomStarRatingWidget(rating: orderDetailsEntity.productEntity?.avgRating ?? 0, readOnly: true,),
                         Text(
                           "153,254",
                           style: TextStyleClass.smallStyle(color: Colors.grey),

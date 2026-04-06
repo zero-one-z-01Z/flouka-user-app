@@ -29,7 +29,7 @@ class OffersSectionWidget extends StatelessWidget {
                   Text(
                     offerSectionEntity.title,
                     style: TextStyleClass.normalStyle().copyWith(
-                      color: const Color(0xffFFE202),
+                      color: Colors.white,
                       fontSize: 20.sp,
                       fontWeight: FontWeight.bold,
                     ),

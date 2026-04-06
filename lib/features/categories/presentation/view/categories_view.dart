@@ -1,6 +1,6 @@
 import 'package:flouka/features/categories/presentation/providers/categories_provider.dart';
 import 'package:flouka/features/categories/presentation/widgets/categories_grid_view.dart';
-import 'package:flouka/core/widgets/searchbar_container.dart';
+import 'package:flouka/features/language/presentation/provider/language_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -11,6 +11,9 @@ class CategoriesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(LanguageProvider.translate("navbar", "categories")),
+      ),
       body: RefreshIndicator(
         onRefresh: () async {
           context.read<CategoryProvider>().refresh();
@@ -20,9 +23,9 @@ class CategoriesView extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 4.w),
             child: Column(
               children: [
-                SizedBox(height: 6.h),
-                const SearchbarContainer(),
                 SizedBox(height: 1.h),
+                // const SearchbarContainer(),
+                // SizedBox(height: 1.h),
                 const CategoriesGridView(),
                 SizedBox(height: 2.h),
               ],

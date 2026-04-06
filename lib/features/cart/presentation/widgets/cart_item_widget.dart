@@ -63,7 +63,7 @@ class CartItemWidget extends StatelessWidget {
                               price: convertDataToNum(cartEntity.subTotal) ?? 0,
                             ),
                             const Spacer(),
-                            const CustomStarRatingWidget(),
+                            CustomStarRatingWidget(rating: cartEntity.product?.avgRating ?? 0, readOnly: true,),
                             Text(
                               "153,254",
                               style: TextStyleClass.smallStyle(color: Colors.grey),

@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flouka/features/products/domain/entity/product_entity.dart';
+import '../../../../core/dialog/snack_bar.dart';
 import '../../../../core/helper_function/navigation.dart';
 import '../../../../core/models/provider_structure_model.dart';
 import '../../domain/user_case/product_use_case.dart';
@@ -32,34 +35,23 @@ class ProductDetailsProvider extends ChangeNotifier
 
   @override
   Future getData() async {
-    // if (inputs == null || inputs!['product_id'] == null) return;
-    // isLoading = true;
-    data = null;
-    data = fakeProduct;
+    if (inputs == null || inputs!['product_id'] == null) return;
+    // isLoading = true;data = null;
     notifyListeners();
-    // final result = await productUseCase.getProductDetails({
-    //   'product_id': productsIDs.isEmpty ? inputs!['product_id'] : productsIDs.last,
-    // });
+    final result = await productUseCase.getProductDetails({
+      'product_id': productsIDs.isEmpty ? inputs!['product_id'] : productsIDs.last,
+    });
+    result.fold((l) {
+      showToast(l.message ?? '');
+      log(l.message ?? '');
+    }, (
+      productDetails,
+    ) {
+      data = productDetails;
+      notifyListeners();
 
-    // result.fold((l) => showToast(l.message ?? ''), (
-    //   productDetails,
-    // ) {
-    //   data = productDetails;
-    //   sizes = [];
-    //   colors = [];
-    //   for (var element in data!.stock!) {
-    //     int index = colors.indexWhere((colorElement) => colorElement.id == element.colorId);
-    //     if (index == -1) {
-    //       colors.add(element.colorEntity!);
-    //     }
-    //   }
-    //   if(colors.isNotEmpty) {
-    //     onColorChange(colors.first);
-    //   }
-    // });
+    });
 
-    // isLoading = false;
-    // notifyListeners();
   }
 
   void backToLastProduct() {
@@ -73,14 +65,14 @@ class ProductDetailsProvider extends ChangeNotifier
 
   @override
   void goToPage([Map<String, dynamic>? inputs]) async {
-    // this.inputs = inputs;
-    // if (!inputs!['is_similar']) {
+    this.inputs = inputs;
+    // if (!(inputs?['is_similar']??true)) {
     //   navP(const ProductsDetailsView());
     // } else {
-    //   productsIDs.add(inputs['product_id']);
+    //   productsIDs.add(inputs?['product_id']);
     // }
 
-    await refresh();
+    refresh();
     navP(const ProductsDetailsView());
   }
 
@@ -88,7 +80,6 @@ class ProductDetailsProvider extends ChangeNotifier
   Future refresh() async {
     clear();
     await getData();
-    notifyListeners();
   }
 
   List<Color> colorsList = [Colors.red, Colors.green, Colors.blue, Colors.purple];
@@ -170,15 +161,3 @@ class ProductDetailsProvider extends ChangeNotifier
 // product details entity => List<StockEntity>
 // loop data in stock entity => size stock entity => colors stock entity
 // product stock entity
-
-final fakeProduct = ProductEntity(
-  id: 5,
-  title: 'Lenovo Yoga 920 13/Core i7/16GB/SSD 1TB',
-  description:
-      'For now, the Lenovo Yoga 920 is the highest variant of the Yoga series. The specifications are no joke. With the 8th generation Kaby Lake Refresh Intel Core i7-8550U processor.',
-  price: 1000,
-  offerPrice: 800,
-  discountTitle: 'Special Offer',
-  discountPercentage: 20,
-  image: "https://placehold.co/600x400/000000/FFFFFF/png",
-);

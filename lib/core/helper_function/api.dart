@@ -86,11 +86,13 @@ class ApiHandel {
         queryParameters: data,
         cancelToken: cancelToken,
       );
+      log(path.toString());
+
       if (response.statusCode == 200) {
         return Right(response);
       }
       log('error1');
-      log(path.toString());
+
       return Left(dioException(response));
     } on DioException catch (e) {
       log(e.response?.data.toString() ?? "");
@@ -112,6 +114,9 @@ class ApiHandel {
     Map<String, dynamic>? data,
   ]) async {
     try {
+      log("aaaaaaaaa${path}");
+      log("aaaaaaaaa${data.toString()}");
+
       await reLogin(path);
       cancelToken = CancelToken();
       Response response = await dio.delete(
@@ -119,11 +124,13 @@ class ApiHandel {
         queryParameters: data,
         cancelToken: cancelToken,
       );
+      log(path.toString());
+
       if (response.statusCode == 200) {
         return Right(response);
       }
       log('error1');
-      log(path.toString());
+
       return Left(dioException(response));
     } on DioException catch (e) {
       log(e.response?.data.toString() ?? "");
@@ -145,8 +152,8 @@ class ApiHandel {
     path,
     Map<String, dynamic> data,
   ) async {
-    log(path);
-    log(data.toString());
+    log("aaaaaaaaa${path}");
+    log("aaaaaaaaa${data.toString()}");
     try {
       await reLogin(path);
       cancelToken = CancelToken();
@@ -161,7 +168,6 @@ class ApiHandel {
         return Right(response);
       }
       log('error1');
-      log(path.toString());
       return Left(dioException(response));
     } on DioException catch (e) {
       log(e.response?.data.toString() ?? "");
@@ -169,11 +175,8 @@ class ApiHandel {
       log('error2');
       return Left(e.response == null ? e : dioException(e.response!));
     } catch (e, line) {
-      log(line.toString());
       log('error3');
-      log(e.toString());
       // print("dioException ON ${e}");
-
       return Left(
         DioException(
           requestOptions: RequestOptions(baseUrl: Constants.domain, path: path),

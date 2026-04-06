@@ -19,7 +19,7 @@ class HomeAppbarWidget extends StatelessWidget {
       ).copyWith(top: 7.h),
       child: Row(
         children: [
-          const DeliveryDropdownWidget(),
+          const Expanded(child:  DeliveryDropdownWidget()),
           const Spacer(),
           const SvgWidget(svg: AppImages.search),
           SizedBox(width: 4.w),

@@ -1,3 +1,5 @@
+import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/constants/constants.dart';
@@ -22,50 +24,26 @@ class WalletProvider extends ChangeNotifier implements PaginationClass {
   WalletProvider(this.walletUseCases);
 
   Future walletOperations() async {
-    myOperations = [
-      OperationEntity(
-        id: 1,
-        userId: 1,
-        price: "100",
-        operation: "deposited",
-        createdAt: DateTime.now().toString(),
-      ),
-      OperationEntity(
-        id: 2,
-        userId: 1,
-        price: "20",
-        operation: "deducted",
-        createdAt: DateTime.now().toString(),
-      ),
-      OperationEntity(
-        id: 3,
-        userId: 1,
-        price: "100",
-        operation: "deposited",
-        createdAt: DateTime.now().toString(),
-      ),
-    ];
+    Map<String, dynamic> data = {};
+    data['page'] = pageIndex;
+    Either<DioException, List<OperationEntity>> login = await walletUseCases
+        .walletOperations(data);
+    login.fold(
+      (l) {
+        showToast("${l.message}");
+      },
+      (r) async {
+        pageIndex++;
+        myOperations ??= [];
+        myOperations?.addAll(r);
+        if (r.isEmpty) {
+          paginationFinished = true;
+        }
+      },
+    );
+    paginationStarted = false;
+
     notifyListeners();
-    // Map<String, dynamic> data = {};
-    // data['page'] = pageIndex;
-    // Either<DioException, List<OperationEntity>> login = await walletUseCases
-    //     .walletOperations(data);
-    // login.fold(
-    //   (l) {
-    //     showToast("${l.message}");
-    //   },
-    //   (r) async {
-    //     pageIndex++;
-    //     myOperations ??= [];
-    //     myOperations?.addAll(r);
-    //     if (r.isEmpty) {
-    //       paginationFinished = true;
-    //     }
-    //   },
-    // );
-    // paginationStarted = false;
-    //
-    // notifyListeners();
   }
 
   void goToWalletPage() {

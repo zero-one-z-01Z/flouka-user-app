@@ -1,5 +1,6 @@
 import 'package:flouka/core/constants/app_images.dart';
 import 'package:flouka/core/constants/constants.dart';
+import 'package:flouka/features/auth/presentation/providers/auth_provider.dart';
 import 'package:flouka/features/auth/presentation/widgets/profile_pages_container_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -8,22 +9,21 @@ import '../../../address/presentation/providers/address_provider.dart';
 import '../../../chat/presentation/providers/chat_provider.dart';
 import '../../../orders/presentation/provider/order_provider.dart';
 import '../../../stores/presentation/providers/followed_stores_provider.dart';
+import '../../../wallet/presentation/provider/wallet_provider.dart';
 
 class ProfilePagesSection extends StatelessWidget {
   const ProfilePagesSection({super.key});
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of(context);
     List<Map<String, dynamic>> dataList = [
       {
         "title": "orders",
         "subTitle": "manage_orders",
         "svg": AppImages.settingsOrders,
         "onTap": () {
-          final ordersProvider = Provider.of<OrderProvider>(
-            Constants.globalContext(),
-            listen: false,
-          );
+          final ordersProvider = Provider.of<OrderProvider>(Constants.globalContext(), listen: false,);
           ordersProvider.goToPage();
         },
       },
@@ -41,14 +41,17 @@ class ProfilePagesSection extends StatelessWidget {
       },
       {
         "title": "wallet",
-        "subTitle": "0.0 US \$",
+        "subTitle": "${authProvider.userEntity?.wallet} US \$",
         "svg": AppImages.settingsWallet,
         "onTap": () {
-          final followedStoresProvider = Provider.of<FollowedStoresProvider>(
-            Constants.globalContext(),
-            listen: false,
-          );
-          followedStoresProvider.goToPage();
+          final walletProvider = Provider.of<WalletProvider>(Constants.globalContext(), listen: false,);
+          walletProvider.goToWalletPage();
+
+          // final followedStoresProvider = Provider.of<FollowedStoresProvider>(
+          //   Constants.globalContext(),
+          //   listen: false,
+          // );
+          // followedStoresProvider.goToPage();
         },
       },
       {

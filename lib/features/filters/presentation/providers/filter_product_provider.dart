@@ -20,6 +20,7 @@ class FilterProductProvider extends ChangeNotifier {
 
   bool isProductLoading = false;
   List<ProductEntity>? products;
+  List<ProductEntity> homeProducts = [];
 
   Future<void> getFilterProducts(int id) async {
     isProductLoading = true;
@@ -50,10 +51,16 @@ class FilterProductProvider extends ChangeNotifier {
   ProductEntity fakeProduct = ProductEntity(
     id: -1,
     title: 'Loading Product Title...',
+    image: "",
+    related: [],
+    reviewImages: [],
+    reviews: [],
+    vendor: null,discountPercentage: 0.0,
+    discountTitle: "",
     description: 'Loading Description...',
     price: 99.99,
     offerPrice: 0,
-    image: '',
+    images: [],
     avgRating: 4.5,
     isFavorite: false,
   );

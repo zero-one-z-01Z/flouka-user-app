@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flouka/core/helper_function/api.dart';
@@ -39,7 +41,7 @@ import '../models/product_model.dart';
   Future<Either<DioException, List<ProductEntity>>> getProducts(
     Map<String, dynamic> data,
   ) async {
-    var response = await ApiHandel.getInstance.post('get_products', data);
+    var response = await ApiHandel.getInstance.get('products', data);
     List<ProductModel> productModels = [];
     return response.fold((l) => Left(l), (r) {
       for (var i in r.data['data']) {
@@ -52,11 +54,10 @@ import '../models/product_model.dart';
   Future<Either<DioException, ProductEntity>> getProductDetails(
     Map<String, dynamic> data,
   ) async {
-    var response = await ApiHandel.getInstance.post(
-      'get_product_details',
-      data,
-    );
-    return response.fold((l) => Left(l), (r) {
+    var response = await ApiHandel.getInstance.get('products/details', data,);
+    return response.fold((l) {
+      return Left(l);
+    }, (r) {
       return Right(ProductModel.fromJson(r.data['data']));
     });
   }

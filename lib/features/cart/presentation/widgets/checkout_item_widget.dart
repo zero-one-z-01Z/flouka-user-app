@@ -41,7 +41,7 @@ class CheckoutItemWidget extends StatelessWidget {
                 CachedNetworkImage(
                   width: 20.w,
                   imageUrl:
-                      cartEntity.product?.image ?? "https://placehold.co/600x400",
+                      cartEntity.product?.images.first.image ?? "https://placehold.co/600x400",
                   errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
                 const SizedBox(width: 16),
@@ -66,7 +66,7 @@ class CheckoutItemWidget extends StatelessWidget {
                             price: convertDataToNum(cartEntity.subTotal) ?? 999,
                           ),
                           const Spacer(),
-                          const CustomStarRatingWidget(),
+                          CustomStarRatingWidget(rating: cartEntity.product?.avgRating ?? 0, readOnly: true,),
                           Text(
                             "153,254",
                             style: TextStyleClass.smallStyle(color: Colors.grey),

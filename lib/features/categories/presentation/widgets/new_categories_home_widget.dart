@@ -19,7 +19,7 @@ class NewCategoriesHomeWidget extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         Container(
-          height: 16.h,
+          height: 12.h,
           width: 30.w,
           margin: EdgeInsets.symmetric(horizontal: 1.5.w, vertical: 0.2.h),
           padding: EdgeInsets.symmetric(vertical: 0.2.h),
@@ -41,7 +41,7 @@ class NewCategoriesHomeWidget extends StatelessWidget {
                     LanguageProvider.translate('global', title),
                     style: TextStyle(
                       color: Colors.black54,
-                      fontSize: 16.sp,
+                      fontSize: 15.sp,
                       fontWeight: FontWeight.bold,
                     ),
                     maxLines: 2,
@@ -63,12 +63,12 @@ class NewCategoriesHomeWidget extends StatelessWidget {
           ),
         ),
         Positioned(
-          bottom: 0.2.h,
+          top: 0.h,
           left: 5.w,
           child: Image.asset(
             image,
             width: 20.w,
-            height: 20.h,
+            height: 10.h,
             fit: BoxFit.contain,
           ),
         ),

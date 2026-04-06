@@ -17,7 +17,7 @@ class PriceWidget extends StatelessWidget {
           r"$",
           style: TextStyleClass.normalStyle().copyWith(
             fontWeight: FontWeight.w900,
-            fontSize: fontSize ?? 18.sp,
+            fontSize: fontSize ?? 16.sp,
             color: fontSize == 15.99.sp ? Colors.green : Colors.black,
           ),
         ),
@@ -26,7 +26,7 @@ class PriceWidget extends StatelessWidget {
           price.toString(),
           style: TextStyleClass.normalStyle().copyWith(
             fontWeight: FontWeight.w900,
-            fontSize: fontSize ?? 18.sp,
+            fontSize: fontSize ?? 14.sp,
             color: fontSize == 15.99.sp ? Colors.green : Colors.black,
           ),
         ),

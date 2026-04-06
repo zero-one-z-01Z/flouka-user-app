@@ -10,6 +10,7 @@
   },
   "home": {
     "deliver_to": "Deliver To",
+    "select_location": "Add Location",
     "change": "Change",
     "far_from_location": "Your seem Far away from this location",
     "explore": "Explore",
@@ -78,6 +79,8 @@
   "global": {
     "saved_addresses": "Saved Addresses",
     "no_stores_followed_yet": "No stores followed yet",
+    "sold_by": "Sold by",
+
     "settings": "Settings",
     "no_address": "No Address",
     "choose_lang": "\uD83C\uDF0D Choose Your Language",

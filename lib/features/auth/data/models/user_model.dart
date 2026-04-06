@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flouka/core/helper_function/convert.dart';
 
+import '../../../address/data/model/address_model.dart';
 import '../../domain/entities/user_entity.dart';
 
 class UserModel extends UserEntity {
@@ -14,6 +15,7 @@ class UserModel extends UserEntity {
     required super.wallet,
     required super.name,
     required super.LastReadNotification,
+    required super.addressEntity
   });
 
   factory UserModel.fromJson(Map data) {
@@ -27,6 +29,7 @@ class UserModel extends UserEntity {
         wallet: convertDataToNum(data['wallet']) ?? 0,
         name: data['name'],
         LastReadNotification: convertStringToInt(data['last_read_notification']),
+        addressEntity: data['address'] !=null ? AddressModel.fromJson(data['address']) :null
       );
     } catch (e, line) {
       log(line.toString());

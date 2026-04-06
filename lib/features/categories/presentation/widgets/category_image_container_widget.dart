@@ -15,9 +15,10 @@ class CategoryImageContainerWidget extends StatelessWidget {
         Container(
           width: 34.w,
           height: 18.h,
+          padding: const EdgeInsets.all(20),
           child: CachedNetworkImage(
             imageUrl: category.image,
-            fit: BoxFit.cover,
+            fit: BoxFit.contain,
             placeholder: (context, url) =>
                 const Center(child: CircularProgressIndicator()),
             errorWidget: (context, url, error) =>
