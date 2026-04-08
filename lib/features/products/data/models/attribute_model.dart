@@ -4,7 +4,7 @@ class AttributeValeModel extends AttributeValeEntity{
   AttributeValeModel({required super.id, required super.value, required super.code});
   
   factory AttributeValeModel.fromJson(Map data){
-    return AttributeValeModel(id: data['id'], value: data['vale'], code: data['code']);
+    return AttributeValeModel(id: data['id'], value: data['value'], code: data['code']);
   }
   
 }

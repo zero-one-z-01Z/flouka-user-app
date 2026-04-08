@@ -11,14 +11,28 @@ class OfferSectionListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final OfferSectionProvider offerSectionProvider =
         Provider.of<OfferSectionProvider>(context);
-    return Column(
-      spacing: 4,
-      children: List.generate(
-        offerSectionProvider.data?.length ?? 0,
-        (index) => OffersSectionWidget(
-          offerSectionEntity: offerSectionProvider.data![index],
-        ),
-      ),
+    return Builder(
+      builder: (context) {
+        if (offerSectionProvider.data == null) {
+          return const Center(
+            child: SizedBox(),
+          );
+        }
+        if (!offerSectionProvider.data!.any((element) => element.products.isNotEmpty,)) {
+          return const Center(
+            child: SizedBox(),
+          );
+        }
+        return Column(
+          spacing: 4,
+          children: List.generate(
+            offerSectionProvider.data?.length ?? 0,
+            (index) => OffersSectionWidget(
+              offerSectionEntity: offerSectionProvider.data![index],
+            ),
+          ),
+        );
+      }
     );
   }
 }
