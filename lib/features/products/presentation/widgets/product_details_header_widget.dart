@@ -41,11 +41,11 @@ class ProductDetailsHeaderWidget extends StatelessWidget {
             ),
           ),
           // the colors list
-          Positioned(
-            bottom: 10.h,
-            left: 5.w,
-            child: const ProductColorsListWidget(),
-          ),
+          // Positioned(
+          //   bottom: 10.h,
+          //   left: 5.w,
+          //   child: const ProductColorsListWidget(),
+          // ),
           // the share and favourite buttons
           Positioned(
             top: 5.h,

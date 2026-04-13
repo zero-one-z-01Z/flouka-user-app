@@ -11,25 +11,28 @@ class SocialMediaIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.2.h),
-      margin: EdgeInsets.only(bottom: 2.h),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(32),
-        border: Border.all(color: Colors.black),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Image.asset(socialAuthEntity.image, width: 4.w),
-          Text(
-            LanguageProvider.translate("auth", socialAuthEntity.text),
-            style: TextStyleClass.normalStyle().copyWith(
-              fontWeight: FontWeight.w500,
+    return InkWell(
+      onTap: socialAuthEntity.onTap,
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.2.h),
+        margin: EdgeInsets.only(bottom: 2.h),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(32),
+          border: Border.all(color: Colors.black),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Image.asset(socialAuthEntity.image, width: 4.w),
+            Text(
+              LanguageProvider.translate("auth", socialAuthEntity.text),
+              style: TextStyleClass.normalStyle().copyWith(
+                fontWeight: FontWeight.w500,
+              ),
             ),
-          ),
-          SizedBox(width: 4.w),
-        ],
+            SizedBox(width: 4.w),
+          ],
+        ),
       ),
     );
   }

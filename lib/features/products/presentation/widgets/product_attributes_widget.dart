@@ -1,3 +1,4 @@
+import 'package:flouka/core/config/app_color.dart';
 import 'package:flouka/features/products/presentation/providers/product_variant_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,15 +30,22 @@ class ProductAttributesWidget extends StatelessWidget {
                         children: List.generate(
                           productDetailsProvider.data!.attributes[index].values.length, (attributeIndex) => InkWell(
                           onTap: (){
-                            productDetailsProvider.onTap(index, attributeIndex);
+                            productDetailsProvider.onTap(index, productDetailsProvider.data!.attributes[index].values[attributeIndex].id);
                           },
                           child: Container(
-                            padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 0.5.h,),
-                            decoration: BoxDecoration(color: Colors.grey.shade200,
+                            padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 0.5.h,),
+                            decoration: BoxDecoration(color:productDetailsProvider.isSelected(index,
+                                productDetailsProvider.data!.attributes[index].values[attributeIndex].id)
+                                ? AppColor.primaryColor.withOpacity(0.1) : Colors.grey.shade200,
+                              border: Border.all(color: productDetailsProvider.isSelected(index,
+                                  productDetailsProvider.data!.attributes[index].values[attributeIndex].id)
+                                  ? AppColor.primaryColor : Colors.grey.shade200),
                               borderRadius: BorderRadius.circular(5),),
                             child: Text(
                               productDetailsProvider.data!.attributes[index].values[attributeIndex].value,
-                              style: TextStyleClass.normalStyle(color: Colors.black,),
+                              style: TextStyleClass.normalStyle(color:productDetailsProvider.isSelected(index,
+                                  productDetailsProvider.data!.attributes[index].values[attributeIndex].id)
+                                  ? AppColor.primaryColor: Colors.black,),
                             ),
                           ),
                         ),

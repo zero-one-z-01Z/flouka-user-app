@@ -7,7 +7,13 @@ extension ProductVariantProvider on ProductDetailsProvider{
 
   void onTap(int index,int id){
     if(!variants.containsKey(index-1)&&index!=0){
-      // show error must shose by lvl
+      // show error must choose by lvl
+      return;
+    }
+    if(variants[index]==id){
+      return;
+    }
+    if(hide(index,id)){
       return;
     }
     variants[index] = id;

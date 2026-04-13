@@ -12,6 +12,7 @@ import '../../../language/presentation/provider/language_provider.dart';
 import '../providers/products_details_provider.dart';
 import '../widgets/avg_rating_widget.dart';
 import '../widgets/frequently_list_widget.dart';
+import '../widgets/product_attributes_widget.dart';
 import '../widgets/review_with_images_section.dart';
 
 class ProductsDetailsView extends StatelessWidget {

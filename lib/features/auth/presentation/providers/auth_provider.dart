@@ -1,4 +1,6 @@
 import 'dart:developer';
+import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flouka/features/auth/presentation/providers/otp_provider.dart';
 import 'package:flouka/features/auth/presentation/views/login_view.dart';
@@ -44,24 +46,55 @@ class AuthProvider extends ChangeNotifier {
   }
 
   /// ----------- Login Logic -----------
-  Future<void> socialLogin({required String loginFrom}) async {
-    Map<String, dynamic> data = {};
-    data['login_from'] = loginFrom;
-    if (loginFrom == 'google') {
-      data['name'] = googleUser!.displayName;
-      data['email'] = googleUser!.email;
-      data['image'] = googleUser!.photoUrl;
+  Future socialLogin({
+    GoogleSignInAccount? googleUser,
+    required String loginFrom,
+    String? id,
+    String? name,
+    String? image,
+    String? email,
+  }) async {
+    String token;
+    try {
+      token = await FirebaseMessaging.instance.getToken() ?? "123";
+    } catch (e) {
+      token = "123";
     }
-    data['token'] = await FirebaseMessaging.instance.getToken() ?? "123";
+    Map<String, dynamic> data = {};
+    if (loginFrom == 'apple' || loginFrom == 'facebook') {
+      data['email'] = email;
+      data['name'] = name;
+      data['user_name'] = name;
+      if (image != null) {
+        data['image'] = image;
+      }
+      data['social_token'] = id;
+    } else {
+      // Google login
+      data['name'] = googleUser?.displayName;
+      data['user_name'] = name ?? googleUser?.displayName;
+      data['email'] = googleUser?.email;
+      if (googleUser?.photoUrl != null) {
+        data['image'] = googleUser?.photoUrl;
+      }
+      // if (googleUser?.id != null) {
+      //   data['social_token'] = googleUser?.id;
+      // }
+    }
+    data['login_from'] = loginFrom;
+    data['token'] = token;
     loading();
-    final result = await authUseCase.socialLogin(data);
+    Either<DioException, UserEntity> login = await authUseCase.socialLogin(
+      data,
+    );
     navPop();
-    result.fold((l) => showToast(l.message!), (r) {
-      loginSuccess(r);
-      userEntity = r;
-    });
+    login.fold((l) {
+      showToast(l.message.toString());
+      },(r) async {
+        loginSuccess(r, isSocial: true);
+      },
+    );
   }
-
   Future<void> deleteAccount() async {
     loading();
     await authUseCase.deleteAccount();
@@ -71,7 +104,7 @@ class AuthProvider extends ChangeNotifier {
     goToLoginView();
   }
 
-  void loginSuccess(UserEntity userEntity) {
+  void loginSuccess(UserEntity userEntity, {bool isSocial = false,bool fromSplash = false,}) {
     this.userEntity = userEntity;
     if (userEntity.token != null) {
       ApiHandel.getInstance.updateHeader(userEntity.token!);
@@ -142,15 +175,17 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
+
   Future<void> googleLogin() async {
     await _initGoogle();
     try {
       await _googleSignIn.signOut();
       googleUser = await _googleSignIn.authenticate();
-      log("message");
-      socialLogin(loginFrom: 'google');
+      log("Google user authenticated: ${googleUser?.email}");
+      await socialLogin(googleUser: googleUser, loginFrom: 'google');
     } catch (error) {
-      log(error.toString());
+      log("Google login error: $error");
+      showToast("Google login failed: $error");
     }
   }
 
@@ -268,7 +303,7 @@ class AuthProvider extends ChangeNotifier {
       onTap: () => appleLogin(),
       text: "Apple",
     ),
-    SocialAuthEntity(image: AppImages.facebook, onTap: () => {}, text: "Facebook"),
+    // SocialAuthEntity(image: AppImages.facebook, onTap: () => {}, text: "Facebook"),
     SocialAuthEntity(
       image: AppImages.google,
       onTap: () => googleLogin(),
