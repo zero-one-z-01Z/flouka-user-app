@@ -41,7 +41,7 @@ class CheckoutItemWidget extends StatelessWidget {
                 CachedNetworkImage(
                   width: 20.w,
                   imageUrl:
-                      cartEntity.product?.images.first.image ?? "https://placehold.co/600x400",
+                      cartEntity.product?.image ?? "https://placehold.co/600x400",
                   errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
                 const SizedBox(width: 16),

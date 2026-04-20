@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:flouka/core/constants/constants.dart';
@@ -33,11 +34,21 @@ class CategoriesProductSearchProvider extends ChangeNotifier
  }
 
 
+ final TextEditingController searchController = TextEditingController();
 
  CategoryEntity? category ;
  CategoryEntity? subcategory ;
  final ProductUseCase productUseCase;
  CategoriesProductSearchProvider(this.productUseCase);
+ Timer? _timer;
+
+ void onTextChanged() {
+   _timer?.cancel();
+   _timer = Timer(const Duration(seconds: 1), () async {
+     refresh();
+     _timer?.cancel();
+   });
+ }
 
  @override
  List<ProductEntity>? data;
@@ -62,10 +73,10 @@ class CategoriesProductSearchProvider extends ChangeNotifier
  @override
  void clear() {
    data = null;
-   inputs = null;
    pageIndex = 1;
    paginationFinished = false;
    paginationStarted = false;
+   notifyListeners();
  }
 
  void selectCategory(CategoryEntity category) {
@@ -84,12 +95,32 @@ class CategoriesProductSearchProvider extends ChangeNotifier
    refresh();
  }
 
+ void clearSearch(){
+   searchController.clear();
+   category = null;
+   subcategory = null;
+   notifyListeners();
+   goToPage();
+ }
+
 
  @override
  Future getData() async {
-   Map<String, dynamic> dataToUse = {
-     'page': pageIndex, 'category_id':subcategory !=null ? subcategory!.id : category?.id,
-   };
+   Map<String, dynamic> dataToUse = {};
+   dataToUse['page'] = pageIndex;
+   if(subcategory !=null || category !=null){
+     dataToUse['category_id'] = subcategory !=null ? subcategory!.id : category?.id;
+   }
+   if(searchController.text.isNotEmpty){
+     dataToUse['search'] = searchController.text;
+   }
+   if(inputs!=null && inputs?['best_selling'] != null){
+     dataToUse['best_selling'] = inputs?['best_selling'];
+   }
+   if(inputs!=null && inputs?['offers_products'] != null){
+     dataToUse['offers_products'] = inputs?['offers_products'];
+   }
+
 
    final result = await productUseCase.getProducts(dataToUse);
    log("${dataToUse}");
@@ -127,6 +158,9 @@ class CategoriesProductSearchProvider extends ChangeNotifier
 
  @override
  void goToPage([Map<String, dynamic>? inputs]) {
+   this.inputs = inputs;
+   refresh();
+   navP(const CategoriesViewAllPage());
 
  }
 

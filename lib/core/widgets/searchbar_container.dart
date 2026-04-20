@@ -9,7 +9,7 @@ import 'package:sizer/sizer.dart';
 class SearchbarContainer extends StatelessWidget {
   final VoidCallback? onTap;
   final TextEditingController? controller;
-  final ValueChanged<String>? onChanged;
+  final VoidCallback? onChanged;
   final String? hintText;
   final bool readOnly;
   final bool autoFocus;
@@ -57,7 +57,11 @@ class SearchbarContainer extends StatelessWidget {
           controller: controller,
           readOnly: readOnly,
           onTap: onTap,
-          onChanged: onChanged,
+          onChanged: (s){
+            if(onChanged !=null){
+              onChanged!();
+            }
+          },
           autofocus: autoFocus,
           style: TextStyleClass.normalStyle(),
           cursorColor: Colors.black,
@@ -68,9 +72,9 @@ class SearchbarContainer extends StatelessWidget {
             ).copyWith(fontSize: 15.sp),
             prefixIcon: Padding(
               padding: EdgeInsets.all(3.w),
-              child: const SvgWidget(
+              child:  SvgWidget(
                 svg: AppImages.search,
-                color: Color(0xff7A7979),
+                color:const Color(0xff7A7979),width: 4.w,
               ),
             ),
             suffixIcon: Padding(padding: EdgeInsets.all(3.w), child: suffixIcon),

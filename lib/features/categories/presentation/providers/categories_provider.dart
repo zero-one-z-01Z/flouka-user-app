@@ -1,8 +1,12 @@
 import 'dart:developer';
 
 import 'package:flouka/core/constants/app_images.dart';
+import 'package:flouka/core/constants/constants.dart';
 import 'package:flouka/core/dialog/snack_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../../navbar/presentation/provider/nav_bar_provider.dart';
+import '../../../products/presentation/providers/categories_product_search_provider.dart';
 import '../../domain/entity/category_entity.dart';
 import '../../domain/usecases/category_usecase.dart';
 
@@ -27,14 +31,24 @@ class CategoryProvider extends ChangeNotifier {
 
   List<CategoryEntity> completeCategoryItems(){
   return   [
-      // CategoryEntity(id: 1, image: AppImages.offer, name: 'offers_products',onTap: (){
-      //
-      // }),
+      CategoryEntity(id: 1, image: AppImages.offer, name: 'offers_products',onTap: (){
+        CategoriesProductSearchProvider provider = Provider.of(Constants.globalContext(),listen: false);
+        provider.goToPage({'offers_products' : 1});
+
+      },parentId: null),
       CategoryEntity(id: 2,parentId: null, image: AppImages.bestSeller, name: 'best_sellers',onTap: (){
+        CategoriesProductSearchProvider provider = Provider.of(Constants.globalContext(),listen: false);
+        provider.goToPage({'best_selling' : 1});
+      }),
+      CategoryEntity(id: 3,parentId: null, image: AppImages.categories, name: 'categories',onTap: (){
+        NavBarProvider navBarProvider = Provider.of(Constants.globalContext(),listen: false);
+        navBarProvider.changeIndex(1);
+      }),
+      CategoryEntity(id: 4,parentId: null, image: AppImages.exploreCategories, name: 'explore',onTap: (){
+        CategoriesProductSearchProvider provider = Provider.of(Constants.globalContext(),listen: false);
+        provider.clearSearch();
 
       }),
-      CategoryEntity(id: 3,parentId: null, image: AppImages.categories, name: 'categories',onTap: (){}),
-      CategoryEntity(id: 4,parentId: null, image: AppImages.exploreCategories, name: 'explore',onTap: (){}),
     ];
   }
 

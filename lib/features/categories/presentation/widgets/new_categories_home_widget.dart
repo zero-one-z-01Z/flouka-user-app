@@ -19,9 +19,9 @@ class NewCategoriesHomeWidget extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         Container(
-          height: 12.h,
+          height: 15.h,
           width: 30.w,
-          margin: EdgeInsets.symmetric(horizontal: 1.5.w, vertical: 0.2.h),
+          margin: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.2.h),
           padding: EdgeInsets.symmetric(vertical: 0.2.h),
           decoration: BoxDecoration(
             color: const Color(0xffE1F7FE),
@@ -41,7 +41,7 @@ class NewCategoriesHomeWidget extends StatelessWidget {
                     LanguageProvider.translate('global', title),
                     style: TextStyle(
                       color: Colors.black54,
-                      fontSize: 15.sp,
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.bold,
                     ),
                     maxLines: 2,

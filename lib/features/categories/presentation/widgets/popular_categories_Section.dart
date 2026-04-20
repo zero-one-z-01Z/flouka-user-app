@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../../navbar/presentation/provider/nav_bar_provider.dart';
+import '../../../products/presentation/providers/categories_product_search_provider.dart';
 import '../../domain/entity/category_entity.dart';
 import '../providers/categories_provider.dart';
 import 'popular_category_container_widget.dart';
@@ -71,7 +72,12 @@ class PopularCategoriesSection extends StatelessWidget {
                   final category = popular[index];
                   return Padding(
                     padding: EdgeInsets.only(right: 3.w),
-                    child: PopularCategoryContainerWidget(category: category),
+                    child: InkWell(
+                        onTap: () {
+                          CategoriesProductSearchProvider provider = Provider.of(context,listen: false);
+                          provider.goToCategoriesPage(category: category);
+                        },
+                        child: PopularCategoryContainerWidget(category: category)),
                   );
                 },
               );
