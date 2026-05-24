@@ -1,7 +1,11 @@
 import 'package:flouka/features/offers_section/presentation/providers/offer_section_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sizer/sizer.dart';
 
+import '../../../home/presentation/widgets/recommended_section.dart';
+import '../../../stores/presentation/widgets/stores_home_section.dart';
+import '../../domain/entity/offer_section_entity.dart';
 import 'offer_section_widget.dart';
 
 class OfferSectionListWidget extends StatelessWidget {
@@ -18,19 +22,25 @@ class OfferSectionListWidget extends StatelessWidget {
             child: SizedBox(),
           );
         }
-        if (!offerSectionProvider.data!.any((element) => element.products.isNotEmpty,)) {
-          return const Center(
-            child: SizedBox(),
+        List<OfferSectionEntity> offers = offerSectionProvider.data!.where((element) => element.products.isNotEmpty).toList();
+
+        return ListView.separated(shrinkWrap: true,
+          physics:const NeverScrollableScrollPhysics(),
+          itemBuilder: (context, index) {
+          return Column(
+            children: [
+              OffersSectionWidget(
+                offerSectionEntity: offers[index],
+              ),
+              if(index==0)...[
+                const StoresHomeSection(),
+                const RecommendedSection(),
+              ],
+            ],
           );
-        }
-        return Column(
-          spacing: 4,
-          children: List.generate(
-            offerSectionProvider.data?.length ?? 0,
-            (index) => OffersSectionWidget(
-              offerSectionEntity: offerSectionProvider.data![index],
-            ),
-          ),
+          },
+          itemCount: offers.length,
+          separatorBuilder: (context, index) => SizedBox(height: 2.h,),
         );
       }
     );

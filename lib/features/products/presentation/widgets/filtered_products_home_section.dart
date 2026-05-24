@@ -4,6 +4,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../filters/presentation/providers/filter_product_provider.dart';
+import '../../../language/presentation/provider/language_provider.dart';
 import 'filtered_product_home_container_widget.dart';
 
 class FilteredProductsHomeSection extends StatelessWidget {
@@ -13,7 +14,13 @@ class FilteredProductsHomeSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<FilterProductProvider>(
       builder: (context, provider, child) => provider.isLoading
-          ? const LoadingProductsListWidget()
+          ? const LoadingProductsListWidget() : (provider.products?.isEmpty ?? true)
+          ? Column(
+        children: [
+          Icon(Icons.search_off, size: 15.w),
+          Text(LanguageProvider.translate("orders", "empty_search")),
+        ],
+      )
           : Column(
               children: List.generate(
                 provider.products?.length ?? 0,

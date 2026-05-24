@@ -6,13 +6,14 @@ import 'package:sizer/sizer.dart';
 import '../../features/stores/presentation/providers/stores_provider.dart';
 
 class SeeAllButton extends StatelessWidget {
-  const SeeAllButton({super.key});
-
+  const SeeAllButton({super.key, required this.onPressed});
+  final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        context.read<StoresProvider>().goToStoreDetailsPage();
+        onPressed();
+
       },
       child: Text(
         LanguageProvider.translate('home', 'see_all'),

@@ -1,33 +1,36 @@
-import 'package:flouka/features/products/domain/entity/product_entity.dart';
 
 class ReelEntity {
   final int id;
-  final String path;
-  final String caption;
-  final int likesCount;
-  final int commentsCount;
-  final VendorEntity vendor;
-  final ProductEntity? product;
+  final int vendorId;
+  final int productId;
+  final String video;
+  final String title;
+  final String vendorName;
+  final String vendorLogo;
   ReelEntity({
     required this.id,
-    required this.path,
-    required this.caption,
-    required this.likesCount,
-    required this.commentsCount,
-    required this.vendor,
-    required this.product,
+    required this.video,
+    required this.title,
+    required this.vendorName,
+    required this.vendorLogo,
+    required this.vendorId,
+    required this.productId,
   });
 }
 
 class VendorEntity {
   final int id;
   final String name;
-  final String image;
-  final String avgRating;
+  final String logo;
+  final String bio;
+  final bool isFavorite;
+  final bool isFollow;
   VendorEntity({
     required this.id,
     required this.name,
-    required this.image,
-    required this.avgRating,
+    required this.isFavorite,
+    required this.bio,
+    required this.isFollow,
+    required this.logo,
   });
 }

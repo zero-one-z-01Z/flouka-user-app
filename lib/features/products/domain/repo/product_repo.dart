@@ -8,6 +8,12 @@ abstract class ProductRepo {
   Future<Either<DioException, List<ProductEntity>>> getFeatureProducts(
     Map<String, dynamic> data,
   );
+  Future<Either<DioException, List<ProductEntity>>> getRecommended(
+    Map<String, dynamic> data,
+  );
+  Future<Either<DioException, List<ProductEntity>>> getSuggestedProducts(
+    Map<String, dynamic> data,
+  );
 
   Future<Either<DioException, List<ProductEntity>>> getProducts(
     Map<String, dynamic> data,

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../auth/presentation/providers/auth_provider.dart';
 import '../../../products/presentation/providers/categories_product_search_provider.dart';
 
 class SubcategoryTile extends StatelessWidget {

@@ -8,7 +8,7 @@ import 'frequently_item_widget.dart';
 
 class FrequentlyListWidget extends StatelessWidget {
   const FrequentlyListWidget({super.key, required this.relatedProducts});
-  final List<ProductEntity> relatedProducts;
+  final List<RelatedEntity> relatedProducts;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

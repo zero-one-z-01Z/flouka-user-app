@@ -1,7 +1,12 @@
+import 'package:flouka/core/config/app_styles.dart';
+import 'package:flouka/features/language/presentation/provider/language_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flouka/features/stores/presentation/providers/reviews_provider.dart';
 import 'package:sizer/sizer.dart';
+import '../../../../core/constants/app_lotties.dart';
+import '../../../../core/widgets/empty_animation.dart';
+import '../../../../core/widgets/loading_animation_widget.dart';
+import '../providers/store_reviews_provider.dart';
 import 'review_container_widget.dart';
 
 class AllReviewsContainer extends StatelessWidget {
@@ -9,40 +14,40 @@ class AllReviewsContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: Provider.of<ReviewsProvider>(
-        context,
-        listen: false,
-      ).loadReviews(),
-      builder: (context, snapshot) {
+    final reviewsProvider = Provider.of<StoreReviewsProvider>(context);
+    return Builder(
+      builder: (context) {
         return Container(
           width: double.infinity,
           color: Colors.white,
-          margin: EdgeInsets.symmetric(vertical: 2.h),
+          margin: EdgeInsets.symmetric(vertical: 1.h),
           padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'All Reviews',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+              Text(
+                LanguageProvider.translate("global", "reviews"),
+                style: TextStyleClass.normalStyle(),
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: 1.h),
               // List of review widgets
-              ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: Provider.of<ReviewsProvider>(context).reviews.length,
-                itemBuilder: (context, index) {
-                  // For now, ReviewContainerWidget does not accept data, so we reuse it as a static card.
-                  // In future it can be extended to accept a ReviewEntity.
-                  return ReviewContainerWidget(
-                    review: Provider.of<ReviewsProvider>(
-                      context,
-                    ).reviews[index],
-                  );
-                },
+              Builder(
+                  builder: (context) {
+                    if(reviewsProvider.data==null){
+                      return const Center(child:LoadingAnimationWidget(gif: Lotties.loading,));
+                    }else if(reviewsProvider.data!.isEmpty){
+                      return const Center(child:EmptyAnimation(gif: Lotties.noSearch,title: "",));
+                    }
+                    return Wrap(
+                      children: List.generate(reviewsProvider.data!.length, (index) {
+                        return ReviewContainerWidget(
+                          review: reviewsProvider.data![index],
+                        );
+                      },),
+                    );
+                  }
               ),
+
             ],
           ),
         );

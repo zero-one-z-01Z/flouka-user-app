@@ -76,7 +76,7 @@ class ProfilePagesSection extends StatelessWidget {
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         mainAxisSpacing: 8,
-        childAspectRatio: 2,
+        childAspectRatio: 1.7,
         crossAxisSpacing: 6,
       ),
       itemBuilder: (context, index) {

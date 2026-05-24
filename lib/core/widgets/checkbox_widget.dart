@@ -21,17 +21,18 @@ class CheckBoxWidget extends StatelessWidget {
       child: Container(
         width: 20.sp,
         height: 20.sp,
+
         // margin: EdgeInsets.symmetric(horizontal: 2.w),
         decoration: BoxDecoration(
           color: check ? AppColor.primaryColor : Colors.grey.shade300,
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: AppColor.primaryColor, width: 6),
+          borderRadius: BorderRadius.circular(3),
+          border: Border.all(color: AppColor.primaryColor, width: 2),
         ),
         child: Container(
           decoration: BoxDecoration(
             color: check ? AppColor.primaryColor : Colors.white,
           ),
-          child: const Icon(Icons.check, color: Colors.white),
+          child: check ?  Icon(Icons.check, color: Colors.white,size: 15.sp,weight: 5,) : const SizedBox(),
         ),
       ),
     );

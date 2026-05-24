@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flouka/core/config/app_color.dart';
+import 'package:flouka/core/config/app_styles.dart';
+import 'package:flouka/core/widgets/custom_star_rating_widget.dart';
 import 'package:flouka/features/stores/domain/entity/store_entity.dart';
 import 'package:flouka/features/stores/presentation/providers/store_details_provider.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +22,7 @@ class StoresContainerHomeWidget extends StatelessWidget {
         storeDetailsProvider.goToStoreDetailsPage(store.id);
       },
       child: Container(
+        padding:  EdgeInsets.symmetric(vertical: 1.h),
         decoration: BoxDecoration(
           color: Colors.white,
           border: Border.all(color: AppColor.primaryColor.withOpacity(0.1)),
@@ -43,7 +46,7 @@ class StoresContainerHomeWidget extends StatelessWidget {
                   shape: BoxShape.circle,
                   border: Border.all(color: AppColor.primaryColor, width: 0.7.w),
                   image: DecorationImage(
-                    image: CachedNetworkImageProvider(store.image),
+                    image: CachedNetworkImageProvider(store.vendor.logo),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -61,6 +64,24 @@ class StoresContainerHomeWidget extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                     SizedBox(height: 0.5.h),
+                    Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            store.vendor.name,
+                            style: TextStyleClass.smallStyle(),
+                          ),
+                        ),
+                          CustomStarRatingWidget(
+                            rating: store.rate,readOnly: true,
+                          ),
+                          SizedBox(width: 1.w),
+                          Text(
+                            store.rate.toString(),
+                            style: TextStyleClass.smallStyle(color: Colors.amber),
+                          ),
+                      ],),
+
                   ],
                 ),
               ),

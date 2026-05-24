@@ -23,7 +23,10 @@ import 'features/auth/presentation/providers/complete_info_provider.dart';
 import 'features/auth/presentation/providers/otp_provider.dart';
 import 'features/cart/presentation/providers/cart_provider.dart';
 import 'features/cart/presentation/providers/coupon_provider.dart';
+import 'features/categories/presentation/providers/popular_categories_provider.dart';
 import 'features/chat/presentation/providers/chat_provider.dart';
+import 'features/filters/presentation/providers/brands_provider.dart';
+import 'features/filters/presentation/providers/category_attributes_provider.dart';
 import 'features/filters/presentation/providers/filter_product_provider.dart';
 import 'features/language/presentation/provider/language_provider.dart';
 import 'features/notification/presentation/provider/notifications_provider.dart';
@@ -32,14 +35,19 @@ import 'features/orders/presentation/provider/order_provider.dart';
 import 'features/orders/presentation/provider/update_order_provider.dart';
 import 'features/products/presentation/providers/categories_product_search_provider.dart';
 import 'features/products/presentation/providers/home_products_provider.dart';
+import 'features/products/presentation/providers/product_quantity_provider.dart';
 import 'features/products/presentation/providers/products_details_provider.dart';
 import 'features/products/presentation/providers/products_provider.dart';
+import 'features/products/presentation/providers/recommend_products_provider.dart';
+import 'features/products/presentation/providers/search_filter_provider.dart';
+import 'features/products/presentation/providers/suggested_provider.dart';
 import 'features/reels/presentation/providers/video_provider.dart';
 import 'features/reviews/presentation/providres/review_provider.dart';
 import 'features/splash/provider/splash_provider.dart';
 import 'features/stores/presentation/providers/followed_stores_provider.dart';
-import 'features/stores/presentation/providers/reviews_provider.dart';
 import 'features/stores/presentation/providers/store_details_provider.dart';
+import 'features/stores/presentation/providers/store_reviews_provider.dart';
+import 'features/stores/presentation/providers/stores_product_provider.dart';
 import 'features/stores/presentation/providers/stores_provider.dart';
 import 'features/stories/presentation/provider/story_provider.dart';
 import 'features/wallet/presentation/provider/wallet_provider.dart';
@@ -60,9 +68,10 @@ class AppProviders extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => SubcategoryProvider()),
         ChangeNotifierProvider(create: (_) => FilterProvider()),
         ChangeNotifierProvider(create: (_) => BrandProvider()),
+        ChangeNotifierProvider(create: (_) => ProductQuantityProvider()),
         ChangeNotifierProvider(create: (_) => StoresProvider(sl.get())),
-        ChangeNotifierProvider(create: (_) => ReviewsProvider()),
         ChangeNotifierProvider(create: (_) => ProductsProvider(sl.get())),
+        ChangeNotifierProvider(create: (_) => SuggestedProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => ChatProvider()),
         ChangeNotifierProvider(create: (_) => NavBarProvider()),
         ChangeNotifierProvider(create: (_) => OnBoardingProvider()),
@@ -77,8 +86,12 @@ class AppProviders extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => CouponProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => HomeProductsProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => AuthProvider(sl.get())),
+        ChangeNotifierProvider(create: (_) => StoreReviewsProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => AreaProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => CityProvider(sl.get())),
+        ChangeNotifierProvider(create: (_) => PopularCategoriesProvider(sl.get())),
+        ChangeNotifierProvider(create: (_) => StoresProductProvider(sl.get())),
+        ChangeNotifierProvider(create: (_) => RecommendProductsProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => OtpProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => OrderDetailsProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => StoreDetailsProvider(sl.get())),
@@ -86,9 +99,12 @@ class AppProviders extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => PartsProvider()),
         ChangeNotifierProvider(create: (_) => UpdateOrderProvider()),
         ChangeNotifierProvider(create: (_) => CheckoutProvider(sl.get())),
-        ChangeNotifierProvider(create: (_) => FilterProductProvider(sl.get())),
+        ChangeNotifierProvider(create: (_) => FilterProductProvider(sl.get(),sl.get())),
         ChangeNotifierProvider(create: (_) => OfferSectionProvider(sl.get())),
+        ChangeNotifierProvider(create: (_) => SearchFilterProvider()),
         ChangeNotifierProvider(create: (_) => WalletProvider(sl.get())),
+        ChangeNotifierProvider(create: (_) => CategoryAttributesProvider(sl.get())),
+        ChangeNotifierProvider(create: (_) => BrandsProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => OrderProvider(sl.get())),
         ChangeNotifierProvider(
           create: (_) => ProductDetailsProvider(productUseCase: sl.get()),

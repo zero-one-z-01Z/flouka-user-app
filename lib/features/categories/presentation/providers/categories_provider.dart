@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flouka/core/constants/app_images.dart';
 import 'package:flouka/core/constants/constants.dart';
 import 'package:flouka/core/dialog/snack_bar.dart';
@@ -24,6 +22,19 @@ class CategoryProvider extends ChangeNotifier {
   CategoryEntity? get selectedCategory => _selectedCategory;
   bool get isLoading => _isLoading;
   String? get error => _error;
+
+  List<Map<String,dynamic>> CategoriesNames(){
+    return List.generate(categories.length, (index){
+      return {'name':categories[index].name,'id':categories[index].id};
+    });
+  }
+
+  List<Map<String,dynamic>> SubCategoriesNames({String? categoryId}){
+    List<CategoryEntity> subCategories=categories.firstWhere((element) => element.id.toString()==categoryId,).children!;
+    return List.generate(subCategories.length, (index){
+      return {'name':subCategories[index].name,'id':subCategories[index].id};
+    });
+  }
 
   /// Static home navigation tiles (not from API)
   // List<CategoryEntity> homeCategories = [];

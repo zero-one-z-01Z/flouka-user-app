@@ -11,6 +11,7 @@ abstract class AppImages {
   static const String onboardingImage4 = 'assets/images/onboarding/onboarding4.png';
   static const String yellowCircle = 'assets/images/onboarding/yellow_circle.png';
   static const String greenCircle = 'assets/images/onboarding/green_circle.png';
+  static const String backgroundHome = 'assets/images/home/background_home.jpg';
   static const String pinkCircle = 'assets/images/onboarding/pink_circle.png';
   static const String circles = 'assets/images/onboarding/3circles.png';
 

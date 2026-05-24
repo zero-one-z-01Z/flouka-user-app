@@ -4,6 +4,10 @@ import 'package:flouka/core/dialog/snack_bar.dart';
 import 'package:flouka/features/products/domain/entity/product_entity.dart';
 import 'package:flouka/features/products/domain/user_case/product_use_case.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../../core/constants/constants.dart';
+import '../../../auth/presentation/providers/auth_provider.dart';
 
 class HomeProductsProvider with ChangeNotifier {
   List<ProductEntity> productsList = [];
@@ -14,9 +18,14 @@ class HomeProductsProvider with ChangeNotifier {
   Future<void> getProducts() async {
     productsList.clear();
     notifyListeners();
+    Map<String,dynamic> dataToUse= {};
+    AuthProvider authProvider = Provider.of(Constants.globalContext(), listen: false);
+    if(authProvider.currentLocation !=null){
+      dataToUse['lat'] = authProvider.currentLocation?.latitude;
+      dataToUse['lng'] = authProvider.currentLocation?.longitude;
+    }
 
-    Either<DioException, List<ProductEntity>> response = await productUseCase
-        .getProducts({});
+    Either<DioException, List<ProductEntity>> response = await productUseCase.getProducts(dataToUse);
 
     response.fold((l) => showToast(l.message ?? "Error loading products"), (r) {
       productsList.addAll(r);

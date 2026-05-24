@@ -10,6 +10,13 @@ class OfferSectionModel extends OfferSectionEntity {
     required super.description,
     required super.color,
     required super.products,
+    required super.buttonColor,
+    required super.buttonTextColor,
+    required super.buttonText,
+    required super.startDate,
+    required super.endDate,
+    required super.titleColor,
+    required super.descriptionColor,
   });
 
   factory OfferSectionModel.fromJson(Map<String, dynamic> json) {
@@ -22,6 +29,13 @@ class OfferSectionModel extends OfferSectionEntity {
       title: json['title'] ?? "",
       description: json['description'] ?? "",
       color: convertHexToColor(json['bg_color']) ,
+      buttonColor: convertHexToColor(json['button_color']) ,
+      startDate: DateTime.parse(json['start_date']),
+      endDate: DateTime.parse(json['end_date']),
+      descriptionColor: json['description_color'] != null ? convertHexToColor(json['description_color']) : null,
+      buttonTextColor: json['button_text_color'] != null ? convertHexToColor(json['button_text_color']) : null,
+      buttonText: json['button_text'] ?? "",
+      titleColor: json['title_color'] != null ? convertHexToColor(json['title_color']) : null,
       products: products,
     );
   }

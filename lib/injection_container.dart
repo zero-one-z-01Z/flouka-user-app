@@ -23,8 +23,12 @@ import 'package:get_it/get_it.dart';
 
 import 'core/helper_function/api.dart';
 import 'features/address/data/datasource/address_remote_data_source.dart';
+import 'features/address/data/datasource/city_remote.dart';
+import 'features/address/data/repository/city_repo_impl.dart';
 import 'features/address/domain/repository/address_repository.dart';
+import 'features/address/domain/repository/city_repo.dart';
 import 'features/address/domain/usecase/address_usecase.dart';
+import 'features/address/domain/usecase/city_usecase.dart';
 import 'features/auth/data/datasources/auth_remote_data_source.dart';
 import 'features/auth/data/repo/user_repo_impl.dart';
 import 'features/auth/domain/repo/auth_repo.dart';
@@ -172,10 +176,10 @@ Future<void> initializeDependencies() async {
   // sl.registerSingleton<AddressRepo>(AddressRepoImpl(sl.get()));
   // sl.registerSingleton<AddressUseCases>(AddressUseCases(sl.get()));
 
-  // //city
-  // sl.registerSingleton<CityRemoteDataSource>(CityRemoteDataSource(sl.get()));
-  // sl.registerSingleton<CityRepo>(CityRepoImpl(sl.get()));
-  // sl.registerSingleton<CityUseCases>(CityUseCases(sl.get()));
+  //city
+  sl.registerSingleton<CityRemoteDataSource>(CityRemoteDataSource(sl.get()));
+  sl.registerSingleton<CityRepo>(CityRepoImpl(sl.get()));
+  sl.registerSingleton<CityUseCases>(CityUseCases(sl.get()));
 
   //banners
   sl.registerSingleton<BannersRemoteDataSource>(BannersRemoteDataSource(sl.get()));

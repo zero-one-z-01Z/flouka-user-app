@@ -9,7 +9,7 @@ class ReelRemoteDataSource {
   ReelRemoteDataSource(this.apiHandel);
 
   Future<Either<DioException, List<ReelModel>>> getReels() async {
-    var response = await apiHandel.get('reels');
+    var response = await apiHandel.get('get_reels');
     return response.fold((l) => Left(l), (r) {
       List<ReelModel> reelsList = [];
       for (var i in r.data['data']) {

@@ -6,6 +6,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../../../core/config/app_styles.dart';
 import '../providers/products_details_provider.dart';
+import 'add_to_cart_widget.dart';
 
 class ProductAttributesWidget extends StatelessWidget {
   const ProductAttributesWidget({super.key});
@@ -18,6 +19,7 @@ class ProductAttributesWidget extends StatelessWidget {
         if (productDetailsProvider.data!.attributes.isNotEmpty) ...[
           Builder(
             builder: (context) {
+
               return Column(
                 children: List.generate(productDetailsProvider.data!.attributes.length,
                       (index) => Column(crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,27 +30,33 @@ class ProductAttributesWidget extends StatelessWidget {
                       SizedBox(height: 2.h),
                       Row(spacing: 2.w,
                         children: List.generate(
-                          productDetailsProvider.data!.attributes[index].values.length, (attributeIndex) => InkWell(
+                          productDetailsProvider.data!.attributes[index].values.length, (attributeIndex) {
+                          int attributeId =productDetailsProvider.data!.attributes[index].values[attributeIndex].id;
+
+                          return InkWell(
                           onTap: (){
-                            productDetailsProvider.onTap(index, productDetailsProvider.data!.attributes[index].values[attributeIndex].id);
+                            if(!productDetailsProvider.hide(index, attributeId)){
+                              productDetailsProvider.onTap(index, attributeId);
+                            }
                           },
                           child: Container(
                             padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 0.5.h,),
-                            decoration: BoxDecoration(color:productDetailsProvider.isSelected(index,
-                                productDetailsProvider.data!.attributes[index].values[attributeIndex].id)
+                            decoration: BoxDecoration(color:productDetailsProvider.hide(index, attributeId)
+                                ? Colors.grey.shade200 : productDetailsProvider.isSelected(index, attributeId)
                                 ? AppColor.primaryColor.withOpacity(0.1) : Colors.grey.shade200,
-                              border: Border.all(color: productDetailsProvider.isSelected(index,
-                                  productDetailsProvider.data!.attributes[index].values[attributeIndex].id)
+                              border: Border.all(color: productDetailsProvider.hide(index, attributeId)
+                                  ? Colors.grey.shade200 : productDetailsProvider.isSelected(index, attributeId)
                                   ? AppColor.primaryColor : Colors.grey.shade200),
                               borderRadius: BorderRadius.circular(5),),
                             child: Text(
                               productDetailsProvider.data!.attributes[index].values[attributeIndex].value,
-                              style: TextStyleClass.normalStyle(color:productDetailsProvider.isSelected(index,
-                                  productDetailsProvider.data!.attributes[index].values[attributeIndex].id)
-                                  ? AppColor.primaryColor: Colors.black,),
+                              style: TextStyleClass.normalStyle(color:productDetailsProvider.hide(index, attributeId)
+                                  ? Colors.grey.shade200 : productDetailsProvider.isSelected(index, attributeId)
+                                  ? AppColor.primaryColor : Colors.black,),
                             ),
                           ),
-                        ),
+                        );
+                        },
                         ),
                       ),
                     ],
@@ -58,7 +66,8 @@ class ProductAttributesWidget extends StatelessWidget {
             },
           ),
           SizedBox(height: 2.h),
-        ]
+        ],
+        const AddToCartWidget(),
       ],
     );
   }

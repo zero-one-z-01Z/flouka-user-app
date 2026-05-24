@@ -74,11 +74,10 @@ class CityProvider extends ChangeNotifier implements DropDownClass<CityEntity> {
   @override
   Future onTap(CityEntity? data) async {
     cityEntity = data;
+    AreaProvider areaProvider= Provider.of<AreaProvider>(Constants.globalContext(), listen: false,);
+    areaProvider.areaEntity = null;
     if (data != null) {
-      Provider.of<AreaProvider>(
-        Constants.globalContext(),
-        listen: false,
-      ).getArea(id: cityEntity!.id,fromAddress: false);
+      areaProvider.getArea(id: cityEntity!.id,fromAddress: false);
     }
     log(data!.id.toString());
     notifyListeners();

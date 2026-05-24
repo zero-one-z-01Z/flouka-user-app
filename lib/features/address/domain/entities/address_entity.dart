@@ -16,12 +16,13 @@ class AddressEntity extends Equatable {
   final String? notes;
   final String? createdAt;
   final AreaEntity? areaEntity;
-
-  const AddressEntity({
+  bool? isDefault;
+  AddressEntity({
     required this.id,
     required this.userId,
     required this.areaEntity,
     required this.areaId,
+    required this.isDefault,
     required this.partNumber,
     required this.addressName,
     required this.streetName,

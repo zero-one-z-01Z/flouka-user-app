@@ -23,9 +23,9 @@ class ProductReviewModel extends ProductReviewEntity {
     return ProductReviewModel(
       id: json['id'],
       images: images,
-      rating: json['rating'],
+      rating: json['rate'],
       comment: json['comment'],
-      createdAt: json['created_at'],
+      createdAt: DateTime.parse(json['created_at']),
       user: ReviewUserModel.fromJson(json['user']),
 
 

@@ -17,6 +17,8 @@ class ProductRepoImpl implements ProductRepo {
     return await productRemoteDataSource.createProduct(data);
   }
 
+
+
   @override
   Future<Either<DioException, bool>> deleteProduct(
     Map<String, dynamic> data,
@@ -24,11 +26,30 @@ class ProductRepoImpl implements ProductRepo {
     return await productRemoteDataSource.deleteProduct(data);
   }
 
+
+
   @override
   Future<Either<DioException, List<ProductEntity>>> getFeatureProducts(
     Map<String, dynamic> data,
   ) async {
     return await productRemoteDataSource.getFeatureProducts(data);
+  }
+
+
+  @override
+  Future<Either<DioException, List<ProductEntity>>> getSuggestedProducts(
+    Map<String, dynamic> data,
+  ) async {
+    return await productRemoteDataSource.getSuggestedProducts(data);
+  }
+
+
+
+  @override
+  Future<Either<DioException, List<ProductEntity>>> getRecommended(
+    Map<String, dynamic> data,
+  ) async {
+    return await productRemoteDataSource.getRecommended(data);
   }
 
   // @override

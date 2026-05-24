@@ -11,12 +11,12 @@ class StoriesListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var storyProvider = Provider.of<StoryProvider>(context);
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 4.w,vertical: 2.h),
+      padding: EdgeInsets.symmetric(horizontal: 4.w,vertical:(storyProvider.data?.length ??0) >0?  2.h:0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         spacing: 3.w,
         children: List.generate(
-          storyProvider.data!.length,
+          storyProvider.data?.length??0,
               (index) => StoryItemWidget(storyEntity: storyProvider.data![index]),
         ),
       ),

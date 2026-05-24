@@ -1,5 +1,7 @@
 
 
+import 'package:flouka/core/dialog/snack_bar.dart';
+import 'package:flouka/features/language/presentation/provider/language_provider.dart';
 import 'package:flouka/features/products/domain/entity/variant_entity.dart';
 import 'package:flouka/features/products/presentation/providers/products_details_provider.dart';
 
@@ -7,7 +9,7 @@ extension ProductVariantProvider on ProductDetailsProvider{
 
   void onTap(int index,int id){
     if(!variants.containsKey(index-1)&&index!=0){
-      // show error must choose by lvl
+      showToast(LanguageProvider.translate("error", "choose_by_level"));
       return;
     }
     if(variants[index]==id){

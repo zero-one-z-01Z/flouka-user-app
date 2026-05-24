@@ -11,5 +11,4 @@ abstract class AuthRepo {
   Future<Either<DioException, String>> refreshToken(Map<String, dynamic> data);
   Future<Either<DioException, UserEntity>> socialLogin(Map<String, dynamic> data);
   Future<Either<DioException, UserEntity>> updateProfile(Map<String, dynamic> data);
-  Future<Either<DioException, UserEntity>> login(Map<String, dynamic> data);
 }

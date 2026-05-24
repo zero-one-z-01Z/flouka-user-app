@@ -20,6 +20,19 @@ class ProductUseCase {
     return await productRepo.deleteProduct(data);
   }
 
+  Future<Either<DioException, List<ProductEntity>>> getRecommended(
+    Map<String, dynamic> data,
+  ) async {
+    return await productRepo.getRecommended(data);
+  }
+
+
+  Future<Either<DioException, List<ProductEntity>>> getSuggestedProducts(
+    Map<String, dynamic> data,
+  ) async {
+    return await productRepo.getSuggestedProducts(data);
+  }
+
   Future<Either<DioException, List<ProductEntity>>> getFeatureProducts(
     Map<String, dynamic> data,
   ) async {

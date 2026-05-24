@@ -5,6 +5,9 @@ import 'package:flouka/features/filters/domain/entity/filter_entity.dart';
 import 'package:flouka/features/filters/domain/repo/filter_repo.dart';
 import 'package:flouka/features/products/data/models/product_model.dart';
 
+import '../models/brand_model.dart';
+import '../models/category_attributes_model.dart';
+
 class FilterRepoImpl implements FilterRepo {
   final FilterRemoteDataSource filterRemoteDataSource;
   FilterRepoImpl( this.filterRemoteDataSource);
@@ -18,5 +21,15 @@ class FilterRepoImpl implements FilterRepo {
     int id,
   ) {
     return filterRemoteDataSource.getFilteredProducts(id);
+  }
+
+  @override
+  Future<Either<DioException, List<BrandModel>>> getCategoryBrands(Map<String,dynamic> data) {
+    return filterRemoteDataSource.getCategoryBrands(data);
+  }
+
+  @override
+  Future<Either<DioException, List<CategoryAttributesModel>>> getCategoryAttributes(Map<String,dynamic> data) {
+    return filterRemoteDataSource.getCategoryAttributes(data);
   }
 }

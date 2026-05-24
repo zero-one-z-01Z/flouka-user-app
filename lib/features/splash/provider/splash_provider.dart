@@ -1,6 +1,7 @@
 // ignore_for_file: unused_import
 
 import 'package:flouka/core/constants/constants.dart';
+import 'package:flouka/core/helper_function/location.dart';
 import 'package:flouka/core/helper_function/navigation.dart';
 import 'package:flouka/features/auth/presentation/providers/auth_provider.dart';
 import 'package:flouka/features/banners/presentation/provider/banners_provider.dart';
@@ -10,33 +11,43 @@ import 'package:flouka/features/orders/presentation/provider/order_provider.dart
 import 'package:flouka/features/reels/presentation/providers/video_provider.dart';
 import 'package:flouka/features/wallet/presentation/provider/wallet_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/helper_function/prefs.dart';
 import '../../../core/helper_function/helper_function.dart';
 import '../../address/presentation/providers/address_provider.dart';
+import '../../address/presentation/providers/city_provider.dart';
 import '../../categories/presentation/providers/categories_provider.dart';
+import '../../categories/presentation/providers/popular_categories_provider.dart';
 import '../../filters/presentation/providers/filter_product_provider.dart';
 import '../../navbar/presentation/provider/nav_bar_provider.dart';
 import '../../offers_section/presentation/providers/offer_section_provider.dart';
 import '../../on_boarding/presentation/providers/on_boarding_provider.dart';
 import '../../on_boarding/presentation/views/on_boarding_view.dart';
+import '../../products/presentation/providers/recommend_products_provider.dart';
 import '../../stores/presentation/providers/stores_provider.dart';
 import '../../stories/presentation/provider/story_provider.dart';
 
 class SplashProvider extends ChangeNotifier {
   void startApp() async {
+
+    LatLng? current = await determinePosition();
+    AuthProvider authProvider = Provider.of(Constants.globalContext(), listen: false);
+    authProvider.setLatLng(current);
     await Future.wait([
       delay(500),
-      // Provider.of<BannersProvider>(Constants.globalContext(),listen: false,).getBanners(),
+      Provider.of<BannersProvider>(Constants.globalContext(),listen: false,).getBanners(),
       // Provider.of<OrderProvider>(Constants.globalContext(), listen: false).getData(),
       // Provider.of<AddressProvider>(Constants.globalContext(),listen: false,).getAddress(),
       // Provider.of<WalletProvider>(Constants.globalContext(),listen: false,).walletOperations(),
       Provider.of<FilterProductProvider>(Constants.globalContext(), listen: false,).getData(),
-      Provider.of<StoresProvider>(Constants.globalContext(), listen: false,).getData(),
+      Provider.of<StoresProvider>(Constants.globalContext(), listen: false,).getHomeStores(),
       Provider.of<OfferSectionProvider>(Constants.globalContext(), listen: false,).getData(),
-      Provider.of<VideoProvider>(Constants.globalContext(), listen: false,).getReels(),
+      Provider.of<VideoProvider>(Constants.globalContext(), listen: false,).refresh(),
       Provider.of<StoryProvider>(Constants.globalContext(), listen: false).getData(),
       Provider.of<CategoryProvider>(Constants.globalContext(), listen: false,).getCategories(),
+      Provider.of<PopularCategoriesProvider>(Constants.globalContext(), listen: false,).getCategories(),
+      Provider.of<CityProvider>(Constants.globalContext(), listen: false,).getCities(),
     ]);
 
     bool isFirstTime = !(sharedPreferences.getBool('onBoarding') ?? false);

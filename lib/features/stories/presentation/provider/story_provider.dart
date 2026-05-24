@@ -26,7 +26,16 @@ class StoryProvider extends ChangeNotifier {
           data!.add(i);
         }
       }
+      print('data ${data!.length}');
       notifyListeners();
     });
+  }
+
+  int currentIndex = 0;
+
+  void setIndex(int index) {
+    if (currentIndex == index) return;
+    currentIndex = index;
+    notifyListeners();
   }
 }

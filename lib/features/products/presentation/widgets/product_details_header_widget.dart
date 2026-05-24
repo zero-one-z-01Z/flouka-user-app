@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carousel_slider_plus/carousel_slider_plus.dart';
 import 'package:flouka/core/constants/app_images.dart';
-import 'package:flouka/features/products/presentation/widgets/products_color_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -15,51 +15,58 @@ class ProductDetailsHeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ProductDetailsProvider productDetailsProvider = Provider.of(context);
-    return SizedBox(
-      width: 100.w,
-      height: 40.h,
-      child: Stack(
-        children: [
-          // Images of the product
-          PageView.builder(
-            controller: productDetailsProvider.pageController,
-            itemCount: productEntity.images.length,
-            itemBuilder: (context, index) {
-              return CachedNetworkImage(
-                fit: BoxFit.cover,
-                imageUrl: productEntity.images[index].image,
-                errorWidget: (context, url, error) => const Icon(Icons.error),
-              );
-            },
+    return Column(
+      children: [
+        Container(
+          height: 30.h,width: 100.w,
+          child: Stack(
+            children: [
+              CarouselSlider(
+                items: productEntity.images.map((item) {
+                  return InkWell(
+                    onTap: () {
+                    },
+                    child: Container(
+                      height: 35.h,width: 100.w,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: CachedNetworkImage(
+                        imageUrl: item.image,
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        errorWidget: (context, url, error) => const Icon(Icons.error),
+                      ),
+                    ),
+                  );
+                }).toList(),
+                options: CarouselOptions(
+                  viewportFraction: 1.0,
+                  enlargeCenterPage: false,
+                  autoPlay: true,
+                  onPageChanged: (index, reason) {
+                    productDetailsProvider.changeImageIndex(index: index);
+                  },
+                ),
+              ),
+              Positioned(
+                top: 3.h,
+                right: 5.w,
+                child: Column(
+                  spacing: 2.h,
+                  children: [
+                    const CircleActionButtonWidget(svgImage: AppImages.share),
+                    const CircleActionButtonWidget(svgImage: AppImages.heart),
+                  ],
+                ),
+              ),
+            ],
           ),
-          // the dots indicators of number of images
-          Positioned.fill(
-            bottom: -35.h,
-            child: Align(
-              alignment: Alignment.center,
-              child: CustomProductDetailsDotsIndicators(imagesList: productEntity.images,),
-            ),
-          ),
-          // the colors list
-          // Positioned(
-          //   bottom: 10.h,
-          //   left: 5.w,
-          //   child: const ProductColorsListWidget(),
-          // ),
-          // the share and favourite buttons
-          Positioned(
-            top: 5.h,
-            right: 5.w,
-            child: Column(
-              spacing: 2.h,
-              children: [
-                const CircleActionButtonWidget(svgImage: AppImages.share),
-                const CircleActionButtonWidget(svgImage: AppImages.heart),
-              ],
-            ),
-          ),
-        ],
-      ),
+        ),
+        // the dots indicators of number of images
+        CustomProductDetailsDotsIndicators(imagesList: productEntity.images,),
+
+      ],
     );
   }
 }

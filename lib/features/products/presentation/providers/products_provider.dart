@@ -4,6 +4,10 @@ import 'package:flouka/core/dialog/snack_bar.dart';
 import 'package:flouka/core/models/pagination_class.dart';
 import 'package:flouka/core/models/provider_structure_model.dart';
 import 'package:flouka/features/products/domain/user_case/product_use_case.dart';
+import 'package:provider/provider.dart';
+
+import '../../../../core/constants/constants.dart';
+import '../../../auth/presentation/providers/auth_provider.dart';
 
 class ProductsProvider extends ChangeNotifier
     implements ProviderStructureModel<List<ProductEntity>>, PaginationClass {
@@ -46,6 +50,12 @@ class ProductsProvider extends ChangeNotifier
       if (selectedCategoryId != null) 'category_id': selectedCategoryId,
       if (searchQuery != null && searchQuery!.isNotEmpty) 'search': searchQuery,
     };
+    AuthProvider authProvider = Provider.of(Constants.globalContext(), listen: false);
+    if(authProvider.currentLocation !=null){
+      dataToUse['lat'] = authProvider.currentLocation?.latitude;
+      dataToUse['lng'] = authProvider.currentLocation?.longitude;
+    }
+
 
     final result = await productUseCase.getProducts(dataToUse);
     result.fold((l) => showToast(l.message ?? "Error loading products"), (r) {

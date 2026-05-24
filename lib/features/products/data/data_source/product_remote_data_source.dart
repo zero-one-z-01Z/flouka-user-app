@@ -1,9 +1,6 @@
-import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flouka/core/helper_function/api.dart';
-
 import '../../domain/entity/product_entity.dart';
 import '../models/product_model.dart';
 
@@ -38,10 +35,42 @@ import '../models/product_model.dart';
     });
   }
 
+  Future<Either<DioException, List<ProductEntity>>> getSuggestedProducts(
+    Map<String, dynamic> data,
+  ) async {
+    var response = await ApiHandel.getInstance.post(
+      'get_suggested_products',
+      data,
+    );
+    List<ProductModel> productModels = [];
+    return response.fold((l) => Left(l), (r) {
+      for (var i in r.data['data']) {
+        productModels.add(ProductModel.fromJson(i));
+      }
+      return Right(productModels);
+    });
+  }
+
+
+
   Future<Either<DioException, List<ProductEntity>>> getProducts(
     Map<String, dynamic> data,
   ) async {
-    var response = await ApiHandel.getInstance.get('products', data);
+    var response = await ApiHandel.getInstance.post('get_products', data);
+    List<ProductModel> productModels = [];
+    return response.fold((l) => Left(l), (r) {
+      for (var i in r.data['data']) {
+        productModels.add(ProductModel.fromJson(i));
+      }
+      return Right(productModels);
+    });
+  }
+
+
+  Future<Either<DioException, List<ProductEntity>>> getRecommended(
+    Map<String, dynamic> data,
+  ) async {
+    var response = await ApiHandel.getInstance.post('get_recommended_products', data);
     List<ProductModel> productModels = [];
     return response.fold((l) => Left(l), (r) {
       for (var i in r.data['data']) {
@@ -54,7 +83,7 @@ import '../models/product_model.dart';
   Future<Either<DioException, ProductEntity>> getProductDetails(
     Map<String, dynamic> data,
   ) async {
-    var response = await ApiHandel.getInstance.get('products/details', data,);
+    var response = await ApiHandel.getInstance.post('get_product_details', data,);
     return response.fold((l) {
       return Left(l);
     }, (r) {

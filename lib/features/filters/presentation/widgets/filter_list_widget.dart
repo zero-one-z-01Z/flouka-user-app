@@ -1,3 +1,4 @@
+import 'package:flouka/features/language/presentation/provider/language_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:provider/provider.dart';
@@ -11,16 +12,19 @@ class FilterListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<FilterProductProvider>(
       builder: (context, provider, child) {
-        return Padding(
+        return provider.filters.isNotEmpty? Padding(
           padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
-          child: Row(
-            children: [
-              ...List.generate(provider.filters.length, (index) {
-                return FilterItemWidget(filter: provider.filters[index]);
-              }),
-            ],
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                ...List.generate(provider.filters.length, (index) {
+                  return FilterItemWidget(filter: provider.filters[index]);
+                }),
+              ],
+            ),
           ),
-        );
+        ) : const SizedBox();
       },
     );
   }

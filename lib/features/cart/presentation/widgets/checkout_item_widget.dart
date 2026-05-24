@@ -66,7 +66,7 @@ class CheckoutItemWidget extends StatelessWidget {
                             price: convertDataToNum(cartEntity.subTotal) ?? 999,
                           ),
                           const Spacer(),
-                          CustomStarRatingWidget(rating: cartEntity.product?.avgRating ?? 0, readOnly: true,),
+                          CustomStarRatingWidget(rating: cartEntity.product?.rate ?? 0, readOnly: true,),
                           Text(
                             "153,254",
                             style: TextStyleClass.smallStyle(color: Colors.grey),

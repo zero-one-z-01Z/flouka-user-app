@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flouka/core/config/app_color.dart';
+import 'package:flouka/core/helper_function/convert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
@@ -28,51 +30,71 @@ class ReviewItemWidget extends StatelessWidget {
           children: [
             Row(
               children: [
-                CircleAvatar(
-                  radius: 21,
-                  backgroundImage: NetworkImage(
-                    review.user.image,
+                Container(
+                  width: 10.w,
+                  height: 10.w,
+                  decoration: BoxDecoration(
+                    border:Border.all(color: Colors.grey.shade300,width: 2),
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: NetworkImage(review.user.image),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
                 SizedBox(width: 2.w),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      review.user.name,
-                      style: TextStyle(
-                        fontSize: 15.sp,
-                        fontWeight: FontWeight.bold,
-                        color: textColor,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        review.user.name,
+                        style: TextStyle(
+                          fontSize: 15.sp,
+                          fontWeight: FontWeight.bold,
+                          color: textColor,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 4),
-                    Row(
-                      children: [
-                        RatingBar(
-                          initialRating: review.rating.toDouble(),
-                          minRating: 1,
-                          direction: Axis.horizontal,
-                          allowHalfRating: true,
-                          itemCount: 5,
-                          itemSize: 16,
-                          ratingWidget: RatingWidget(
-                            full: const Icon(Icons.star, color: Colors.amber),
-                            half: const Icon(Icons.star_half, color: Colors.amber),
-                            empty: const Icon(Icons.star_outline, color: Colors.amber),
+                      const SizedBox(height: 4),
+                      Row(
+                        children: [
+                          RatingBar(
+                            initialRating: review.rating.toDouble(),
+                            minRating: 1,
+                            direction: Axis.horizontal,
+                            allowHalfRating: true,
+                            itemCount: 5,
+                            itemSize: 16,
+                            ratingWidget: RatingWidget(
+                              full: const Icon(Icons.star, color: Colors.amber),
+                              half: const Icon(Icons.star_half, color: Colors.amber),
+                              empty: const Icon(Icons.star_outline, color: Colors.amber),
+                            ),
+                            onRatingUpdate: (_) {},
                           ),
-                          onRatingUpdate: (_) {},
-                        ),
-                        SizedBox(width: 1.w),
-                        Text(
-                          '(${review.rating.toDouble()})',
-                          style: TextStyle(fontSize: 12, color: textColor),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 4),
-                  ],
+                          SizedBox(width: 1.w),
+                          Text(
+                            '(${review.rating.toDouble()})',
+                            style: TextStyle(fontSize: 12, color: textColor),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 4),
+                    ],
+                  ),
                 ),
+                SizedBox(width: 2.w),
+                Expanded(
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(spacing: 1.w,
+                      children: List.generate(review.images.length, (index) =>
+                          ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: CachedNetworkImage(imageUrl:review.images[index].image,fit: BoxFit.cover,height: 10.w,width: 10.w,))),
+                    ),
+                  ),
+                )
               ],
             ),
             const SizedBox(height: 8),
@@ -91,7 +113,7 @@ class ReviewItemWidget extends StatelessWidget {
             Align(
               alignment: Alignment.bottomRight,
               child: Text(
-                review.createdAt,
+                getDiffTime(review.createdAt),
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w400,

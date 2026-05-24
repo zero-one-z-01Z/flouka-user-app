@@ -1,8 +1,9 @@
 import 'package:flouka/core/config/app_styles.dart';
-import 'package:flouka/core/widgets/button_widget.dart';
 import 'package:flouka/features/offers_section/domain/entity/offer_section_entity.dart';
+import 'package:flouka/features/products/presentation/providers/categories_product_search_provider.dart';
 import 'package:flouka/features/products/presentation/widgets/hot_deals_home_section.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 class OffersSectionWidget extends StatelessWidget {
@@ -29,7 +30,7 @@ class OffersSectionWidget extends StatelessWidget {
                   Text(
                     offerSectionEntity.title,
                     style: TextStyleClass.normalStyle().copyWith(
-                      color: Colors.white,
+                      color: offerSectionEntity.titleColor ?? Colors.white,
                       fontSize: 20.sp,
                       fontWeight: FontWeight.bold,
                     ),
@@ -37,7 +38,7 @@ class OffersSectionWidget extends StatelessWidget {
                   Text(
                     offerSectionEntity.description,
                     style: TextStyleClass.normalStyle().copyWith(
-                      color: Colors.white,
+                      color: offerSectionEntity.descriptionColor ?? Colors.white,
                       fontSize: 18.sp,
                       fontWeight: FontWeight.w400,
                     ),
@@ -45,20 +46,29 @@ class OffersSectionWidget extends StatelessWidget {
                 ],
               ),
               const Spacer(),
-              ButtonWidget(
-                onTap: () {},
-                text: 'shop_deals',
-                color: Colors.black,
-                borderRadius: 12,
-                width: 25.w,
-                height: 2.5.h,
-                textStyle: TextStyleClass.smallStyle().copyWith(
-                  color: Colors.white,
-                  fontSize: 15.sp,
-                  fontWeight: FontWeight.w400,
-                  height: 1,
+              if(offerSectionEntity.buttonText.isNotEmpty)
+                Expanded(
+                  child: InkWell(
+                    onTap: (){
+                      Provider.of<CategoriesProductSearchProvider>(context, listen: false).goToPage({
+                        "section_id":offerSectionEntity.id
+                      });
+                    },
+                    child: Container(
+                      padding:EdgeInsets.all(1.w),
+                      decoration: BoxDecoration(
+                        color: offerSectionEntity.buttonColor ?? Colors.black,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Center(
+                        child: Text("${offerSectionEntity.buttonText}",maxLines: 2,
+                          style: TextStyleClass.smallStyle(color:offerSectionEntity.buttonTextColor ?? Colors.white,),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
+
             ],
           ),
           HotDealsHomeSection(products: offerSectionEntity.products),

@@ -6,7 +6,7 @@ import 'package:flouka/features/offers_section/domain/repo/offer_section_repo.da
 class OfferSectionUseCase {
   final OfferSectionRepo offerSectionRepo;
   OfferSectionUseCase(this.offerSectionRepo);
-  Future<Either<DioException, List<OfferSectionEntity>>> getOfferSections() {
-    return offerSectionRepo.getOfferSections();
+  Future<Either<DioException, List<OfferSectionEntity>>> getOfferSections(Map<String,dynamic>data) {
+    return offerSectionRepo.getOfferSections(data);
   }
 }

@@ -8,7 +8,7 @@ class OfferSectionRepoImpl implements OfferSectionRepo {
   final OfferSectionRemoteDataSource offerSectionRemoteDataSource;
   OfferSectionRepoImpl(this.offerSectionRemoteDataSource);
   @override
-  Future<Either<DioException, List<OfferSectionEntity>>> getOfferSections() {
-    return offerSectionRemoteDataSource.getOfferSections();
+  Future<Either<DioException, List<OfferSectionEntity>>> getOfferSections(Map<String,dynamic>data) {
+    return offerSectionRemoteDataSource.getOfferSections(data);
   }
 }

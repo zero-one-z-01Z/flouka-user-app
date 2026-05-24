@@ -11,12 +11,10 @@ class StoresHomeSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final stores = context.watch<StoresProvider>().stores;
-    final visibleStores = stores?.take(1).toList();
-
+    final stores = context.watch<StoresProvider>().homeStores;
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
-      child: Column(
+      padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
+      child: stores.isEmpty ? const SizedBox() : Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
@@ -28,16 +26,18 @@ class StoresHomeSection extends StatelessWidget {
                   LanguageProvider.translate('home', 'retail_stores'),
                   style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600),
                 ),
-                const SeeAllButton(),
+                SeeAllButton(onPressed: (){
+                  context.read<StoresProvider>().goToPage();
+                },),
               ],
             ),
           ),
           SizedBox(height: 1.h),
           Column(
             children: [
-              for (final store in visibleStores!) ...[
+              for (final store in stores) ...[
                 StoresContainerHomeWidget(store: store),
-                if (store != visibleStores.last) SizedBox(height: 1.h),
+                if (store != stores) SizedBox(height: 1.h),
               ],
             ],
           ),

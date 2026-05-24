@@ -1,14 +1,15 @@
+import 'package:flouka/features/language/presentation/provider/language_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-
-import '../../domain/entity/filter_entity.dart';
+import '../../../../core/config/app_styles.dart';
+import '../../../categories/domain/entity/category_entity.dart';
 import '../providers/filter_product_provider.dart';
 
 class FilterItemWidget extends StatelessWidget {
   const FilterItemWidget({super.key, required this.filter});
 
-  final FilterEntity filter;
+  final CategoryEntity filter;
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +25,10 @@ class FilterItemWidget extends StatelessWidget {
         child: AnimatedDefaultTextStyle(
           duration: const Duration(milliseconds: 250),
           curve: Curves.easeInOut,
-          style: TextStyle(
-            fontSize: 14.sp,
-            fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
-            color: isSelected ? Colors.black : const Color(0xffAEB1C1),
+          style: TextStyleClass.smallStyle(color: isSelected ? Colors.black : const Color(0xffAEB1C1)).copyWith(
+            fontWeight: FontWeight.w500,fontSize: 14.5.sp
           ),
-          child: Text(filter.title),
+          child: Text(LanguageProvider.translate("global", filter.name)),
         ),
       ),
     );

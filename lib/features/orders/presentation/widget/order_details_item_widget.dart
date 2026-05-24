@@ -73,7 +73,7 @@ class OrderDetailsItemWidget extends StatelessWidget {
                           price: convertDataToNum(orderDetailsEntity.price) ?? 999,
                         ),
                         const Spacer(),
-                        CustomStarRatingWidget(rating: orderDetailsEntity.productEntity?.avgRating ?? 0, readOnly: true,),
+                        CustomStarRatingWidget(rating: orderDetailsEntity.productEntity?.rate ?? 0, readOnly: true,),
                         Text(
                           "153,254",
                           style: TextStyleClass.smallStyle(color: Colors.grey),

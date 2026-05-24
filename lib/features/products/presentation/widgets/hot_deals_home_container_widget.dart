@@ -14,8 +14,9 @@ import '../../domain/entity/product_entity.dart';
 import '../providers/products_details_provider.dart';
 
 class HotDealsHomeContainerWidget extends StatelessWidget {
-  HotDealsHomeContainerWidget({super.key, required this.product});
+  HotDealsHomeContainerWidget({super.key, required this.product, this.isSimilar=false});
   final ProductEntity product;
+  final bool isSimilar;
   @override
   Widget build(BuildContext context) {
     final cartOperations = Provider.of<CartProvider>(context);
@@ -25,7 +26,8 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
     return InkWell(
       onTap: () {
         Provider.of<ProductDetailsProvider>(context,listen: false).goToPage({
-          'product_id': product.id
+          'product_id': product.id,
+          'is_similar': isSimilar,
         });
       },
       child: Stack(
@@ -33,7 +35,7 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
         children: [
           Container(
             margin: EdgeInsets.symmetric(horizontal: 2.w),
-            width: 43.w,
+            width: 42.w,
             decoration: BoxDecoration(
               color: AppColor.backgroundColor,
               borderRadius: BorderRadius.circular(12),
@@ -46,7 +48,7 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
               ],
             ),
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 1.h),
+              padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -82,31 +84,19 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(width: 1.w),
-                      Expanded(
-                        child: Text(
-                          LanguageProvider.translate('global', 'white_friday_deal'),
-                          style: TextStyleClass.normalStyle().copyWith(
-                            color: AppColor.DealColor,
-                            fontSize: 10.sp,
-                            fontWeight: FontWeight.w600,
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
                     ],
                   ),
                   SizedBox(height: 0.6.h),
                   Row(
                     children: [
-                      Flexible(child: PriceWidget(price: product.price ?? 0)),
+                      Flexible(child: PriceWidget(price:product.offerPrice ?? product.price ?? 0)),
                       SizedBox(width: 1.w),
+                      if(product.offerPrice != null)
                       Flexible(
                         child: Text(
-                          product.offerPrice.toString(),
+                          product.offerPrice !=null ? product.price.toString() : product.offerPrice.toString(),
                           style: TextStyle(
-                            fontSize: 11.sp,
+                            fontSize: 13.sp,
                             fontWeight: FontWeight.w500,
                             color: AppColor.tertiaryColor,
                             decoration: TextDecoration.lineThrough,
@@ -180,32 +170,32 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
-            top: 1.h,
-            right: 4.w,
-            child: InkWell(
-              onTap: () {
-                cartOperations.addToCart(productId: product.id!);
-              },
-
-              child: Container(
-                width: 7.w,
-                height: 7.w,
-                decoration: BoxDecoration(
-                  color: AppColor.primaryColor,
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 4,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
-                ),
-                child: Icon(Icons.add, size: 4.w, color: Colors.white),
-              ),
-            ),
-          ),
+          // Positioned(
+          //   top: 1.h,
+          //   right: 4.w,
+          //   child: InkWell(
+          //     onTap: () {
+          //       cartOperations.addToCart(productId: product.id!);
+          //     },
+          //
+          //     child: Container(
+          //       width: 7.w,
+          //       height: 7.w,
+          //       decoration: BoxDecoration(
+          //         color: AppColor.primaryColor,
+          //         shape: BoxShape.circle,
+          //         boxShadow: [
+          //           BoxShadow(
+          //             color: Colors.black.withOpacity(0.1),
+          //             blurRadius: 4,
+          //             offset: const Offset(0, 2),
+          //           ),
+          //         ],
+          //       ),
+          //       child: Icon(Icons.add, size: 4.w, color: Colors.white),
+          //     ),
+          //   ),
+          // ),
           Positioned(
             top: 1.5.h,
             left: 6.w,

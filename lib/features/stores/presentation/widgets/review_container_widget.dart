@@ -1,19 +1,19 @@
 import 'package:flouka/core/config/app_color.dart';
+import 'package:flouka/core/helper_function/convert.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-import '../../domain/entity/review_entity.dart';
-import '../providers/reviews_provider.dart';
+import '../../../products/domain/entity/product_review_entity.dart';
+import '../providers/store_reviews_provider.dart';
 
 class ReviewContainerWidget extends StatelessWidget {
-  final ReviewEntity review;
+  final ProductReviewEntity review;
   const ReviewContainerWidget({super.key, required this.review});
 
   @override
   Widget build(BuildContext context) {
-    final reviewsProvider = context.read<ReviewsProvider>();
+    final reviewsProvider = context.read<StoreReviewsProvider>();
     return Container(
       width: double.infinity,
       decoration: const BoxDecoration(color: Colors.white),
@@ -25,14 +25,14 @@ class ReviewContainerWidget extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 21,
-                backgroundImage: NetworkImage(review.avatarUrl),
+                backgroundImage: NetworkImage(review.user.image),
               ),
               SizedBox(width: 2.w),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    review.reviewerName,
+                    review.user.name,
                     style: TextStyle(
                       fontSize: 15.sp,
                       fontWeight: FontWeight.bold,
@@ -42,7 +42,7 @@ class ReviewContainerWidget extends StatelessWidget {
                   Row(
                     children: [
                       RatingBar(
-                        initialRating: review.rating,
+                        initialRating: review.rating.toDouble(),
                         minRating: 1,
                         direction: Axis.horizontal,
                         allowHalfRating: true,
@@ -85,7 +85,7 @@ class ReviewContainerWidget extends StatelessWidget {
           Align(
             alignment: Alignment.bottomRight,
             child: Text(
-              reviewsProvider.timeAgo(review.date),
+              getDiffTime(review.createdAt),
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w400,

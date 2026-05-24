@@ -24,7 +24,7 @@ class AddressRemoteDataSource {
   Future<Either<DioException, AddressModel>> createAddress(
     Map<String, dynamic> data,
   ) async {
-    var response = await apiHandel.post('user/create_address', data);
+    var response = await apiHandel.post('user/addresses', data);
     return response.fold((l) => Left(l), (r) {
       return Right(AddressModel.fromJson(r.data['data']));
     });
@@ -33,7 +33,7 @@ class AddressRemoteDataSource {
   Future<Either<DioException, AddressModel>> updateAddress(
     Map<String, dynamic> data,
   ) async {
-    var response = await apiHandel.post('user/edit_address', data);
+    var response = await apiHandel.post('user/addresses/update', data);
     return response.fold((l) => Left(l), (r) {
       return Right(AddressModel.fromJson(r.data['data']));
     });

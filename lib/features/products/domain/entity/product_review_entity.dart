@@ -2,7 +2,7 @@ class ProductReviewEntity {
   final int id;
   final num rating;
   final String comment;
-  final String createdAt;
+  final DateTime createdAt;
   final List<ReviewImage> images;
   final ReviewUser user;
   const ProductReviewEntity({

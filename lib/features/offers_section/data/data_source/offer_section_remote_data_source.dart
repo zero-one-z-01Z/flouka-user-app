@@ -6,9 +6,9 @@ import 'package:flouka/features/offers_section/data/models/offer_secrion_model.d
 class OfferSectionRemoteDataSource {
   final ApiHandel apiHandel;
   OfferSectionRemoteDataSource(this.apiHandel);
-  Future<Either<DioException, List<OfferSectionModel>>> getOfferSections() async {
+  Future<Either<DioException, List<OfferSectionModel>>> getOfferSections(Map<String,dynamic> data) async {
     List<OfferSectionModel> offerSectionModels = [];
-    var response = await ApiHandel.getInstance.get('sections');
+    var response = await ApiHandel.getInstance.post('get_sections',data);
     return response.fold((l) => Left(l), (r) {
       for (var i in r.data['data']) {
         offerSectionModels.add(OfferSectionModel.fromJson(i));

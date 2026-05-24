@@ -43,6 +43,7 @@
   "filter": {
     "category": "Category",
     "brand": "Brand",
+    "sub_category":"Subcategory",
     "price": "Price",
     "color": "Color",
     "screen_size": "Screen Size",
@@ -50,7 +51,7 @@
     "search": "Search on Brands ..."
   },
   "categories": {
-    "search": "Search on Categories ...",
+    "search": "Search ...",
     "shop_by": "SHOP BY"
   },
   "auth": {
@@ -80,7 +81,9 @@
     "saved_addresses": "Saved Addresses",
     "no_stores_followed_yet": "No stores followed yet",
     "sold_by": "Sold by",
-
+    "for_you": "For You",
+    "new_gadget": "New Gadget",
+    "best_selling": "Best Selling",
     "settings": "Settings",
     "no_address": "No Address",
     "choose_lang": "\uD83C\uDF0D Choose Your Language",
@@ -102,7 +105,8 @@
     "explore": "Explore",
     "made_in": "Made In",
     "staff_pick": "Staff Pick",
-    "reviews": "Review",
+    "reviews": "Reviews",
+    "quantity": "Quantity",
     "customers": "Customers",
     "products": "Products",
     "deducted": "Deducted",
@@ -153,8 +157,9 @@
     "cancel_entire_order": "Cancel the entire order",
     "continue_available": "Continue with available items ",
     "total_price_updated": "Total price will be updated",
-    "search_categories": "Search on Categories ...",
+    "search_categories": "Search...",
     "fake_button": "Fake Button",
+    "empty_search": "Search first to find products suit you",
     "order_accepted": "Your order has been accepted",
     "order_shipped": "Your order has been shipped",
     "order_shipped_desc": "Your shipment has been sent to the final hub. We will send you a notification when it is sent for delivery. After your shipment is ready for delivery and we are about to arrive, we will show you the shipping company's phone number.",
@@ -173,6 +178,7 @@
   "error": {
     "max_distance": "You must allow a distance less than ",
     "wallet": "Wallet balance is not enough, please recharge",
+    "choose_by_level": "Please choose by level",
     "error": "An error occurred, please try again",
     "error_date": "There is an error in the date",
     "error_time": "There is an error in the time",
@@ -198,6 +204,7 @@
   },
   "buttons": {
     "Login": "Login",
+    "add_to_cart": "Add to Cart",
     "shop_now": "Shop Now",
     "upload_image": "Upload Image",
     "Sign up": "Sign up",

@@ -1,6 +1,4 @@
-
 import 'dart:developer';
-
 import 'package:flouka/core/helper_function/convert.dart';
 import 'package:flouka/features/products/data/models/attribute_model.dart';
 import 'package:flouka/features/products/data/models/product_review_model.dart';
@@ -9,19 +7,21 @@ import 'package:flouka/features/products/domain/entity/product_entity.dart';
 
 import '../../../reels/data/models/reel_model.dart';
 
+
 class ProductModel extends ProductEntity {
   ProductModel({
     super.id,
     super.title,
     super.description,
+    required super.recommended,
     required super.image,
     super.price,
     super.offerPrice,
     required super.images,
-    super.avgRating,
+    super.rate,
     required super.reviews,
     super.isFavorite,
-    required super.vendor,
+    required super.store,
     required super.related,
     required super.reviewImages,
     required super.discountTitle,
@@ -30,6 +30,8 @@ class ProductModel extends ProductEntity {
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     List<ProductImageModel> images=[];
+    List<ProductModel> recommendedProduct=[];
+    List<RelatedModel> relatedProduct=[];
     List<ProductImageModel> reviewsImages=[];
     List<ProductReviewModel> reviews=[];
     List<AttributeModel> attributes =[];
@@ -62,6 +64,19 @@ class ProductModel extends ProductEntity {
       }
     }
 
+    if(json['recommended'] !=null){
+      for(var element in json['recommended']){
+        recommendedProduct.add(ProductModel.fromJson(element));
+      }
+    }
+
+    if(json['related_products'] !=null){
+      for(var element in json['related_products']){
+        relatedProduct.add(RelatedModel.fromJson(element));
+      }
+    }
+
+
     try {
       return ProductModel(
         id: json['id'],
@@ -74,14 +89,15 @@ class ProductModel extends ProductEntity {
         reviews: reviews,
         attributes: attributes,
         images: images,
-        avgRating: json['avg_rating'] != null
-            ? convertDataToNum(json['avg_rating'])
+        rate: json['rate'] != null
+            ? convertDataToNum(json['rate'])
             : null,
         isFavorite: json['is_favorite'] ?? false,
         discountTitle: json['discount_title'] ?? "",
         discountPercentage: convertDataToNum(json['discount_percentage']) ?? 0,
-        vendor:json['vendor'] !=null ? VendorModel.fromJson(json['vendor']) : null,
-        related: [],
+        store:json['store'] !=null ? StoreModel.fromJson(json['store']) : null,
+        related: relatedProduct,
+        recommended: recommendedProduct,
         variants: variants,
       );
     } catch (e, l) {
@@ -109,20 +125,50 @@ class ProductImageModel extends ProductImage {
   }
 }
 
-// class VendorModel extends VendorEntity {
-//   const VendorModel({
-//     required super.image,required super.name,
-//     required super.id,required super.avgRating,
-//   });
-//
-//   factory VendorModel.fromJson(Map<String, dynamic> json) {
-//     try {
-//       return VendorModel(image: json['image'],id: json['id'],
-//       name: json['name'],avgRating: json['avg_rating']);
-//     } catch (e, l) {
-//       log(l.toString());
-//       log(e.toString());
-//       throw e;
-//     }
-//   }
-// }
+class StoreModel extends StoreEntity {
+  const StoreModel({
+    required super.name,
+    required super.id,
+    required super.logo,
+    required super.vendor,
+    required super.vendorId,required super.lat,required super.lng,required super.rate,required super.address,
+    required super.productsCount,required super.customersCount,required super.distance,
+  });
+
+  factory StoreModel.fromJson(Map<String, dynamic> json) {
+    try {
+      return StoreModel(id: json['id'],
+      logo: json['cover']??"",
+      vendor: json['vendor'] !=null ? VendorModel.fromJson(json['vendor']) : null,
+      vendorId: json['vendor_id'],lat: json['lat'],lng: json['lng'],rate: json['rate'],address: json['address'],
+      productsCount: json['products_count'],customersCount: json['customers_count'],distance: json['distance'],
+      name: json['name'],);
+    } catch (e, l) {
+      log(l.toString());
+      log(e.toString());
+      throw e;
+    }
+  }
+}
+
+class RelatedModel extends RelatedEntity {
+  const RelatedModel({
+    required super.id,
+    required super.title,
+    required super.image,
+    required super.description,
+    required super.finalPrice,
+  });
+
+  factory RelatedModel.fromJson(Map<String, dynamic> json) {
+    try {
+      return RelatedModel(id: json['id'], title: json['title'], description: json['description'],
+          image: json['image']??"https://en.wikipedia.org/wiki/File:Image_created_with_a_mobile_phone.png",
+          finalPrice: json['final_price']);
+    } catch (e, l) {
+      log("${l.toString()}");
+      log(e.toString());
+      throw e;
+    }
+  }
+}

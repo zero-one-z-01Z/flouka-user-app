@@ -28,10 +28,16 @@ class CartUseCase {
     return await cartRepo.getCart();
   }
 
-  Future<Either<DioException, bool>> decreaseAndIncreaseCart(
+  Future<Either<DioException, bool>> increaseCart(
     Map<String, dynamic> data,
   ) async {
-    return await cartRepo.decreaseAndIncreaseCart(data);
+    return await cartRepo.increaseCart(data);
+  }
+
+  Future<Either<DioException, bool>> decreaseCart(
+    Map<String, dynamic> data,
+  ) async {
+    return await cartRepo.decreaseCart(data);
   }
 
   Future<Either<DioException, CouponEntity>> getCoupon(

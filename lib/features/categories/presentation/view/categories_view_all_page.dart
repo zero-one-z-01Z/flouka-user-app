@@ -1,21 +1,19 @@
 import 'package:flouka/core/config/app_color.dart';
 import 'package:flouka/core/constants/app_images.dart';
-import 'package:flouka/core/helper_function/navigation.dart';
 import 'package:flouka/core/widgets/svg_widget.dart';
 import 'package:flouka/features/categories/presentation/providers/categories_provider.dart';
 import 'package:flouka/features/categories/presentation/widgets/categories_view_all_filter_widget.dart';
 import 'package:flouka/core/widgets/searchbar_container.dart';
-import 'package:flouka/features/navbar/presentation/provider/nav_bar_provider.dart';
 import 'package:flouka/features/products/presentation/widgets/shop_products_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../../products/presentation/providers/categories_product_search_provider.dart';
+import '../../../products/presentation/providers/search_filter_provider.dart';
 
 class CategoriesViewAllPage extends StatelessWidget {
-  const CategoriesViewAllPage({super.key,});
-
+  const CategoriesViewAllPage({super.key, this.isSection=false});
+  final bool isSection;
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<CategoryProvider>(context, listen: false);
@@ -33,20 +31,22 @@ class CategoriesViewAllPage extends StatelessWidget {
                 onChanged: (){
                   categoryProvider.onTextChanged();
                 },
-                suffixIcon: SvgWidget(
-                  svg: AppImages.aiSearch,
-                  width: 1.w,
-                  height: 1.h,
-                ),
+                // suffixIcon: SvgWidget(
+                //   svg: AppImages.aiSearch,
+                //   width: 1.w,
+                //   height: 1.h,
+                // ),
                 readOnly: false,
               ),
             ),
             SizedBox(width: 2.w),
             InkWell(
               onTap: (){
-                navPop();
-                NavBarProvider provider = Provider.of(context, listen: false);
-                provider.changeIndex(3);
+                // navPop();
+                // NavBarProvider provider = Provider.of(context, listen: false);
+                // provider.changeIndex(3);
+                SearchFilterProvider provider = Provider.of(context, listen: false);
+                provider.goToFilterPage();
               },
               child: Container(
                 width: 12.w,
@@ -59,7 +59,7 @@ class CategoriesViewAllPage extends StatelessWidget {
                 ),
                 child: Center(
                   child: SvgWidget(
-                    svg: AppImages.navbarCart,
+                    svg: AppImages.filter,
                     color: AppColor.primaryColor,
                   ),
                 ),
@@ -76,7 +76,6 @@ class CategoriesViewAllPage extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(height: 1.h),
-
               const CategoriesViewAllFilterWidget(),
               // const CarouselSliderWidget(),
               // const CategoriesHomeExplore(showExplore: false),

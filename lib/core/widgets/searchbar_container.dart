@@ -74,7 +74,7 @@ class SearchbarContainer extends StatelessWidget {
               padding: EdgeInsets.all(3.w),
               child:  SvgWidget(
                 svg: AppImages.search,
-                color:const Color(0xff7A7979),width: 4.w,
+                color:const Color(0xff7A7979),width: 6.w,fit: BoxFit.contain,
               ),
             ),
             suffixIcon: Padding(padding: EdgeInsets.all(3.w), child: suffixIcon),

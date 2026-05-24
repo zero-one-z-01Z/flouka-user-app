@@ -56,9 +56,4 @@ class AuthRepoImpl implements AuthRepo {
     return userRemoteDatasource.sendOtp(data);
   }
 
-  @override
-  Future<Either<DioException, UserEntity>> login(Map<String, dynamic> data) {
-    return userRemoteDatasource.login(data);
-  }
- 
 }

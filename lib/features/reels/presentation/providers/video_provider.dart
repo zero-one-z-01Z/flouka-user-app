@@ -156,7 +156,7 @@ class VideoProvider extends ChangeNotifier
         reelItems ??= [];
         for (var element in r) {
           VideoPlayerController controller = VideoPlayerController.networkUrl(
-            Uri.parse(element.path),
+            Uri.parse(element.video),
           );
           Future<void> initializeFuture = controller.initialize().then((_) {
             controller.setLooping(true);

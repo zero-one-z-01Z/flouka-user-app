@@ -2,6 +2,7 @@ class StoreDetailsEntity {
   final int id;
   final String name;
   final String? image;
+  final String bio;
   final String? cover;
   final num? avgRating;
   final num? customersCount;
@@ -13,6 +14,7 @@ class StoreDetailsEntity {
     required this.image,
     required this.cover,
     required this.avgRating,
+    required this.bio,
     required this.customersCount,
     required this.productsCount,
     required this.isFollowed,

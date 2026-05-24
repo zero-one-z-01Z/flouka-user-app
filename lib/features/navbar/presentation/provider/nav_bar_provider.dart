@@ -9,8 +9,8 @@ import 'package:provider/provider.dart';
 import '../../../../../core/helper_function/navigation.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../cart/presentation/views/cart_view.dart';
-import '../../../categories/presentation/providers/categories_provider.dart';
 import '../../../language/presentation/provider/language_provider.dart';
+import '../../../products/presentation/providers/recommend_products_provider.dart';
 import '../../domain/entities/bottom_nav_bar_entity.dart';
 import '../views/nav_bar_view.dart';
 
@@ -51,7 +51,8 @@ class NavBarProvider extends ChangeNotifier {
 
   void goToNavView() {
     currentIndex = 0;
-    Provider.of<CategoryProvider>(Constants.globalContext(), listen: false).completeCategoryItems();
+    // Provider.of<CategoryProvider>(Constants.globalContext(), listen: false).completeCategoryItems();
+    Provider.of<RecommendProductsProvider>(Constants.globalContext(), listen: false,).getRecommendedHomeData();
     navPARU(const NavBarView());
   }
 

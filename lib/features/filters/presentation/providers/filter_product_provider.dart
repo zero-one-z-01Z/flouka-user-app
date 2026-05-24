@@ -1,20 +1,36 @@
+import 'package:flouka/features/products/domain/user_case/product_use_case.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../../core/constants/constants.dart';
+import '../../../auth/presentation/providers/auth_provider.dart';
+import '../../../categories/data/model/category_model.dart';
+import '../../../categories/domain/entity/category_entity.dart';
+import '../../../categories/domain/usecases/category_usecase.dart';
 import '../../../products/domain/entity/product_entity.dart';
-import '../../domain/entity/filter_entity.dart';
-import '../../domain/use_case/filter_use_case.dart';
 
 class FilterProductProvider extends ChangeNotifier {
-  final FilterUseCase filterUseCase;
-  FilterProductProvider(this.filterUseCase);
-  List<FilterEntity>? data;
+  final CategoryUsecase categoryUseCase;
+  final ProductUseCase productUseCase;
+
+  FilterProductProvider(this.categoryUseCase,this.productUseCase);
+  List<CategoryEntity>? data;
 
   Future<void> getData() async {
-    var response = await filterUseCase.getFilters();
+    var response = await categoryUseCase.getMainCategories();
     response.fold((l) {}, (r) {
-      data = r;
-      filters.addAll(r);
+      data??=[];
+      List<CategoryModel> staticCategories = [
+        CategoryModel(id: 0, name: 'for_you',image: "", parentId: null,),
+        CategoryModel(id: -1, name: 'new_gadget',image: "", parentId: null,),
+        CategoryModel(id: -2, name: 'best_selling',image: "", parentId: null,),
+      ];
+      data?.addAll(staticCategories);
+
+      data?.addAll(r);
+      filters.addAll(data!);
       getFilterProducts(filters.first.id);
+      notifyListeners();
     });
   }
 
@@ -24,8 +40,30 @@ class FilterProductProvider extends ChangeNotifier {
 
   Future<void> getFilterProducts(int id) async {
     isProductLoading = true;
+    Map<String,dynamic> data = {};
+    data['page'] = 1;
+    data['skip'] = 2;
     notifyListeners();
-    var response = await filterUseCase.getFiltersProducts(id);
+    if(id ==0){
+
+    }else if(id==-2){
+      data['best_selling'] = 1;
+    }else if(id ==-1){
+
+    }else{
+      data['category_id']= id;
+    }
+    AuthProvider authProvider = Provider.of(Constants.globalContext(), listen: false);
+    if(authProvider.currentLocation !=null){
+      data['lat'] = authProvider.currentLocation?.latitude;
+      data['lng'] = authProvider.currentLocation?.longitude;
+    }
+    var response;
+    if(id == 0){
+      response = await productUseCase.getSuggestedProducts(data);
+    }else{
+      response = await productUseCase.getProducts(data);
+    }
     response.fold((l) {}, (r) {
       products = r;
     });
@@ -33,16 +71,16 @@ class FilterProductProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  final List<FilterEntity> filters = [];
+  final List<CategoryEntity> filters = [];
 
-  late FilterEntity selectedFilter = filters.first;
+  late CategoryEntity selectedFilter = filters.first;
 
-  void setSelectedIndex(FilterEntity filter) {
+  void setSelectedIndex(CategoryEntity filter) {
     selectedFilter = filter;
     notifyListeners();
   }
 
-  bool isSelected(FilterEntity filter) {
+  bool isSelected(CategoryEntity filter) {
     return selectedFilter.id == filter.id;
   }
 
@@ -55,13 +93,14 @@ class FilterProductProvider extends ChangeNotifier {
     related: [],
     reviewImages: [],
     reviews: [],
-    vendor: null,discountPercentage: 0.0,
+      store: null,discountPercentage: 0.0,
     discountTitle: "",
     description: 'Loading Description...',
     price: 99.99,
     offerPrice: 0,
+    recommended: [],
     images: [],
-    avgRating: 4.5,
+    rate: 4.5,
     isFavorite: false,
     attributes: [],
     variants: []

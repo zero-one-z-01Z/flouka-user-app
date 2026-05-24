@@ -10,8 +10,12 @@ import 'package:flouka/features/products/presentation/widgets/filtered_products_
 import 'package:flouka/features/stores/presentation/widgets/stores_home_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flouka/features/banners/presentation/widgets/carousel_slider_widget.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../core/constants/app_images.dart';
+import '../../../auth/presentation/providers/auth_provider.dart';
+import '../../../offers_section/presentation/providers/offer_section_provider.dart';
 import '../../../offers_section/presentation/widgets/offer_section_list_widget.dart';
 import '../../../stories/presentation/widgets/stories_list_widget.dart';
 
@@ -20,26 +24,42 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const HomeAppbarWidget(),
-            // const FarAwayContainerWidget(),
-            const StoriesListWidget(),
-            const CarouselSliderWidget(),
-            const NewCategoriesHomeSection(),
-            const PopularCategoriesSection(),
-            const FilterListWidget(),
-            const FilteredProductsHomeSection(),
-            const OfferSectionListWidget(),
-            const StoresHomeSection(),
-            // const RecommendedSection(),
-            // const BrandStoreContainerWidget(),
-            SizedBox(height: 2.h),
-          ],
+    final authProvider = Provider.of<AuthProvider>(context);
+    final offerSectionProvider = Provider.of<OfferSectionProvider>(context);
+    return Container(width: 100.w,height: 100.h,
+      decoration:const  BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(AppImages.backgroundHome),
+          fit: BoxFit.cover,
+        ),
+
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const HomeAppbarWidget(),
+              if(authProvider.isAwayFromHome())
+              const FarAwayContainerWidget(),
+              const StoriesListWidget(),
+              const CarouselSliderWidget(),
+              const NewCategoriesHomeSection(),
+              const PopularCategoriesSection(),
+              const FilterListWidget(),
+              const FilteredProductsHomeSection(),
+              const OfferSectionListWidget(),
+              if(offerSectionProvider.data ==null || offerSectionProvider.data!=null &&offerSectionProvider.data!.isEmpty)
+                ...[
+                  const StoresHomeSection(),
+                  const RecommendedSection(),
+                ],
+              // const BrandStoreContainerWidget(),
+              SizedBox(height: 2.h),
+            ],
+          ),
         ),
       ),
     );

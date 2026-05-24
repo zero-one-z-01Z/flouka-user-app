@@ -22,7 +22,7 @@ class CityRemoteDataSource {
   Future<Either<DioException, List<AreaModel>>> getArea(
     Map<String, dynamic> data,
   ) async {
-    var response = await apiHandel.post('get_areas', data);
+    var response = await apiHandel.get('get_areas', data);
     return response.fold((l) => Left(l), (r) {
       List<AreaModel> list = [];
       for (var i in r.data['data']) {

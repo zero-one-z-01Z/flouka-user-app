@@ -1,13 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flouka/core/widgets/svg_widget.dart';
 import 'package:flouka/features/language/presentation/provider/language_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flouka/core/config/app_color.dart';
 import 'package:flouka/core/config/app_styles.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:sizer/sizer.dart';
-import '../../../../core/constants/app_images.dart';
-import '../../../reels/domain/entity/reel_entity.dart';
+
+import '../../domain/entity/product_entity.dart';
 
 class gradiantButton extends StatelessWidget {
   const gradiantButton({
@@ -17,7 +16,7 @@ class gradiantButton extends StatelessWidget {
     required this.vendor,
   });
   final VoidCallback onTap;
-  final VendorEntity vendor;
+  final StoreEntity vendor;
   final List<Color> gradiantcolors;
   @override
   Widget build(BuildContext context) {
@@ -42,6 +41,7 @@ class gradiantButton extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            if(vendor.vendor != null)
             Container(
               padding: const EdgeInsets.all(2),
               decoration: BoxDecoration(
@@ -60,7 +60,7 @@ class gradiantButton extends StatelessWidget {
                 child: ClipOval(
                   child: Container(width: 10.w,height: 10.w,
                     decoration: BoxDecoration(
-                      image: DecorationImage(image: CachedNetworkImageProvider(vendor.image))
+                      image: DecorationImage(image: CachedNetworkImageProvider(vendor.vendor!.logo),fit: BoxFit.cover)
                     ),
                   ),
                 ),
@@ -87,7 +87,7 @@ class gradiantButton extends StatelessWidget {
                   // SizedBox(height: 1.h),
                   Row(
                     children: [
-                      Text(vendor.avgRating, style: TextStyleClass.smallStyle()),
+                      // Text(vendor.avgRating, style: TextStyleClass.smallStyle()),
                       RatingBar(
                         itemCount: 1,
                         itemSize: 16.sp,

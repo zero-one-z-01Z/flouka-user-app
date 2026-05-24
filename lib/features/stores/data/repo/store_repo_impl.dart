@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flouka/features/stores/data/data_source/store_remote_data_source.dart';
 import 'package:flouka/features/stores/domain/repo/store_repo.dart';
 
+import '../../../products/data/models/product_review_model.dart';
 import '../../domain/entity/store_details_entity.dart';
 import '../../domain/entity/store_entity.dart';
 
@@ -10,8 +11,13 @@ class StoreRepoImpl implements StoreRepo {
   StoreRepoImpl(this.storeRemoteDataSource);
   final StoreRemoteDataSource storeRemoteDataSource;
   @override
-  Future<Either<DioException, List<StoreEntity>>> getStores() async {
-    return await storeRemoteDataSource.getStores();
+  Future<Either<DioException, List<StoreEntity>>> getStores(Map<String , dynamic> data) async {
+    return await storeRemoteDataSource.getStores(data);
+  }
+
+  @override
+  Future<Either<DioException, List<ProductReviewModel>>> getReviews(Map<String , dynamic> data) async {
+    return await storeRemoteDataSource.getReviews(data);
   }
 
   @override
@@ -20,8 +26,8 @@ class StoreRepoImpl implements StoreRepo {
   }
 
   @override
-  Future<Either<DioException, StoreDetailsEntity>> getStoreDetails(int id) async {
-    return await storeRemoteDataSource.getStoreDetails(id);
+  Future<Either<DioException, StoreDetailsEntity>> getStoreDetails(Map<String,dynamic> data) async {
+    return await storeRemoteDataSource.getStoreDetails(data);
   }
 
   @override

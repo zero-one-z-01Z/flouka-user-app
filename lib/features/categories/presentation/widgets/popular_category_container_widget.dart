@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flouka/core/config/app_color.dart';
+import 'package:flouka/features/categories/domain/entity/popular_categories_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -8,7 +9,7 @@ import '../../domain/entity/category_entity.dart';
 class PopularCategoryContainerWidget extends StatelessWidget {
   const PopularCategoryContainerWidget({super.key, required this.category});
 
-  final CategoryEntity category;
+  final PopularCategoriesEntity category;
 
   @override
   Widget build(BuildContext context) {

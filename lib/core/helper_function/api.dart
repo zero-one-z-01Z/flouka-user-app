@@ -87,11 +87,13 @@ class ApiHandel {
         cancelToken: cancelToken,
       );
       log(path.toString());
+      print("AaAAAAAAAAAAAAa${path}");
 
       if (response.statusCode == 200) {
         return Right(response);
       }
       log('error1');
+      print("AaAAAAAAAAAAAAa${path}");
 
       return Left(dioException(response));
     } on DioException catch (e) {
@@ -99,7 +101,7 @@ class ApiHandel {
       return Left(e.response == null ? e : dioException(e.response!));
     } catch (e) {
       log('error3');
-      log(path.toString());
+      print("AaAAAAAAAAAAAAa${path}");
       return Left(
         DioException(
           requestOptions: RequestOptions(baseUrl: Constants.domain, path: path),
@@ -114,9 +116,6 @@ class ApiHandel {
     Map<String, dynamic>? data,
   ]) async {
     try {
-      log("aaaaaaaaa${path}");
-      log("aaaaaaaaa${data.toString()}");
-
       await reLogin(path);
       cancelToken = CancelToken();
       Response response = await dio.delete(
@@ -130,15 +129,15 @@ class ApiHandel {
         return Right(response);
       }
       log('error1');
-
+      print("AaAAAAAAAAAAAAa${path}");
       return Left(dioException(response));
     } on DioException catch (e) {
       log(e.response?.data.toString() ?? "");
+      print("AaAAAAAAAAAAAAa${path}");
       return Left(e.response == null ? e : dioException(e.response!));
     } catch (e) {
       log('error3');
-      log(path.toString());
-
+      print("AaAAAAAAAAAAAAa${path}");
       return Left(
         DioException(
           requestOptions: RequestOptions(baseUrl: Constants.domain, path: path),
@@ -152,10 +151,10 @@ class ApiHandel {
     path,
     Map<String, dynamic> data,
   ) async {
-    log("aaaaaaaaa${path}");
-    log("aaaaaaaaa${data.toString()}");
     try {
       await reLogin(path);
+      print("AaAAAAAAAAAAAAa${path}");
+
       cancelToken = CancelToken();
       Response response = await dio.post(
         path,
@@ -168,15 +167,17 @@ class ApiHandel {
         return Right(response);
       }
       log('error1');
+      print("ssssssssssssssss${path}");
       return Left(dioException(response));
     } on DioException catch (e) {
       log(e.response?.data.toString() ?? "");
       // print(" ON $e");
       log('error2');
+      print("AAAAAAAAAAAA${path}");
       return Left(e.response == null ? e : dioException(e.response!));
     } catch (e, line) {
       log('error3');
-      // print("dioException ON ${e}");
+      print("AAAAAAAAAAAA${path}");
       return Left(
         DioException(
           requestOptions: RequestOptions(baseUrl: Constants.domain, path: path),
@@ -239,14 +240,8 @@ class ApiHandel {
 
   Future reLogin(String url) async {
     String? token = sharedPreferences.getString('token');
-    if (!url.contains('refresh-token') &&
-        token != null &&
-        token.isNotEmpty &&
-        JwtDecoder.isExpired(token)) {
-      await Provider.of<AuthProvider>(
-        Constants.globalContext(),
-        listen: false,
-      ).refreshToken();
+    if (!url.contains('refresh_token') && token != null && token.isNotEmpty && JwtDecoder.isExpired(token)) {
+      await Provider.of<AuthProvider>(Constants.globalContext(), listen: false,).refreshToken();
     }
   }
 }

@@ -3,12 +3,13 @@ import '../../domain/entities/address_entity.dart';
 import 'area_model.dart';
 
 class AddressModel extends AddressEntity {
-  const AddressModel({
+  AddressModel({
     required super.id,
     required super.userId,
     required super.areaEntity,
     required super.areaId,
     required super.partNumber,
+    required super.isDefault,
     required super.addressName,
     required super.streetName,
     required super.lat,
@@ -32,6 +33,7 @@ class AddressModel extends AddressEntity {
       addressName: data['name'],
       streetName: data['street'],
       lat: convertDataToDouble(data['lat']),
+      isDefault: convertDataToBool(data['default']),
       lng: convertDataToDouble(data['lng']),
       building: data['building'],
       apartment: data['apartment'],

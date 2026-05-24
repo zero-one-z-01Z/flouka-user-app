@@ -38,6 +38,8 @@ class AddressDetailsProvider extends ChangeNotifier {
       Constants.globalContext(),
       listen: false,
     );
+    isMakeDefault = !isMakeDefault;
+    notifyListeners();
   }
 
   Set<Polygon> polygons = {};
@@ -205,6 +207,8 @@ class AddressDetailsProvider extends ChangeNotifier {
           listen: false,
         );
         addressProvider.addAddress(r);
+        Provider.of<AuthProvider>(Constants.globalContext(), listen: false).getProfile(fromAddress: true);
+
         newSuccessDialog(
           lottie: Lotties.videoAnimation,
           then: () {
@@ -244,6 +248,8 @@ class AddressDetailsProvider extends ChangeNotifier {
           listen: false,
         );
         addressProvider.updateAddress(r);
+        Provider.of<AuthProvider>(Constants.globalContext(), listen: false).getProfile(fromAddress: true);
+
         // playSuccessSound(path: 'success.mp4');
         successDialog(
           then: () {
@@ -268,6 +274,7 @@ class AddressDetailsProvider extends ChangeNotifier {
     } else {
       updateAddress();
     }
+
   }
 
   Map<String, dynamic> addressData() {
@@ -326,7 +333,7 @@ class AddressDetailsProvider extends ChangeNotifier {
         Constants.globalContext(),
         listen: false,
       );
-      // isMakeDefault = authProvider.userEntity!.addressEntity==null;
+      isMakeDefault = addressEntity?.isDefault??false;
       if (addressEntity != null) {
         title = "edit_address";
         this.addressEntity = addressEntity;
@@ -382,9 +389,9 @@ class AddressDetailsProvider extends ChangeNotifier {
     //   (element) => element == addressEntity!.partNumber,
     // );
 
-    inputs.firstWhere((element) => element.key == 'address_name').controller.text =
+    inputs.firstWhere((element) => element.key == 'name').controller.text =
         addressEntity!.addressName ?? "";
-    inputs.firstWhere((element) => element.key == 'street_name').controller.text =
+    inputs.firstWhere((element) => element.key == 'street').controller.text =
         addressEntity!.streetName ?? "";
     inputs.firstWhere((element) => element.key == 'building').controller.text =
         addressEntity!.building ?? "";

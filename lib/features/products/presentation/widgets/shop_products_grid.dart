@@ -57,11 +57,6 @@ class ShopProductsGrid extends StatelessWidget {
                       },
                     ),
                   ),
-                  if (i == 3)
-                    const StaggeredGridTile.fit(
-                      crossAxisCellCount: 4,
-                      child: SuggestedProductsSection(),
-                    ),
                 ],
               ],
             );

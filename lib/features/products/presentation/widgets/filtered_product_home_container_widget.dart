@@ -56,7 +56,6 @@ class FilteredProductHomeContainerWidget extends StatelessWidget {
                 children: [
                   SizedBox(
                     width: 48.w,
-                    height: 4.h,
                     child: Text(
                       productEntity.title ?? "",
                       style: TextStyleClass.normalStyle().copyWith(
@@ -81,7 +80,7 @@ class FilteredProductHomeContainerWidget extends StatelessWidget {
                       ),
                       SizedBox(width: 13.w),
                       RatingBarIndicator(
-                        rating: (productEntity.avgRating ?? 0).toDouble(),
+                        rating: (productEntity.rate ?? 0).toDouble(),
                         itemBuilder: (context, index) =>
                             const Icon(Icons.star, color: Colors.amber),
                         itemCount: 5,

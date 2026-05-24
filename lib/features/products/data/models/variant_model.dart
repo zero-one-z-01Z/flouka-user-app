@@ -11,7 +11,7 @@ class VariantModel extends VariantEntity{
       combination.add(convertStringToInt(i));
     }
     return VariantModel(id: data['id'], price: convertDataToNum(data['price'])??0, offerPrice: convertDataToNum(data['offer_price']),
-        sku: data['sku'], combination: combination,stock: convertStringToInt(data['stock']));
+        sku: data['sku'], combination: combination,stock:data['stock'] !=null? convertStringToInt(data['stock']['quantity']??0) :0);
   }
 
 }

@@ -2,9 +2,12 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flouka/features/products/domain/entity/product_entity.dart';
+import 'package:provider/provider.dart';
+import '../../../../core/constants/constants.dart';
 import '../../../../core/dialog/snack_bar.dart';
 import '../../../../core/helper_function/navigation.dart';
 import '../../../../core/models/provider_structure_model.dart';
+import '../../../auth/presentation/providers/auth_provider.dart';
 import '../../domain/user_case/product_use_case.dart';
 import '../pages/products_details_view.dart';
 
@@ -19,11 +22,19 @@ class ProductDetailsProvider extends ChangeNotifier
 
   Map<int,int> variants = {};
   // bool isLoading = false;
-  PageController pageController = PageController();
 
   final ProductUseCase productUseCase;
 
   List<int> productsIDs = [];
+  int quantity = 1;
+  void incrementQuantity() {
+    quantity++;
+    notifyListeners();
+  }
+  void decrementQuantity() {
+    quantity--;
+    notifyListeners();
+  }
 
   ProductDetailsProvider({required this.productUseCase});
 
@@ -35,14 +46,28 @@ class ProductDetailsProvider extends ChangeNotifier
     notifyListeners();
   }
 
+  int imageIndex = 0;
+  int variantIndex = 0;
+  void changeImageIndex({required int index}){
+    imageIndex = index;
+    notifyListeners();
+  }
+
   @override
   Future getData() async {
     if (inputs == null || inputs!['product_id'] == null) return;
+    AuthProvider authProvider = Provider.of(Constants.globalContext(), listen: false);
+    Map<String, dynamic> dataToUse = {
+      'product_id': productsIDs.isEmpty ? inputs!['product_id'] : productsIDs.last,
+    };
+    if(authProvider.currentLocation !=null){
+      dataToUse['lat'] = authProvider.currentLocation?.latitude;
+      dataToUse['lng'] = authProvider.currentLocation?.longitude;
+    }
+
     // isLoading = true;data = null;
     notifyListeners();
-    final result = await productUseCase.getProductDetails({
-      'product_id': productsIDs.isEmpty ? inputs!['product_id'] : productsIDs.last,
-    });
+    final result = await productUseCase.getProductDetails(dataToUse);
     result.fold((l) {
       showToast(l.message ?? '');
       log(l.message ?? '');
@@ -59,24 +84,35 @@ class ProductDetailsProvider extends ChangeNotifier
   void backToLastProduct() {
     if (productsIDs.length > 1) {
       productsIDs.removeLast();
+
+      inputs?['product_id'] = productsIDs.last;
+
       refresh();
     } else {
+      productsIDs.clear();
       navPop();
     }
   }
 
   @override
-  void goToPage([Map<String, dynamic>? inputs]) async {
+  void goToPage([Map<String, dynamic>? inputs]) {
     this.inputs = inputs;
-    // if (!(inputs?['is_similar']??true)) {
-    //   navP(const ProductsDetailsView());
-    // } else {
-    //   productsIDs.add(inputs?['product_id']);
-    // }
+    imageIndex=0;
+    final productId = inputs?['product_id'];
+
+    if (productId != null &&
+        (productsIDs.isEmpty || productsIDs.last != productId)) {
+      productsIDs.add(productId);
+    }
 
     refresh();
-    navP(const ProductsDetailsView());
+
+    // افتح الصفحة أول مرة فقط
+    if (productsIDs.length == 1) {
+      navP(const ProductsDetailsView());
+    }
   }
+
 
   @override
   Future refresh() async {

@@ -10,7 +10,7 @@ class StoryRemoteDataSource {
   StoryRemoteDataSource(this.apiHandel);
 
   Future<Either<DioException, List<StoryModel>>> getStories() async {
-    var response = await apiHandel.get('stories');
+    var response = await apiHandel.get('get_stories');
     return response.fold((l) => Left(l), (r) {
       List<StoryModel> list = [];
       for (var i in r.data['data']) {

@@ -11,16 +11,26 @@ class CartRemoteDataSource {
   Future<Either<DioException, CartModel>> addToCart(
     Map<String, dynamic> data,
   ) async {
-    var response = await ApiHandel.getInstance.post('user/carts', data);
+    var response = await ApiHandel.getInstance.post('user/add_to_cart', data);
     return response.fold((l) => Left(l), (r) {
       return Right(CartModel.fromJson(r.data['data']));
     });
   }
 
-  Future<Either<DioException, bool>> decreaseAndIncreaseCart(
+  Future<Either<DioException, bool>> increaseCart(
     Map<String, dynamic> data,
   ) async {
-    var response = await ApiHandel.getInstance.post('user/carts/quantity', data);
+    var response = await ApiHandel.getInstance.post('user/increase_cart', data);
+    return response.fold((l) => Left(l), (r) {
+      return const Right(true);
+    });
+  }
+
+
+  Future<Either<DioException, bool>> decreaseCart(
+    Map<String, dynamic> data,
+  ) async {
+    var response = await ApiHandel.getInstance.post('user/decrease_cart', data);
     return response.fold((l) => Left(l), (r) {
       return const Right(true);
     });
@@ -29,14 +39,14 @@ class CartRemoteDataSource {
   Future<Either<DioException, bool>> deleteCartItem(
     Map<String, dynamic> data,
   ) async {
-    var response = await ApiHandel.getInstance.delete('user/carts', data);
+    var response = await ApiHandel.getInstance.post('user/delete_cart_item', data);
     return response.fold((l) => Left(l), (r) {
       return const Right(true);
     });
   }
 
   Future<Either<DioException, String>> deleteCart(Map<String, dynamic> data) async {
-    var response = await ApiHandel.getInstance.delete('user/carts', data);
+    var response = await ApiHandel.getInstance.post('user/delete_cart', data);
     return response.fold((l) => Left(l), (r) {
       return Right(r.data["data"]);
     });
@@ -44,7 +54,7 @@ class CartRemoteDataSource {
 
   Future<Either<DioException, List<CartModel>>> getCart() async {
     List<CartModel> cartModels = [];
-    var response = await ApiHandel.getInstance.get("user/carts");
+    var response = await ApiHandel.getInstance.get("user/get_cart");
     return response.fold((l) => Left(l), (r) {
       for (var i in r.data['data']) {
         cartModels.add(CartModel.fromJson(i));
@@ -56,7 +66,7 @@ class CartRemoteDataSource {
   Future<Either<DioException, CouponModel>> getCoupon(
     Map<String, dynamic> data,
   ) async {
-    var response = await apiHandel.post('get_coupon', data);
+    var response = await apiHandel.post('user/get_coupon', data);
     return response.fold(
       (l) {
         return Left(l);

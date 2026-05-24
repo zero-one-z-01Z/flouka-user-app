@@ -16,7 +16,6 @@ Future<LatLng> determinePosition({
   // تحقق من إذن الموقع
   try {
     permission = await Geolocator.checkPermission();
-
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
 
@@ -27,27 +26,27 @@ Future<LatLng> determinePosition({
         return defaultLatLngq;
       }
     }
-
     if (permission == LocationPermission.deniedForever) {
       if (showMessage) {
         await showSettingsDialog('open_gps_settings');
       }
       return defaultLatLngq;
     }
-
-    // جلب الموقع بعد التحقق من الأذونات
     try {
       Position position = await Geolocator.getCurrentPosition();
 
       LatLng latLng = LatLng(position.latitude, position.longitude);
       return latLng;
     } catch (e) {
+
       if (showMessage) {
         await showSettingsDialog('location_error');
       }
       return defaultLatLngq;
     }
   } catch (e) {
+    print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa12222');
+
     if (showMessage) {
       await showSettingsDialog('location_error');
     }

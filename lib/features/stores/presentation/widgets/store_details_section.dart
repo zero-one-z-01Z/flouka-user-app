@@ -14,7 +14,7 @@ class StoreDetailsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final storeDetailsProvider = context.watch<StoreDetailsProvider>();
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 3.h),
+      padding: EdgeInsets.symmetric(horizontal: 4.w, ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

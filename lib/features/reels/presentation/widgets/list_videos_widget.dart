@@ -83,7 +83,7 @@ class ListVideosWidget extends StatelessWidget {
                             right: 0,
                             child: Column(
                               children: [
-                                UserButtonActionsWidget(reelEntity: reelItem.reel),
+                                // UserButtonActionsWidget(reelEntity: reelItem.reel),
                                 SizedBox(height: 1.h),
                                 InkWell(
                                   onTap: () {
@@ -132,7 +132,7 @@ class ListVideosWidget extends StatelessWidget {
                                                   horizontal: 4.w,
                                                 ),
                                                 child: Text(
-                                                  reelItem.reel.caption,
+                                                  reelItem.reel.title,
                                                   maxLines: 1,
                                                   overflow: TextOverflow.ellipsis,
                                                   style: TextStyleClass.normalStyle(

@@ -48,9 +48,4 @@ class AuthUseCase {
   ) async {
     return await userRepo.checkCode(data);
   }
-    Future<Either<DioException, UserEntity>> login(
-    Map<String, dynamic> data,
-  ) async {
-    return await userRepo.login(data);
-  }
 }

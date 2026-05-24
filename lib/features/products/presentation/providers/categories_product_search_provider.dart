@@ -8,6 +8,7 @@ import '../../../../core/dialog/snack_bar.dart';
 import '../../../../core/helper_function/navigation.dart';
 import '../../../../core/models/pagination_class.dart';
 import '../../../../core/models/provider_structure_model.dart';
+import '../../../auth/presentation/providers/auth_provider.dart';
 import '../../../categories/domain/entity/category_entity.dart';
 import '../../../categories/presentation/providers/categories_provider.dart';
 import '../../../categories/presentation/view/categories_view_all_page.dart';
@@ -23,21 +24,34 @@ class CategoriesProductSearchProvider extends ChangeNotifier
      CategoryProvider provider = Provider.of(Constants.globalContext(), listen: false);
      this.category = provider.categories.firstWhere((element) => element.id == category.parentId);
      this.subcategory = category;
-
    }else{
      this.category = category;
    }
-
-
    refresh();
    navP(const CategoriesViewAllPage());
  }
+
+ void goToSearchPage({required int categoryId}){
+   CategoryProvider categoryProvider = Provider.of(Constants.globalContext(), listen: false);
+   if(categoryProvider.categories.any((element) => element.id==categoryId,)){
+     this.category = categoryProvider.categories.firstWhere((element) => element.id==categoryId);
+     this.categoryId=null;
+   }else{
+     this.category = null;
+     this.subcategory = null;
+     this.categoryId = categoryId;
+   }
+   refresh();
+   navP(const CategoriesViewAllPage());
+ }
+
 
 
  final TextEditingController searchController = TextEditingController();
 
  CategoryEntity? category ;
  CategoryEntity? subcategory ;
+ int? categoryId;
  final ProductUseCase productUseCase;
  CategoriesProductSearchProvider(this.productUseCase);
  Timer? _timer;
@@ -79,6 +93,14 @@ class CategoriesProductSearchProvider extends ChangeNotifier
    notifyListeners();
  }
 
+ void resetData(){
+   categoryId =null;
+   category = null;
+   subcategory = null;
+   inputs = null;
+   notifyListeners();
+ }
+
  void selectCategory(CategoryEntity category) {
    this.category = category;
    this.subcategory = null;
@@ -87,6 +109,7 @@ class CategoriesProductSearchProvider extends ChangeNotifier
    provider.notifyListeners();
    refresh();
  }
+
  void selectSubCategory(CategoryEntity category) {
    this.subcategory = category;
    notifyListeners();
@@ -108,7 +131,10 @@ class CategoriesProductSearchProvider extends ChangeNotifier
  Future getData() async {
    Map<String, dynamic> dataToUse = {};
    dataToUse['page'] = pageIndex;
-   if(subcategory !=null || category !=null){
+   if(categoryId !=null){
+     dataToUse['category_id'] = categoryId;
+
+   } else if(subcategory !=null || category !=null){
      dataToUse['category_id'] = subcategory !=null ? subcategory!.id : category?.id;
    }
    if(searchController.text.isNotEmpty){
@@ -120,11 +146,21 @@ class CategoriesProductSearchProvider extends ChangeNotifier
    if(inputs!=null && inputs?['offers_products'] != null){
      dataToUse['offers_products'] = inputs?['offers_products'];
    }
-
+   if(inputs!=null && inputs?['section_id'] != null){
+     dataToUse['section_id'] = inputs?['section_id'];
+   }
+   AuthProvider authProvider = Provider.of(Constants.globalContext(), listen: false);
+   if(authProvider.currentLocation !=null){
+     dataToUse['lat'] = authProvider.currentLocation?.latitude;
+     dataToUse['lng'] = authProvider.currentLocation?.longitude;
+   }
 
    final result = await productUseCase.getProducts(dataToUse);
    log("${dataToUse}");
-   result.fold((l) => showToast(l.message ?? "Error loading products"), (r) {
+   result.fold((l) {
+     log("${l.message}");
+     showToast(l.message ?? "Error loading products");
+   }, (r) {
      pageIndex++;
      data ??= [];
      data!.addAll(r);
@@ -160,7 +196,9 @@ class CategoriesProductSearchProvider extends ChangeNotifier
  void goToPage([Map<String, dynamic>? inputs]) {
    this.inputs = inputs;
    refresh();
-   navP(const CategoriesViewAllPage());
+   navP(const CategoriesViewAllPage(),then: (val){
+     resetData();
+   });
 
  }
 

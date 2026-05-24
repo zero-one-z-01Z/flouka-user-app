@@ -10,7 +10,7 @@ class AreaModel extends AreaEntity {
   factory AreaModel.fromJson(Map data) {
     return AreaModel(
       id: data['id'],
-      name: data['name']["en"],
+      name: data['name'],
       cityId: data['city_id'],
     );
   }
