@@ -4,7 +4,7 @@ import '../entity/cart_entity.dart';
 import '../entity/coupon_entity.dart';
 
 abstract class CartRepo {
-  Future<Either<DioException, CartEntity>> addToCart(Map<String, dynamic> data);
+  Future<Either<DioException, bool>> addToCart(Map<String, dynamic> data);
   Future<Either<DioException, bool>> decreaseCart(Map<String, dynamic> data);
   Future<Either<DioException, bool>> increaseCart(Map<String, dynamic> data);
   Future<Either<DioException, bool>> deleteCartItem(Map<String, dynamic> data);

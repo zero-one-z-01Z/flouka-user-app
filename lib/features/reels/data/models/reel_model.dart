@@ -33,6 +33,7 @@ class VendorModel extends VendorEntity {
     required super.isFavorite,
     required super.bio,
     required super.isFollow,
+    required super.cover,
     required super.logo,
   });
 
@@ -42,6 +43,7 @@ class VendorModel extends VendorEntity {
       name: json['name'],
       isFavorite: convertDataToBool(json['is_favorite']),
       bio: json['bio'],
+      cover: json['cover'],
       isFollow: convertDataToBool(json['is_follow']),
       logo: json['logo'],
     );

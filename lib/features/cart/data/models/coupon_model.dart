@@ -1,3 +1,5 @@
+import 'package:flouka/core/helper_function/convert.dart';
+
 import '../../domain/entity/coupon_entity.dart';
 
 class CouponModel extends CouponEntity {
@@ -7,6 +9,7 @@ class CouponModel extends CouponEntity {
     required super.coupon,
     required super.value,
     required super.min,
+    required super.discount,
     required super.type,
     required super.max,
   });
@@ -14,12 +17,13 @@ class CouponModel extends CouponEntity {
   factory CouponModel.fromJson(Map<String, dynamic> json) {
     return CouponModel(
       id: json['id'],
-      name: json['name'],
+      name: json['name']??"",
       coupon: json['coupon'],
-      value: json['value'],
-      min: json['min'],
-      max: json['max'],
-      type: json['type'],
+      value: convertDataToNum(json['value'])??0,
+      min: convertDataToNum(json['min']),
+      discount: convertDataToNum(json['discount']),
+      max:convertDataToNum(json['max']),
+      type: json['type']??"",
     );
   }
 }

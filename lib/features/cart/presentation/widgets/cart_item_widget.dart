@@ -31,9 +31,10 @@ class CartItemWidget extends StatelessWidget {
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CachedNetworkImage(
                     width: 20.w,
@@ -41,18 +42,45 @@ class CartItemWidget extends StatelessWidget {
                         cartEntity.product?.image ?? "https://placehold.co/600x400",
                     errorWidget: (context, url, error) => const Icon(Icons.error),
                   ),
-                  const SizedBox(width: 16),
+                  SizedBox(width: 2.w),
                   Expanded(
                     child: Column(
-                      spacing: 1.h,
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                      spacing: 0.5.h,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          cartEntity.product?.title ?? "",
+                          cartEntity.variant?.name?? "",
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
                           style: TextStyleClass.normalStyle().copyWith(
                             color: const Color(0xff333542),
+                          ),
+                        ),
+                        Wrap(
+                          children: List.generate(cartEntity.variant?.attributeValues.length??0, (index) =>
+                              Row(children: [
+                                    Expanded(
+                                      child: Text(
+                                        cartEntity.variant?.attributeValues[index].attributeName??"",
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 2,
+                                        style: TextStyleClass.normalStyle().copyWith(
+                                          color: const Color(0xff333542),
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        cartEntity.variant?.attributeValues[index].valueName??"",
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 2,
+                                        style: TextStyleClass.normalStyle().copyWith(
+                                          color: const Color(0xff333542),
+                                        ),
+                                      ),
+                                    ),
+                              ],
+                              ),
                           ),
                         ),
                         Row(
@@ -60,12 +88,12 @@ class CartItemWidget extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             PriceWidget(
-                              price: convertDataToNum(cartEntity.subTotal) ?? 0,
+                              price: convertDataToNum(cartEntity.subTotal.toStringAsFixed(2)) ?? 0,
                             ),
                             const Spacer(),
                             CustomStarRatingWidget(rating: cartEntity.product?.rate ?? 0, readOnly: true,),
                             Text(
-                              "153,254",
+                              "${cartEntity.product?.rate ?? 0}",
                               style: TextStyleClass.smallStyle(color: Colors.grey),
                             ),
                           ],

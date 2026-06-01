@@ -4,7 +4,6 @@ import 'package:sizer/sizer.dart';
 import '../../../../core/constants/app_lotties.dart';
 import '../../../../core/widgets/button_widget.dart';
 import '../../../../core/widgets/empty_animation.dart';
-import '../../../../core/widgets/loading_animation_widget.dart';
 import '../../../language/presentation/provider/language_provider.dart';
 import '../providers/address_provider.dart';
 import '../providers/map_provider.dart';
@@ -23,23 +22,31 @@ class SavedAddressesPage extends StatelessWidget {
         title: Text(LanguageProvider.translate('global', 'saved_addresses')),
       ),
 
-      body: Builder(
-        builder: (context) {
-          if (addressProvider.address == null) {
-            return const Center(child: LoadingAnimationWidget(gif: Lotties.loading));
-          } else if (addressProvider.address!.isEmpty) {
-            return const Center(
-              child: EmptyAnimation(gif: Lotties.address, title: ''),
-            );
-          }
-          return ListView.builder(
-            itemCount: addressProvider.address!.length,
-            itemBuilder: (context, index) {
-              final address = addressProvider.address![index];
-              return SavedAddressContainerWidget(address: address);
+      body: Padding(
+        padding:  EdgeInsets.symmetric(vertical: 2.h),
+        child: RefreshIndicator(
+          onRefresh: () async {
+            addressProvider.refresh();
+          },
+          child: Builder(
+            builder: (context) {
+              if (addressProvider.address == null) {
+                return const Center(child: CircularProgressIndicator(),);
+              } else if (addressProvider.address!.isEmpty) {
+                return const Center(
+                  child: EmptyAnimation(gif: Lotties.address, title: ''),
+                );
+              }
+              return ListView.builder(
+                itemCount: addressProvider.address!.length,
+                itemBuilder: (context, index) {
+                  final address = addressProvider.address![index];
+                  return SavedAddressContainerWidget(address: address);
+                },
+              );
             },
-          );
-        },
+          ),
+        ),
       ),
 
       bottomNavigationBar: Padding(

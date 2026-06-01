@@ -37,7 +37,7 @@ class FilterRemoteDataSource {
 
   Future<Either<DioException, List<BrandModel>>> getCategoryBrands(Map<String,dynamic> data) async {
     List<BrandModel> filterModels = [];
-    var response = await apiHandel.post('get_category_brands',data);
+    var response = await apiHandel.post('get_brands',data);
     return response.fold((l) => Left(l), (r) {
       for (var i in r.data['data']) {
         filterModels.add(BrandModel.fromJson(i));
@@ -49,7 +49,7 @@ class FilterRemoteDataSource {
 
   Future<Either<DioException, List<CategoryAttributesModel>>> getCategoryAttributes(Map<String,dynamic> data) async {
     List<CategoryAttributesModel> filterModels = [];
-    var response = await apiHandel.post('get_category_attributes',data);
+    var response = await apiHandel.post('get_attributes',data);
     return response.fold((l) => Left(l), (r) {
       for (var i in r.data['data']) {
         filterModels.add(CategoryAttributesModel.fromJson(i));

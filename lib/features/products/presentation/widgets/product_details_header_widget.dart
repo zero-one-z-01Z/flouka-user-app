@@ -43,7 +43,7 @@ class ProductDetailsHeaderWidget extends StatelessWidget {
                 options: CarouselOptions(
                   viewportFraction: 1.0,
                   enlargeCenterPage: false,
-                  autoPlay: true,
+                  autoPlay: false,
                   onPageChanged: (index, reason) {
                     productDetailsProvider.changeImageIndex(index: index);
                   },

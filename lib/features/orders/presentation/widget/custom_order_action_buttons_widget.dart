@@ -16,7 +16,6 @@ class CustomOrderActionButtonsWidget extends StatelessWidget {
         Expanded(
           child: ButtonWidget(
             borderRadius: 10,
-
             color: const Color(0xffdff7ff),
             onTap: () {},
             text: LanguageProvider.translate("buttons", "Seller"),
@@ -24,28 +23,18 @@ class CustomOrderActionButtonsWidget extends StatelessWidget {
             height: 4.h,
           ),
         ),
-        Expanded(
-          child: ButtonWidget(
-            borderRadius: 10,
 
-            color: const Color(0xffdff7ff),
-            onTap: () {},
-            text: LanguageProvider.translate("buttons", "Product"),
-            textStyle: TextStyleClass.smallStyle(),
-            height: 4.h,
-          ),
-        ),
-        Expanded(
-          child: ButtonWidget(
-            borderRadius: 10,
-
-            color: const Color(0xffdff7ff),
-            onTap: () {},
-            text: LanguageProvider.translate("buttons", "Delivery"),
-            textStyle: TextStyleClass.smallStyle(),
-            height: 4.h,
-          ),
-        ),
+        // Expanded(
+        //   child: ButtonWidget(
+        //     borderRadius: 10,
+        //
+        //     color: const Color(0xffdff7ff),
+        //     onTap: () {},
+        //     text: LanguageProvider.translate("buttons", "Delivery"),
+        //     textStyle: TextStyleClass.smallStyle(),
+        //     height: 4.h,
+        //   ),
+        // ),
       ],
     );
   }

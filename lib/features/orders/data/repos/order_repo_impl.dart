@@ -1,8 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import '../../domain/entity/order_entity.dart';
 import '../../domain/repos/order_repo.dart';
 import '../data_srouce/order_remote_data_source.dart';
+import '../models/order_details_model.dart';
+import '../models/order_model.dart';
 
 class OrderRepoImpl implements OrderRepo {
   final OrderRemoteDataSource orderRemoteDataSource;
@@ -18,16 +19,29 @@ class OrderRepoImpl implements OrderRepo {
   }
 
   @override
-  Future<Either<DioException, OrderEntity>> getUserOrderDetails(
+  Future<Either<DioException, OrderDetailsModel>> getUserOrderDetails(
     Map<String, dynamic> data,
   ) {
     return orderRemoteDataSource.getUserOrderDetails(data);
   }
 
+
   @override
-  Future<Either<DioException, List<OrderEntity>>> getUserOrders(
+  Future<Either<DioException, List<OrderModel>>> getUserOrders(
+      Map<String, dynamic> data,
+      ) {
+    return orderRemoteDataSource.getUserOrders(data);
+  }
+
+  @override
+  Future<Either<DioException, Map<String,dynamic>>> getUserOrderEditDetails(
     Map<String, dynamic> data,
   ) {
-    return orderRemoteDataSource.getUserOrders(data);
+    return orderRemoteDataSource.getUserOrderEditDetails(data);
+  }
+
+  @override
+  Future<Either<DioException, bool>> acceptOrderRules(Map<String, dynamic> data) {
+    return orderRemoteDataSource.acceptOrderRules(data);
   }
 }

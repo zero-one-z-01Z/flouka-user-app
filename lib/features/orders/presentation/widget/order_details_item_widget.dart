@@ -21,7 +21,6 @@ class OrderDetailsItemWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 2.w),
@@ -32,58 +31,67 @@ class OrderDetailsItemWidget extends StatelessWidget {
                   LanguageProvider.translate("global", "Item Summary"),
                   style: TextStyleClass.normalStyle(),
                 ),
-                Icon(
-                  Icons.arrow_forward_ios,
-                  color: AppColor.primaryColor,
-                  size: 16,
-                ),
               ],
             ),
           ),
           SizedBox(height: 2.h),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              CachedNetworkImage(
-                width: 20.w,
-                imageUrl:
-                    orderDetailsEntity.productEntity?.images.first.image ??
-                    "https://placehold.co/600x400",
-                errorWidget: (context, url, error) => const Icon(Icons.error),
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  spacing: 1.h,
-                  crossAxisAlignment: CrossAxisAlignment.end,
+
+          Wrap(
+            spacing: 2.w,
+            children: List.generate(
+              orderDetailsEntity.vendorOrder?.items?.length ?? 0,
+              (index) {
+                return Column(
                   children: [
-                    Text(
-                      orderDetailsEntity.productEntity?.title ?? "",
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                      style: TextStyleClass.normalStyle().copyWith(
-                        color: const Color(0xff333542),
-                      ),
-                    ),
                     Row(
-                      spacing: 4,
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        PriceWidget(
-                          price: convertDataToNum(orderDetailsEntity.price) ?? 999,
+                        CachedNetworkImage(
+                          width: 20.w,
+                          imageUrl:
+                              orderDetailsEntity.vendorOrder?.items?[index].product?.image ??
+                              "https://placehold.co/600x400",
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error),
                         ),
-                        const Spacer(),
-                        CustomStarRatingWidget(rating: orderDetailsEntity.productEntity?.rate ?? 0, readOnly: true,),
-                        Text(
-                          "153,254",
-                          style: TextStyleClass.smallStyle(color: Colors.grey),
-                        ),
+                        const SizedBox(width: 16),
+                        Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              orderDetailsEntity.vendorOrder?.items?[index].variant?.name ?? "",
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                              style: TextStyleClass.normalStyle().copyWith(
+                                color: const Color(0xff333542),
+                              ),
+                            ),
+                            Text(
+                              LanguageProvider.translate("orders", orderDetailsEntity.vendorOrder?.items?[index].status?.text ?? ""),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                              style: TextStyleClass.smallStyle().copyWith(
+                                color: orderDetailsEntity.vendorOrder?.items?[index].status?.color ?? Colors.black,
+                              ),
+                            ),
+                            Text("${orderDetailsEntity.vendorOrder?.items?[index].variant?.finalPrice}\$")
+                          ],
+                        )),
                       ],
                     ),
+
+                    if (index <
+                        ((orderDetailsEntity.vendorOrder?.items?.length ?? 0) -
+                            1))
+                      Container(
+                        color: Colors.grey.shade200,
+                        width: 100.w,
+                        height: 0.2.h,
+                        margin: EdgeInsets.symmetric(vertical: 2.h),
+                      ),
                   ],
-                ),
-              ),
-            ],
+                );
+              },
+            ),
           ),
         ],
       ),

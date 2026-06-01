@@ -11,7 +11,7 @@ class AddressRemoteDataSource {
   AddressRemoteDataSource(this.apiHandel);
 
   Future<Either<DioException, List<AddressModel>>> getAddress() async {
-    var response = await apiHandel.get('user/addresses');
+    var response = await apiHandel.get('user/get_address');
     return response.fold((l) => Left(l), (r) {
       List<AddressModel> list = [];
       for (var i in r.data['data']) {
@@ -24,7 +24,7 @@ class AddressRemoteDataSource {
   Future<Either<DioException, AddressModel>> createAddress(
     Map<String, dynamic> data,
   ) async {
-    var response = await apiHandel.post('user/addresses', data);
+    var response = await apiHandel.post('user/create_address', data);
     return response.fold((l) => Left(l), (r) {
       return Right(AddressModel.fromJson(r.data['data']));
     });
@@ -33,14 +33,14 @@ class AddressRemoteDataSource {
   Future<Either<DioException, AddressModel>> updateAddress(
     Map<String, dynamic> data,
   ) async {
-    var response = await apiHandel.post('user/addresses/update', data);
+    var response = await apiHandel.post('user/edit_address', data);
     return response.fold((l) => Left(l), (r) {
       return Right(AddressModel.fromJson(r.data['data']));
     });
   }
 
   Future<Either<DioException, bool>> deleteAddress(Map<String, dynamic> data) async {
-    var response = await apiHandel.delete('user/addresses', data);
+    var response = await apiHandel.post('user/delete_address', data);
     log(response.toString());
     return response.fold((l) => Left(l), (r) {
       return const Right(true);

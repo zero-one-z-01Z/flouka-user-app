@@ -31,12 +31,9 @@ class StoreRepoImpl implements StoreRepo {
   }
 
   @override
-  Future<Either<DioException, bool>> follow(int id) async {
-    return await storeRemoteDataSource.follow(id);
+  Future<Either<DioException, bool>> updateFollow(Map<String,dynamic> data) async {
+    return await storeRemoteDataSource.updateFollow(data);
   }
 
-  @override
-  Future<Either<DioException, bool>> unfollow(int id) async {
-    return await storeRemoteDataSource.unfollow(id);
-  }
+
 }

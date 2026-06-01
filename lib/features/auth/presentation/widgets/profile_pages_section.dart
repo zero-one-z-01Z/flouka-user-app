@@ -2,13 +2,12 @@ import 'package:flouka/core/constants/app_images.dart';
 import 'package:flouka/core/constants/constants.dart';
 import 'package:flouka/features/auth/presentation/providers/auth_provider.dart';
 import 'package:flouka/features/auth/presentation/widgets/profile_pages_container_widget.dart';
+import 'package:flouka/features/favorite/presentation/providers/favorite_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../../address/presentation/providers/address_provider.dart';
-import '../../../chat/presentation/providers/chat_provider.dart';
 import '../../../orders/presentation/provider/order_provider.dart';
-import '../../../stores/presentation/providers/followed_stores_provider.dart';
 import '../../../wallet/presentation/provider/wallet_provider.dart';
 
 class ProfilePagesSection extends StatelessWidget {
@@ -32,11 +31,8 @@ class ProfilePagesSection extends StatelessWidget {
         "subTitle": "manage_favorites",
         "svg": AppImages.settingsFavorite,
         "onTap": () {
-          final chatProvider = Provider.of<ChatProvider>(
-            Constants.globalContext(),
-            listen: false,
-          );
-          chatProvider.goToChatPage();
+          final favoriteProvider = Provider.of<FavoriteProvider>(Constants.globalContext(), listen: false,);
+          favoriteProvider.goToPage();
         },
       },
       {
@@ -56,7 +52,7 @@ class ProfilePagesSection extends StatelessWidget {
       },
       {
         "title": "address",
-        "subTitle": "added",
+        "subTitle": "order_address",
         "svg": AppImages.settingsAddress,
         "onTap": () {
           final addressProvider = Provider.of<AddressProvider>(

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flouka/core/config/app_color.dart';
 import 'package:flouka/core/widgets/price_widget.dart';
@@ -10,8 +12,10 @@ import 'package:sizer/sizer.dart';
 
 import '../../../../core/config/app_styles.dart';
 import '../../../../core/constants/app_images.dart';
+import '../../../favorite/presentation/providers/favorite_provider.dart';
 import '../../domain/entity/product_entity.dart';
 import '../providers/products_details_provider.dart';
+Set favoriteIds = {};
 
 class HotDealsHomeContainerWidget extends StatelessWidget {
   HotDealsHomeContainerWidget({super.key, required this.product, this.isSimilar=false});
@@ -170,32 +174,42 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
               ),
             ),
           ),
-          // Positioned(
-          //   top: 1.h,
-          //   right: 4.w,
-          //   child: InkWell(
-          //     onTap: () {
-          //       cartOperations.addToCart(productId: product.id!);
-          //     },
-          //
-          //     child: Container(
-          //       width: 7.w,
-          //       height: 7.w,
-          //       decoration: BoxDecoration(
-          //         color: AppColor.primaryColor,
-          //         shape: BoxShape.circle,
-          //         boxShadow: [
-          //           BoxShadow(
-          //             color: Colors.black.withOpacity(0.1),
-          //             blurRadius: 4,
-          //             offset: const Offset(0, 2),
-          //           ),
-          //         ],
-          //       ),
-          //       child: Icon(Icons.add, size: 4.w, color: Colors.white),
-          //     ),
-          //   ),
-          // ),
+          Positioned(
+            top: 1.h,
+            right: 4.w,
+            child: InkWell(
+              onTap: () {
+                FavoriteProvider favoriteProvider = Provider.of(context, listen: false);
+                favoriteProvider.toggleFavorite(product);
+              },
+
+              child: Container(
+                width: 7.w,
+                height: 7.w,
+                decoration: BoxDecoration(
+                  color: AppColor.primaryColor,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 4,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: Consumer<FavoriteProvider>(
+                  builder: (context, provider, child) {
+                    bool isFav = favoriteIds.contains(product.id);
+                    return Icon(
+                      isFav ? Icons.favorite : Icons.favorite_border,
+                      color: Colors.white,
+                      size: 18,
+                    );
+                  },
+                ),
+              ),
+            ),
+          ),
           Positioned(
             top: 1.5.h,
             left: 6.w,
@@ -223,7 +237,7 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
                   child: Text(
                     LanguageProvider.translate('global', 'best_seller'),
                     style: TextStyle(
-                      fontSize: 10.sp,
+                      fontSize: 11.sp,
                       fontWeight: FontWeight.w600,
                       color: Colors.white,
                     ),

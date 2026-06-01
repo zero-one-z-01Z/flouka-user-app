@@ -13,16 +13,10 @@ class SettingsModel extends SettingsEntity {
     required super.privacyLink,
     required super.id,
     required super.email,
-    required super.maxPrice,
     required super.whatsapp,
-    required super.joinPrice,
-    required super.joinTax,
-    required super.auctionPercentage,
-    required super.bestPriceGift,
     required super.packageName,
     required super.appId,
     required super.tax,
-    required super.delivery,
   });
 
   factory SettingsModel.fromJson(Map data) {
@@ -40,15 +34,9 @@ class SettingsModel extends SettingsEntity {
       termsLink: data['terms_link'],
       aboutLink: data["about_link"],
       privacyLink: data["privacy_link"],
-      joinPrice: convertDataToNum(data["join_price"] ?? 1),
-      joinTax: convertDataToNum(data["join_tax"] ?? 0),
-      auctionPercentage: convertDataToNum(data["auction_percentage"] ?? 0),
-      bestPriceGift: convertDataToNum(data["best_price_gift"] ?? 0),
       packageName: data["package_name"] ?? "",
       appId: data["app_id"] ?? "",
       tax: convertDataToNum(data["tax"] ?? 0)!,
-      delivery: convertDataToNum(data["delivery_price"] ?? 0)!,
-      maxPrice: convertDataToNum(data["max_price"] ?? 20000),
     );
   }
 }

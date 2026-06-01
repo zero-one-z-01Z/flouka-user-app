@@ -1,3 +1,4 @@
+import 'package:flouka/core/helper_function/convert.dart';
 import 'package:flouka/features/cart/presentation/providers/coupon_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -8,7 +9,6 @@ import '../../../../core/dialog/new_success_dialog.dart';
 import '../../../../core/dialog/snack_bar.dart';
 import '../../../../core/helper_function/loading.dart';
 import '../../../../core/helper_function/navigation.dart';
-import '../../../../core/models/text_field_model.dart';
 import '../../../../core/widgets/payment_online_page.dart';
 import '../../../address/presentation/providers/address_provider.dart';
 import '../../../auth/presentation/providers/auth_provider.dart';
@@ -31,19 +31,19 @@ class CheckoutProvider extends ChangeNotifier {
     for (var element in cart.data ?? []) {
       sub += element.subTotal;
     }
-    return sub;
+    return convertDataToNum(sub.toStringAsFixed(2))!;
   }
 
   num tax() {
-    return (10 / 100) * subtotal();
-  }
+    SettingsProvider settingsProvider=Provider.of<SettingsProvider>(Constants.globalContext(), listen: false,);
+    return convertDataToNum((((settingsProvider.settingsEntity?.tax??0) / 100) *
+        (subtotal() - (couponProvider.calcDiscount() ?? 0))).toStringAsFixed(2))!;
 
-  num fees() {
-    return (10 / 100) * subtotal();
   }
 
   num total() {
-    return subtotal() + tax() + fees();
+    CouponProvider couponProvider=Provider.of<CouponProvider>(Constants.globalContext(), listen: false,);
+    return convertDataToNum((subtotal() + tax()).toStringAsFixed(2))! - (couponProvider.calcDiscount() ?? 0);
   }
 
   CouponEntity? couponEntity;
@@ -63,17 +63,19 @@ class CheckoutProvider extends ChangeNotifier {
   Future<int?> createOrder() async {
     int? orderId;
     Map<String, dynamic> dataToUse = {};
-    dataToUse['address_id'] = 1;
+    AuthProvider authProvider = Provider.of<AuthProvider>(Constants.globalContext(), listen: false,);
+    dataToUse['address_id'] = authProvider.userEntity?.addressEntity?.id;
     dataToUse['total'] = total();
     dataToUse['sub_total'] = subtotal();
-    dataToUse['fees'] = fees();
     dataToUse['tax'] = tax();
-    // log(cartPrice.toString());
-    // dataToUse['delivery'] = delivery;
-    // dataToUse["coupon"] = couponProvider.coupon.text;
-    // dataToUse["discount"] = (couponProvider.calcCoupon(subTotalTax) ?? 0);
     dataToUse["payment_method"] = selectedPaymentMethod.toAPI;
-    // dataToUse['tax'] = tax;
+
+    dataToUse['discount'] = (couponProvider.calcDiscount() ?? 0);
+    for (int i=0;i<(couponProvider.couponEntity?.length ??0);i++) {
+      dataToUse['coupons[$i][coupon]'] = couponProvider.couponEntity?[i].coupon;
+      dataToUse['coupons[$i][discount]'] = couponProvider.couponEntity?[i].discount;
+
+    }
     loading();
     final result = await orderUseCase.createOrder(dataToUse);
     navPop();
@@ -84,17 +86,17 @@ class CheckoutProvider extends ChangeNotifier {
       },
       (r) {
         if (selectedPaymentMethod.toAPI == 'wallet') {
-          WalletProvider walletProvider = Provider.of(
-            Constants.globalContext(),
-            listen: false,
-          );
+          WalletProvider walletProvider = Provider.of(Constants.globalContext(), listen: false,);
           walletProvider.decreaseWallet(total());
         }
         if (selectedPaymentMethod.toAPI != 'online') {
           newSuccessDialog(lottie: Lotties.loading);
           notifyListeners();
           navPU();
-          cart.clear();
+          cart.refresh();
+        }
+        if(selectedPaymentMethod.toAPI == "cash"){
+
         }
         orderId = r;
         return r;
@@ -107,14 +109,6 @@ class CheckoutProvider extends ChangeNotifier {
   void goToPage([Map<String, dynamic>? inputs]) async {
     navP(const CheckoutView());
   }
-
-  List<TextFieldModel> coupon = [
-    TextFieldModel(
-      key: "coupon",
-      controller: TextEditingController(),
-      hint: "xxx xxx xxx xxx",
-    ),
-  ];
 
   List<PaymentMethodEntity> paymentMethods = [
     PaymentMethodEntity(
@@ -154,35 +148,26 @@ class CheckoutProvider extends ChangeNotifier {
   void makeOrder() async {
     if (['online'].contains(selectedPaymentMethod.toAPI)) {
       createOrder().then((value) {
-        print('errrrrrrrrrrrrrr${value}');
-        print('errrrrrrrrrrrrrr${total()}');
 
         navP(
           PaymentOnlinePage(total: total(), type: "order_$value"),
           then: (val) {
             if (val == 'paid') {
               navPU();
-              // ordersProvider.goToPage();
+              ordersProvider.goToPage();
               cart.clear();
             } else if (val == 'filed') {
               showToast(LanguageProvider.translate('error', 'error'));
             }
             navPU();
-            cart.clear();
+            cart.refresh();
           },
         );
       });
     } else if (selectedPaymentMethod.toAPI == 'wallet') {
-      print('aaaaaaaaaaa${total()}');
-      AuthProvider authProvider = Provider.of(
-        Constants.globalContext(),
-        listen: false,
-      );
-      print('aaaaaaaaaaa${authProvider.userEntity?.wallet}');
-      bool check = await Provider.of<WalletProvider>(
-        Constants.globalContext(),
-        listen: false,
-      ).checkWallet(moneyAmount: total());
+      AuthProvider authProvider = Provider.of(Constants.globalContext(), listen: false,);
+      bool check = await Provider.of<WalletProvider>(Constants.globalContext(), listen: false,)
+          .checkWallet(moneyAmount: total());
       if (!check) {
         return;
       }

@@ -32,8 +32,7 @@ class PopularCategoriesProvider extends ChangeNotifier {
           (failure) {
         _error = failure.message ?? 'Error loading categories';
         showToast(_error!);
-      },
-          (categoriesList) {
+      }, (categoriesList) {
         _categories = categoriesList;
         if (_categories.isNotEmpty && _selectedCategory == null) {
           _selectedCategory = null; // default = show all

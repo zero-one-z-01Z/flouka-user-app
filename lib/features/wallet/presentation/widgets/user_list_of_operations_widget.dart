@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../core/config/app_styles.dart';
 import '../../../../core/widgets/animation/fade_transition_widget.dart';
+import '../../../../core/widgets/shimmer_widget.dart';
 import '../../../language/presentation/provider/language_provider.dart';
 import '../provider/wallet_provider.dart';
 import 'user_operations_widget.dart';
@@ -37,7 +38,7 @@ class ListOfTransactionWidgets extends StatelessWidget {
               index,
             ) {
               if (walletProvider.myOperations == null) {
-                // return ShimmerWidget(height: 7.h, width: 100.w);
+                return ShimmerWidget(height: 7.h, width: 100.w);
               } else {
                 return OperationWidgets(
                   myOperation: walletProvider.myOperations![index],

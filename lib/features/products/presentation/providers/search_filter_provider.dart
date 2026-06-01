@@ -63,7 +63,6 @@ class SearchFilterProvider extends ChangeNotifier {
   void goToFilterPage(){
     CategoryProvider provider = Provider.of(Constants.globalContext(), listen: false);
     BrandsProvider brandsProvider = Provider.of(Constants.globalContext(), listen: false);
-    initFilters();
    navP(const FilterPage());
   }
 
@@ -192,14 +191,22 @@ class SearchFilterProvider extends ChangeNotifier {
       } else if (value is List) {
         if(title == 'brand'){
           brandIds.addAll(
-            value.map<String>((e) => e['id'].toString()).toList(),
+            value
+                .where((e) => e['id'] != null)
+                .map<String>((e) => e['id'].toString())
+                .toList(),
           );
         }else{
           attributesIds.addAll(
-            value.map<String>((e) => e['id'].toString()).toList(),
+            value
+                .where((e) => e['id'] != null)
+                .map<String>((e) => e['id'].toString())
+                .toList(),
           );
         }
       }else if (value is Map<String, dynamic>) {
+        if (value['id'] == null) continue;
+
         if(title == 'brand'){
           brandIds.add(
             value['id'].toString(),
@@ -213,10 +220,15 @@ class SearchFilterProvider extends ChangeNotifier {
     }
     // single object
     }
-    filters['attributes_value_ids[]']=attributesIds;
-    filters['brand_ids[]']=brandIds;
+    if(attributesIds.isNotEmpty){
+      filters['attributes_value_ids[]']=attributesIds;
+    }
+    if(brandIds.isNotEmpty){
+      filters['brand_ids[]']=brandIds;
+    }
     return filters;
   }
+
 
 }
 

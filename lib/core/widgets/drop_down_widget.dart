@@ -13,6 +13,7 @@ class DropDownWidget extends StatefulWidget {
   final void Function()? onTap, onChanged, clear;
   final TextEditingController? controller;
   final double borderWidth;
+  final bool canPress;
   const DropDownWidget({
     required this.dropDownClass,
     this.width,
@@ -21,6 +22,7 @@ class DropDownWidget extends StatefulWidget {
     this.controller,
     this.borderRadius,
     this.borderColor,
+    this.canPress = true,
     this.padding,
     this.color,
     this.onChanged,
@@ -40,6 +42,7 @@ class DropDownWidgetState extends State<DropDownWidget> {
       children: [
         InkWell(
           onTap: () {
+            if (!widget.canPress) return;
             FocusScope.of(context).unfocus();
             if (widget.onTap == null) {
               if (widget.clear != null) {
@@ -54,9 +57,9 @@ class DropDownWidgetState extends State<DropDownWidget> {
             width: widget.width ?? 100.w,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(widget.borderRadius ?? 10),
-              color: widget.color ?? const Color(0xffF0F0F0),
+              color: widget.canPress ? (widget.color ?? const Color(0xffF0F0F0)) : Colors.grey.withValues(alpha: 0.05),
               border: Border.all(
-                color: widget.borderColor ?? Colors.grey,
+                color:widget.canPress ? (widget.borderColor ?? Colors.grey) : Colors.grey.withValues(alpha: 0.05),
                 width: widget.borderWidth,
               ),
             ),
@@ -74,7 +77,7 @@ class DropDownWidgetState extends State<DropDownWidget> {
                     child: Text(
                       dropDownClass.displayedName(),
                       maxLines: 1,
-                      style: TextStyleClass.normalStyle(color: Colors.black),
+                      style: TextStyleClass.normalStyle(color:widget.canPress? Colors.black : Colors.grey),
                     ),
                   ),
                   const Spacer(),

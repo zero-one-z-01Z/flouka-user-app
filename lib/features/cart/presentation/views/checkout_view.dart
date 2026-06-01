@@ -5,11 +5,14 @@ import 'package:sizer/sizer.dart';
 import '../../../../core/config/app_styles.dart';
 import '../../../../core/widgets/draggable_image_button_widget.dart';
 import '../../../address/presentation/providers/address_provider.dart';
+import '../../../address/presentation/widgets/my_address_widget.dart';
+import '../../../auth/presentation/providers/auth_provider.dart';
 import '../../../language/presentation/provider/language_provider.dart';
 import '../../domain/entity/cart_entity.dart';
 import '../providers/cart_provider.dart';
 import '../providers/checkout_provider.dart';
 import '../widgets/checkout_item_widget.dart';
+import '../widgets/coupons_widget.dart';
 import '../widgets/payment_method_list.dart';
 import '../widgets/price_details_widget.dart';
 
@@ -22,6 +25,7 @@ class CheckoutView extends StatelessWidget {
     final CartProvider cartProvider = Provider.of<CartProvider>(context);
     final AddressProvider addressProvider = Provider.of<AddressProvider>(context);
     final OrderProvider orderProvider = Provider.of<OrderProvider>(context);
+    final AuthProvider authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
       backgroundColor: const Color(0xffeffbff),
       // backgroundColor: Colors.black,
@@ -41,8 +45,10 @@ class CheckoutView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // const MyAddressWidget(),
+                    if(authProvider.userEntity?.addressEntity!=null)
+                    MyAddressWidget(addressEntity: authProvider.userEntity!.addressEntity!,),
                     SizedBox(height: 2.h),
+                    if(cartProvider.data?.isNotEmpty ?? false)
                     CheckoutItemWidget(
                       cartEntity: cartProvider.data?[0] ?? CartEntity(),
                     ),
@@ -69,6 +75,8 @@ class CheckoutView extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 1.3.h),
+                    const CouponsWidget(),
+                    SizedBox(height: 1.3.h),
                     const PriceDetailesList(),
                     SizedBox(height: 3.h),
                   ],
@@ -77,7 +85,7 @@ class CheckoutView extends StatelessWidget {
             ),
             DraggableImageButton(
               onComplete: () {
-                checkoutProvider.createOrder();
+                checkoutProvider.makeOrder();
               },
             ),
             SizedBox(height: 2.h),

@@ -1,3 +1,4 @@
+import 'package:flouka/core/widgets/checkbox_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -46,9 +47,9 @@ class AddressBottomSheet extends StatelessWidget {
                 // Title
                 Center(
                   child: Text(
-                    LanguageProvider.translate('inputs', 'order_location'),
+                    LanguageProvider.translate('address', 'location'),
                     style: TextStyle(
-                      fontSize: 15.sp,
+                      fontSize: 18.sp,
                       fontWeight: FontWeight.w700,
                       color: AppColor.primaryColor,
                     ),
@@ -84,7 +85,24 @@ class AddressBottomSheet extends StatelessWidget {
                 // Text Fields
                 ListTextFieldWidget(inputs: addressDetailsProvider.inputs),
                 SizedBox(height: 3.h),
-      
+                Row(
+                  children: [
+                    CheckBoxWidget(check: addressDetailsProvider.isMakeDefault,
+                        onChange:(val) {
+                      if(!addressDetailsProvider.firstAddress){
+                        addressDetailsProvider.changeIsMakeDefault();
+                      }},),
+                    SizedBox(width: 2.w,),
+                    Expanded(
+                      child: Text(
+                        LanguageProvider.translate('address', 'make_default'),
+                        style: TextStyleClass.normalStyle(),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 3.h),
+
                 // Save Button
                 SizedBox(
                   width: double.infinity,

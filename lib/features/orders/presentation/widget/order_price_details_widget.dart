@@ -21,30 +21,32 @@ class OrderPriceDetailsWidget extends StatelessWidget {
         children: [
           PaymentPriceWidget(
             title: LanguageProvider.translate("global", "price"),
-            price: orderDetailsProvider.data!.price.toString(),
+            price: orderDetailsProvider.data!.subTotal.toString(),
           ),
+          if((orderDetailsProvider.data!.delivery!) > 0)...[
+            Divider(color: Colors.grey.shade400, endIndent: 32, indent: 32),
+            PaymentPriceWidget(
+              title: LanguageProvider.translate("global", "delivery"),
+              price: orderDetailsProvider.data!.delivery.toString(),
+            ),
+          ],
 
           Divider(color: Colors.grey.shade400, endIndent: 32, indent: 32),
           PaymentPriceWidget(
-            title: LanguageProvider.translate("global", "delivery"),
-            price: orderDetailsProvider.data!.price.toString(),
-          ),
-          Divider(color: Colors.grey.shade400, endIndent: 32, indent: 32),
-          PaymentPriceWidget(
             title: LanguageProvider.translate("global", "tax"),
-            price: orderDetailsProvider.data!.price.toString(),
+            price: orderDetailsProvider.data!.tax.toString(),
           ),
           Divider(color: Colors.grey.shade400, endIndent: 32, indent: 32),
-          if (orderDetailsProvider.data!.price != 0) ...[
+          if (orderDetailsProvider.data!.discount != 0) ...[
             PaymentPriceWidget(
               title: LanguageProvider.translate("global", "discount"),
-              price: orderDetailsProvider.data!.price.toString(),
+              price: orderDetailsProvider.data!.discount.toString(),
             ),
             Divider(color: Colors.grey.shade400, endIndent: 32, indent: 32),
           ],
           PaymentPriceWidget(
             title: LanguageProvider.translate("global", "total"),
-            price: orderDetailsProvider.data!.price.toString(),
+            price: orderDetailsProvider.data!.total.toString(),
             isGreen: true,
           ),
         ],

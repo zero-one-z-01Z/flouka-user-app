@@ -36,6 +36,7 @@ abstract class AppImages {
   static const String addressHome = 'assets/images/address/home.svg';
   static const String addressEdit = 'assets/images/address/edit.svg';
   static const String addressMap = 'assets/images/address/map.png';
+  static const String locationImage = 'assets/images/address/location.png';
   static const String addressWork = 'assets/images/address/work.svg';
 
   //NavBar
@@ -72,6 +73,9 @@ abstract class AppImages {
   static const String delivery = 'assets/images/products/delivery.svg';
   static const String share = 'assets/images/products/share.svg';
   static const String trash = 'assets/images/products/trash.svg';
+
+  //status
+  static const String pendingPayment = 'assets/images/status/pending_payment.svg';
 
   //Settings
   static const String settingsAddress = 'assets/images/settings/address.svg';

@@ -22,12 +22,14 @@ class VendorEntity {
   final int id;
   final String name;
   final String logo;
+  final String? cover;
   final String bio;
   final bool isFavorite;
   final bool isFollow;
   VendorEntity({
     required this.id,
     required this.name,
+    required this.cover,
     required this.isFavorite,
     required this.bio,
     required this.isFollow,

@@ -16,6 +16,12 @@ class CartView extends StatelessWidget {
     // final checkoutProvider = Provider.of<CheckoutProvider>(context);
     return Scaffold(
       backgroundColor: const Color(0xffeffbff),
+      appBar: AppBar(
+        title: Text(
+          LanguageProvider.translate("global", "cart"),
+          style: TextStyleClass.normalStyle(),
+        ),
+      ),
       body: SafeArea(
         child: Column(
           children: [
@@ -24,23 +30,13 @@ class CartView extends StatelessWidget {
                 onRefresh: () async {
                   cartProvider.refresh();
                 },
-                child: SingleChildScrollView(
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                child:const SingleChildScrollView(
+                  physics: AlwaysScrollableScrollPhysics(),
+                  padding: EdgeInsets.symmetric(horizontal: 16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 1.5.h),
-                      if (cartProvider.data != null &&
-                          cartProvider.data!.isNotEmpty) ...[
-                        Text(
-                          LanguageProvider.translate("global", "coupon"),
-                          style: TextStyleClass.normalStyle(),
-                        ),
-                        SizedBox(height: 1.3.h),
-                      ],
-                      SizedBox(height: 3.h),
-                      const CartListViewSeperatedWidget(),
+                      CartListViewSeperatedWidget(),
                     ],
                   ),
                 ),

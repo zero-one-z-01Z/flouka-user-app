@@ -6,14 +6,11 @@ class AddressEntity extends Equatable {
   final int? id;
   final int? userId;
   final int? areaId;
-  final int? partNumber;
   final String? addressName;
-  final String? streetName;
+  final String? address;
   final double? lat;
   final double? lng;
-  final String? building;
-  final String? apartment;
-  final String? notes;
+  final String? phone;
   final String? createdAt;
   final AreaEntity? areaEntity;
   bool? isDefault;
@@ -23,15 +20,12 @@ class AddressEntity extends Equatable {
     required this.areaEntity,
     required this.areaId,
     required this.isDefault,
-    required this.partNumber,
     required this.addressName,
-    required this.streetName,
     required this.lat,
     required this.lng,
-    required this.building,
-    required this.apartment,
-    required this.notes,
     required this.createdAt,
+    required this.phone,
+    required this.address,
   });
 
   @override
@@ -39,15 +33,11 @@ class AddressEntity extends Equatable {
     id,
     userId,
     areaId,
-    partNumber,
     addressName,
-    streetName,
     areaEntity,
+    isDefault,
     lat,
     lng,
-    building,
-    apartment,
-    notes,
     createdAt,
   ];
 }

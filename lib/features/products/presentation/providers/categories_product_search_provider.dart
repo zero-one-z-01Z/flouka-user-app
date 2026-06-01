@@ -14,6 +14,7 @@ import '../../../categories/presentation/providers/categories_provider.dart';
 import '../../../categories/presentation/view/categories_view_all_page.dart';
 import '../../domain/entity/product_entity.dart';
 import '../../domain/user_case/product_use_case.dart';
+import 'search_filter_provider.dart';
 
 class CategoriesProductSearchProvider extends ChangeNotifier
     implements ProviderStructureModel<List<ProductEntity>>, PaginationClass{
@@ -28,6 +29,8 @@ class CategoriesProductSearchProvider extends ChangeNotifier
      this.category = category;
    }
    refresh();
+   SearchFilterProvider provider = Provider.of(Constants.globalContext(), listen: false);
+   provider.initFilters();
    navP(const CategoriesViewAllPage());
  }
 
@@ -42,6 +45,8 @@ class CategoriesProductSearchProvider extends ChangeNotifier
      this.categoryId = categoryId;
    }
    refresh();
+   SearchFilterProvider provider = Provider.of(Constants.globalContext(), listen: false);
+   provider.initFilters();
    navP(const CategoriesViewAllPage());
  }
 
@@ -98,7 +103,9 @@ class CategoriesProductSearchProvider extends ChangeNotifier
    category = null;
    subcategory = null;
    inputs = null;
+   SearchFilterProvider provider = Provider.of(Constants.globalContext(), listen: false);
    notifyListeners();
+
  }
 
  void selectCategory(CategoryEntity category) {
@@ -125,36 +132,46 @@ class CategoriesProductSearchProvider extends ChangeNotifier
    notifyListeners();
    goToPage();
  }
-
-
+ bool fromFilter = false;
+ void getProductsFromFilter(){
+   fromFilter = true;
+   refresh();
+   navPop();
+ }
  @override
  Future getData() async {
    Map<String, dynamic> dataToUse = {};
    dataToUse['page'] = pageIndex;
-   if(categoryId !=null){
-     dataToUse['category_id'] = categoryId;
+   if(fromFilter){
+     SearchFilterProvider provider = Provider.of(Constants.globalContext(), listen: false);
+     dataToUse=provider.getSelectedFilters();
+   }else{
+     if(categoryId !=null){
+       dataToUse['category_id'] = categoryId;
 
-   } else if(subcategory !=null || category !=null){
-     dataToUse['category_id'] = subcategory !=null ? subcategory!.id : category?.id;
-   }
-   if(searchController.text.isNotEmpty){
-     dataToUse['search'] = searchController.text;
-   }
-   if(inputs!=null && inputs?['best_selling'] != null){
-     dataToUse['best_selling'] = inputs?['best_selling'];
-   }
-   if(inputs!=null && inputs?['offers_products'] != null){
-     dataToUse['offers_products'] = inputs?['offers_products'];
-   }
-   if(inputs!=null && inputs?['section_id'] != null){
-     dataToUse['section_id'] = inputs?['section_id'];
+     } else if(subcategory !=null || category !=null){
+       dataToUse['category_id'] = subcategory !=null ? subcategory!.id : category?.id;
+     }
+
+     if(inputs!=null && inputs?['best_selling'] != null){
+       dataToUse['best_selling'] = inputs?['best_selling'];
+     }
+     if(inputs!=null && inputs?['offers_products'] != null){
+       dataToUse['offers_products'] = inputs?['offers_products'];
+     }
+     if(inputs!=null && inputs?['section_id'] != null){
+       dataToUse['section_id'] = inputs?['section_id'];
+     }
+
    }
    AuthProvider authProvider = Provider.of(Constants.globalContext(), listen: false);
    if(authProvider.currentLocation !=null){
      dataToUse['lat'] = authProvider.currentLocation?.latitude;
      dataToUse['lng'] = authProvider.currentLocation?.longitude;
    }
-
+   if(searchController.text.isNotEmpty){
+     dataToUse['search'] = searchController.text;
+   }
    final result = await productUseCase.getProducts(dataToUse);
    log("${dataToUse}");
    result.fold((l) {
@@ -196,6 +213,9 @@ class CategoriesProductSearchProvider extends ChangeNotifier
  void goToPage([Map<String, dynamic>? inputs]) {
    this.inputs = inputs;
    refresh();
+   SearchFilterProvider provider = Provider.of(Constants.globalContext(), listen: false);
+   provider.initFilters();
+
    navP(const CategoriesViewAllPage(),then: (val){
      resetData();
    });

@@ -6,10 +6,11 @@ import '../../../../core/config/app_color.dart';
 import '../../../../core/constants/app_images.dart';
 import '../../../../core/widgets/svg_widget.dart';
 import '../../../language/presentation/provider/language_provider.dart';
+import '../../domain/entity/order_details_entity.dart';
 
 class CustomOrderPaymentWayWidget extends StatelessWidget {
-  const CustomOrderPaymentWayWidget({super.key});
-
+  const CustomOrderPaymentWayWidget({super.key, required this.orderDetailsEntity});
+  final OrderDetailsEntity orderDetailsEntity;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,8 +31,7 @@ class CustomOrderPaymentWayWidget extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          const SvgWidget(svg: AppImages.wallet),
-          Text(LanguageProvider.translate("global", "Wallet App")),
+          Text(LanguageProvider.translate("global", orderDetailsEntity.paymentMethod??"")),
         ],
       ),
     );

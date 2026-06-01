@@ -36,4 +36,7 @@ abstract class ProductRepo {
     Map<String, dynamic> data,
   );
   Future<Either<DioException, bool>> deleteProduct(Map<String, dynamic> data);
+  // Favorite
+  Future<Either<DioException, List<ProductEntity>>> getFavorites(Map<String, dynamic> data);
+  Future<Either<DioException, bool>> updateFavorite(Map<String, dynamic> data);
 }

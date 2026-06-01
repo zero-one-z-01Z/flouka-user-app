@@ -3,9 +3,12 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:sizer/sizer.dart';
 
 class CustomStarRatingWidget extends StatelessWidget {
-  const CustomStarRatingWidget({super.key, this.itemSize, required this.rating,  this.readOnly =false});
+  const CustomStarRatingWidget({super.key, this.itemSize, required this.rating,
+    this.onRatingUpdate,
+    this.readOnly =false});
   final double? itemSize;
   final num rating;
+  final Function(num value)? onRatingUpdate;
   final bool readOnly;
   @override
   Widget build(BuildContext context) {
@@ -20,7 +23,11 @@ class CustomStarRatingWidget extends StatelessWidget {
         half: const Icon(Icons.star_half, color: Colors.amber),
         empty: const Icon(Icons.star_border, color: Colors.amber),
       ),
-      onRatingUpdate: (value) {},
+      onRatingUpdate: (value) {
+        if(onRatingUpdate!=null){
+          onRatingUpdate!(value);
+        }
+      },
     );
   }
 }

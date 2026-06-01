@@ -19,7 +19,7 @@ class FilterProductProvider extends ChangeNotifier {
   Future<void> getData() async {
     var response = await categoryUseCase.getMainCategories();
     response.fold((l) {}, (r) {
-      data??=[];
+      data=[];
       List<CategoryModel> staticCategories = [
         CategoryModel(id: 0, name: 'for_you',image: "", parentId: null,),
         CategoryModel(id: -1, name: 'new_gadget',image: "", parentId: null,),

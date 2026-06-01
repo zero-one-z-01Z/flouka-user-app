@@ -59,18 +59,17 @@ class StoreDetailsPage extends StatelessWidget {
                   Stack(alignment: Alignment.bottomCenter,
                     clipBehavior: Clip.none,
                     children: [
-                    CachedNetworkImage( imageUrl: storeDetailsProvider.storeDetailsEntity!.cover ?? "",
+                    CachedNetworkImage( imageUrl: storeDetailsProvider.storeDetailsEntity!.vendor?.cover ?? "",
                       errorWidget: (context, url, error) { return const Icon(Icons.error); },
                       width: double.infinity, height: 20.h, fit: BoxFit.cover, ),
                     Positioned( bottom: -4.h, child: Container(width: 100.w, padding: EdgeInsets.symmetric(horizontal: 4.w),
                       child: Row( children: [ Row( children: [ CircleAvatar( radius: 34,backgroundColor: Colors.grey.shade300,
-                        backgroundImage: CachedNetworkImageProvider(storeDetailsProvider.storeDetailsEntity!.image!), ),
+                        backgroundImage: CachedNetworkImageProvider(storeDetailsProvider.storeDetailsEntity!.vendor!.logo!), ),
                         SizedBox(width: 2.w), ButtonWidget( onTap: () {
-                          if (storeDetailsProvider .storeDetailsEntity! .isFollowed)
-                        { storeDetailsProvider.unFollow( storeDetailsProvider.storeDetailsEntity!.id, ); }
-                        else { storeDetailsProvider.follow( storeDetailsProvider.storeDetailsEntity!.id, ); }
+                         storeDetailsProvider.updateFollow( storeDetailsProvider.storeDetailsEntity!.id, );
+
                         }, text: storeDetailsProvider .storeDetailsEntity! .isFollowed ? 'unfollow' : 'follow',
-                          width: 20.w, height: 3.h, borderRadius: 4,
+                          width: 20.w, height: 3.5.h, borderRadius: 4,
                           textStyle: TextStyleClass.normalStyle( color: Colors.white, ).copyWith(fontSize: 14.sp), ), ], ),
                         SizedBox(width: 2.w),
                         const Spacer(),

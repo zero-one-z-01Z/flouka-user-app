@@ -21,11 +21,8 @@ class StoreUseCase {
     return await storeRepo.getStoreDetails(data);
   }
 
-  Future<Either<DioException, bool>> follow(int id) async {
-    return await storeRepo.follow(id);
-  }
-    Future<Either<DioException, bool>> unfollow(int id) async {
-    return await storeRepo.unfollow(id);
+  Future<Either<DioException, bool>> updateFollow(Map<String,dynamic> data) async {
+    return await storeRepo.updateFollow(data);
   }
   Future<Either<DioException, List<ProductReviewEntity>>> getReviews(Map<String,dynamic> data) async {
     return await storeRepo.getReviews(data);

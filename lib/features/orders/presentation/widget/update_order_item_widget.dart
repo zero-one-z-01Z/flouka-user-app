@@ -5,10 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../../core/config/app_styles.dart';
 import '../../../../core/widgets/price_widget.dart';
+import '../../domain/entity/order_entity.dart';
 
 class UpdateOrderItemWidget extends StatelessWidget {
-  const UpdateOrderItemWidget({super.key, required this.isOutOfStock});
-  final bool isOutOfStock;
+  const UpdateOrderItemWidget({super.key, required this.orderItem});
+  final OrderItemEntity orderItem;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -29,7 +30,7 @@ class UpdateOrderItemWidget extends StatelessWidget {
                 children: [
                   CachedNetworkImage(
                     width: 20.w,
-                    imageUrl: "https://placehold.co/600x400",
+                    imageUrl: "${orderItem.product?.image}",
                     errorWidget: (context, url, error) => const Icon(Icons.error),
                   ),
                   const SizedBox(width: 16),
@@ -39,7 +40,7 @@ class UpdateOrderItemWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Lenovo Yoga 920 13/Core i7/16GB/SSD 1TB",
+                          "${orderItem.product?.title}",
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
                           style: TextStyleClass.normalStyle().copyWith(
@@ -48,10 +49,10 @@ class UpdateOrderItemWidget extends StatelessWidget {
                         ),
                         // if (!isOutOfStock)
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            const PriceWidget(price: 999),
-                            if (!isOutOfStock)
+                            // PriceWidget(price: orderItem.product?.price ?? 0),
+                            if (orderItem.status != OrderItemStatus.outOfStock)
                               ButtonWidget(
                                 width: 27.w,
                                 color: const Color(0xff00920A),
@@ -73,7 +74,7 @@ class UpdateOrderItemWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              if (isOutOfStock)
+              if (orderItem.status == OrderItemStatus.outOfStock)
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

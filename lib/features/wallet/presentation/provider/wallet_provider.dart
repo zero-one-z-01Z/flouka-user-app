@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/dialog/confirm_dialog.dart';
+import '../../../../core/dialog/guest_dialog.dart';
 import '../../../../core/dialog/snack_bar.dart';
 import '../../../../core/dialog/success_dialog.dart';
 import '../../../../core/helper_function/convert.dart';
@@ -26,8 +27,7 @@ class WalletProvider extends ChangeNotifier implements PaginationClass {
   Future walletOperations() async {
     Map<String, dynamic> data = {};
     data['page'] = pageIndex;
-    Either<DioException, List<OperationEntity>> login = await walletUseCases
-        .walletOperations(data);
+    Either<DioException, List<OperationEntity>> login = await walletUseCases.walletOperations(data);
     login.fold(
       (l) {
         showToast("${l.message}");
@@ -47,21 +47,18 @@ class WalletProvider extends ChangeNotifier implements PaginationClass {
   }
 
   void goToWalletPage() {
-    // if (AuthProvider.isLogin()) {
-    // refresh();
+    if (AuthProvider.isLogin()) {
+    refresh();
     navP(UserWalletHome());
-    // } else {
-    // showGuestDialog();
-    // }
+    } else {
+    showGuestDialog();
+    }
   }
 
   void refresh() {
     clear();
     notifyListeners();
-    Provider.of<AuthProvider>(
-      Constants.globalContext(),
-      listen: false,
-    ).getProfile();
+    // Provider.of<AuthProvider>(Constants.globalContext(), listen: false,).getProfile();
     walletOperations();
   }
 
@@ -89,10 +86,7 @@ class WalletProvider extends ChangeNotifier implements PaginationClass {
   TextEditingController walletChargeController = TextEditingController();
 
   void decreaseWallet(num price) {
-    AuthProvider authProvider = Provider.of<AuthProvider>(
-      Constants.globalContext(),
-      listen: false,
-    );
+    AuthProvider authProvider = Provider.of<AuthProvider>(Constants.globalContext(), listen: false,);
     authProvider.userEntity!.wallet = (authProvider.userEntity!.wallet) - price;
     authProvider.rebuild();
   }

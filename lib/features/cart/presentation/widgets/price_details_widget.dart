@@ -27,26 +27,24 @@ class PriceDetailesList extends StatelessWidget {
             title: LanguageProvider.translate("global", "price"),
             price: checkoutProvider.subtotal().toStringAsFixed(2),
           ),
-          Divider(color: Colors.grey.shade400, endIndent: 32, indent: 32),
-          PaymentPriceWidget(
-            fontSize: 16.sp,
-            title: LanguageProvider.translate("global", "Shiping"),
-            price: checkoutProvider.fees().toStringAsFixed(2),
-          ),
-          if (couponProvider.couponEntity != null) ...[
+          // PaymentPriceWidget(
+          //   fontSize: 16.sp,
+          //   title: LanguageProvider.translate("global", "shipping"),
+          //   price: couponProvider.calcDiscount()?.toStringAsFixed(2)??"",
+          // ),
+
+          if (couponProvider.couponEntity != null && couponProvider.couponEntity!.isNotEmpty) ...[
             Divider(color: Colors.grey.shade400, endIndent: 32, indent: 32),
             PaymentPriceWidget(
               fontSize: 16.sp,
               title: LanguageProvider.translate("global", "discount"),
-              price: couponProvider
-                  .calcCoupon(checkoutProvider.subtotal())!
-                  .toStringAsFixed(2),
+              price: couponProvider.calcDiscount()?.toStringAsFixed(2)??"",
             ),
           ],
           Divider(color: Colors.grey.shade400, endIndent: 32, indent: 32),
           PaymentPriceWidget(
             fontSize: 16.sp,
-            title: LanguageProvider.translate("global", "Taxes"),
+            title: LanguageProvider.translate("global", "tax"),
             price: checkoutProvider.tax().toStringAsFixed(2),
           ),
           Divider(color: Colors.grey.shade400, endIndent: 32, indent: 32),

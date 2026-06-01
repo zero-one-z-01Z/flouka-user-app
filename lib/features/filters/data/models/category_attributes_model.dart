@@ -17,6 +17,6 @@ class AttributesValueModel extends AttributesValueEntity {
   const AttributesValueModel({required super.id, required super.code,required super.value});
 
   factory AttributesValueModel.fromJson(Map<String, dynamic> json) {
-    return AttributesValueModel(id: json['id'], code: json['code'],value: json['value']);
+    return AttributesValueModel(id: json['id'], code: json['code'],value: json['name']);
   }
 }

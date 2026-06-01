@@ -9,6 +9,7 @@ import '../../../../../core/dialog/snack_bar.dart';
 import '../../../../../core/helper_function/navigation.dart';
 import '../../../auth/presentation/providers/auth_provider.dart';
 import '../../../language/presentation/provider/language_provider.dart';
+import '../../../notification/presentation/provider/notifications_provider.dart';
 import '../../domain/entities/profile_settings_entity.dart';
 import '../../domain/entities/settings_entity.dart';
 import '../../domain/usecases/settings_usecases.dart';
@@ -88,10 +89,10 @@ class SettingsProvider extends ChangeNotifier {
       text: "notification",
       color: const Color(0xff11BD57),
       onTap: () {
-        // Provider.of<NotificationProvider>(
-        //   Constants.globalContext(),
-        //   listen: false,
-        // ).goToNotificationPage();
+        Provider.of<NotificationProvider>(
+          Constants.globalContext(),
+          listen: false,
+        ).goToNotificationPage();
       },
     ),
     ProfileSettingsEntity(

@@ -8,12 +8,12 @@ class CartRemoteDataSource {
   final ApiHandel apiHandel;
   CartRemoteDataSource(this.apiHandel);
   // user products
-  Future<Either<DioException, CartModel>> addToCart(
+  Future<Either<DioException, bool>> addToCart(
     Map<String, dynamic> data,
   ) async {
     var response = await ApiHandel.getInstance.post('user/add_to_cart', data);
     return response.fold((l) => Left(l), (r) {
-      return Right(CartModel.fromJson(r.data['data']));
+      return const Right(true);
     });
   }
 

@@ -1,8 +1,11 @@
 import 'package:flouka/core/helper_function/convert.dart';
+import 'package:flouka/features/products/data/models/product_model.dart';
 import 'package:flouka/features/products/domain/entity/variant_entity.dart';
 
 class VariantModel extends VariantEntity{
-  VariantModel({required super.id, required super.price, required super.offerPrice, required super.sku, required super.combination, required super.stock});
+  VariantModel({required super.id, required super.price, required super.offerPrice,
+    required super.images,
+    required super.sku, required super.combination, required super.stock});
 
 
   factory VariantModel.fromJson(Map data){
@@ -10,8 +13,26 @@ class VariantModel extends VariantEntity{
     for(var i in data['combination']){
       combination.add(convertStringToInt(i));
     }
-    return VariantModel(id: data['id'], price: convertDataToNum(data['price'])??0, offerPrice: convertDataToNum(data['offer_price']),
-        sku: data['sku'], combination: combination,stock:data['stock'] !=null? convertStringToInt(data['stock']['quantity']??0) :0);
+    List<ProductImageModel> images=[];
+    if(data['images'] !=null){
+      for(var i in data['images']){
+        images.add(ProductImageModel.fromJson(i));
+      }
+    }
+    return VariantModel(id: data['id'], price: convertDataToNum(data['price'])??0,
+        images: images,
+        offerPrice: convertDataToNum(data['offer_price']),
+        sku: data['sku'], combination: combination,stock:data['stock'] !=null? StockModel.fromJson(data['stock']) :null);
+  }
+
+}
+
+class StockModel extends StockEntity{
+  StockModel({required super.id, required super.storeProductId, required super.productVariantId, required super.quantity});
+
+  factory StockModel.fromJson(Map data){
+    return StockModel(id: data['id'], storeProductId: data['store_product_id'],
+        productVariantId: data['product_variant_id'], quantity: data['quantity']);
   }
 
 }

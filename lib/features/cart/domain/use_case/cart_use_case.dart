@@ -8,7 +8,7 @@ class CartUseCase {
   final CartRepo cartRepo;
   CartUseCase(this.cartRepo);
 
-  Future<Either<DioException, CartEntity>> addToCart(
+  Future<Either<DioException, bool>> addToCart(
     Map<String, dynamic> data,
   ) async {
     return await cartRepo.addToCart(data);

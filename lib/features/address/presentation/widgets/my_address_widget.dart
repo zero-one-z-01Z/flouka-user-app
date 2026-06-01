@@ -14,54 +14,45 @@ class MyAddressWidget extends StatelessWidget {
   final AddressEntity addressEntity;
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Provider.of<AddressProvider>(
-          context,
-          listen: false,
-        ).changeAddress(addressEntity);
-      },
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Column(
-          spacing: 1.h,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              child: Row(
-                spacing: 3.w,
-                children: [
-                  const SvgWidget(svg: AppImages.location, color: Colors.black),
-                  Expanded(
-                    flex: 2,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          LanguageProvider.translate("global", "Deliver To"),
-                          style: TextStyleClass.smallStyle(
-                            color: const Color(0xff535353),
-                          ).copyWith(fontSize: 13.sp),
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        spacing: 1.h,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            child: Row(
+              spacing: 3.w,
+              children: [
+                const SvgWidget(svg: AppImages.location, color: Colors.black),
+                Expanded(
+                  flex: 2,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        LanguageProvider.translate("global", "Deliver To"),
+                        style: TextStyleClass.smallStyle(
+                          color: const Color(0xff535353),
+                        ).copyWith(fontSize: 14.sp),
+                      ),
+                      Text(
+                        "${addressEntity.addressName} / ${addressEntity.address}",
+                        style: TextStyleClass.smallStyle().copyWith(
+                          fontSize: 15.sp,
                         ),
-                        Text(
-                          LanguageProvider.translate("global", "sample_address"),
-                          style: TextStyleClass.smallStyle().copyWith(
-                            fontSize: 14.sp,
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                  Icon(Icons.arrow_forward_ios, color: Colors.black, size: 16.sp),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

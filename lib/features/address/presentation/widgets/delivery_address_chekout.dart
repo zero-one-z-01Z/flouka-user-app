@@ -37,7 +37,7 @@ class DeliveryAddressCheckout extends StatelessWidget {
             ),
           ),
           subtitle: Text(
-            "${addressEntity.addressName} / ${addressEntity.streetName} ",
+            "${addressEntity.addressName} / ${addressEntity.address} ",
             style: TextStyleClass.normalStyle().copyWith(fontWeight: FontWeight.bold),
           ),
         ),

@@ -20,7 +20,7 @@ class StoryProvider extends ChangeNotifier {
     final result = await storyUseCase.getStories();
 
     result.fold((l) => showToast(l.message ?? "Failed to load stories"), (r) {
-      data ??= [];
+      data = [];
       for (var i in r) {
         if(i.stories.isNotEmpty){
           data!.add(i);

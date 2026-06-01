@@ -39,6 +39,7 @@ class NotificationProvider extends ChangeNotifier implements PaginationClass {
         pageIndex++;
         notifications ??= [];
         notifications?.addAll(r);
+        notifications!.add(NotificationEntity(title: "title", description: "description", createdAt: DateTime.now()));
         if (r.isEmpty) {
           paginationFinished = true;
           notifyListeners();

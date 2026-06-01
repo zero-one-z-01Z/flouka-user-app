@@ -1,18 +1,25 @@
+import 'package:flouka/core/constants/constants.dart';
+import 'package:flouka/core/dialog/success_dialog.dart';
+import 'package:flouka/core/helper_function/loading.dart';
+import 'package:flouka/features/orders/presentation/provider/order_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flouka/features/orders/domain/entity/order_entity.dart';
+import 'package:provider/provider.dart';
 import '../../../../core/dialog/snack_bar.dart';
 import '../../../../core/helper_function/navigation.dart';
 import '../../../../core/models/provider_structure_model.dart';
+import '../../domain/entity/order_details_entity.dart';
 import '../../domain/use_case/order_use_case.dart';
 import '../views/order_details_view.dart';
+import '../views/update_order_view.dart';
 
 class OrderDetailsProvider extends ChangeNotifier
-    implements ProviderStructureModel<OrderEntity> {
+    implements ProviderStructureModel<OrderDetailsEntity> {
   final OrderUseCase orderUseCase;
   OrderDetailsProvider(this.orderUseCase);
 
   @override
-  OrderEntity? data;
+  OrderDetailsEntity? data;
 
   @override
   Map? inputs;
@@ -35,25 +42,27 @@ class OrderDetailsProvider extends ChangeNotifier
     isLoading = true;
     notifyListeners();
 
-    // final result = await orderUseCase.getUserOrderDetails({
-    //   'order_id': int.tryParse(inputs!['order_id'].toString()),
-    // });
+    final result = await orderUseCase.getUserOrderDetails({
+      'order_id': int.tryParse(inputs!['order_id'].toString()),
+      'order_vendor_id': int.tryParse(inputs!['order_vendor_id'].toString()),
+    });
 
-    // result.fold(
-    //   (l) {
-    //     showToast(l.message ?? "Something went wrong while loading order details");
-    //   },
-    //   (r) {
-    //     data = r;
-    //     if (kDebugMode) {
-    //       print("✅ Order details loaded successfully (ID: ${inputs!['order_id']})");
-    //     }
-    //   },
-    // );
+    result.fold(
+      (l) {
+        showToast(l.message ?? "Something went wrong while loading order details");
+      },
+      (r) {
+        data = r;
+        if (kDebugMode) {
+          print("✅ Order details loaded successfully (ID: ${inputs!['order_id']})");
+        }
+      },
+    );
 
     isLoading = false;
     notifyListeners();
   }
+
 
   @override
   Future<void> goToPage([Map<String, dynamic>? inputs]) async {
@@ -75,4 +84,8 @@ class OrderDetailsProvider extends ChangeNotifier
     clear();
     await getData();
   }
+
+
+
+
 }

@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flouka/features/products/presentation/providers/product_quantity_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flouka/features/products/domain/entity/product_entity.dart';
 import 'package:provider/provider.dart';
@@ -11,8 +12,7 @@ import '../../../auth/presentation/providers/auth_provider.dart';
 import '../../domain/user_case/product_use_case.dart';
 import '../pages/products_details_view.dart';
 
-class ProductDetailsProvider extends ChangeNotifier
-    implements ProviderStructureModel<ProductEntity> {
+class ProductDetailsProvider extends ChangeNotifier implements ProviderStructureModel<ProductEntity> {
   @override
   ProductEntity? data;
 
@@ -71,6 +71,9 @@ class ProductDetailsProvider extends ChangeNotifier
     result.fold((l) {
       showToast(l.message ?? '');
       log(l.message ?? '');
+      if(productsIDs.isNotEmpty){
+        productsIDs.removeLast();
+      }
     }, (
       productDetails,
     ) {
@@ -98,21 +101,18 @@ class ProductDetailsProvider extends ChangeNotifier
   void goToPage([Map<String, dynamic>? inputs]) {
     this.inputs = inputs;
     imageIndex=0;
+    variants = {};
+    Provider.of<ProductQuantityProvider>(Constants.globalContext(),listen: false).quantity = null;
     final productId = inputs?['product_id'];
 
-    if (productId != null &&
-        (productsIDs.isEmpty || productsIDs.last != productId)) {
+    if (productId != null && (productsIDs.isEmpty || productsIDs.last != productId)) {
       productsIDs.add(productId);
     }
-
     refresh();
-
-    // افتح الصفحة أول مرة فقط
     if (productsIDs.length == 1) {
       navP(const ProductsDetailsView());
     }
   }
-
 
   @override
   Future refresh() async {

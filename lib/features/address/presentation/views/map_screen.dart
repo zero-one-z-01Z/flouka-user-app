@@ -106,7 +106,7 @@ class MapScreen extends StatelessWidget {
                     builder: (_) => const AddressBottomSheet(),
                   );
                 },
-                text: LanguageProvider.translate('location', 'confirm_location'),
+                text: "confirm_location",
                 width: 89.w,
                 height: 5.5.h,
                 borderRadius: 12,

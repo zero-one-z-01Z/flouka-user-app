@@ -7,6 +7,7 @@ import 'package:flouka/features/products/presentation/pages/brand_filter_page.da
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import '../providers/categories_product_search_provider.dart';
 import '../providers/search_filter_provider.dart';
 import '../widgets/filter_children_widget.dart';
 
@@ -95,7 +96,7 @@ class FilterPage extends StatelessWidget {
                   SizedBox(width: 4.w),
                   ButtonWidget(
                     onTap: () {
-                      provider.getSelectedFilters();
+                      Provider.of<CategoriesProductSearchProvider>(context,listen: false).getProductsFromFilter();
                     },
                     text: 'apply',
                     width: 54.w,

@@ -24,7 +24,8 @@ import 'features/auth/presentation/providers/otp_provider.dart';
 import 'features/cart/presentation/providers/cart_provider.dart';
 import 'features/cart/presentation/providers/coupon_provider.dart';
 import 'features/categories/presentation/providers/popular_categories_provider.dart';
-import 'features/chat/presentation/providers/chat_provider.dart';
+import 'features/chat/presentation/provider/message_provider.dart';
+import 'features/favorite/presentation/providers/favorite_provider.dart';
 import 'features/filters/presentation/providers/brands_provider.dart';
 import 'features/filters/presentation/providers/category_attributes_provider.dart';
 import 'features/filters/presentation/providers/filter_product_provider.dart';
@@ -32,7 +33,7 @@ import 'features/language/presentation/provider/language_provider.dart';
 import 'features/notification/presentation/provider/notifications_provider.dart';
 import 'features/offers_section/presentation/providers/offer_section_provider.dart';
 import 'features/orders/presentation/provider/order_provider.dart';
-import 'features/orders/presentation/provider/update_order_provider.dart';
+import 'features/orders/presentation/provider/get_edit_order_provider.dart';
 import 'features/products/presentation/providers/categories_product_search_provider.dart';
 import 'features/products/presentation/providers/home_products_provider.dart';
 import 'features/products/presentation/providers/product_quantity_provider.dart';
@@ -42,6 +43,7 @@ import 'features/products/presentation/providers/recommend_products_provider.dar
 import 'features/products/presentation/providers/search_filter_provider.dart';
 import 'features/products/presentation/providers/suggested_provider.dart';
 import 'features/reels/presentation/providers/video_provider.dart';
+import 'features/reviews/presentation/providres/create_rate_provider.dart';
 import 'features/reviews/presentation/providres/review_provider.dart';
 import 'features/splash/provider/splash_provider.dart';
 import 'features/stores/presentation/providers/followed_stores_provider.dart';
@@ -67,12 +69,13 @@ class AppProviders extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => CategoryProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => SubcategoryProvider()),
         ChangeNotifierProvider(create: (_) => FilterProvider()),
+        ChangeNotifierProvider(create: (_) => FavoriteProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => BrandProvider()),
         ChangeNotifierProvider(create: (_) => ProductQuantityProvider()),
         ChangeNotifierProvider(create: (_) => StoresProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => ProductsProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => SuggestedProvider(sl.get())),
-        ChangeNotifierProvider(create: (_) => ChatProvider()),
+        ChangeNotifierProvider(create: (_) => MessageProvider()),
         ChangeNotifierProvider(create: (_) => NavBarProvider()),
         ChangeNotifierProvider(create: (_) => OnBoardingProvider()),
         ChangeNotifierProvider(create: (_) => CategoriesProductSearchProvider(sl.get())),
@@ -97,7 +100,8 @@ class AppProviders extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => StoreDetailsProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => MapProvider()),
         ChangeNotifierProvider(create: (_) => PartsProvider()),
-        ChangeNotifierProvider(create: (_) => UpdateOrderProvider()),
+        ChangeNotifierProvider(create: (_) => GetEditOrderProvider(sl.get())),
+        ChangeNotifierProvider(create: (_) => CreateRateProvider()),
         ChangeNotifierProvider(create: (_) => CheckoutProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => FilterProductProvider(sl.get(),sl.get())),
         ChangeNotifierProvider(create: (_) => OfferSectionProvider(sl.get())),

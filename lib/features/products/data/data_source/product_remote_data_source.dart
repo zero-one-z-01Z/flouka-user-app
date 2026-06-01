@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flouka/core/helper_function/api.dart';
-import '../../domain/entity/product_entity.dart';
+
 import '../models/product_model.dart';
 
   class ProductRemoteDataSource {
@@ -19,7 +19,7 @@ import '../models/product_model.dart';
   //   });
   // }
 
-  Future<Either<DioException, List<ProductEntity>>> getFeatureProducts(
+  Future<Either<DioException, List<ProductModel>>> getFeatureProducts(
     Map<String, dynamic> data,
   ) async {
     var response = await ApiHandel.getInstance.post(
@@ -35,7 +35,7 @@ import '../models/product_model.dart';
     });
   }
 
-  Future<Either<DioException, List<ProductEntity>>> getSuggestedProducts(
+  Future<Either<DioException, List<ProductModel>>> getSuggestedProducts(
     Map<String, dynamic> data,
   ) async {
     var response = await ApiHandel.getInstance.post(
@@ -53,7 +53,7 @@ import '../models/product_model.dart';
 
 
 
-  Future<Either<DioException, List<ProductEntity>>> getProducts(
+  Future<Either<DioException, List<ProductModel>>> getProducts(
     Map<String, dynamic> data,
   ) async {
     var response = await ApiHandel.getInstance.post('get_products', data);
@@ -66,8 +66,27 @@ import '../models/product_model.dart';
     });
   }
 
+  Future<Either<DioException, List<ProductModel>>> getFavorites(
+      Map<String, dynamic> data,
+      ) async {
+    var response = await ApiHandel.getInstance.post('user/get_favorite_products', data);
+    List<ProductModel> productModels = [];
+    return response.fold((l) => Left(l), (r) {
+      for (var i in r.data['data']) {
+        productModels.add(ProductModel.fromJson(i));
+      }
+      return Right(productModels);
+    });
+  }
 
-  Future<Either<DioException, List<ProductEntity>>> getRecommended(
+  Future<Either<DioException, bool>> updateFavorite(Map<String, dynamic> data,) async {
+    var response = await ApiHandel.getInstance.post('user/update_favorite', data);
+    return response.fold((l) => Left(l), (r) {
+      return const Right(true);
+    });
+  }
+
+  Future<Either<DioException, List<ProductModel>>> getRecommended(
     Map<String, dynamic> data,
   ) async {
     var response = await ApiHandel.getInstance.post('get_recommended_products', data);
@@ -80,7 +99,7 @@ import '../models/product_model.dart';
     });
   }
 
-  Future<Either<DioException, ProductEntity>> getProductDetails(
+  Future<Either<DioException, ProductModel>> getProductDetails(
     Map<String, dynamic> data,
   ) async {
     var response = await ApiHandel.getInstance.post('get_product_details', data,);
@@ -92,7 +111,7 @@ import '../models/product_model.dart';
   }
 
   // market products
-  Future<Either<DioException, List<ProductEntity>>> getMarketProducts(
+  Future<Either<DioException, List<ProductModel>>> getMarketProducts(
     Map<String, dynamic> data,
   ) async {
     var response = await ApiHandel.getInstance.post(
@@ -108,7 +127,7 @@ import '../models/product_model.dart';
     });
   }
 
-  Future<Either<DioException, ProductEntity>> getMarketProductDetails(
+  Future<Either<DioException, ProductModel>> getMarketProductDetails(
     Map<String, dynamic> data,
   ) async {
     var response = await ApiHandel.getInstance.post(
@@ -120,7 +139,7 @@ import '../models/product_model.dart';
     });
   }
 
-  Future<Either<DioException, ProductEntity>> createProduct(
+  Future<Either<DioException, ProductModel>> createProduct(
     Map<String, dynamic> data,
   ) async {
     var response = await ApiHandel.getInstance.post(
@@ -132,7 +151,7 @@ import '../models/product_model.dart';
     });
   }
 
-  Future<Either<DioException, ProductEntity>> updateProduct(
+  Future<Either<DioException, ProductModel>> updateProduct(
     Map<String, dynamic> data,
   ) async {
     var response = await ApiHandel.getInstance.post(

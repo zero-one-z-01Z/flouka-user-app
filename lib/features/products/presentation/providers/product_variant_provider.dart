@@ -22,20 +22,34 @@ extension ProductVariantProvider on ProductDetailsProvider{
     variants.removeWhere((key, value) => key > index);
     rebuild();
   }
-  bool hide(int index,int id){
+  bool hide(int index, int id) {
     List<VariantEntity> stocks = data!.variants;
-    List<int> ids = variants.values.toList();
-    if(ids.isNotEmpty||index==0){
-      return false;
-    }
-    ids.removeRange(index.clamp(0, ids.length), ids.length);
+
+    // الاختيارات الحالية
+    List<int> ids = variants.entries
+        .where((e) => e.key < index)
+        .map((e) => e.value)
+        .toList();
+
+    // أضف العنصر الحالي اللي بنفحصه
     ids.add(id);
-    List<VariantEntity> available = stocks.where((list) {
-      final comboSet = list.combination.toSet();
-      return list.stock>0&&ids.every((item) => comboSet.contains(item));
+
+    // هل يوجد variant متاح يطابق الاختيارات؟
+    List<VariantEntity> available = stocks.where((variant) {
+      final comboSet = variant.combination.toSet();
+
+      return (variant.stock?.quantity??0) > 0 &&
+          ids.every((item) => comboSet.contains(item));
     }).toList();
+
     return available.isEmpty;
   }
+
+  bool isAllAttributesSelected() {
+    return variants.length == data!.attributes.length;
+  }
+
+
   bool isSelected(int index,int id){
     return variants.containsKey(index)&&variants[index]==id;
   }

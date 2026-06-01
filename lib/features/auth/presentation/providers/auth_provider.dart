@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flouka/core/helper_function/location.dart';
+import 'package:flouka/features/address/presentation/views/select_default_address_page.dart';
 import 'package:flouka/features/auth/presentation/providers/otp_provider.dart';
 import 'package:flouka/features/auth/presentation/views/login_view.dart';
 import 'package:flouka/features/auth/presentation/views/register_view.dart';
@@ -38,6 +39,10 @@ class AuthProvider extends ChangeNotifier {
   bool isUser = true;
 
   AuthProvider(this.authUseCase);
+
+  static bool isLogin() {
+    return sharedPreferences.getString('token') !=null;
+  }
 
   void goToLoginView() {
     navPR(const LoginView());
@@ -106,33 +111,28 @@ class AuthProvider extends ChangeNotifier {
     goToLoginView();
   }
 
-  void loginSuccess(UserEntity userEntity, {bool isSocial = false,bool fromSplash = false,bool fromAddress = false,}) async{
+  void loginSuccess(UserEntity userEntity, {bool isSocial = false,bool fromSplash = false,
+    bool fromAddress = false, bool firstAddress = false}) async{
     this.userEntity = userEntity;
-    if(userEntity.addressEntity != null){
-      setLatLng(LatLng(userEntity.addressEntity!.lat!, userEntity.addressEntity!.lng!));
-    }else{
-      LatLng? current = await determinePosition();
-      setLatLng(current);
-    }
-
     if (userEntity.token != null) {
       ApiHandel.getInstance.updateHeader(userEntity.token!);
     }
     if (userEntity.name == null || userEntity.name!.isEmpty) {
       navPARU(const CompleteInfoView(isEdit: false));
     } else {
-      if(!fromAddress){
-        Provider.of<CartProvider>(Constants.globalContext(), listen: false).getData();
-        Provider.of<NavBarProvider>(Constants.globalContext(), listen: false,).goToNavView();
+      if(!fromAddress || firstAddress){
+        if(userEntity.addressEntity != null){
+          setLatLng(LatLng(userEntity.addressEntity!.lat!, userEntity.addressEntity!.lng!));
+          Provider.of<NavBarProvider>(Constants.globalContext(), listen: false,).goToNavView(fromSplash: fromSplash,);
+        }else{
+          navP(const SelectDefaultAddressPage());
+        }
         if (userEntity.token != null) {
           ApiHandel.getInstance.updateHeader(userEntity.token!);
           sharedPreferences.setString('token', userEntity.token!);
         }
       }
-
     }
-
-
   }
 
   LatLng? currentLocation;
@@ -222,7 +222,7 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  Future getProfile({bool fromAddress = false}) async {
+  Future getProfile({bool fromAddress = false,bool fromSplash = false, bool firstAddress = false}) async {
     final result = await authUseCase.getProfile();
     result.fold(
       (l) {
@@ -232,7 +232,7 @@ class AuthProvider extends ChangeNotifier {
         }
       },
       (r) {
-        loginSuccess(r, fromAddress: fromAddress);
+        loginSuccess(r, fromAddress: fromAddress, fromSplash: fromSplash,firstAddress: firstAddress);
       },
     );
   }

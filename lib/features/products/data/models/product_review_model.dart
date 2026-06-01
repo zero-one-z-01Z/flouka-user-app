@@ -58,12 +58,6 @@ class ReviewUserModel extends ReviewUser {
   });
 
   factory ReviewUserModel.fromJson(Map<String, dynamic> json) {
-    try {
-      return ReviewUserModel(image: json['image'],id: json['id'],name: json['name']);
-    } catch (e, l) {
-      log(l.toString());
-      log(e.toString());
-      throw e;
-    }
+    return ReviewUserModel(image: json['image'],id: json['id'],name: json['name']??"");
   }
 }

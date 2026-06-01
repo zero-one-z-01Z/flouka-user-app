@@ -72,4 +72,15 @@ class ProductUseCase {
   ) async {
     return await productRepo.updateProduct(data);
   }
+
+  Future<Either<DioException, List<ProductEntity>>> getFavorites(Map<String, dynamic> data,) async {
+    return await productRepo.getFavorites(data);
+  }
+
+  Future<Either<DioException, bool>> updateFavorite(Map<String, dynamic> data,) async {
+    return await productRepo.updateFavorite(data);
+  }
+
+
+
 }

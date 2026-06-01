@@ -43,32 +43,22 @@ class StoreDetailsProvider extends ChangeNotifier {
     navP(const StoreDetailsPage());
   }
 
-  Future<void> follow(int id) async {
+  Future<void> updateFollow(int id) async {
     loading();
-    var response = await storeUseCase.follow(id);
-    response.fold(
-      (l) {
-        showToast(l.toString());
-      },
-      (r) {
-        this.storeDetailsEntity!.isFollowed = true;
-        notifyListeners();
-      },
-    );
-  }
-
-  Future<void> unFollow(int id) async {
-    loading();
-    var response = await storeUseCase.unfollow(id);
+    Map<String,dynamic> data ={};
+    data['type']  = "vendor";
+    data['id']  = id;
+    var response = await storeUseCase.updateFollow(data);
     navPop();
     response.fold(
       (l) {
         showToast(l.toString());
       },
       (r) {
-        this.storeDetailsEntity!.isFollowed = false;
+        this.storeDetailsEntity!.isFollowed = !this.storeDetailsEntity!.isFollowed;
         notifyListeners();
       },
     );
   }
+
 }

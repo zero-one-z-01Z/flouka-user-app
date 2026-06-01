@@ -10,6 +10,6 @@ class OperationModel extends OperationEntity {
         userId: data['user_id'],
         price: data['amount'].toString(),
         operation: data['operation'],
-        createdAt: convertDateToStringYMD(DateTime.parse(data['created_at']??"${DateTime.now()}")));
+        createdAt: data['created_at']);
   }
 }

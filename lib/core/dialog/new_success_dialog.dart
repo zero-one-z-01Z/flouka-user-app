@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:sizer/sizer.dart';
 import '../../features/language/presentation/provider/language_provider.dart';
+import '../constants/app_lotties.dart';
 import '../constants/constants.dart';
 import '../helper_function/helper_function.dart';
 import '../helper_function/navigation.dart';
@@ -49,8 +50,7 @@ void newSuccessDialog({var then, String? msg, String? lottie, int? sec}) async {
                       padding: EdgeInsets.symmetric(horizontal: (30.w) / 2),
                       child: lottie != null
                           ? Lottie.asset(lottie, fit: BoxFit.contain, width: 40.w)
-                          : Image.asset(
-                              'assets/images/success.gif',
+                          : Image.asset(Lotties.success,
                               fit: BoxFit.contain,
                               width: 40.w,
                             ),

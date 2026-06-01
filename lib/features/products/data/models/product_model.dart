@@ -20,7 +20,7 @@ class ProductModel extends ProductEntity {
     required super.images,
     super.rate,
     required super.reviews,
-    super.isFavorite,
+    required super.isFavorite,
     required super.store,
     required super.related,
     required super.reviewImages,
@@ -76,35 +76,28 @@ class ProductModel extends ProductEntity {
       }
     }
 
-
-    try {
-      return ProductModel(
-        id: json['id'],
-        title: json['title'] ?? "",
-        description: json['description'] ?? "",
-        image: json['image'] ,
-        price: convertDataToNum(json['price']),
-        offerPrice: convertDataToNum(json['offer_price']),
-        reviewImages: reviewsImages,
-        reviews: reviews,
-        attributes: attributes,
-        images: images,
-        rate: json['rate'] != null
-            ? convertDataToNum(json['rate'])
-            : null,
-        isFavorite: json['is_favorite'] ?? false,
-        discountTitle: json['discount_title'] ?? "",
-        discountPercentage: convertDataToNum(json['discount_percentage']) ?? 0,
-        store:json['store'] !=null ? StoreModel.fromJson(json['store']) : null,
-        related: relatedProduct,
-        recommended: recommendedProduct,
-        variants: variants,
-      );
-    } catch (e, l) {
-      log(l.toString());
-      log(e.toString());
-      throw e;
-    }
+    return ProductModel(
+      id: json['id'],
+      title: json['title'] ?? "",
+      description: json['description'] ?? "",
+      image: json['image'] ,
+      price: convertDataToNum(json['price']),
+      offerPrice: convertDataToNum(json['offer_price']),
+      reviewImages: reviewsImages,
+      reviews: reviews,
+      attributes: attributes,
+      images: images,
+      rate: json['rate'] != null
+          ? convertDataToNum(json['rate'])
+          : null,
+      isFavorite: json['is_favorite'] ?? false,
+      discountTitle: json['discount_title'] ?? "",
+      discountPercentage: convertDataToNum(json['discount_percentage']) ?? 0.0,
+      store:json['store'] !=null ? StoreModel.fromJson(json['store']) : null,
+      related: relatedProduct,
+      recommended: recommendedProduct,
+      variants: variants,
+    );
   }
 }
 
@@ -136,18 +129,12 @@ class StoreModel extends StoreEntity {
   });
 
   factory StoreModel.fromJson(Map<String, dynamic> json) {
-    try {
-      return StoreModel(id: json['id'],
+    return StoreModel(id: json['id'],
       logo: json['cover']??"",
       vendor: json['vendor'] !=null ? VendorModel.fromJson(json['vendor']) : null,
-      vendorId: json['vendor_id'],lat: json['lat'],lng: json['lng'],rate: json['rate'],address: json['address'],
+      vendorId: json['vendor_id'],lat: json['lat'],lng: json['lng'],rate: convertDataToDouble(json['rate']),address: json['address'],
       productsCount: json['products_count'],customersCount: json['customers_count'],distance: json['distance'],
       name: json['name'],);
-    } catch (e, l) {
-      log(l.toString());
-      log(e.toString());
-      throw e;
-    }
   }
 }
 

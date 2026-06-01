@@ -30,5 +30,6 @@ abstract class Lotties {
   static const String successAddToCart = 'assets/lottie/success_add_to_cart.json';
   static const String successOrder = 'assets/lottie/success_order.json';
   static const String successRate = 'assets/lottie/success_rate.json';
+  static const String success = 'assets/lottie/success.json';
   static const String videoAnimation = 'assets/lottie/video_animation.json';
 }

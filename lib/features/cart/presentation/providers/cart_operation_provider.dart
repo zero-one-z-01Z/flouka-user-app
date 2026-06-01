@@ -46,6 +46,18 @@ extension CartOperations on CartProvider {
     rebuild();
   }
 
+  Future deleteCart()async{
+    Map<String, dynamic> dataToUse = {};
+    final result = await cartUseCase.deleteCart(dataToUse);
+    result.fold(
+          (l) {
+        showToast(l.message!);
+      }, (r) {
+
+      },
+    );
+  }
+
   bool checkIfProductIsInCart(int productId) {
     return data!.any((element) => element.product!.id == productId);
   }
@@ -67,22 +79,23 @@ extension CartOperations on CartProvider {
     rebuild();
   }
 
-  Future addToCart({required int productId}) async {
-    if (Provider.of<AuthProvider>(
-          Constants.globalContext(),
-          listen: false,
-        ).userEntity ==
-        null) {
+  Future addToCart({required int storeId, required int quantity, required int storeProductStockId}) async {
+    if (Provider.of<AuthProvider>(Constants.globalContext(), listen: false,).userEntity ==  null) {
       // showGuestDialog();
     } else {
       Map<String, dynamic> dataToUse = {};
-      dataToUse['product_id'] = productId;
+      dataToUse['store_id'] = storeId;
+      dataToUse['quantity'] = quantity;
+      dataToUse['store_product_stock_id'] = storeProductStockId;
       loading();
       final result = await cartUseCase.addToCart(dataToUse);
       navPop();
       result.fold(
         (l) {
           showToast(l.message!);
+          print('xxxxxxxxxxxx${dataToUse}');
+          showToast(dataToUse.toString());
+
         },
         (r) {
           successDialog(lottie: 'assets/lottie/success_order.json');

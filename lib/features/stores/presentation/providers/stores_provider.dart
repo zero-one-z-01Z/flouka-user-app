@@ -52,6 +52,7 @@ class StoresProvider with ChangeNotifier
       dataToUse['lat'] = authProvider.currentLocation?.latitude;
       dataToUse['lng'] = authProvider.currentLocation?.longitude;
     }
+    print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa${dataToUse}');
 
     final result = await storeUseCase.getStores(dataToUse);
     result.fold((l) => showToast(l.message ?? "Error loading products"), (r) {

@@ -74,15 +74,6 @@ class ChargeWalletWidget extends StatelessWidget {
                     }
                   }
                 },
-                suffix: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      LanguageProvider.translate("global", "dinar"),
-                      style: TextStyleClass.normalStyle(),
-                    ),
-                  ],
-                ),
               ),
               SizedBox(height: 2.h),
               InkWell(
@@ -109,20 +100,6 @@ class ChargeWalletWidget extends StatelessWidget {
                         child: Text(
                           LanguageProvider.translate("buttons", "pay"),
                           style: TextStyleClass.normalStyle(),
-                        ),
-                      ),
-                      Container(
-                        height: 6.h,
-                        width: 6.h,
-                        decoration: const BoxDecoration(
-                          color: Colors.black,
-                          shape: BoxShape.circle,
-                        ),
-                        child: Center(
-                          child: Text(
-                            LanguageProvider.translate("global", "dinar"),
-                            style: TextStyleClass.normalStyle(),
-                          ),
                         ),
                       ),
                     ],

@@ -79,7 +79,7 @@ class AddressProvider extends ChangeNotifier {
 
   void deleteAddress(int id) async {
     Map<String, dynamic> data = {};
-    data['id'] = id;
+    data['address_id'] = id;
     loading();
     Either<DioException, bool> value = await addressUseCases.deleteAddress(data);
     navPop();
@@ -118,6 +118,20 @@ class AddressProvider extends ChangeNotifier {
   void goToAddressPage() async {
     refresh();
     navP(const SavedAddressesPage());
+  }
+
+  void changeDefault({required int id}){
+  if(address != null){
+    address!.forEach((element) {
+      if(element.id !=id){
+        element.isDefault = false;
+      }else{
+        element.isDefault = true;
+      }
+    });
+  }
+
+    notifyListeners();
   }
 
   void setAddress(AddressEntity addressEntity) async {

@@ -58,12 +58,8 @@ class CartProvider extends ChangeNotifier
         null) {
       showGuestDialog();
     } else {
-      Provider.of<CouponProvider>(Constants.globalContext(), listen: false).coupon =
-          TextEditingController(text: '');
-      Provider.of<CouponProvider>(
-        Constants.globalContext(),
-        listen: false,
-      ).isApplied = false;
+      Provider.of<CouponProvider>(Constants.globalContext(), listen: false).couponsFields=
+      [CouponField(controller: TextEditingController(), isApplied: false)];
       refresh();
       navP(const CartView());
       notifyListeners();

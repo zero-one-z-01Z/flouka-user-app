@@ -86,8 +86,8 @@ class ApiHandel {
         queryParameters: data,
         cancelToken: cancelToken,
       );
-      log(path.toString());
       print("AaAAAAAAAAAAAAa${path}");
+      print("AaAAAAAAAAAAAAa${data}");
 
       if (response.statusCode == 200) {
         return Right(response);
@@ -153,7 +153,7 @@ class ApiHandel {
   ) async {
     try {
       await reLogin(path);
-      print("AaAAAAAAAAAAAAa${path}");
+
 
       cancelToken = CancelToken();
       Response response = await dio.post(
@@ -161,6 +161,9 @@ class ApiHandel {
         data: FormData.fromMap(data),
         cancelToken: cancelToken,
       );
+      print("AaAAAAAAAAAAAAa${path}");
+      print("AaAAAAAAAAAAAAa${data}");
+
       if (response.statusCode == 200 ||
           response.statusCode == 201 ||
           ((!response.data.containsKey('code')) || response.data['code'] == 200)) {
