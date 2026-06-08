@@ -75,7 +75,6 @@ class StoresProductProvider extends ChangeNotifier
     dataToUse['lat']=authProvider.currentLocation?.latitude;
     dataToUse['lng']=authProvider.currentLocation?.longitude;
 
-    print('dataToUse $dataToUse');
     final result = await productUseCase.getProducts(dataToUse);
     result.fold((l) => showToast(l.message ?? "Error loading products"), (r) {
       pageIndex++;

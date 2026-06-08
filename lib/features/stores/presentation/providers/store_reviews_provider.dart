@@ -67,7 +67,6 @@ class StoreReviewsProvider extends ChangeNotifier
     if(searchController.text.isNotEmpty){
       dataToUse['search'] = searchController.text;
     }
-    print('dataToUse $dataToUse');
     final result = await storeUseCase.getReviews(dataToUse);
     result.fold((l) => showToast(l.message ?? "Error loading products"), (r) {
       pageIndex++;

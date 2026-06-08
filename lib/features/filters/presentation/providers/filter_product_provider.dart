@@ -100,6 +100,7 @@ class FilterProductProvider extends ChangeNotifier {
     offerPrice: 0,
     recommended: [],
     images: [],
+    stock: null,
     rate: 4.5,
     isFavorite: false,
     attributes: [],

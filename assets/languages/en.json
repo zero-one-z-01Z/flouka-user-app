@@ -81,6 +81,7 @@
   "global": {
     "saved_addresses": "Saved Addresses",
     "notifications": "Notifications",
+    "all_reviews": "All Reviews",
     "no_notifications" : "No Notifications yet",
     "order_address": "Select Location",
     "no_favorite": "No Favorite Products",
@@ -262,6 +263,7 @@
     "pay": "Pay",
     "rate": "Rate",
     "Login": "Login",
+    "add_new_address": "Add New Address",
     "activate": "Activate",
     "cancel": "Cancel",
     "save_and_continue": "Save and Continue",

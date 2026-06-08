@@ -4,10 +4,13 @@ import 'package:flouka/core/constants/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import '../../../../core/config/app_color.dart';
 import '../../../../core/widgets/circle_action_button_widget.dart';
+import '../../../favorite/presentation/providers/favorite_provider.dart';
 import '../../domain/entity/product_entity.dart';
 import '../providers/products_details_provider.dart';
 import 'custom_product_details_dots_indicators.dart';
+import 'hot_deals_home_container_widget.dart';
 
 class ProductDetailsHeaderWidget extends StatelessWidget {
   const ProductDetailsHeaderWidget({super.key,required this.productEntity});
@@ -55,8 +58,39 @@ class ProductDetailsHeaderWidget extends StatelessWidget {
                 child: Column(
                   spacing: 2.h,
                   children: [
-                    const CircleActionButtonWidget(svgImage: AppImages.share),
-                    const CircleActionButtonWidget(svgImage: AppImages.heart),
+                    // const CircleActionButtonWidget(svgImage: AppImages.share),
+                    InkWell(
+                      onTap: () {
+                        FavoriteProvider favoriteProvider = Provider.of(context, listen: false);
+                        favoriteProvider.toggleFavorite(productEntity);
+                      },
+
+                      child: Container(
+                        width: 7.w,
+                        height: 7.w,
+                        decoration: BoxDecoration(
+                          color: AppColor.primaryColor,
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.1),
+                              blurRadius: 4,
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        child: Consumer<FavoriteProvider>(
+                          builder: (context, provider, child) {
+                            bool isFav = favoriteIds.contains(productEntity.id);
+                            return Icon(
+                              isFav ? Icons.favorite : Icons.favorite_border,
+                              color: Colors.white,
+                              size: 18,
+                            );
+                          },
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

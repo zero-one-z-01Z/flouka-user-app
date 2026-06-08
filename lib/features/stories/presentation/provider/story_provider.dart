@@ -26,7 +26,6 @@ class StoryProvider extends ChangeNotifier {
           data!.add(i);
         }
       }
-      print('data ${data!.length}');
       notifyListeners();
     });
   }

@@ -5,17 +5,19 @@ import 'package:sizer/sizer.dart';
 
 import '../../../../core/widgets/custom_star_rating_widget.dart';
 import '../../../language/presentation/provider/language_provider.dart';
+import '../../domain/entity/product_entity.dart';
 
 class RatingWithSeeReviewsWidget extends StatelessWidget {
-  const RatingWithSeeReviewsWidget({super.key});
+  const RatingWithSeeReviewsWidget({super.key, required this.product});
+  final ProductEntity product;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        CustomStarRatingWidget(itemSize: 20.sp, rating: 0, readOnly: true,),
+        CustomStarRatingWidget(itemSize: 20.sp, rating: product.rate ?? 0, readOnly: true,),
         SizedBox(width: 2.w),
-        Text("153,254", style: TextStyleClass.normalStyle(color: Colors.grey)),
+        Text("${ product.rate ?? 0}", style: TextStyleClass.normalStyle(color: Colors.grey)),
         const Spacer(),
         Text(
           LanguageProvider.translate("global", "see reviews"),

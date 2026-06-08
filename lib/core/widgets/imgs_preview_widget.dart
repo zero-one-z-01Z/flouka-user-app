@@ -14,15 +14,13 @@ class ImagesPreviewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   // backgroundColor: Colors.black,
-      //   leading: BackButtonWidget(),
-      //   title: SizedBox(),
-      // ),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+      ),
+      backgroundColor: Colors.white,
       body: SizedBox(
         width: 100.w,
         height: 100.h,
-
         child: Stack(
           children: [
             PageView(

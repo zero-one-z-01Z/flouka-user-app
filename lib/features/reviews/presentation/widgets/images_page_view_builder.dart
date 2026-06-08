@@ -3,20 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../products/domain/entity/product_review_entity.dart';
 import '../providres/review_provider.dart';
 
 class ImagesPageViewBuilder extends StatelessWidget {
-  const ImagesPageViewBuilder({super.key});
-
+  const ImagesPageViewBuilder({super.key, required this.images});
+  final List<ReviewImage> images;
   @override
   Widget build(BuildContext context) {
     final reviewProvider = Provider.of<ReviewProvider>(context);
     return PageView(
       controller: reviewProvider.pageController,
       children: List.generate(
-        4,
+        images.length,
         (index) => CachedNetworkImage(
-          imageUrl: "https://placehold.co/600x400/000000/FFFFFF/png",
+          imageUrl: "${images[index].image}",
           width: 100.w,
           height: 100.h,
           fit: BoxFit.fill,

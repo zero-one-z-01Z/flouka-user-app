@@ -13,12 +13,14 @@ class ReviewView extends StatelessWidget {
   Widget build(BuildContext context) {
     final reviewProvider = Provider.of<ReviewProvider>(context);
     return Scaffold(
+      backgroundColor: Colors.grey.shade200,
+      appBar: AppBar(),
       body: SizedBox(
         height: 100.h,
         width: 100.w,
         child: Stack(
           children: [
-            const ImagesPageViewBuilder(),
+            ImagesPageViewBuilder(images: review.images,),
             Positioned(
               bottom: 0,
               left: 0,

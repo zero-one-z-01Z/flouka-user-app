@@ -1,9 +1,12 @@
 
 
+import 'package:flouka/core/constants/constants.dart';
 import 'package:flouka/core/dialog/snack_bar.dart';
 import 'package:flouka/features/language/presentation/provider/language_provider.dart';
 import 'package:flouka/features/products/domain/entity/variant_entity.dart';
+import 'package:flouka/features/products/presentation/providers/product_quantity_provider.dart';
 import 'package:flouka/features/products/presentation/providers/products_details_provider.dart';
+import 'package:provider/provider.dart';
 
 extension ProductVariantProvider on ProductDetailsProvider{
 
@@ -46,7 +49,21 @@ extension ProductVariantProvider on ProductDetailsProvider{
   }
 
   bool isAllAttributesSelected() {
-    return variants.length == data!.attributes.length;
+    if(data?.stock !=null){
+      return true;
+    }else if(data?.variants.isNotEmpty ??false){
+      return true;
+    }
+    return false;
+  }
+
+  bool canAddToCart(){
+    if(data?.stock !=null){
+      ProductQuantityProvider quantityProvider = Provider.of(Constants.globalContext(),listen: false);
+      return quantityProvider.quantity != null;
+    }else{
+      return variants.length == data!.attributes.length;
+    }
   }
 
 

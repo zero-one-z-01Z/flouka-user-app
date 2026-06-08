@@ -12,7 +12,7 @@ class RatingBottomSheetWidget extends StatelessWidget {
     return Container(
       height: 35.h,
       decoration: const BoxDecoration(
-        color: Colors.grey,
+        color: Colors.black,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(41),
           topRight: Radius.circular(41),

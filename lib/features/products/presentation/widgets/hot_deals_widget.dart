@@ -27,29 +27,36 @@ class HotDealsWidget extends StatelessWidget {
             if(products.isEmpty){
               return const SizedBox();
             }
-            return Column(
-              children: [
-                Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: 6.w),
-                  child: Row(
-                    children: [
-                      Text(LanguageProvider.translate("home", "hot_deals"),style: TextStyleClass.normalStyle().copyWith(fontWeight: FontWeight.bold),)
-                    ],
+            return SizedBox(
+              width: 100.w,
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding:  EdgeInsets.symmetric(horizontal: 6.w),
+                    child: Row(
+                      children: [
+                        Text(LanguageProvider.translate("home", "hot_deals"),
+                          style: TextStyleClass.normalStyle(color:const Color(0xff3A3A3A)).copyWith(fontWeight: FontWeight.bold),)
+                      ],
+                    ),
                   ),
-                ),
-                SizedBox(height: 2.h),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: List.generate(products.length, (index) {
-                      return HotDealsHomeContainerWidget(
-                        product: products[index],
-                        isSimilar: true,
-                      );
-                    },),
+                  SizedBox(height: 2.h),
+                  Padding(
+                    padding:  EdgeInsetsDirectional.only(start: 4.w),
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: List.generate(products.length, (index) {
+                          return HotDealsHomeContainerWidget(
+                            product: products[index],
+                            isSimilar: true,
+                          );
+                        },),
+                      ),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             );
           }
       ),

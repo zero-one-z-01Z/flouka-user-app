@@ -22,6 +22,7 @@ class ProductEntity {
   final List<RelatedEntity> related;
   final List<ProductEntity> recommended;
   final List<ProductReviewEntity> reviews;
+  final StockEntity? stock;
 
   ProductEntity({
     required this.id,
@@ -40,6 +41,7 @@ class ProductEntity {
     required this.images,
     required this.rate,
     required this.isFavorite,
+    required this.stock,
     required this.attributes,
     required this.variants,
   });

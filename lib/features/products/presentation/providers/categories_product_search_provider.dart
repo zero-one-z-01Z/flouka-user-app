@@ -28,6 +28,7 @@ class CategoriesProductSearchProvider extends ChangeNotifier
    }else{
      this.category = category;
    }
+
    refresh();
    SearchFilterProvider provider = Provider.of(Constants.globalContext(), listen: false);
    provider.initFilters();

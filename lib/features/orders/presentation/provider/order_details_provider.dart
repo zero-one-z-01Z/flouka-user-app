@@ -53,9 +53,6 @@ class OrderDetailsProvider extends ChangeNotifier
       },
       (r) {
         data = r;
-        if (kDebugMode) {
-          print("✅ Order details loaded successfully (ID: ${inputs!['order_id']})");
-        }
       },
     );
 

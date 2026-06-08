@@ -28,6 +28,8 @@ class SearchFilterProvider extends ChangeNotifier {
   initFilters(){
     CategoryProvider provider = Provider.of(Constants.globalContext(), listen: false);
     BrandsProvider brandsProvider = Provider.of(Constants.globalContext(), listen: false);
+    brandsProvider.clear();
+    clear();
     staticFilters = [
       {
         'title': 'category',
@@ -69,8 +71,6 @@ class SearchFilterProvider extends ChangeNotifier {
   }
 
   void goToFilterPage(){
-    CategoryProvider provider = Provider.of(Constants.globalContext(), listen: false);
-    BrandsProvider brandsProvider = Provider.of(Constants.globalContext(), listen: false);
    navP(const FilterPage());
   }
 
@@ -79,37 +79,74 @@ class SearchFilterProvider extends ChangeNotifier {
     BrandsProvider brandsProvider = Provider.of(Constants.globalContext(), listen: false);
     mainFilters = [...staticFilters, ...apiFilters,];
     notifyListeners();
-
   }
 
-  void setLabelValue(Map<String, dynamic> data, dynamic value) async{
-    final index = mainFilters.indexWhere((e) => e['title'] == data['title']);
+  Future<void> setLabelValue(
+      Map<String, dynamic> data,
+      dynamic value,
+      ) async {
+    final index = mainFilters.indexWhere(
+          (e) => e['title'] == data['title'],
+    );
 
     if (index == -1) return;
-    BrandsProvider brandsProvider = Provider.of<BrandsProvider>(Constants.globalContext(), listen: false,);
-    CategoryProvider categoryProvider = Provider.of<CategoryProvider>(Constants.globalContext(), listen: false,);
-    CategoryAttributesProvider categoryAttributesProvider = Provider.of(Constants.globalContext(), listen: false,);
-    if(data['title'] == "category" || data['title'] == "sub_category"){
-      for (var item in mainFilters[index]['children']) {
-        item['active'] = false;
-        item['value'] = null;
-      }
-      value['active'] = true;
 
-      mainFilters[index]['active'] = !mainFilters[index]['active'];
-      if(mainFilters[index]['active']){
-        mainFilters[index]['value'] = value;
-      }else{
+    final brandsProvider = Provider.of<BrandsProvider>(
+      Constants.globalContext(),
+      listen: false,
+    );
+
+    final categoryProvider = Provider.of<CategoryProvider>(
+      Constants.globalContext(),
+      listen: false,
+    );
+
+    final categoryAttributesProvider =
+    Provider.of<CategoryAttributesProvider>(
+      Constants.globalContext(),
+      listen: false,
+    );
+
+    bool isUnSelected = false;
+
+    /// Category & Sub Category (Single Selection + Toggle)
+    if (data['title'] == "category" ||
+        data['title'] == "sub_category") {
+      final currentValue = mainFilters[index]['value'];
+
+      /// Unselect same item
+      if (currentValue != null &&
+          currentValue['id'] == value['id']) {
+        value['active'] = false;
+        mainFilters[index]['active'] = false;
         mainFilters[index]['value'] = null;
+
+        isUnSelected = true;
+      } else {
+        for (var item in mainFilters[index]['children'] ?? []) {
+          item['active'] = false;
+        }
+
+        value['active'] = true;
+        mainFilters[index]['active'] = true;
+        mainFilters[index]['value'] = value;
       }
+    }
 
-    }else{
-      List values = mainFilters[index]['value'] ?? [];
+    /// Multi Selection
+    else {
+      List values = List.from(
+        mainFilters[index]['value'] ?? [],
+      );
 
-      final exists = values.any((e) => e['id'] == value['id']);
+      final exists = values.any(
+            (e) => e['id'] == value['id'],
+      );
 
       if (exists) {
-        values.removeWhere((e) => e['id'] == value['id']);
+        values.removeWhere(
+              (e) => e['id'] == value['id'],
+        );
         value['active'] = false;
       } else {
         values.add(value);
@@ -117,34 +154,150 @@ class SearchFilterProvider extends ChangeNotifier {
       }
 
       mainFilters[index]['value'] = values;
+      mainFilters[index]['active'] = values.isNotEmpty;
     }
 
+    /// Category Unselected
+    if (data['title'] == "category" && isUnSelected) {
+      categoryId = null;
+      subCategoryId = null;
+
+      final subCategoryElement = mainFilters.firstWhere(
+            (e) => e['title'] == 'sub_category',
+      );
+
+      final brandElement = mainFilters.firstWhere(
+            (e) => e['title'] == 'brand',
+      );
+
+      for (var item in subCategoryElement['children'] ?? []) {
+        item['active'] = false;
+      }
+
+      for (var item in brandElement['children'] ?? []) {
+        item['active'] = false;
+      }
+
+      subCategoryElement['value'] = null;
+      subCategoryElement['active'] = false;
+      subCategoryElement['children'] = [];
+
+      brandElement['value'] = null;
+      brandElement['active'] = false;
+      brandElement['children'] = [];
+
+      brandsProvider.clear();
+      categoryAttributesProvider.clear();
+
+      apiFilters = [];
+      addFilter();
+
+      notifyListeners();
+      return;
+    }
+
+    /// Sub Category Unselected
+    if (data['title'] == "sub_category" && isUnSelected) {
+      subCategoryId = null;
+
+      final brandElement = mainFilters.firstWhere(
+            (e) => e['title'] == 'brand',
+      );
+
+      for (var item in brandElement['children'] ?? []) {
+        item['active'] = false;
+      }
+
+      brandElement['value'] = null;
+      brandElement['active'] = false;
+      brandElement['children'] = [];
+
+      categoryAttributesProvider.clear();
+
+      apiFilters = [];
+      addFilter();
+
+      notifyListeners();
+      return;
+    }
+
+    /// Category Selected
     if (data['title'] == "category") {
       categoryId = value['id'].toString();
-      brandsProvider.setCategory(categoryId!);
-      Map<String,dynamic> element = mainFilters.firstWhere((e) => e['title'] == 'sub_category');
-      Map<String,dynamic> brandElement = mainFilters.firstWhere((e) => e['title'] == 'brand');
-      brandElement['value'] = null;
-      element['value'] = null;
 
-      element['children'] = categoryProvider.SubCategoriesNames(categoryId: categoryId);
-      await brandsProvider.setCategory(categoryId);
-      mainFilters.firstWhere((e) => e['title'] == 'brand')['children'] = brandsProvider.BrandsNames();
-      categoryAttributesProvider.clear();
-      apiFilters=[];
-      addFilter();
-      notifyListeners();
-    }else if(data['title'] == "sub_category"){
-      subCategoryId = value['id'].toString();
-      Map<String,dynamic> brandElement = mainFilters.firstWhere((e) => e['title'] == 'brand');
+      final subCategoryElement = mainFilters.firstWhere(
+            (e) => e['title'] == 'sub_category',
+      );
+
+      final brandElement = mainFilters.firstWhere(
+            (e) => e['title'] == 'brand',
+      );
+
+      for (var item in subCategoryElement['children'] ?? []) {
+        item['active'] = false;
+      }
+
+      for (var item in brandElement['children'] ?? []) {
+        item['active'] = false;
+      }
+
+      subCategoryElement['value'] = null;
+      subCategoryElement['active'] = false;
+      subCategoryElement['children'] =
+          categoryProvider.SubCategoriesNames(
+            categoryId: categoryId,
+          );
+
       brandElement['value'] = null;
-      await brandsProvider.setCategory(subCategoryId!);
-      mainFilters.firstWhere((e) => e['title'] == 'brand')['children'] = brandsProvider.BrandsNames();
-      await categoryAttributesProvider.setCategory(subCategoryId!);
+      brandElement['active'] = false;
+      brandElement['children'] = null;
+
+      brandsProvider.clear();
+
+      await brandsProvider.setCategory(categoryId!);
+
+      brandElement['children'] =
+          brandsProvider.BrandsNames();
+
+      categoryAttributesProvider.clear();
+
+      apiFilters = [];
       addFilter();
     }
+
+    /// Sub Category Selected
+    else if (data['title'] == "sub_category") {
+      subCategoryId = value['id'].toString();
+
+      final brandElement = mainFilters.firstWhere(
+            (e) => e['title'] == 'brand',
+      );
+
+      for (var item in brandElement['children'] ?? []) {
+        item['active'] = false;
+      }
+
+      brandElement['value'] = null;
+      brandElement['active'] = false;
+
+      await brandsProvider.setCategory(
+        subCategoryId!,
+      );
+
+      brandElement['children'] =
+          brandsProvider.BrandsNames();
+
+      await categoryAttributesProvider.setCategory(
+        subCategoryId!,
+      );
+
+      addFilter();
+    }
+
     notifyListeners();
   }
+
+
 
   String getFilterLabel(dynamic value) {
     if (value == null) return '';

@@ -32,6 +32,7 @@ class SubcategoryTile extends StatelessWidget {
           if (!isAll && subcategory != null) ...[
             InkWell(
               onTap: () {
+                provider.fromFilter =false;
                 provider.goToCategoriesPage(category:subcategory!,isSubCategory: true);
               },
               child: Row(
@@ -57,6 +58,7 @@ class SubcategoryTile extends StatelessWidget {
             InkWell(
               onTap: () {
                 if(categoryProvider.selectedCategory !=null){
+                  provider.fromFilter =false;
                   provider.goToCategoriesPage(category:categoryProvider.selectedCategory!);
                 }
               },

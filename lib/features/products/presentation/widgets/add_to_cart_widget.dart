@@ -27,7 +27,7 @@ class AddToCartWidget extends StatelessWidget {
     return Column(crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: 1.h,),
-        DropDownWidget(dropDownClass:productQuantity, canPress: productDetailsProvider.isAllAttributesSelected(),),
+        DropDownWidget(dropDownClass:productQuantity, canPress: productDetailsProvider.canAddToCart(),),
         SizedBox(height: 2.h,),
         ButtonWidget(onTap: (){
           if(productDetailsProvider.isAllAttributesSelected() && productQuantity.quantity!=null
@@ -51,7 +51,7 @@ class AddToCartWidget extends StatelessWidget {
           borderRadius: 12,width: 100.w, color: productDetailsProvider.isAllAttributesSelected() &&
               productQuantity.quantity!=null && authProvider.userEntity?.addressEntity!=null
               ? AppColor.primaryColor : AppColor.primaryColor.withValues(alpha: 0.2),),
-        SizedBox(height: 4.h,),
+        SizedBox(height: 2.h,),
       ],
     );
   }

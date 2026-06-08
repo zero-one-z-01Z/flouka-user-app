@@ -75,10 +75,11 @@ class ProductAttributesWidget extends StatelessWidget {
               );
             },
           ),
-          SizedBox(height: 2.h),
-          const AddToCartWidget(),
-
         ],
+
+        SizedBox(height: 2.h),
+        if(productDetailsProvider.isAllAttributesSelected())
+        const AddToCartWidget(),
       ],
     );
   }

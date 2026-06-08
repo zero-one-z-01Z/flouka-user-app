@@ -11,7 +11,13 @@ class ProductQuantityProvider extends ChangeNotifier implements DropDownClass<in
   int?quantity;
   List<int> quantityList() {
     ProductDetailsProvider productDetailsProvider =Provider.of<ProductDetailsProvider>(Constants.globalContext(),listen: false);
-    final maxQuantity = productDetailsProvider.variantEntity()?.stock?.quantity??0;
+    late final maxQuantity ;
+    if(productDetailsProvider.data?.stock !=null){
+      maxQuantity = productDetailsProvider.data?.stock?.quantity??0;
+    }else{
+      maxQuantity = productDetailsProvider.variantEntity()?.stock?.quantity??0;
+    }
+
     return List.generate(maxQuantity, (index) => index + 1);
   }
 
