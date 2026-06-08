@@ -16,6 +16,8 @@ class RecommendProductsProvider extends ChangeNotifier
   final ProductUseCase productUseCase;
   RecommendProductsProvider(this.productUseCase);
 
+  String title = 'recommended';
+
   @override
   List<ProductEntity>? data;
 
@@ -39,7 +41,6 @@ class RecommendProductsProvider extends ChangeNotifier
   @override
   void clear() {
     data = null;
-    inputs = null;
     pageIndex = 1;
     paginationFinished = false;
     paginationStarted = false;
@@ -56,8 +57,16 @@ class RecommendProductsProvider extends ChangeNotifier
       dataToUse['lat'] = authProvider.currentLocation?.latitude;
       dataToUse['lng'] = authProvider.currentLocation?.longitude;
     }
+    final result;
+    if(inputs!=null){
+      dataToUse.addAll(inputs! as Map<String,dynamic>);
+    }
+    if((inputs?.containsKey('popular_category_id')??false)||(inputs?.containsKey('section_id')??false)){
+      result = await productUseCase.getProducts(dataToUse);
+    }else{
+      result = await productUseCase.getRecommended(dataToUse);
+    }
 
-    final result = await productUseCase.getRecommended(dataToUse);
     result.fold((l) => showToast(l.message ?? "Error loading products"), (r) {
       pageIndex++;
       data ??= [];
@@ -76,6 +85,9 @@ class RecommendProductsProvider extends ChangeNotifier
     Map<String, dynamic> dataToUse = {
       'page': 1,
     };
+    if(inputs!=null){
+      dataToUse.addAll(inputs! as Map<String,dynamic>);
+    }
     AuthProvider authProvider = Provider.of(Constants.globalContext(), listen: false);
     if(authProvider.currentLocation !=null){
       dataToUse['lat'] = authProvider.currentLocation?.latitude;
@@ -113,6 +125,8 @@ class RecommendProductsProvider extends ChangeNotifier
 
   @override
   void goToPage([Map<String, dynamic>? inputs]) {
+    this.inputs = inputs;
+    title = inputs?['title']??"recommended";
     refresh();
     navP(const RecommendedProductsPage());
   }

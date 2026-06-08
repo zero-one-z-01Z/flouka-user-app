@@ -7,6 +7,7 @@ import 'package:sizer/sizer.dart';
 import '../../../../core/config/app_color.dart';
 import 'package:flouka/features/products/presentation/providers/product_variant_provider.dart';
 import '../../../../core/dialog/snack_bar.dart';
+import '../../../address/presentation/providers/address_provider.dart';
 import '../../../auth/presentation/providers/auth_provider.dart';
 import '../../../cart/presentation/providers/cart_provider.dart';
 import '../../../language/presentation/provider/language_provider.dart';
@@ -32,10 +33,12 @@ class AddToCartWidget extends StatelessWidget {
           if(productDetailsProvider.isAllAttributesSelected() && productQuantity.quantity!=null
           && authProvider.userEntity?.addressEntity!=null){
             cartProvider.addToCart(storeId: productDetailsProvider.data!.store!.id, quantity: productQuantity.quantity!,
-                storeProductStockId: productDetailsProvider.variantEntity()!.stock!.productVariantId);
+                storeProductStockId: productDetailsProvider.variantEntity()!.stock!.id);
           }else{
             if(authProvider.userEntity?.addressEntity == null){
-              showToast(LanguageProvider.translate("error", "add_address"));
+              showToast(LanguageProvider.translate("error","add_address"),isSnack: true,action: {"text":LanguageProvider.translate('buttons', 'add'),'onTap':(){
+                Provider.of<AddressProvider>(context,listen: false).goToAddressPage();
+              }});
             }else if(!productDetailsProvider.isAllAttributesSelected()){
               showToast(LanguageProvider.translate("error", "select_attributes_quantity"));
             }else {

@@ -22,7 +22,7 @@ class ProductDetailsHeaderWidget extends StatelessWidget {
           child: Stack(
             children: [
               CarouselSlider(
-                items: productEntity.images.map((item) {
+                items: productDetailsProvider.images().map((item) {
                   return InkWell(
                     onTap: () {
                     },

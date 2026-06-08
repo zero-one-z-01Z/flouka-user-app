@@ -14,18 +14,18 @@ class CategoryImageContainerWidget extends StatelessWidget {
       children: [
         Container(
           width: 34.w,
-          height: 18.h,
-          padding: const EdgeInsets.all(20),
+          height: 15.h,
+          padding: EdgeInsets.symmetric(horizontal: 2.w,vertical: 0.h),
           child: CachedNetworkImage(
             imageUrl: category.image,
-            fit: BoxFit.contain,
+            fit: BoxFit.cover,
             placeholder: (context, url) =>
                 const Center(child: CircularProgressIndicator()),
             errorWidget: (context, url, error) =>
                 const Center(child: Icon(Icons.error)),
           ),
         ),
-        SizedBox(height: 1.h),
+        // SizedBox(height: 1.h),
         Text(
           category.name,
           style: TextStyleClass.normalStyle().copyWith(

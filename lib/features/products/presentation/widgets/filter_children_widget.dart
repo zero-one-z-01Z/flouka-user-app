@@ -17,6 +17,7 @@ class FilterChildrenWidget extends StatelessWidget {
       if(data['children']!=null){
         return Column(
           children: List.generate(data['children'].length, (index){
+            print(data['children'][index]);
             return Row(
               children: [
                 Expanded(child: Text(data['children'][index]['name'],style: TextStyleClass.normalStyle(),maxLines: 1,

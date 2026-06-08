@@ -37,7 +37,7 @@ void main() async {
 
   HttpOverrides.global = MyHttpOverrides();
 
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,name: "flouka");
 
   await notificationsFirebase();
   FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);

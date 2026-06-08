@@ -1,8 +1,8 @@
 abstract class AppImages {
   //Logo
   static const String logo = 'assets/images/logo.png';
-  static const String logo2 = 'assets/images/logo2.png';
-  static const String bigLogo = 'assets/images/big_logo.png';
+
+
 
   //onboarding
   static const String onboardingImage1 = 'assets/images/onboarding/onboarding1.png';

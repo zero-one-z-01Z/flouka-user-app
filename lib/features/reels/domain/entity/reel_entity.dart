@@ -2,9 +2,9 @@
 class ReelEntity {
   final int id;
   final int vendorId;
-  final int productId;
+  final int? productId;
   final String video;
-  final String title;
+  final String? title;
   final String vendorName;
   final String vendorLogo;
   ReelEntity({

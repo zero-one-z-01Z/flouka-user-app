@@ -79,7 +79,6 @@ class AuthProvider extends ChangeNotifier {
     } else {
       // Google login
       data['name'] = googleUser?.displayName;
-      data['user_name'] = name ?? googleUser?.displayName;
       data['email'] = googleUser?.email;
       if (googleUser?.photoUrl != null) {
         data['image'] = googleUser?.photoUrl;
@@ -171,6 +170,19 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
+  Future<void> googleLogin() async {
+    await _initGoogle();
+    try {
+      await _googleSignIn.signOut();
+      googleUser = await _googleSignIn.authenticate();
+      log("Google user authenticated: ${googleUser?.email}");
+      await socialLogin(googleUser: googleUser, loginFrom: 'google');
+    } catch (error) {
+      log("Google login error: $error");
+      showToast("Google login failed: $error");
+    }
+  }
+
   Future<void> appleLogin() async {
     try {
       String redirectUrl = "${Constants.domain}callback_sign_in_with_apple";
@@ -209,18 +221,7 @@ class AuthProvider extends ChangeNotifier {
   }
 
 
-  Future<void> googleLogin() async {
-    await _initGoogle();
-    try {
-      await _googleSignIn.signOut();
-      googleUser = await _googleSignIn.authenticate();
-      log("Google user authenticated: ${googleUser?.email}");
-      await socialLogin(googleUser: googleUser, loginFrom: 'google');
-    } catch (error) {
-      log("Google login error: $error");
-      showToast("Google login failed: $error");
-    }
-  }
+
 
   Future getProfile({bool fromAddress = false,bool fromSplash = false, bool firstAddress = false}) async {
     final result = await authUseCase.getProfile();

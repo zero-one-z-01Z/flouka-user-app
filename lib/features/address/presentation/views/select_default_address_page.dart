@@ -26,6 +26,7 @@ class SelectDefaultAddressPage extends StatelessWidget {
             children: [
               SizedBox(height: 5.h,),
               Image.asset(AppImages.logo,width: 20.w,height: 20.w,),
+              SizedBox(height: 10.h,),
               Image.asset(AppImages.locationImage,width: 40.w,height: 40.w,),
               SizedBox(height: 5.h,),
               Text(LanguageProvider.translate("address", "ask_address"),
@@ -34,14 +35,16 @@ class SelectDefaultAddressPage extends StatelessWidget {
               Row(
                 children: [
                   Expanded(child: ButtonWidget(onTap: ()async{
+
                     LatLng? current = await determinePosition();
+
                     Provider.of<AuthProvider>(context,listen: false).setLatLng(current);
                     Provider.of<NavBarProvider>(context,listen: false).goToNavView();
                   }, text:LanguageProvider.translate("on_boarding", "skip"),color: Colors.grey,),),
                   SizedBox(width: 2.w,),
                   Expanded(child: ButtonWidget(onTap: (){
                     Provider.of<AddressDetailsProvider>(context,listen: false).goToAddressDetailsPage(firstAddress: true);
-                  }, text: "ADD NEW ADDRESS")),
+                  }, text: "add_new_address")),
                 ],
               ),
             ],

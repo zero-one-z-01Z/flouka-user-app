@@ -11,6 +11,7 @@ import '../../../../core/models/provider_structure_model.dart';
 import '../../../auth/presentation/providers/auth_provider.dart';
 import '../../domain/user_case/product_use_case.dart';
 import '../pages/products_details_view.dart';
+import 'product_variant_provider.dart' show ProductVariantProvider;
 
 class ProductDetailsProvider extends ChangeNotifier implements ProviderStructureModel<ProductEntity> {
   @override
@@ -47,7 +48,7 @@ class ProductDetailsProvider extends ChangeNotifier implements ProviderStructure
   }
 
   int imageIndex = 0;
-  int variantIndex = 0;
+  // int variantIndex = 0;
   void changeImageIndex({required int index}){
     imageIndex = index;
     notifyListeners();
@@ -95,6 +96,13 @@ class ProductDetailsProvider extends ChangeNotifier implements ProviderStructure
       productsIDs.clear();
       navPop();
     }
+  }
+
+  List<ProductImage> images(){
+    if(variantEntity()?.images.isNotEmpty??false){
+      return variantEntity()!.images;
+    }
+    return  data!.images;
   }
 
   @override

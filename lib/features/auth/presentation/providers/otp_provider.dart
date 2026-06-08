@@ -17,6 +17,7 @@ class OtpProvider extends ChangeNotifier {
   late bool isEdit;
 
   void startTimer() {
+    otpController.clear();
     counter = 60;
     timer?.cancel();
     timer = Timer.periodic(const Duration(seconds: 1), (e) {

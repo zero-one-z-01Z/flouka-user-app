@@ -27,7 +27,7 @@ class StoriesView extends StatelessWidget {
 
         // case "image":
           return StoryItem.pageImage(
-            url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUT2jLYoIC9Lg65AVA5KhEUdJdWFm0-vznZg&s",
+            url: storyItem.path,
             controller: storyProvider.controller,
           );
 

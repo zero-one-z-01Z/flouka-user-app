@@ -17,7 +17,7 @@ class RecommendedProductsPage extends StatelessWidget {
     recommendProductsProvider.pagination();
     return Scaffold(
       appBar: AppBar(
-        title:  Text(LanguageProvider.translate('home', 'recommended')),
+        title:  Text(LanguageProvider.translate('home', recommendProductsProvider.title)),
       ),
       body: SizedBox(
         height: 100.h,width: 100.w,

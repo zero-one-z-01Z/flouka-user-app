@@ -6,6 +6,7 @@ import 'package:sizer/sizer.dart';
 import '../../../auth/presentation/providers/auth_provider.dart';
 import '../../../navbar/presentation/provider/nav_bar_provider.dart';
 import '../../../products/presentation/providers/categories_product_search_provider.dart';
+import '../../../products/presentation/providers/recommend_products_provider.dart';
 import '../../domain/entity/popular_categories_entity.dart';
 import '../providers/popular_categories_provider.dart' show PopularCategoriesProvider;
 import 'popular_category_container_widget.dart';
@@ -42,19 +43,19 @@ class PopularCategoriesSection extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      navBarProvider.changeIndex(1);
-                    },
-                    child: Text(
-                      LanguageProvider.translate('home', 'see_all'),
-                      style: TextStyleClass.normalStyle().copyWith(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w500,
-                        color: const Color(0xffAEB1C1),
-                      ),
-                    ),
-                  ),
+                  // GestureDetector(
+                  //   onTap: () {
+                  //     navBarProvider.changeIndex(1);
+                  //   },
+                  //   child: Text(
+                  //     LanguageProvider.translate('home', 'see_all'),
+                  //     style: TextStyleClass.normalStyle().copyWith(
+                  //       fontSize: 16.sp,
+                  //       fontWeight: FontWeight.w500,
+                  //       color: const Color(0xffAEB1C1),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -71,8 +72,9 @@ class PopularCategoriesSection extends StatelessWidget {
                     padding: EdgeInsets.only(right: 3.w),
                     child: InkWell(
                         onTap: () {
-                          CategoriesProductSearchProvider provider = Provider.of(context,listen: false);
-                          provider.goToSearchPage(categoryId: category.id);
+                          // CategoriesProductSearchProvider provider = Provider.of(context,listen: false);
+                          // provider.goToSearchPage(categoryId: category.id);
+                          Provider.of<RecommendProductsProvider>(context,listen: false).goToPage({'title':category.name,"popular_category_id":category.id});
                         },
                         child: PopularCategoryContainerWidget(category: category)),
                   );

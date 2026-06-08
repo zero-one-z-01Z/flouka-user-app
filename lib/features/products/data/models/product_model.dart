@@ -133,7 +133,7 @@ class StoreModel extends StoreEntity {
       logo: json['cover']??"",
       vendor: json['vendor'] !=null ? VendorModel.fromJson(json['vendor']) : null,
       vendorId: json['vendor_id'],lat: json['lat'],lng: json['lng'],rate: convertDataToDouble(json['rate']),address: json['address'],
-      productsCount: json['products_count'],customersCount: json['customers_count'],distance: json['distance'],
+      productsCount: json['products_count'],customersCount: json['customers_count'],distance: convertDataToDouble(json['distance']),
       name: json['name'],);
   }
 }

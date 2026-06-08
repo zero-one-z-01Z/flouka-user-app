@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../products/presentation/providers/recommend_products_provider.dart';
+
 class OffersSectionWidget extends StatelessWidget {
   const OffersSectionWidget({super.key, required this.offerSectionEntity});
   final OfferSectionEntity offerSectionEntity;
@@ -50,9 +52,10 @@ class OffersSectionWidget extends StatelessWidget {
                 Expanded(
                   child: InkWell(
                     onTap: (){
-                      Provider.of<CategoriesProductSearchProvider>(context, listen: false).goToPage({
-                        "section_id":offerSectionEntity.id
-                      });
+                      // Provider.of<CategoriesProductSearchProvider>(context, listen: false).goToPage({
+                      //   "section_id":offerSectionEntity.id
+                      // });
+                      Provider.of<RecommendProductsProvider>(context,listen: false).goToPage({'title':offerSectionEntity.title,"section_id":offerSectionEntity.id});
                     },
                     child: Container(
                       padding:EdgeInsets.all(1.w),

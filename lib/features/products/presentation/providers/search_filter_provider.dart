@@ -17,6 +17,14 @@ class SearchFilterProvider extends ChangeNotifier {
   List<Map<String, dynamic>> staticFilters = [];
   List<Map<String, dynamic>> apiFilters=[];
 
+  void clear(){
+    categoryId;
+    subCategoryId;
+    mainFilters.clear();
+    staticFilters.clear();
+    apiFilters.clear();
+  }
+
   initFilters(){
     CategoryProvider provider = Provider.of(Constants.globalContext(), listen: false);
     BrandsProvider brandsProvider = Provider.of(Constants.globalContext(), listen: false);
@@ -84,11 +92,17 @@ class SearchFilterProvider extends ChangeNotifier {
     if(data['title'] == "category" || data['title'] == "sub_category"){
       for (var item in mainFilters[index]['children']) {
         item['active'] = false;
+        item['value'] = null;
       }
       value['active'] = true;
 
-      mainFilters[index]['value'] = value;
-      mainFilters[index]['active'] = true;
+      mainFilters[index]['active'] = !mainFilters[index]['active'];
+      if(mainFilters[index]['active']){
+        mainFilters[index]['value'] = value;
+      }else{
+        mainFilters[index]['value'] = null;
+      }
+
     }else{
       List values = mainFilters[index]['value'] ?? [];
 
@@ -231,46 +245,3 @@ class SearchFilterProvider extends ChangeNotifier {
 
 
 }
-
-
-// void setLabelValue(Map<String, dynamic> data, dynamic value) async{
-//   final index = mainFilters.indexWhere((e) => e['title'] == data['title']);
-//
-//   if (index == -1) return;
-//   BrandsProvider brandsProvider = Provider.of<BrandsProvider>(Constants.globalContext(), listen: false,);
-//   CategoryProvider categoryProvider = Provider.of<CategoryProvider>(Constants.globalContext(), listen: false,);
-//   CategoryAttributesProvider categoryAttributesProvider = Provider.of(Constants.globalContext(), listen: false,);
-//   for (var item in mainFilters[index]['children']) {
-//     item['active'] = false;
-//   }
-//   value['active'] = true;
-//
-//   mainFilters[index]['value'] = value;
-//   mainFilters[index]['active'] = true;
-//
-//   if (data['title'] == "category") {
-//     categoryId = value['id'].toString();
-//     brandsProvider.setCategory(categoryId!);
-//     Map<String,dynamic> element = mainFilters.firstWhere((e) => e['title'] == 'sub_category');
-//     Map<String,dynamic> brandElement = mainFilters.firstWhere((e) => e['title'] == 'brand');
-//     brandElement['value'] = null;
-//     element['value'] = null;
-//
-//     element['children'] = categoryProvider.SubCategoriesNames(categoryId: categoryId);
-//     await brandsProvider.setCategory(categoryId);
-//     mainFilters.firstWhere((e) => e['title'] == 'brand')['children'] = brandsProvider.BrandsNames();
-//     categoryAttributesProvider.clear();
-//     apiFilters=[];
-//     addFilter();
-//     notifyListeners();
-//   }else if(data['title'] == "sub_category"){
-//     subCategoryId = value['id'].toString();
-//     Map<String,dynamic> brandElement = mainFilters.firstWhere((e) => e['title'] == 'brand');
-//     brandElement['value'] = null;
-//     await brandsProvider.setCategory(subCategoryId!);
-//     mainFilters.firstWhere((e) => e['title'] == 'brand')['children'] = brandsProvider.BrandsNames();
-//     await categoryAttributesProvider.setCategory(subCategoryId!);
-//     addFilter();
-//   }
-//   notifyListeners();
-// }

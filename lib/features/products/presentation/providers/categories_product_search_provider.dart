@@ -109,7 +109,11 @@ class CategoriesProductSearchProvider extends ChangeNotifier
  }
 
  void selectCategory(CategoryEntity category) {
-   this.category = category;
+   if(category.id!=this.category?.id){
+     this.category = category;
+   }else{
+     this.category = null;
+   }
    this.subcategory = null;
    notifyListeners();
    CategoryProvider provider = Provider.of(Constants.globalContext(), listen: false);
@@ -156,8 +160,8 @@ class CategoriesProductSearchProvider extends ChangeNotifier
      if(inputs!=null && inputs?['best_selling'] != null){
        dataToUse['best_selling'] = inputs?['best_selling'];
      }
-     if(inputs!=null && inputs?['offers_products'] != null){
-       dataToUse['offers_products'] = inputs?['offers_products'];
+     if(inputs!=null && inputs?['offer_products'] != null){
+       dataToUse['offer_products'] = inputs?['offer_products'];
      }
      if(inputs!=null && inputs?['section_id'] != null){
        dataToUse['section_id'] = inputs?['section_id'];

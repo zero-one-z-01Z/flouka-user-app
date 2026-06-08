@@ -13,6 +13,9 @@ class OTPView extends StatelessWidget {
   Widget build(BuildContext context) {
     final AuthProvider authProvider = Provider.of(context);
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
       body: Padding(
         padding: globalPadding,
         child: SizedBox(
@@ -21,7 +24,7 @@ class OTPView extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: 5.h),
+                // SizedBox(height: 5.h),
                 // Text(
                 //   LanguageProvider.translate("auth", "sign Up"),
                 //   style: TextStyleClass.smallStyle().copyWith(
@@ -29,8 +32,8 @@ class OTPView extends StatelessWidget {
                 //     fontSize: 15.sp,
                 //   ),
                 // ),
-                SizedBox(height: 8.h),
-                Image.asset(AppImages.logo2, width: 40.w),
+                // SizedBox(height: 8.h),
+                Image.asset(AppImages.logo, width: 40.w),
                 SizedBox(height: 8.h),
                 const OtpContainerWithButton(),
                 // SizedBox(height: 4.h),

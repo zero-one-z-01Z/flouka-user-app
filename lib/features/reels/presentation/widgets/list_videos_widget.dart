@@ -1,6 +1,7 @@
 import 'package:flouka/core/dialog/guest_dialog.dart';
 import 'package:flouka/features/auth/presentation/providers/auth_provider.dart';
 import 'package:flouka/features/language/presentation/provider/language_provider.dart';
+import 'package:flouka/features/products/presentation/providers/products_details_provider.dart';
 import 'package:flouka/features/reels/presentation/models/reel_item.dart';
 import 'package:flouka/features/reels/presentation/providers/video_provider.dart';
 
@@ -126,13 +127,13 @@ class ListVideosWidget extends StatelessWidget {
                                                   ),
                                                 ),
                                               ),
-                                            Expanded(
+                                            if(reelItem.reel.title!=null)Expanded(
                                               child: Padding(
                                                 padding: EdgeInsets.symmetric(
                                                   horizontal: 4.w,
                                                 ),
                                                 child: Text(
-                                                  reelItem.reel.title,
+                                                  reelItem.reel.title!,
                                                   maxLines: 1,
                                                   overflow: TextOverflow.ellipsis,
                                                   style: TextStyleClass.normalStyle(
@@ -141,21 +142,26 @@ class ListVideosWidget extends StatelessWidget {
                                                 ),
                                               ),
                                             ),
-                                            Container(
-                                              padding: EdgeInsets.all(2.w),
-                                              decoration: BoxDecoration(
-                                                color: AppColor.primaryColor,
-                                                borderRadius: BorderRadius.circular(
-                                                  2.w,
+                                            if(reelItem.reel.productId!=null)InkWell(
+                                              onTap: (){
+                                                Provider.of<ProductDetailsProvider>(context,listen: false).goToPage({"product_id":reelItem.reel.productId});
+                                              },
+                                              child: Container(
+                                                padding: EdgeInsets.all(2.w),
+                                                decoration: BoxDecoration(
+                                                  color: AppColor.primaryColor,
+                                                  borderRadius: BorderRadius.circular(
+                                                    2.w,
+                                                  ),
                                                 ),
-                                              ),
-                                              child: Text(
-                                                LanguageProvider.translate(
-                                                  "video",
-                                                  "details",
-                                                ),
-                                                style: TextStyleClass.normalStyle(
-                                                  color: Colors.white,
+                                                child: Text(
+                                                  LanguageProvider.translate(
+                                                    "video",
+                                                    "details",
+                                                  ),
+                                                  style: TextStyleClass.normalStyle(
+                                                    color: Colors.white,
+                                                  ),
                                                 ),
                                               ),
                                             ),

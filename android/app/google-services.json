@@ -7,20 +7,103 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:284237387262:android:77264886e4c35a9af71caf",
+        "mobilesdk_app_id": "1:284237387262:android:119324c442fd5c7bf71caf",
         "android_client_info": {
-          "package_name": "com.zeroonez.flouka.user"
+          "package_name": "com.zeroonez.flouka.pos"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "284237387262-bbvh479purd5civvlbvhan7bo666hmc0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
+        {
+          "current_key": "AIzaSyDM1aKyaVQJpLSyiXqNq6vzEWb9CGlTniw"
+        },
         {
           "current_key": "AIzaSyBWvfvpWSLeXX_zfP4LOKbzKbSMZn8tJTA"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "284237387262-bbvh479purd5civvlbvhan7bo666hmc0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "284237387262-4bhtk7kbouj70qenakda9truc4rtsqjo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.zeroonez.flouka.user"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:284237387262:android:77264886e4c35a9af71caf",
+        "android_client_info": {
+          "package_name": "com.zeroonez.flouka.user"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "284237387262-a9t26a5bdiu26128aihls2iq6jcuq2dc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zeroonez.flouka.user",
+            "certificate_hash": "d923f4e49346dc417e0bf318ff1fe8ac411c1773"
+          }
+        },
+        {
+          "client_id": "284237387262-h98et8sgrsld90ihlmdnbba42n7m4n2r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zeroonez.flouka.user",
+            "certificate_hash": "1ccfed3d7e8a85751010dec848e3ce8c44507066"
+          }
+        },
+        {
+          "client_id": "284237387262-uaon9q4gqbves3d6abpm1kq9nhhop1v9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zeroonez.flouka.user",
+            "certificate_hash": "579422bfa0dad3569aeb7b2b83dd9db4185ccf74"
+          }
+        },
+        {
+          "client_id": "284237387262-bbvh479purd5civvlbvhan7bo666hmc0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDM1aKyaVQJpLSyiXqNq6vzEWb9CGlTniw"
+        },
+        {
+          "current_key": "AIzaSyBWvfvpWSLeXX_zfP4LOKbzKbSMZn8tJTA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "284237387262-bbvh479purd5civvlbvhan7bo666hmc0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "284237387262-4bhtk7kbouj70qenakda9truc4rtsqjo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.zeroonez.flouka.user"
+              }
+            }
+          ]
         }
       }
     }

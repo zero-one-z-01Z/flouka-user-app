@@ -46,12 +46,14 @@ class OnBoardingItemWidget extends StatelessWidget {
         SizedBox(height: 3.h),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 8.w),
-          child: Text(
-            textAlign: TextAlign.center,
-            LanguageProvider.translate("on_boarding", onBoardingEntity.title),
-            style: TextStyleClass.headStyle().copyWith(
-              fontSize: 24.sp,
-              fontWeight: FontWeight.w500,
+          child: FittedBox(
+            child: Text(
+              textAlign: TextAlign.center,
+              LanguageProvider.translate("on_boarding", onBoardingEntity.title),
+              style: TextStyleClass.headStyle().copyWith(
+                fontSize: 24.sp,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
         ),

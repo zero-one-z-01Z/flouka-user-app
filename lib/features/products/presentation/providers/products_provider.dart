@@ -1,4 +1,5 @@
 import 'package:flouka/features/products/domain/entity/product_entity.dart';
+import 'package:flouka/features/products/presentation/providers/search_filter_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flouka/core/dialog/snack_bar.dart';
 import 'package:flouka/core/models/pagination_class.dart';
@@ -41,6 +42,11 @@ class ProductsProvider extends ChangeNotifier
     pageIndex = 1;
     paginationFinished = false;
     paginationStarted = false;
+  }
+  void clearFilter(){
+    Constants.globalContext().read<SearchFilterProvider>().clear();
+    searchQuery = null;
+    selectedCategoryId = null;
   }
 
   @override

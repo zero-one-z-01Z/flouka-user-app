@@ -8,6 +8,7 @@ import 'core/config/app_theme.dart';
 import 'core/constants/constants.dart';
 import 'features/language/domain/entities/app_localizations.dart';
 import 'features/language/presentation/provider/language_provider.dart';
+import 'features/on_boarding/presentation/views/on_boarding_view.dart';
 import 'features/splash/views/splash_view.dart';
 
 class MainApp extends StatelessWidget {

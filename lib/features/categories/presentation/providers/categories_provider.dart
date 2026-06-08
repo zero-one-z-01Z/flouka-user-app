@@ -44,7 +44,7 @@ class CategoryProvider extends ChangeNotifier {
   return   [
       CategoryEntity(id: 1, image: AppImages.offer, name: 'offers_products',onTap: (){
         CategoriesProductSearchProvider provider = Provider.of(Constants.globalContext(),listen: false);
-        provider.goToPage({'offers_products' : 1});
+        provider.goToPage({'offer_products' : 1});
 
       },parentId: null),
       CategoryEntity(id: 2,parentId: null, image: AppImages.bestSeller, name: 'best_sellers',onTap: (){

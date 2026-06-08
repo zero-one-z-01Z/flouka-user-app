@@ -63,8 +63,15 @@ Future<dynamic> chooseImage({bool video = false}) {
                   showToast(status);
                 }
               } else {
-                var img = await pickImage(context, 1);
-                Navigator.pop(context, img);
+                navP(
+                  const AddImagePage(multiple: false),
+                  then: (val) async {
+                    await delay(100);
+                    navPop(val);
+                  },
+                );
+                // var img = await pickImage(context, 1);
+                // Navigator.pop(context, img);
               }
             },
             // child: Text('cancel',s TextStyleClass),

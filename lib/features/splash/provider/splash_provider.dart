@@ -1,3 +1,5 @@
+import 'package:flouka/core/helper_function/navigation.dart';
+import 'package:flouka/features/on_boarding/presentation/views/on_boarding_view.dart';
 import 'package:flouka/features/settings/presentation/provider/settings_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +20,10 @@ class SplashProvider extends ChangeNotifier {
       Provider.of<SettingsProvider>(Constants.globalContext(), listen: false,).getSettings(),
     ]);
 
-
+    if(isFirstTime){
+      navPARU(const OnBoardingView());
+      return;
+    }
     if (isLoggedIn != null) {
         auth.getProfile(fromSplash: true);
       } else {

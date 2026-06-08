@@ -93,18 +93,11 @@ class CompleteInfoProvider extends ChangeNotifier {
     );
   }
 
-  void goToCompleteInfoView() {
-    navP(CompleteInfoView(isEdit: isEdit));
-  }
+  // void goToCompleteInfoView() {
+  //   navP(CompleteInfoView(isEdit: isEdit));
+  // }
 
   late List<TextFieldModel> completeInfoTextFieldList = [
-    TextFieldModel(
-      label: LanguageProvider.translate("inputs", "Email"),
-      key: "email",
-      controller: TextEditingController(text: authProvider.userEntity?.email),
-      textInputType: TextInputType.emailAddress,
-      validator: (value) => validateEmail(value),
-    ),
     TextFieldModel(
       label: LanguageProvider.translate("inputs", "Name"),
       controller: TextEditingController(text: authProvider.userEntity?.name),
@@ -112,6 +105,14 @@ class CompleteInfoProvider extends ChangeNotifier {
       validator: (value) => validatePassword(value),
       key: "name",
     ),
+    TextFieldModel(
+      label: LanguageProvider.translate("inputs", "Email"),
+      key: "email",
+      controller: TextEditingController(text: authProvider.userEntity?.email),
+      textInputType: TextInputType.emailAddress,
+      validator: (value) => validateEmail(value),
+    ),
+
     // if (isEdit)
     TextFieldModel(
       label: LanguageProvider.translate("inputs", "phone"),

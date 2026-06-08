@@ -28,7 +28,7 @@ class ApiHandel {
   }
 
   Future<void> init() async {
-    lang = sharedPreferences.getString('language_code') ?? "ar";
+    lang = sharedPreferences.getString('language_code') ?? "en";
     token = sharedPreferences.getString('token');
     dio = Dio(
       BaseOptions(
@@ -36,7 +36,7 @@ class ApiHandel {
         // will not throw errors
         validateStatus: (status) => true,
         headers: {
-          "lang": lang ?? "ar",
+          "lang": lang ?? "en",
           'Content-Type': 'application/json',
           "Authorization": {'Bearer $token'},
         },
@@ -68,7 +68,7 @@ class ApiHandel {
       // baseUrl: Constants.domain,
       headers: {
         "Authorization": {'Bearer $token'},
-        "lang": lang ?? "ar",
+        "lang": lang ?? "en",
         'Content-Type': 'application/json',
       },
     );
@@ -98,6 +98,7 @@ class ApiHandel {
       return Left(dioException(response));
     } on DioException catch (e) {
       log(e.response?.data.toString() ?? "");
+
       return Left(e.response == null ? e : dioException(e.response!));
     } catch (e) {
       log('error3');
@@ -170,6 +171,7 @@ class ApiHandel {
         return Right(response);
       }
       log('error1');
+      log(response.data.toString());
       print("ssssssssssssssss${path}");
       return Left(dioException(response));
     } on DioException catch (e) {

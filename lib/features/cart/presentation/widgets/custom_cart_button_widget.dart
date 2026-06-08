@@ -1,3 +1,4 @@
+import 'package:flouka/features/address/presentation/providers/address_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -46,7 +47,9 @@ class CustomCartButtonWidget extends StatelessWidget {
               if(authProvider.userEntity?.addressEntity!=null){
                 checkoutProvider.goToPage();
               }else{
-                showToast(LanguageProvider.translate("error","add_address"));
+                showToast(LanguageProvider.translate("error","add_address"),isSnack: true,action: {"text":LanguageProvider.translate('buttons', 'add'),'onTap':(){
+                  Provider.of<AddressProvider>(context,listen: false).goToAddressPage();
+                }});
               }
 
             },
