@@ -19,6 +19,7 @@ class CartItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cartProvider = Provider.of<CartProvider>(context);
+    String? name = cartEntity.variant !=null ? (cartEntity.variant!.name) : (cartEntity.product!.title);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: 1.h,
@@ -49,7 +50,7 @@ class CartItemWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          cartEntity.variant?.name?? "",
+                          name ?? "",
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
                           style: TextStyleClass.normalStyle().copyWith(

@@ -3,29 +3,12 @@ import 'package:dio/dio.dart';
 import '../../domain/repo/product_repo.dart';
 import '../data_source/product_remote_data_source.dart';
 import '../models/product_model.dart';
+import '../models/product_review_model.dart';
 
 class ProductRepoImpl implements ProductRepo {
   final ProductRemoteDataSource productRemoteDataSource;
 
   ProductRepoImpl(this.productRemoteDataSource);
-
-  @override
-  Future<Either<DioException, ProductModel>> createProduct(
-    Map<String, dynamic> data,
-  ) async {
-    return await productRemoteDataSource.createProduct(data);
-  }
-
-
-
-  @override
-  Future<Either<DioException, bool>> deleteProduct(
-    Map<String, dynamic> data,
-  ) async {
-    return await productRemoteDataSource.deleteProduct(data);
-  }
-
-
 
   @override
   Future<Either<DioException, List<ProductModel>>> getFeatureProducts(
@@ -56,18 +39,12 @@ class ProductRepoImpl implements ProductRepo {
   //   return await productRemoteDataSource.getFeatures();
   // }
 
-  @override
-  Future<Either<DioException, ProductModel>> getMarketProductDetails(
-    Map<String, dynamic> data,
-  ) async {
-    return await productRemoteDataSource.getMarketProductDetails(data);
-  }
 
   @override
-  Future<Either<DioException, List<ProductModel>>> getMarketProducts(
+  Future<Either<DioException, List<ProductReviewModel>>> getProductReviews(
     Map<String, dynamic> data,
   ) async {
-    return await productRemoteDataSource.getMarketProducts(data);
+    return await productRemoteDataSource.getProductReviews(data);
   }
 
   @override
@@ -84,16 +61,15 @@ class ProductRepoImpl implements ProductRepo {
     return await productRemoteDataSource.getProducts(data);
   }
 
-  @override
-  Future<Either<DioException, ProductModel>> updateProduct(
-    Map<String, dynamic> data,
-  ) async {
-    return await productRemoteDataSource.updateProduct(data);
-  }
 
   @override
   Future<Either<DioException, List<ProductModel>>> getFeatures() {
     throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<DioException, bool>> createReview(Map<String, dynamic> data,) async {
+    return await productRemoteDataSource.createReview(data);
   }
 
   @override

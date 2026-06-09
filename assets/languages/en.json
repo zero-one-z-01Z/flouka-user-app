@@ -80,12 +80,22 @@
   },
   "global": {
     "saved_addresses": "Saved Addresses",
+    "cash": "Cash",
+    "online": "Online",
+    "loading": "Loading",
+    "slide_to_cancel": "Slide to cancel",
+    "no_chat": "Start chatting now",
+    "change_camera": "Change Camera",
+    "upload_review_images": "Upload Review Images",
     "notifications": "Notifications",
     "all_reviews": "All Reviews",
     "no_notifications" : "No Notifications yet",
     "order_address": "Select Location",
     "no_favorite": "No Favorite Products",
+    "delete_image": "Press image to delete",
+    "product_reviews": "Product Reviews",
     "cart_is_empty":"Add items to your cart first",
+    "customer_reviews":"Customer Reviews",
     "cart": "Cart",
     "discount": "Discount",
     "shipping": "Shipping",
@@ -177,6 +187,7 @@
     "cancel_entire_order": "Cancel the entire order",
     "continue_available": "Continue with available items ",
     "pending_payment": "Waiting for payment",
+    "delivered": "Delivered",
     "paid": "Payment received",
     "payment_failed": "Payment failed",
     "processing": "Order processing",
@@ -234,6 +245,15 @@
     "select_attributes_quantity": "Please select the attributes for each level"
   },
   "inputs": {
+    "pick" : "Pick Image",
+    "camera": "Camera",
+    "problem_type": "Problem Type",
+    "important": "Priority",
+    "reason_id": "Problem ID (Optional)",
+    "title": "Problem Title",
+    "description": "Problem Description",
+
+    "photo" : "Gallery",
     "phone": "Phone Number",
     "Email": "Email",
     "Name": "Name",
@@ -260,9 +280,12 @@
     "today": "today"
   },
   "buttons": {
+    "start_chat": "Start Chat",
     "pay": "Pay",
     "rate": "Rate",
+    "send": "Send",
     "Login": "Login",
+    "create_review": "Create Review",
     "add_new_address": "Add New Address",
     "activate": "Activate",
     "cancel": "Cancel",
@@ -303,6 +326,7 @@
     "ask_address": "To ensure the best service experience, please add your primary address. If you choose to skip this step, you may be asked to provide your current location temporarily, but a primary address will still be required before placing any order."
   },
   "settings": {
+    "terms": "Terms & Conditions",
     "settings": "Settings",
     "favourite": "Favourite",
     "language": "Language",
@@ -311,7 +335,7 @@
     "notification": "Notifications",
     "privacy_policy": "Privacy Policy",
     "help": "Help",
-    "about": "About",
+    "about": "About US",
     "delete_account": "Delete Account",
     "delete": "Delete",
     "logout": "Logout"
@@ -328,7 +352,9 @@
     "high": "High Priority",
     "in_progress": "In Progress",
     "wait_for_user": "Waiting for User",
-    "closed": "Closed"
+    "closed": "Closed",
+    "pending": "Pending",
+    "completed": "Completed"
   },
   "validation": {
     "number_error": "Please enter a valid number.",

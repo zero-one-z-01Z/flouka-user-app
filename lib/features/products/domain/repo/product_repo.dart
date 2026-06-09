@@ -2,6 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flouka/features/products/domain/entity/product_entity.dart';
 
+import '../entity/product_review_entity.dart';
+
 abstract class ProductRepo {
   // User Products
   Future<Either<DioException, List<ProductEntity>>> getFeatures();
@@ -23,20 +25,12 @@ abstract class ProductRepo {
   );
 
   // Maeket Products
-  Future<Either<DioException, List<ProductEntity>>> getMarketProducts(
+  Future<Either<DioException, List<ProductReviewEntity>>> getProductReviews(
     Map<String, dynamic> data,
   );
-  Future<Either<DioException, ProductEntity>> getMarketProductDetails(
-    Map<String, dynamic> data,
-  );
-  Future<Either<DioException, ProductEntity>> createProduct(
-    Map<String, dynamic> data,
-  );
-  Future<Either<DioException, ProductEntity>> updateProduct(
-    Map<String, dynamic> data,
-  );
-  Future<Either<DioException, bool>> deleteProduct(Map<String, dynamic> data);
+
   // Favorite
   Future<Either<DioException, List<ProductEntity>>> getFavorites(Map<String, dynamic> data);
   Future<Either<DioException, bool>> updateFavorite(Map<String, dynamic> data);
+  Future<Either<DioException, bool>> createReview(Map<String, dynamic> data);
 }

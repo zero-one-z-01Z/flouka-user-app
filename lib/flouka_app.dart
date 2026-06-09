@@ -25,7 +25,7 @@ class MainApp extends StatelessWidget {
               return AnnotatedRegion(
                 value: barColor(),
                 child: MaterialApp(
-                  title: 'flouka',
+                  title: 'Flouka',
                   debugShowCheckedModeBanner: false,
                   navigatorObservers: [routeObserver],
                   navigatorKey: Constants.navState,

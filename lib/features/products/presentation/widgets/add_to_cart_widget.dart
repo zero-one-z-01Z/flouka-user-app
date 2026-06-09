@@ -32,8 +32,10 @@ class AddToCartWidget extends StatelessWidget {
         ButtonWidget(onTap: (){
           if(productDetailsProvider.isAllAttributesSelected() && productQuantity.quantity!=null
           && authProvider.userEntity?.addressEntity!=null){
+            int stockId = productDetailsProvider.data!.variants.isNotEmpty ?
+            productDetailsProvider.variantEntity()!.stock!.id :  productDetailsProvider.data!.stock!.id;
             cartProvider.addToCart(storeId: productDetailsProvider.data!.store!.id, quantity: productQuantity.quantity!,
-                storeProductStockId: productDetailsProvider.variantEntity()!.stock!.id);
+                storeProductStockId: stockId);
           }else{
             if(authProvider.userEntity?.addressEntity == null){
               showToast(LanguageProvider.translate("error","add_address"),isSnack: true,action: {"text":LanguageProvider.translate('buttons', 'add'),'onTap':(){

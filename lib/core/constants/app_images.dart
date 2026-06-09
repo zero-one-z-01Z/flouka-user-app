@@ -23,6 +23,10 @@ abstract class AppImages {
   static const String facebook = 'assets/images/auth/facebook.png';
   static const String apple = 'assets/images/auth/apple.png';
 
+  //Tickets
+  static const String addTicket = 'assets/images/settings/add_ticket.png';
+  static const String addIcon = 'assets/images/settings/tickets.svg';
+
   //Home
   static const String cart = 'assets/images/home/cart.svg';
   static const String heart = 'assets/images/home/heart.svg';

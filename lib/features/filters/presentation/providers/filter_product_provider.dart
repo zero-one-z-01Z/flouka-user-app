@@ -90,6 +90,7 @@ class FilterProductProvider extends ChangeNotifier {
     id: -1,
     title: 'Loading Product Title...',
     image: "",
+    canRate: false,
     related: [],
     reviewImages: [],
     reviews: [],

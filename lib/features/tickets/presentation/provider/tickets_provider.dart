@@ -21,6 +21,7 @@ class TicketsProvider extends ChangeNotifier implements PaginationClass {
     paginationStarted = false;
     paginationFinished = false;
     pageIndex = 1;
+    notifyListeners();
   }
 
   void goToTicketsPage() {

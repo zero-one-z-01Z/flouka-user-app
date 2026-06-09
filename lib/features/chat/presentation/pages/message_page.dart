@@ -38,18 +38,20 @@ class MessagePage extends StatelessWidget {
                 if (messageProvider.chatEntity == null) {
                   return LoadingAnimationWidget(
                     gif: Lotties.chats,
-                    width: 100.w,
-                    height: 50.h,
+                    width: 60.w,
+                    height: 20.h,
                     topPadding: 0,
                   );
                 }
-                return Column(
-                  children: [
-                    Expanded(
-                      child: const MessagesWidget(),
-                    ),
-                    const SendMessageWidget(),
-                  ],
+                return const SafeArea(
+                  child:  Column(
+                    children: [
+                      Expanded(
+                        child: MessagesWidget(),
+                      ),
+                      SendMessageWidget(),
+                    ],
+                  ),
                 );
               },
             ),

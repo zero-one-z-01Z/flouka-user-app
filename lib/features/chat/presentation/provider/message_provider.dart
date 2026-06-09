@@ -131,12 +131,13 @@ class MessageProvider extends ChangeNotifier {
   }
 
   int id = 0;
-  Future getMessages({int? orderId, bool? isSupport = false}) async {
+  Future getMessages({required int orderId, required int storeId}) async {
 
     Map<String, dynamic> data = {};
     Either<DioException, ChatEntity> response;
     loading();
-    data['order_id'] = orderId ?? id;
+    data['order_id'] = orderId;
+    data['store_id'] = storeId;
 
     response = await ChatUseCases(sl()).getChatDetails(data);
     navPop();
@@ -149,22 +150,15 @@ class MessageProvider extends ChangeNotifier {
     });
   }
 
-  void refresh() {
+  void refresh({required int orderId, required int storeId }) {
     clear();
-    getMessages();
+    getMessages(orderId: orderId, storeId: storeId);
   }
 
 
-  void goToMessagePage({int? id, }) async {
-    if (id != null) {
-      this.id = id;
-      // Constants.globalContext().read<OrderDetailsProvider>().clearMessage(id);
-    }
-
-
-
+  void goToMessagePage({required int orderId, required int storeId }) async {
     clear();
-    await getMessages();
+    await getMessages(orderId: orderId, storeId: storeId);
     navP(const MessagePage(), then: (val) {
       clear();
     });

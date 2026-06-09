@@ -1,13 +1,9 @@
-
-import 'package:flutter/cupertino.dart';
+import 'package:flouka/core/config/app_color.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-import 'package:social_media_recorder/audio_encoder_type.dart';
 import 'package:social_media_recorder/screen/social_media_recorder.dart';
-
 import '../../../../core/config/app_styles.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/helper_function/convert.dart';
@@ -31,7 +27,7 @@ class SendMessageWidget extends StatelessWidget {
       child: Container(
         width: 100.w,
         decoration: BoxDecoration(
-            color: Colors.black,
+            color: AppColor.primaryColor.withOpacity(0.4),
         ),
         padding: EdgeInsets.only(top: 0.8.h,bottom: 3.h),
         child: Stack(
@@ -43,11 +39,8 @@ class SendMessageWidget extends StatelessWidget {
                   sendRequestFunction: (soundFile,time) async{
                     await delay(100);
                     messageProvider.addMessage(file: soundFile,type: 'audio',sec: convertToSeconds(time));
-
                   },
                   recordIconWhenLockBackGroundColor: Colors.transparent,
-
-
                   recordIconWhenLockedRecord: Icon(
                     Icons.send,
                     textDirection: LanguageProvider.isAr()?TextDirection.ltr:TextDirection.ltr,
@@ -92,7 +85,7 @@ class SendMessageWidget extends StatelessWidget {
                         onTap: ()async{
                           final XFile? image = await chooseImage();
                           if(image!=null){
-                            navP(ImagePreviewWidget(img: image, showSendButton: false,));
+                            navP(ImagePreviewWidget(img: image, showSendButton: true,));
                           }
                         },
                         child: Padding(

@@ -33,7 +33,7 @@
 
 
     <application
-        android:label="flouka"
+        android:label="Flouka"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
 

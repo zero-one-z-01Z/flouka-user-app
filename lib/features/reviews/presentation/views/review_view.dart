@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import '../../../language/presentation/provider/language_provider.dart';
 import '../../../products/domain/entity/product_review_entity.dart';
 import '../providres/review_provider.dart';
 import '../widgets/images_page_view_builder.dart';
@@ -14,7 +15,9 @@ class ReviewView extends StatelessWidget {
     final reviewProvider = Provider.of<ReviewProvider>(context);
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(LanguageProvider.translate("global","customer_reviews")),
+      ),
       body: SizedBox(
         height: 100.h,
         width: 100.w,

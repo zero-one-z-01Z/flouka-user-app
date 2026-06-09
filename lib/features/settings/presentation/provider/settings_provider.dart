@@ -56,7 +56,7 @@ class SettingsProvider extends ChangeNotifier {
   }
 
   void goToPrivacy() {
-    navP(WebViewPage(title: 'privacy', link: settingsEntity?.privacyLink ?? ""));
+    navP(WebViewPage(title: 'privacy_policy', link: settingsEntity?.privacyLink ?? ""));
   }
 
   void goToTerms() {
@@ -122,16 +122,24 @@ class SettingsProvider extends ChangeNotifier {
       text: "privacy_policy",
       color: const Color(0xff70C090),
       onTap: () {
-        // goToPrivacy();
+        goToPrivacy();
       },
     ),
-    // NewSettingsEntity(
-    //   svgImage: Assets.images.settings.rights.path,
-    //   text: "terms",
-    //   onTap: () {
-    //     // goToTerms();
-    //   },
-    // ),
+    ProfileSettingsEntity(
+      svgImage: AppImages.settingsPrivacyPolicy,
+      text: "terms",
+      onTap: () {
+        goToTerms();
+      },
+    ),
+    ProfileSettingsEntity(
+      svgImage: AppImages.settingsPrivacyPolicy,
+      text: "about",
+      onTap: () {
+        navP(WebViewPage(title: 'about', link: settingsEntity?.aboutLink ?? ""));
+      },
+    ),
+
     // NewSettingsEntity(
     //   svgImage: Assets.images.settings.rating.path,
     //   text: "rate_app",

@@ -7,14 +7,14 @@ import '../models/message_model.dart';
 class ChatRemoteDataSources {
 
   Future<Either<DioException, ChatModel>> getChatDetails(Map<String, dynamic> data) async {
-    var response = await ApiHandel.getInstance.post('user/get_chat_details', data);
+    var response = await ApiHandel.getInstance.post('get_chat_details', data);
     return response.fold((l) => Left(l), (r) {
       return Right(ChatModel.fromJson(r.data['data']));
     });
   }
 
   Future<Either<DioException, MessageModel>> createMessage(Map<String, dynamic> data) async {
-    var response = await ApiHandel.getInstance.post('user/create_message', data);
+    var response = await ApiHandel.getInstance.post('create_message', data);
     return response.fold((l) => Left(l), (r) {
       return Right(MessageModel.fromJson(r.data['data']));
     });

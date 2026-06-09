@@ -1,19 +1,24 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flouka/core/config/app_color.dart';
 import 'package:flouka/features/language/presentation/provider/language_provider.dart';
+import 'package:flouka/features/reviews/presentation/providres/create_rate_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../core/config/app_styles.dart';
 import '../../../../core/helper_function/convert.dart';
+import '../../../../core/widgets/button_widget.dart';
 import '../../../../core/widgets/custom_star_rating_widget.dart';
 import '../../../../core/widgets/price_widget.dart';
 import '../../domain/entity/order_details_entity.dart';
+import '../../domain/entity/order_entity.dart';
 
 class OrderDetailsItemWidget extends StatelessWidget {
   const OrderDetailsItemWidget({super.key, required this.orderDetailsEntity});
   final OrderDetailsEntity orderDetailsEntity;
   @override
   Widget build(BuildContext context) {
+
     return Container(
       padding: EdgeInsets.only(left: 2.w, right: 2.w, top: 2.h, bottom: 3.h),
       decoration: BoxDecoration(
@@ -41,6 +46,10 @@ class OrderDetailsItemWidget extends StatelessWidget {
             children: List.generate(
               orderDetailsEntity.vendorOrder?.items?.length ?? 0,
               (index) {
+              OrderItemEntity orderItem = orderDetailsEntity.vendorOrder!.items![index];
+                String? name = orderItem.variant !=null ? (orderItem.variant!.name) : (orderItem.product!.title);
+                num? price = orderItem.variant !=null ? (orderItem.variant!.finalPrice) : (orderItem.product!.finalPrice);
+
                 return Column(
                   children: [
                     Row(
@@ -57,8 +66,7 @@ class OrderDetailsItemWidget extends StatelessWidget {
                         const SizedBox(width: 16),
                         Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              orderDetailsEntity.vendorOrder?.items?[index].variant?.name ?? "",
+                            Text(name ?? "",
                               overflow: TextOverflow.ellipsis,
                               maxLines: 2,
                               style: TextStyleClass.normalStyle().copyWith(
@@ -73,15 +81,28 @@ class OrderDetailsItemWidget extends StatelessWidget {
                                 color: orderDetailsEntity.vendorOrder?.items?[index].status?.color ?? Colors.black,
                               ),
                             ),
-                            Text("${orderDetailsEntity.vendorOrder?.items?[index].variant?.finalPrice}\$")
+                            Text("${price}\$",style: TextStyleClass.smallStyle(),)
                           ],
                         )),
+                        SizedBox(width: 2.w),
+                        if(orderItem.canReviewProduct??false)
+                          Expanded(
+                            child: ButtonWidget(
+                              borderRadius: 10,
+                              color: const Color(0xffdff7ff),
+                              onTap: () {
+                                CreateRateProvider createRateProvider = Provider.of(context, listen: false);
+                                createRateProvider.gotoReviewPage(itemId: orderItem.id!, orderId: orderDetailsEntity.id!, product: true);
+                              },
+                              text:"rate",
+                              textStyle: TextStyleClass.smallStyle(),
+                              height: 4.h,
+                            ),
+                          ),
                       ],
                     ),
 
-                    if (index <
-                        ((orderDetailsEntity.vendorOrder?.items?.length ?? 0) -
-                            1))
+                    if (index < ((orderDetailsEntity.vendorOrder?.items?.length ?? 0) - 1))
                       Container(
                         color: Colors.grey.shade200,
                         width: 100.w,

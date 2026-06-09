@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:voice_message_package/voice_message_package.dart';
 // import 'package:voice_message_package/voice_message_package.dart';
 
 class TicketMessageEntity extends Equatable {
@@ -14,7 +15,7 @@ class TicketMessageEntity extends Equatable {
   double? duration;
   DateTime createdAt;
   DateTime updatedAt;
-  // VoiceController? voiceController;
+  VoiceController? voiceController;
   bool isFile;
 
   TicketMessageEntity({
@@ -22,7 +23,7 @@ class TicketMessageEntity extends Equatable {
     required this.ticketId,
     required this.message,
     required this.isFile,
-    // required this.voiceController,
+    required this.voiceController,
     required this.type,
     required this.sender,
     this.duration,

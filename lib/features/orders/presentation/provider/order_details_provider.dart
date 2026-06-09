@@ -60,6 +60,19 @@ class OrderDetailsProvider extends ChangeNotifier
     notifyListeners();
   }
 
+  void updateAfterRateSuccess({required bool isProduct, required int id}){
+    if(isProduct){
+      int index = data!.vendorOrder?.items?.indexWhere((element) => element.id == id) ?? -1;
+      if(index != -1){
+        data!.vendorOrder?.items?[index].canReviewProduct = false;
+      }
+    }else{
+      if(data!.vendorOrder?.store?.id == id){
+        data!.vendorOrder?.canRateStore =false;
+      }
+    }
+    notifyListeners();
+  }
 
   @override
   Future<void> goToPage([Map<String, dynamic>? inputs]) async {

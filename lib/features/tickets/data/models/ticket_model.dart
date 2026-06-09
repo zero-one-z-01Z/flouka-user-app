@@ -13,7 +13,6 @@ class TicketModel extends TicketEntity {
     required super.reasonId,
     required super.important,
     required super.status,
-    required super.adminId,
     required super.createdAt,
     required super.updatedAt,
     super.lastMessage,
@@ -37,7 +36,7 @@ class TicketModel extends TicketEntity {
       reasonId: json['reason_id'],
       important: json['important'],
       status: json['status'],
-      adminId: json['admin_id'],
+
       createdAt: DateTime.parse(json['created_at']),
       updatedAt: DateTime.parse(json['updated_at']),
       lastMessage: json['last_message'] != null

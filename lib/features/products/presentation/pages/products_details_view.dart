@@ -12,6 +12,8 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../core/config/app_color.dart';
 import '../../../language/presentation/provider/language_provider.dart';
+import '../../../reviews/presentation/providres/product_reviews_provider.dart';
+import '../../../stores/presentation/providers/store_details_provider.dart';
 import '../providers/products_details_provider.dart';
 import '../widgets/avg_rating_widget.dart';
 import '../widgets/frequently_list_widget.dart';
@@ -103,7 +105,8 @@ class ProductsDetailsView extends StatelessWidget {
                             color: const Color(0xffeffbff),
                             child: gradiantButton(
                               vendor: productDetailsProvider.data!.store!,
-                              onTap: () {},
+                              onTap: () {
+                              },
                               gradiantcolors: [Colors.white, AppColor.primaryColor],
                             ),
                           ),
@@ -145,8 +148,15 @@ class ProductsDetailsView extends StatelessWidget {
                             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(LanguageProvider.translate("global", "all_reviews"),style: TextStyleClass.normalStyle(),),
-                                Text(LanguageProvider.translate("global", "see_all"),
-                                  style: TextStyleClass.normalStyle(color: AppColor.primaryColor),),
+                                InkWell(
+                                  onTap: (){
+                                    Provider.of<ProductReviewsProvider>(context, listen: false).goToPage({
+                                      'product_id': productDetailsProvider.data!.id,
+                                    });
+                                  },
+                                  child: Text(LanguageProvider.translate("global", "see_all"),
+                                    style: TextStyleClass.normalStyle(color: AppColor.primaryColor),),
+                                ),
                               ],
                             ),
                             SizedBox(height: 2.h),
@@ -165,9 +175,12 @@ class ProductsDetailsView extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: 5.h),
-                    HotDealsWidget(products: productDetailsProvider.data!.recommended,),
-                    SizedBox(height: 5.h),
+                    if(productDetailsProvider.data!.recommended.isNotEmpty)...[
+                      SizedBox(height: 5.h),
+                      HotDealsWidget(products: productDetailsProvider.data!.recommended,),
+                      SizedBox(height: 5.h),
+                    ],
+
 
                   ],
                 ),

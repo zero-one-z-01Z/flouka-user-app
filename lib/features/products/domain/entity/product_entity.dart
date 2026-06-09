@@ -23,6 +23,7 @@ class ProductEntity {
   final List<ProductEntity> recommended;
   final List<ProductReviewEntity> reviews;
   final StockEntity? stock;
+  bool canRate;
 
   ProductEntity({
     required this.id,
@@ -31,6 +32,7 @@ class ProductEntity {
     required this.description,
      this.discountTitle,
     required this.price,
+    required this.canRate,
     required this.store,
     required this.reviews,
     required this.related,

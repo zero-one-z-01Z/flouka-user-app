@@ -2,16 +2,19 @@ import 'package:camera/camera.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:voice_message_package/voice_message_package.dart';
 // import 'package:voice_message_package/voice_message_package.dart';
 // import 'package:web_socket_channel/web_socket_channel.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/dialog/snack_bar.dart';
+import '../../../../core/helper_function/helper_function.dart';
 import '../../../../core/helper_function/image.dart';
 import '../../../../core/helper_function/navigation.dart';
 import '../../../../core/widgets/img_preview_widget.dart';
 import '../../data/models/ticket_message_model.dart';
 import '../../domain/entities/ticket_entity.dart';
 import '../../domain/usecases/tickets_use_case.dart';
+import '../pages/ticket_message_page.dart';
 import 'tickets_provider.dart';
 
 class TicketMessageProvider extends ChangeNotifier {
@@ -80,18 +83,16 @@ class TicketMessageProvider extends ChangeNotifier {
       type: type,
       isFile: true,
       duration: sec?.toDouble() ?? 0,
-      // voiceController: type != "audio",
-
-      //     : VoiceController(
-      //   audioSrc: file.path,
-      //   onComplete: () {},
-      //   onPause: () {},
-      //   onPlaying: () => stopAllControllers(file),
-      //   onError: (err) {},
-      //   isFile: true,
-      //   maxDuration: Duration(seconds: (sec ?? 0).toInt()),
-      // ), sender: 'user', updatedAt: DateTime.now(),
-      sender: '',
+      voiceController: type != "audio" ? null : VoiceController(
+        audioSrc: file.path,
+        onComplete: () {},
+        onPause: () {},
+        onPlaying: () => stopAllControllers(file),
+        onError: (err) {},
+        isFile: true,
+        maxDuration: Duration(seconds: (sec ?? 0).toInt()),
+      ),
+      sender: 'user',
       updatedAt: DateTime.now(),
     );
     ticketEntity?.messages?.insert(0, message);
@@ -108,11 +109,11 @@ class TicketMessageProvider extends ChangeNotifier {
   }
 
   void goToMessagePage({required int id}) {
-    // getTicketDetails(id: id);
-    // navP( TicketMessagePage(), then: (val) {
-    //   delay(300).then((_) => clear());
-    //   closeConnection();
-    // });
+    getTicketDetails(id: id);
+    navP(const TicketMessagePage(), then: (val) {
+      delay(300).then((_) => clear());
+      // closeConnection();
+    });
     scrollToBottom();
   }
 

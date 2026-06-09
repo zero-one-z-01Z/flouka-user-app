@@ -23,6 +23,7 @@ class OrderItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final OrderDetailsProvider orderDetailsProvider = Provider.of<OrderDetailsProvider>(context);
     final CreateRateProvider createRateProvider = Provider.of<CreateRateProvider>(context);
+
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
@@ -65,7 +66,8 @@ class OrderItemWidget extends StatelessWidget {
                         height: 10.w,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          image: DecorationImage(fit:BoxFit.cover,image: CachedNetworkImageProvider(orderEntity.vendorOrders?[index].vendor?.logo ?? " "))
+                          image: DecorationImage(fit:BoxFit.cover,
+                              image: CachedNetworkImageProvider(orderEntity.vendorOrders?[index].vendor?.logo ?? " "))
                         ),
                       ),
                       SizedBox(width: 2.w,),
@@ -95,6 +97,8 @@ class OrderItemWidget extends StatelessWidget {
                   Wrap(
                     children: List.generate(orderEntity.vendorOrders?[index].items?.length??0, (itemIndex) {
                       OrderItemEntity orderItem =orderEntity.vendorOrders![index].items![itemIndex];
+                      String? name = orderItem.variant !=null ? (orderItem.variant!.name) : (orderItem.product!.title);
+
                       return InkWell(
                         onTap: (){
                           orderDetailsProvider.goToPage({
@@ -117,7 +121,7 @@ class OrderItemWidget extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    orderItem.variant?.name ?? " ",
+                                    name ?? " ",
                                     style: TextStyleClass.smallStyle(color: const Color(0xff333542),),
                                   ),
                                   SizedBox(height: .2.h),

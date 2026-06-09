@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import '../entity/product_entity.dart';
+import '../entity/product_review_entity.dart';
 import '../repo/product_repo.dart';
 
 class ProductUseCase {
@@ -8,17 +9,8 @@ class ProductUseCase {
 
   ProductUseCase(this.productRepo);
 
-  Future<Either<DioException, ProductEntity>> createProduct(
-    Map<String, dynamic> data,
-  ) async {
-    return await productRepo.createProduct(data);
-  }
 
-  Future<Either<DioException, bool>> deleteProduct(
-    Map<String, dynamic> data,
-  ) async {
-    return await productRepo.deleteProduct(data);
-  }
+
 
   Future<Either<DioException, List<ProductEntity>>> getRecommended(
     Map<String, dynamic> data,
@@ -43,16 +35,12 @@ class ProductUseCase {
     return await productRepo.getProducts({});
   }
 
-  Future<Either<DioException, ProductEntity>> getMarketProductDetails(
-    Map<String, dynamic> data,
-  ) async {
-    return await productRepo.getMarketProductDetails(data);
-  }
 
-  Future<Either<DioException, List<ProductEntity>>> getMarketProducts(
+
+  Future<Either<DioException, List<ProductReviewEntity>>> getProductReviews(
     Map<String, dynamic> data,
   ) async {
-    return await productRepo.getMarketProducts(data);
+    return await productRepo.getProductReviews(data);
   }
 
   Future<Either<DioException, ProductEntity>> getProductDetails(
@@ -67,11 +55,7 @@ class ProductUseCase {
     return await productRepo.getProducts(data);
   }
 
-  Future<Either<DioException, ProductEntity>> updateProduct(
-    Map<String, dynamic> data,
-  ) async {
-    return await productRepo.updateProduct(data);
-  }
+
 
   Future<Either<DioException, List<ProductEntity>>> getFavorites(Map<String, dynamic> data,) async {
     return await productRepo.getFavorites(data);
@@ -79,6 +63,11 @@ class ProductUseCase {
 
   Future<Either<DioException, bool>> updateFavorite(Map<String, dynamic> data,) async {
     return await productRepo.updateFavorite(data);
+  }
+
+
+  Future<Either<DioException, bool>> createReview(Map<String, dynamic> data,) async {
+    return await productRepo.createReview(data);
   }
 
 

@@ -58,9 +58,9 @@ extension ProductVariantProvider on ProductDetailsProvider{
   }
 
   bool canAddToCart(){
-    if(data?.stock !=null){
+    if(data!.attributes.isEmpty){
       ProductQuantityProvider quantityProvider = Provider.of(Constants.globalContext(),listen: false);
-      return quantityProvider.quantity != null;
+      return data!.stock !=null;
     }else{
       return variants.length == data!.attributes.length;
     }

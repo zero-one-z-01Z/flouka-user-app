@@ -24,7 +24,7 @@ class MessagesWidget extends StatelessWidget {
         return Expanded(
           child: ListView(
             reverse: true,
-            physics: AlwaysScrollableScrollPhysics(),
+            physics:const AlwaysScrollableScrollPhysics(),
             controller: messageProvider.controllerList,
             children: List.generate(
               messageProvider.chatEntity?.messages.length ?? 3,

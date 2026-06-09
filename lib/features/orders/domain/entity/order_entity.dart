@@ -157,7 +157,9 @@ enum OrderStatus {
           this == OrderStatus.paymentFailed ||
           this == OrderStatus.refunded;
 
-  bool get isCompleted => this == OrderStatus.fulfilled;
+  bool get isEnded => this == OrderStatus.fulfilled || this == OrderStatus.refunded
+
+      || this == OrderStatus.cancelled || this == OrderStatus.partiallyFulfilled;
 
   bool get isActive =>
       !isCancelled && this != OrderStatus.fulfilled;
@@ -223,7 +225,7 @@ class VendorOrderEntity {
   final double? discount;
   final double? deliveryPrice;
   final double? total;
-  final bool? canRateStore;
+  bool? canRateStore;
   final List<OrderItemEntity>? items;
 
   VendorOrderEntity({
@@ -303,7 +305,7 @@ class OrderItemEntity {
   final double? price;
   final OrderItemStatus? status;
   final dynamic attributes;
-  final bool? canReviewProduct;
+  bool? canReviewProduct;
 
   OrderItemEntity({
     this.id,

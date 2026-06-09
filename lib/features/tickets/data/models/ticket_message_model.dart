@@ -1,5 +1,10 @@
+import 'package:provider/provider.dart';
+import 'package:voice_message_package/voice_message_package.dart';
+
+import '../../../../core/constants/constants.dart';
 import '../../../../core/helper_function/convert.dart';
 import '../../domain/entities/ticket_message_entity.dart';
+import '../../presentation/provider/ticket_message_provider.dart';
 
 class TicketMessageModel extends TicketMessageEntity {
   TicketMessageModel({
@@ -10,27 +15,27 @@ class TicketMessageModel extends TicketMessageEntity {
     required super.sender,
     required super.isFile,
     required super.duration,
-    // required super.voiceController,
+    required super.voiceController,
     required super.createdAt,
     required super.updatedAt,
   });
 
   factory TicketMessageModel.fromJson(Map<String, dynamic> json) {
-    // VoiceController? voiceController;
+    VoiceController? voiceController;
 
     if (json['type'] == 'audio') {
-      // voiceController = VoiceController(
-      //   audioSrc: json['message'],
-      //   onComplete: () {},
-      //   onPause: () {},
-      //   onPlaying: () {
-      //    Provider.of<TicketMessageProvider>(Constants.globalContext(),listen:false).stopAllControllers(json['message']);
-      //   },
-      //   onError: (err) {},
-      //   isFile: false,
-      //   maxDuration:
-      //   Duration(seconds: convertDataToDouble(json['duration']).toInt()),
-      // );
+      voiceController = VoiceController(
+        audioSrc: json['message'],
+        onComplete: () {},
+        onPause: () {},
+        onPlaying: () {
+         Provider.of<TicketMessageProvider>(Constants.globalContext(),listen:false).stopAllControllers(json['message']);
+        },
+        onError: (err) {},
+        isFile: false,
+        maxDuration:
+        Duration(seconds: convertDataToDouble(json['duration']).toInt()),
+      );
     }
 
     return TicketMessageModel(
@@ -40,7 +45,7 @@ class TicketMessageModel extends TicketMessageEntity {
       type: json['type'],
       sender: json['sender'],
       isFile: false,
-      // voiceController: voiceController,
+      voiceController: voiceController,
       duration: json['duration'] != null ? convertDataToDouble(json['duration']) : null,
       createdAt: DateTime.parse(json['created_at']),
       updatedAt: DateTime.parse(json['updated_at']),

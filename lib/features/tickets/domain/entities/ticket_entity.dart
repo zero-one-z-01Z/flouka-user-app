@@ -12,7 +12,6 @@ class TicketEntity extends Equatable {
   final dynamic reasonId;
   final String important;
   final String status;
-  final int adminId;
   final DateTime createdAt;
   final DateTime updatedAt;
   final TicketMessageEntity? lastMessage;
@@ -30,7 +29,6 @@ class TicketEntity extends Equatable {
     required this.reasonId,
     required this.important,
     required this.status,
-    required this.adminId,
     required this.createdAt,
     required this.updatedAt,
     this.lastMessage,
@@ -48,7 +46,6 @@ class TicketEntity extends Equatable {
     reasonId,
     important,
     status,
-    adminId,
     createdAt,
     updatedAt,
     lastMessage,

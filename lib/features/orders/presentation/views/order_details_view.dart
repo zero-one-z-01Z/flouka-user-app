@@ -14,6 +14,7 @@ import '../widget/order_details_item_widget.dart';
 import '../widget/order_info_widget.dart';
 import '../widget/order_price_details_widget.dart';
 import '../widget/order_status_widget.dart';
+import '../widget/order_store_widget.dart';
 
 class OrderDetailsView extends StatelessWidget {
   const OrderDetailsView({super.key});
@@ -58,6 +59,9 @@ class OrderDetailsView extends StatelessWidget {
                     ],
                     OrderStatusWidget(order: orderDetailsProvider.data!,),
                     SizedBox(height: 1.3.h),
+                    OrderStoreWidget(order:orderDetailsProvider.data! ,),
+                    SizedBox(height: 1.3.h),
+                    if(orderDetailsProvider.data!.vendorOrder!.canRateStore ==true)
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
                       decoration: BoxDecoration(

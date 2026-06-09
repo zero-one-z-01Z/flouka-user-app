@@ -9,8 +9,9 @@ import '../../../reviews/presentation/providres/review_provider.dart';
 import '../../domain/entity/product_review_entity.dart';
 
 class ReviewItemWidget extends StatelessWidget {
-  const ReviewItemWidget({super.key, this.textColor, required this.review});
+  const ReviewItemWidget({super.key, this.textColor, required this.review, this.onlyOne =false});
   final Color? textColor;
+  final bool onlyOne;
   final ProductReviewEntity review;
   @override
   Widget build(BuildContext context) {
@@ -121,6 +122,7 @@ class ReviewItemWidget extends StatelessWidget {
                 ),
               ),
             ),
+            if(!onlyOne)
             const Divider(color: Colors.grey, thickness: 0.4),
           ],
         ),

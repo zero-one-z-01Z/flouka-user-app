@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:sizer/sizer.dart';
+import 'package:voice_message_package/voice_message_package.dart';
 import '../../../../core/config/app_color.dart';
 import '../../../../core/config/app_styles.dart';
 import '../../../../core/constants/constants.dart';
+import '../../../../core/helper_function/navigation.dart';
+import '../../../../core/widgets/img_preview_widget.dart';
 import '../../domain/entities/ticket_message_entity.dart';
 
 class TicketMessageWidget extends StatefulWidget {
@@ -60,59 +64,59 @@ class _MessageWidgetState extends State<TicketMessageWidget> {
         if (widget.messageEntity.type == 'audio')
           SizedBox(
             width: Constants.isTablet ? 50.w : null,
-            // child: VoiceMessageView(
-            //   backgroundColor: !(widget.messageEntity.fromMe())
-            //       ? Colors.grey.shade200
-            //       : AppColor.primaryColor,
-            //   controller: widget.messageEntity.voiceController!,
-            //   innerPadding: 12,
-            //   cornerRadius: 20,
-            //   activeSliderColor: !(widget.messageEntity.fromMe())
-            //       ? AppColor.primaryColor
-            //       : Colors.grey.shade200,
-            //   playIcon: Icon(
-            //     Icons.play_arrow,
-            //     color: !(widget.messageEntity.fromMe())
-            //         ? Colors.grey.shade200
-            //         : AppColor.primaryColor,
-            //     size: Constants.isTablet ? 8.w : 5.w,
-            //   ),
-            //   pauseIcon: Icon(
-            //     Icons.pause,
-            //     color: !(widget.messageEntity.fromMe())
-            //         ? Colors.grey.shade200
-            //         : AppColor.primaryColor,
-            //     size: Constants.isTablet ? 8.w : 5.w,
-            //   ),
-            //   refreshIcon: Icon(
-            //     Icons.refresh,
-            //     color: !(widget.messageEntity.fromMe())
-            //         ? Colors.grey.shade200
-            //         : AppColor.primaryColor,
-            //     size: Constants.isTablet ? 8.w : 5.w,
-            //   ),
-            //   stopDownloadingIcon: Icon(
-            //     Icons.stop,
-            //     color: !(widget.messageEntity.fromMe())
-            //         ? Colors.grey.shade200
-            //         : AppColor.primaryColor,
-            //     size: Constants.isTablet ? 8.w : 5.w,
-            //   ),
-            //   circlesColor: !(widget.messageEntity.fromMe())
-            //       ? AppColor.primaryColor
-            //       : Colors.grey.shade200,
-            //   size: (Constants.isTablet ? 10.w : 30),
-            //   circlesTextStyle: AppStyles.style15Normal.copyWith(
-            //     color: !(widget.messageEntity.fromMe())
-            //         ? Colors.white
-            //         : AppColor.primaryColor,
-            //   ),
-            //   counterTextStyle: AppStyles.style15Normal.copyWith(
-            //     color: !(widget.messageEntity.fromMe())
-            //         ? AppColor.primaryColor
-            //         : Colors.white,
-            //   ),
-            // ),
+            child: VoiceMessageView(
+              backgroundColor: !(widget.messageEntity.fromMe())
+                  ? Colors.grey.shade200
+                  : AppColor.primaryColor,
+              controller: widget.messageEntity.voiceController!,
+              innerPadding: 12,
+              cornerRadius: 20,
+              activeSliderColor: !(widget.messageEntity.fromMe())
+                  ? AppColor.primaryColor
+                  : Colors.grey.shade200,
+              playIcon: Icon(
+                Icons.play_arrow,
+                color: !(widget.messageEntity.fromMe())
+                    ? Colors.grey.shade200
+                    : AppColor.primaryColor,
+                size: Constants.isTablet ? 8.w : 5.w,
+              ),
+              pauseIcon: Icon(
+                Icons.pause,
+                color: !(widget.messageEntity.fromMe())
+                    ? Colors.grey.shade200
+                    : AppColor.primaryColor,
+                size: Constants.isTablet ? 8.w : 5.w,
+              ),
+              refreshIcon: Icon(
+                Icons.refresh,
+                color: !(widget.messageEntity.fromMe())
+                    ? Colors.grey.shade200
+                    : AppColor.primaryColor,
+                size: Constants.isTablet ? 8.w : 5.w,
+              ),
+              stopDownloadingIcon: Icon(
+                Icons.stop,
+                color: !(widget.messageEntity.fromMe())
+                    ? Colors.grey.shade200
+                    : AppColor.primaryColor,
+                size: Constants.isTablet ? 8.w : 5.w,
+              ),
+              circlesColor: !(widget.messageEntity.fromMe())
+                  ? AppColor.primaryColor
+                  : Colors.grey.shade200,
+              size: (Constants.isTablet ? 10.w : 30),
+              circlesTextStyle: TextStyleClass.smallStyle().copyWith(
+                color: !(widget.messageEntity.fromMe())
+                    ? Colors.white
+                    : AppColor.primaryColor,
+              ),
+              counterTextStyle: TextStyleClass.smallStyle().copyWith(
+                color: !(widget.messageEntity.fromMe())
+                    ? AppColor.primaryColor
+                    : Colors.white,
+              ),
+            ),
           ),
         if (widget.messageEntity.type == 'image')
           Row(
@@ -122,8 +126,8 @@ class _MessageWidgetState extends State<TicketMessageWidget> {
             children: [
               InkWell(
                 onTap: () {
-                  // navP(ImagePreviewWidget(imgPath: widget.messageEntity.isFile?null:widget.messageEntity.message,
-                  //   img: !widget.messageEntity.isFile?null:XFile(widget.messageEntity.message), showSendButton: false,));
+                  navP(ImagePreviewWidget(imgPath: widget.messageEntity.isFile?null:widget.messageEntity.message,
+                    img: !widget.messageEntity.isFile?null:XFile(widget.messageEntity.message), showSendButton: false,));
                 },
                 child: Container(
                   constraints: BoxConstraints(maxWidth: 30.w, maxHeight: 22.h),

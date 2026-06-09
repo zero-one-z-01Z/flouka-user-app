@@ -38,7 +38,7 @@ class UploadMultiImageWidget extends StatelessWidget {
           // ),
         ],
       ),
-      padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 0.5.h),
+      padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.5.h),
       child: InkWell(
         onTap: () async {
           List<XFile>? pickedImages = await chooseImageMulti(context);
@@ -58,25 +58,20 @@ class UploadMultiImageWidget extends StatelessWidget {
                       'global',
                       title ?? 'upload_image',
                     ).replaceAll('*count*', count.toString()),
-                    style: TextStyleClass.normalStyle().copyWith(
-                      color: AppColor.primaryColor,
-                    ),
-                  ),
+                    style: TextStyleClass.normalStyle()),
                 ],
               ),
             SizedBox(height: 0.5.h),
-            if (images.isNotEmpty)
-              SizedBox(
-                width: 94.w,
-                height: 10.h,
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 2.h),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey.shade500),
+                borderRadius: BorderRadius.circular(5),
+              ),
                 child: Row(
                   children: [
                     Container(
-                      margin: EdgeInsets.symmetric(vertical: 1.h),
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 4.w,
-                        vertical: 1.5.h,
-                      ),
+                      width: 18.w,height: 18.w,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(2.w),
                         color: AppColor.primaryColor,
@@ -85,54 +80,42 @@ class UploadMultiImageWidget extends StatelessWidget {
                       child: Icon(Icons.add, size: 6.w, color: Colors.white),
                     ),
                     Expanded(
-                      child: ListView.builder(
-                        itemCount: images.length,
+                      child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
-                        itemBuilder: (ctx, i) {
-                          return InkWell(
-                            onTap: () {
-                              deleteImage(i);
-                            },
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 2.w),
-                              child: Container(
-                                width: 18.w,
-                                height: 14.w,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  image: (images[i] is XFile)
-                                      ? DecorationImage(
-                                          image: FileImage(File(images[i].path)),
-                                          fit: BoxFit.cover,
-                                        )
-                                      : DecorationImage(
-                                          image: CachedNetworkImageProvider(
-                                            images[i].image,
-                                          ),
-                                          fit: BoxFit.cover,
-                                        ),
+                        child: Row(
+                          children: List.generate(images.length, (index) {
+                            return InkWell(
+                              onTap: () {
+                                deleteImage(index);
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 1.w),
+                                child: Container(
+                                  width: 18.w,height: 18.w,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    image: (images[index] is XFile)
+                                        ? DecorationImage(
+                                      image: FileImage(File(images[index].path)),
+                                      fit: BoxFit.cover,
+                                    )
+                                        : DecorationImage(
+                                      image: CachedNetworkImageProvider(
+                                        images[index].image,
+                                      ),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
-                          );
-                        },
+                            );
+                          },),
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
-            if (images.isEmpty)
-              Container(
-                margin: EdgeInsets.symmetric(vertical: 1.h),
-                padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.5.h),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(2.w),
-                  color: AppColor.primaryColor,
-                  border: Border.all(color: Colors.white, width: 2),
-                ),
-                child: const Icon(Icons.add),
-              ),
-
             Row(
               children: [
                 if (images.isNotEmpty)

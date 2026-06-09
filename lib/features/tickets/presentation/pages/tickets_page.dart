@@ -1,10 +1,15 @@
+import 'package:flouka/core/config/app_styles.dart';
+import 'package:flouka/core/constants/app_images.dart';
+import 'package:flouka/core/constants/app_lotties.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../core/widgets/empty_animation.dart';
 import '../../../../core/widgets/loading_animation_widget.dart';
 import '../../../../core/widgets/loading_widget.dart';
+import '../../../../core/widgets/svg_widget.dart';
 import '../../../language/presentation/provider/language_provider.dart';
+import '../provider/add_ticket_provider.dart';
 import '../provider/tickets_provider.dart';
 import '../widgets/ticket_widget.dart';
 
@@ -18,47 +23,31 @@ class TicketsPage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         extendBody: true,
-        appBar: AppBar(
+        appBar: AppBar(centerTitle: true,
           title: Text(LanguageProvider.translate("ticket", "support_ticket")),
           actions: [
-            // Column(
-            //   mainAxisSize: MainAxisSize.max,
-            //   crossAxisAlignment: CrossAxisAlignment.center,
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: [
-            //     InkWell(
-            //       onTap: () {
-            //         Provider.of<AddTicketProvider>(
-            //           context,
-            //           listen: false,
-            //         ).goToAddTicketPage();
-            //       },
-            //       child: Container(
-            //         padding: EdgeInsets.symmetric(
-            //           horizontal: 1.w,
-            //           vertical: 1.h,
-            //         ),
-            //         margin: EdgeInsets.symmetric(
-            //           vertical: 1.h,
-            //           horizontal: 1.w,
-            //         ),
-            //         decoration: const BoxDecoration(),
-            //         child: Row(
-            //           children: [
-            //             SizedBox(width: 2.w),
-            //             Text(
-            //               LanguageProvider.translate("ticket", "add_ticket"),
-            //               style: AppStyles.style15Normal.copyWith(
-            //                 color: Colors.white,
-            //               ),
-            //             ),
-            //             SizedBox(width: 4.w),
-            //           ],
-            //         ),
-            //       ),
-            //     ),
-            //   ],
-            // ),
+            InkWell(
+              onTap: (){
+                Provider.of<AddTicketProvider>(context,listen: false).goToAddTicketPage();
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 3.w,),
+                margin: EdgeInsets.symmetric(vertical: 1.h,horizontal: 2.w,),
+                decoration:const BoxDecoration(
+                    image: DecorationImage(image: AssetImage(AppImages.addTicket,),fit:BoxFit.contain)
+                ),
+                child: Row(
+                  children: [
+                    SizedBox(width: 1.w,),
+                    Icon(Icons.add, color: Colors.white, size: 4.w,),
+                    SizedBox(width: 1.w,),
+                    Text(LanguageProvider.translate("ticket","add_ticket"),
+                      style: TextStyleClass.captionStyle(color: Colors.white),),
+                    SizedBox(width: 2.w,),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
         body: RefreshIndicator(
@@ -77,17 +66,17 @@ class TicketsPage extends StatelessWidget {
                     builder: (context) {
                       if (ticketsProvider.tickets == null) {
                         return LoadingAnimationWidget(
-                          gif: 'assets/lotties/loading.json',
-                          width: 100.w,
-                          height: 28.h,
-                          topPadding: 15.h,
+                          gif: Lotties.loading,
+                          width: 40.w,
+                          height: 10.h,
+                          topPadding: 10.h,
                         );
                         // return LoadingAnimationWidget(gif: AppLotties.noChat, width: 100.w, height: 50.h,topPadding: 0,);
                       } else if (ticketsProvider.tickets!.isEmpty) {
                         // return EmptyAnimation(title: "ticket",gif: AppLotties.noSearch,width: 100.w,);
                         return const EmptyAnimation(
-                          title: "ticket",
-                          gif: 'assets/lotties/empty.json',
+                          title: "",
+                          gif: Lotties.noSearch,
                         );
                       }
                       return Column(

@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flouka/core/helper_function/api.dart';
+import 'package:flouka/features/products/data/models/product_review_model.dart';
 
 import '../models/product_model.dart';
 
@@ -110,68 +111,23 @@ import '../models/product_model.dart';
     });
   }
 
-  // market products
-  Future<Either<DioException, List<ProductModel>>> getMarketProducts(
+  Future<Either<DioException, List<ProductReviewModel>>> getProductReviews(
     Map<String, dynamic> data,
   ) async {
-    var response = await ApiHandel.getInstance.post(
-      'market/get_market_products',
-      data,
-    );
-    List<ProductModel> productModels = [];
+    var response = await ApiHandel.getInstance.post('get_product_reviews', data,);
+    List<ProductReviewModel> productModels = [];
     return response.fold((l) => Left(l), (r) {
       for (var i in r.data['data']) {
-        productModels.add(ProductModel.fromJson(i));
+        productModels.add(ProductReviewModel.fromJson(i));
       }
       return Right(productModels);
     });
   }
 
-  Future<Either<DioException, ProductModel>> getMarketProductDetails(
-    Map<String, dynamic> data,
-  ) async {
-    var response = await ApiHandel.getInstance.post(
-      'get_product_details',
-      data,
-    );
+  Future<Either<DioException, bool>> createReview(Map<String, dynamic> data,) async {
+    var response = await ApiHandel.getInstance.post('user/create_review', data,);
     return response.fold((l) => Left(l), (r) {
-      return Right(ProductModel.fromJson(r.data['data']));
-    });
-  }
-
-  Future<Either<DioException, ProductModel>> createProduct(
-    Map<String, dynamic> data,
-  ) async {
-    var response = await ApiHandel.getInstance.post(
-      'market/create_product',
-      data,
-    );
-    return response.fold((l) => Left(l), (r) {
-      return Right(ProductModel.fromJson(r.data['data']));
-    });
-  }
-
-  Future<Either<DioException, ProductModel>> updateProduct(
-    Map<String, dynamic> data,
-  ) async {
-    var response = await ApiHandel.getInstance.post(
-      'get_product_details',
-      data,
-    );
-    return response.fold((l) => Left(l), (r) {
-      return Right(ProductModel.fromJson(r.data['data']));
-    });
-  }
-
-  Future<Either<DioException, bool>> deleteProduct(
-    Map<String, dynamic> data,
-  ) async {
-    var response = await ApiHandel.getInstance.post(
-      'get_product_details',
-      data,
-    );
-    return response.fold((l) => Left(l), (r) {
-      return Right(r.data['data']);
+      return const Right(true);
     });
   }
 }

@@ -23,7 +23,7 @@ class RatingBottomSheetWidget extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: 5.h),
-            ReviewItemWidget(textColor: Colors.white,review: review,),
+            ReviewItemWidget(textColor: Colors.white,review: review,onlyOne: true,),
           ],
         ),
       ),

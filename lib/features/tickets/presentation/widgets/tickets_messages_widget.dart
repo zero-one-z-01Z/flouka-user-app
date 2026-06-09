@@ -7,7 +7,7 @@ import '../../../../core/helper_function/convert.dart';
 import '../../../../core/widgets/empty_animation.dart';
 import '../provider/ticket_message_provider.dart';
 import 'date_chat_widget.dart';
-import 'message_widget.dart';
+import 'ticket_message_widget.dart';
 
 class TicketMessagesWidget extends StatelessWidget {
   const TicketMessagesWidget({super.key});
@@ -18,10 +18,10 @@ class TicketMessagesWidget extends StatelessWidget {
     if (ticketMessageProvider.ticketEntity!.messages != null &&
         ticketMessageProvider.ticketEntity!.messages!.isEmpty) {
       return EmptyAnimation(
-        gif: Lotties.filesAnimation,
+        gif: Lotties.noSearch,
         width: 100.w,
         height: 40.h,
-        title: "chat",
+        title: "no_chat",
       );
     } else {
       return Expanded(

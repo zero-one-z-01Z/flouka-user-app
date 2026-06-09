@@ -1,3 +1,4 @@
+import 'package:flouka/features/language/presentation/provider/language_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -6,8 +7,8 @@ import '../../../../core/helper_function/helper_function.dart';
 import '../../../../core/widgets/loading_animation_widget.dart';
 import '../provider/ticket_message_provider.dart';
 import '../widgets/message_title_widget.dart';
-import '../widgets/messages_widget.dart';
-import '../widgets/send_message_widget.dart';
+import '../widgets/tickets_messages_widget.dart';
+import '../widgets/tickets_send_message_widget.dart';
 
 class TicketMessagePage extends StatelessWidget {
   const TicketMessagePage({super.key});
@@ -26,6 +27,10 @@ class TicketMessagePage extends StatelessWidget {
       },
       child: SafeArea(
         child: Scaffold(
+          appBar: AppBar(
+            title:ticketMessageProvider.ticketEntity !=null ?
+            Text(LanguageProvider.translate("global","${ticketMessageProvider.ticketEntity?.title}")) :null,
+          ),
           body: SizedBox(
             width: 100.w,
             height: 100.h,
@@ -35,9 +40,9 @@ class TicketMessagePage extends StatelessWidget {
                   // return LoadingAnimationWidget(gif: AppLotties.noChat, width: 100.w, height: 50.h,topPadding: 0,);
                   return LoadingAnimationWidget(
                     gif: Lotties.loading,
-                    width: 100.w,
-                    height: 28.h,
-                    topPadding: 15.h,
+                    width: 40.w,
+                    height: 10.h,
+                    topPadding: 0.h,
                   );
                 } else {
                   return Column(
@@ -45,7 +50,7 @@ class TicketMessagePage extends StatelessWidget {
                       Expanded(
                         child: Column(
                           children: [
-                            const TicketMessageTitleWidget(),
+                            // const TicketMessageTitleWidget(),
                             SizedBox(height: 1.h),
                             const TicketMessagesWidget(),
                           ],

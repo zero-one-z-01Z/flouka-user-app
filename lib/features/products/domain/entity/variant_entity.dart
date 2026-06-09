@@ -15,7 +15,7 @@ class VariantEntity{
 }class StockEntity{
   int id;
   int storeProductId;
-  int productVariantId;
+  int? productVariantId;
   int quantity;
   StockEntity({required this.id,required this.storeProductId,required this.productVariantId,required this.quantity});
 

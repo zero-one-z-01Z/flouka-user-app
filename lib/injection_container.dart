@@ -1,6 +1,8 @@
 import 'package:flouka/features/address/data/repository/address_repository_impl.dart';
 import 'package:flouka/features/categories/data/repositories/category_repo_impl.dart';
 import 'package:flouka/features/categories/domain/usecases/category_usecase.dart';
+import 'package:flouka/features/chat/data/repositories/chat_repository_impl.dart';
+import 'package:flouka/features/chat/domain/repositories/chat_repository.dart';
 import 'package:flouka/features/filters/data/repo/filter_repo_impl.dart';
 import 'package:flouka/features/filters/domain/repo/filter_repo.dart';
 import 'package:flouka/features/filters/domain/use_case/filter_use_case.dart';
@@ -43,6 +45,8 @@ import 'features/cart/domain/repo/cart_repo.dart';
 import 'features/cart/domain/use_case/cart_use_case.dart';
 import 'features/categories/data/datasource/category_remote_data_source.dart';
 import 'features/categories/domain/repositories/category_repo.dart';
+import 'features/chat/data/data_sources/remote.dart';
+import 'features/chat/domain/use_cases/chat_usecases.dart';
 import 'features/filters/data/data_source/filter_remote_data_source.dart';
 import 'features/notification/data/data_sources/remote.dart';
 import 'features/notification/data/repositories/notification_repo_impl.dart';
@@ -198,26 +202,9 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<CategoryRepo>(CategoryRepoImpl(sl.get()));
   sl.registerSingleton<CategoryUsecase>(CategoryUsecase(sl.get()));
 
-  // // market auth
-  // sl.registerSingleton<MarketAuthRemoteDataSource>(
-  //   MarketAuthRemoteDataSource(sl.get()),
-  // );
-  // sl.registerSingleton<MarketAuthRepo>(
-  //   MarketAuthRepoImpl(marketRemoteDataSource: sl.get()),
-  // );
-  // sl.registerSingleton<MarketAuthUsecase>(MarketAuthUsecase(sl.get()));
+  //chat
+  sl.registerSingleton<ChatRemoteDataSources>(ChatRemoteDataSources());
+  sl.registerSingleton<ChatRepository>(ChatRepositoryImpl());
+  sl.registerSingleton<ChatUseCases>(ChatUseCases(sl.get()));
 
-  // //tickets
-  // sl.registerSingleton<RemoteTicketsDataSource>(
-  //   RemoteTicketsDataSource(sl.get()),
-  // );
-  // sl.registerSingleton<TicketsRepository>(TicketsRepoImpl(sl.get()));
-  // sl.registerSingleton<TicketsUseCase>(TicketsUseCase(sl.get()));
-
-  // //marketOrder
-  // sl.registerSingleton<MarketOrderRemoteDatasource>(
-  //   MarketOrderRemoteDatasource(sl.get()),
-  // );
-  // sl.registerSingleton<MarketOrderRepo>(MarketOrderRepoImpl(sl.get()));
-  // sl.registerSingleton<MarketOrderUsecase>(MarketOrderUsecase(sl.get()));
 }

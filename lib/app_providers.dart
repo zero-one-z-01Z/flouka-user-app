@@ -44,6 +44,7 @@ import 'features/products/presentation/providers/search_filter_provider.dart';
 import 'features/products/presentation/providers/suggested_provider.dart';
 import 'features/reels/presentation/providers/video_provider.dart';
 import 'features/reviews/presentation/providres/create_rate_provider.dart';
+import 'features/reviews/presentation/providres/product_reviews_provider.dart';
 import 'features/reviews/presentation/providres/review_provider.dart';
 import 'features/splash/provider/splash_provider.dart';
 import 'features/stores/presentation/providers/followed_stores_provider.dart';
@@ -52,6 +53,10 @@ import 'features/stores/presentation/providers/store_reviews_provider.dart';
 import 'features/stores/presentation/providers/stores_product_provider.dart';
 import 'features/stores/presentation/providers/stores_provider.dart';
 import 'features/stories/presentation/provider/story_provider.dart';
+import 'features/tickets/presentation/provider/add_ticket_provider.dart';
+import 'features/tickets/presentation/provider/important_ticket_values_provider.dart';
+import 'features/tickets/presentation/provider/ticket_message_provider.dart';
+import 'features/tickets/presentation/provider/tickets_category_provider.dart';
 import 'features/wallet/presentation/provider/wallet_provider.dart';
 
 class AppProviders extends StatelessWidget {
@@ -73,10 +78,15 @@ class AppProviders extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => BrandProvider()),
         ChangeNotifierProvider(create: (_) => ProductQuantityProvider()),
         ChangeNotifierProvider(create: (_) => StoresProvider(sl.get())),
+        ChangeNotifierProvider(create: (_) => ProductReviewsProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => ProductsProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => SuggestedProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => MessageProvider()),
         ChangeNotifierProvider(create: (_) => NavBarProvider()),
+        ChangeNotifierProvider(create: (_) => AddTicketProvider(sl.get())),
+        ChangeNotifierProvider(create: (_) => ImportantTicketValuesProvider()),
+        ChangeNotifierProvider(create: (_) => TicketMessageProvider(sl.get())),
+        ChangeNotifierProvider(create: (_) => TicketsCategoryProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => OnBoardingProvider()),
         ChangeNotifierProvider(create: (_) => CategoriesProductSearchProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => SettingsProvider(sl.get())),
@@ -101,7 +111,7 @@ class AppProviders extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => MapProvider()),
         ChangeNotifierProvider(create: (_) => PartsProvider()),
         ChangeNotifierProvider(create: (_) => GetEditOrderProvider(sl.get())),
-        ChangeNotifierProvider(create: (_) => CreateRateProvider()),
+        ChangeNotifierProvider(create: (_) => CreateRateProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => CheckoutProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => FilterProductProvider(sl.get(),sl.get())),
         ChangeNotifierProvider(create: (_) => OfferSectionProvider(sl.get())),
