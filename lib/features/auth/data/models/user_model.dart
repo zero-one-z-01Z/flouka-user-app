@@ -13,6 +13,7 @@ class UserModel extends UserEntity {
     required super.token,
     required super.image,
     required super.wallet,
+    required super.loginFrom,
     required super.name,
     required super.LastReadNotification,
     required super.addressEntity
@@ -25,6 +26,7 @@ class UserModel extends UserEntity {
         phone: data['phone'],
         email: data['email'],
         token: data['token'],
+        loginFrom: data['login_from']??"user",
         image: data['image'],
         wallet: convertDataToNum(data['wallet']) ?? 0,
         name: data['name'],

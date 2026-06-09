@@ -45,6 +45,47 @@ class CompleteInfoProvider extends ChangeNotifier {
     }
   }
 
+  void goToCompleteInfoView({bool isEdit = false}) {
+    AuthProvider authProvider = Provider.of(Constants.globalContext(), listen: false);
+    UserEntity? userEntity = authProvider.userEntity;
+    completeInfoTextFieldList = [
+      TextFieldModel(
+        label: LanguageProvider.translate("inputs", "Name"),
+        controller: TextEditingController(text: authProvider.userEntity?.name),
+        textInputType: TextInputType.name,
+        validator: (value) => validatePassword(value),
+        key: "name",
+      ),
+      TextFieldModel(
+        label: LanguageProvider.translate("inputs", "Email"),
+        key: "email",
+        controller: TextEditingController(text: authProvider.userEntity?.email),
+        textInputType: TextInputType.emailAddress,
+        validator: (value) => validateEmail(value),
+      ),
+      TextFieldModel(
+        label: LanguageProvider.translate("inputs", "phone"),
+        controller: TextEditingController(text: authProvider.userEntity?.phone),
+        textInputType: TextInputType.number,
+        readOnly: true,
+        validator: (value){
+          if(userEntity?.loginFrom =="user"){
+           return validatePhone(value);
+          }
+          return null;
+
+        },
+        key: "phone",
+      ),
+    ];
+    if(isEdit){
+      navP(CompleteInfoView(isEdit : isEdit));
+
+    }else{
+      navPARU(CompleteInfoView(isEdit : isEdit));
+    }
+  }
+
   void updateImage(XFile image) {
     imageUpdated = true;
     this.image = image;
@@ -87,7 +128,7 @@ class CompleteInfoProvider extends ChangeNotifier {
         showToast(l.message!);
       },
       (r) async {
-        authProvider.loginSuccess(r);
+        authProvider.loginSuccess(r,isEdit: true);
         authProvider.rebuild();
       },
     );
@@ -97,30 +138,5 @@ class CompleteInfoProvider extends ChangeNotifier {
   //   navP(CompleteInfoView(isEdit: isEdit));
   // }
 
-  late List<TextFieldModel> completeInfoTextFieldList = [
-    TextFieldModel(
-      label: LanguageProvider.translate("inputs", "Name"),
-      controller: TextEditingController(text: authProvider.userEntity?.name),
-      textInputType: TextInputType.name,
-      validator: (value) => validatePassword(value),
-      key: "name",
-    ),
-    TextFieldModel(
-      label: LanguageProvider.translate("inputs", "Email"),
-      key: "email",
-      controller: TextEditingController(text: authProvider.userEntity?.email),
-      textInputType: TextInputType.emailAddress,
-      validator: (value) => validateEmail(value),
-    ),
-
-    // if (isEdit)
-    TextFieldModel(
-      label: LanguageProvider.translate("inputs", "phone"),
-      controller: TextEditingController(text: authProvider.userEntity?.phone),
-      textInputType: TextInputType.number,
-      readOnly: true,
-      validator: (value) => validatePhone(value),
-      key: "phone",
-    ),
-  ];
+  late List<TextFieldModel> completeInfoTextFieldList = [];
 }

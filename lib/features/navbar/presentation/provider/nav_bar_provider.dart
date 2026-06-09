@@ -38,35 +38,36 @@ class NavBarProvider extends ChangeNotifier {
     const ProfileView(),
   ];
 
-  final List<BottomNaBarEntity> bottomNavigationBarItemEntity = [
-    BottomNaBarEntity(
-      index: 0,
-      svgImage: AppImages.navbarHome,
-      label: LanguageProvider.translate('navbar', 'home'),
-    ),
-    BottomNaBarEntity(
-      index: 1,
-      svgImage: AppImages.navbarCategories,
-      label: LanguageProvider.translate('navbar', 'categories'),
-    ),
-    BottomNaBarEntity(index: 2, svgImage: "", label: ""),
-    BottomNaBarEntity(
-      index: 3,
-      svgImage: AppImages.navbarCart,
-      label: LanguageProvider.translate('navbar', 'cart'),
-    ),
-    BottomNaBarEntity(
-      index: 4,
-      svgImage: AppImages.navbarProfile,
-      label: LanguageProvider.translate('navbar', 'profile'),
-    ),
-  ];
+  List<BottomNaBarEntity> bottomNavigationBarItemEntity = [];
 
   void goToNavView({bool fromSplash = false}) async{
     currentIndex = 0;
     if(!fromSplash)loading();
     await getAllData();
     if(!fromSplash)navPop();
+    bottomNavigationBarItemEntity = [
+      BottomNaBarEntity(
+        index: 0,
+        svgImage: AppImages.navbarHome,
+        label: LanguageProvider.translate('navbar', 'home'),
+      ),
+      BottomNaBarEntity(
+        index: 1,
+        svgImage: AppImages.navbarCategories,
+        label: LanguageProvider.translate('navbar', 'categories'),
+      ),
+      BottomNaBarEntity(index: 2, svgImage: "", label: ""),
+      BottomNaBarEntity(
+        index: 3,
+        svgImage: AppImages.navbarCart,
+        label: LanguageProvider.translate('navbar', 'cart'),
+      ),
+      BottomNaBarEntity(
+        index: 4,
+        svgImage: AppImages.navbarProfile,
+        label: LanguageProvider.translate('navbar', 'profile'),
+      ),
+    ];
     navPARU(const NavBarView());
   }
 

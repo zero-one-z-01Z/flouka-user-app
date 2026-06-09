@@ -78,7 +78,7 @@ void customAlertDialog({
                             child: Container(
                               padding: EdgeInsets.symmetric(
                                 horizontal: 4.w,
-                                vertical: 0.6.h,
+                                vertical: 1.h,
                               ),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),

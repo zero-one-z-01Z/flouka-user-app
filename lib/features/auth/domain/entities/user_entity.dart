@@ -6,6 +6,7 @@ class UserEntity {
   String? phone;
   String? email;
   String? image;
+  String ? loginFrom;
   int? LastReadNotification;
   num wallet;
   String? token;
@@ -18,6 +19,7 @@ class UserEntity {
     required this.image,
     required this.name,
     required this.wallet,
+    required this.loginFrom,
     this.LastReadNotification,
     required this.token,
     required this.addressEntity,

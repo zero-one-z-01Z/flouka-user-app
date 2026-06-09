@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flouka/core/helper_function/location.dart';
 import 'package:flouka/features/address/presentation/views/select_default_address_page.dart';
+import 'package:flouka/features/auth/presentation/providers/complete_info_provider.dart';
 import 'package:flouka/features/auth/presentation/providers/otp_provider.dart';
 import 'package:flouka/features/auth/presentation/views/login_view.dart';
 import 'package:flouka/features/auth/presentation/views/register_view.dart';
@@ -110,14 +111,19 @@ class AuthProvider extends ChangeNotifier {
     goToLoginView();
   }
 
+
   void loginSuccess(UserEntity userEntity, {bool isSocial = false,bool fromSplash = false,
-    bool fromAddress = false, bool firstAddress = false}) async{
+    bool fromAddress = false, bool firstAddress = false,bool isEdit = false}) async{
     this.userEntity = userEntity;
+    if(isEdit){
+      navPop();
+      return;
+    }
     if (userEntity.token != null) {
       ApiHandel.getInstance.updateHeader(userEntity.token!);
     }
     if (userEntity.name == null || userEntity.name!.isEmpty) {
-      navPARU(const CompleteInfoView(isEdit: false));
+      Provider.of<CompleteInfoProvider>(Constants.globalContext(), listen: false,).goToCompleteInfoView(isEdit: false);
     } else {
       if(!fromAddress || firstAddress){
         if(userEntity.addressEntity != null){

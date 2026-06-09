@@ -57,6 +57,7 @@
   },
   "auth": {
     "Forgot password": "نسيت كلمة المرور",
+    "Profile": "البيانات الشخصية",
     "New to Habitual?": "جديد في Habitual؟",
     "Sign up": "إنشاء حساب",
     "resend_otp_after": "إعادة إرسال الرمز",
