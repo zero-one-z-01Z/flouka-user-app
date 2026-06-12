@@ -57,7 +57,7 @@ void appNotifications(
 
   if (payload!.containsKey('message_type_')) {
     if (payload['message_type_'] == "order") {
-      int orderId = convertStringToInt(jsonDecode(payload['data_']));
+      // int orderId = convertStringToInt(jsonDecode(payload['data_']));
       OrderProvider orderProvider = Constants.globalContext().read();
       if(orderProvider.data!=null){
         orderProvider.refresh();
