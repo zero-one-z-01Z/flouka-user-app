@@ -45,6 +45,11 @@ class OrderPriceDetailsWidget extends StatelessWidget {
             Divider(color: Colors.grey.shade400, endIndent: 32, indent: 32),
           ],
           PaymentPriceWidget(
+            title: LanguageProvider.translate("global", "delivery"),
+            price: orderDetailsProvider.data!.deliveryPrice.toString(),
+          ),
+          Divider(color: Colors.grey.shade400, endIndent: 32, indent: 32),
+          PaymentPriceWidget(
             title: LanguageProvider.translate("global", "total"),
             price: orderDetailsProvider.data!.total.toString(),
             isGreen: true,

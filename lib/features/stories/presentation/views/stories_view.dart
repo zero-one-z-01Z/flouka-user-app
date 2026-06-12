@@ -66,16 +66,18 @@ class StoriesView extends StatelessWidget {
               );
             }
           ),
-          Positioned(
+          if(story.stories[storyProvider.currentIndex].title!=null)Positioned(
             bottom: 10.h,right: 0,left: 0,
             child: Selector<StoryProvider, int>(
               selector: (_, provider) => provider.currentIndex,
               builder: (context, currentIndex, _) {
                 return GestureDetector(
                   onTap: (){
-                    Provider.of<ProductDetailsProvider>(context, listen: false).goToPage({
-                      "product_id":story.stories[storyProvider.currentIndex].productId,
-                    });
+                    if(story.stories[storyProvider.currentIndex].productId!=null){
+                      Provider.of<ProductDetailsProvider>(context, listen: false).goToPage({
+                        "product_id":story.stories[storyProvider.currentIndex].productId,
+                      });
+                    }
                   },
                   child: Center(
                     child: Container(
@@ -88,7 +90,7 @@ class StoriesView extends StatelessWidget {
                         children: [
                           Icon(Icons.keyboard_double_arrow_up,size: 20.sp,color: Colors.white,),
                           SizedBox(width: 2.w),
-                          Text(story.stories[storyProvider.currentIndex].title,
+                          Text(story.stories[storyProvider.currentIndex].title!,
                             style: TextStyleClass.normalStyle(color: Colors.white),
                           ),
                         ],

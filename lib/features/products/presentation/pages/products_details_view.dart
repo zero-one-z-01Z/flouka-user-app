@@ -1,6 +1,7 @@
 import 'package:flouka/core/config/app_styles.dart';
 import 'package:flouka/core/constants/app_images.dart';
 import 'package:flouka/core/constants/app_lotties.dart';
+import 'package:flouka/core/helper_function/navigation.dart';
 import 'package:flouka/core/widgets/loading_animation_widget.dart';
 import 'package:flouka/core/widgets/svg_widget.dart';
 import 'package:flouka/features/cart/presentation/providers/cart_provider.dart';
@@ -33,7 +34,9 @@ class ProductsDetailsView extends StatelessWidget {
       child: PopScope(
         canPop: false,
         onPopInvokedWithResult: (result,_) {
-          // productDetailsProvider.backToLastProduct();
+          if (!result) {
+            productDetailsProvider.backToLastProduct();
+          }
         },
         child: Scaffold(
           backgroundColor: const Color(0xffF0FBFF),
@@ -41,6 +44,7 @@ class ProductsDetailsView extends StatelessWidget {
             leading: IconButton(
               icon: const Icon(Icons.arrow_back, color: Colors.black),
               onPressed: () {
+                // navPop();
                 productDetailsProvider.backToLastProduct();
               },
             ),
@@ -58,7 +62,7 @@ class ProductsDetailsView extends StatelessWidget {
             title: Text(
               productDetailsProvider.data != null
                   ? "${productDetailsProvider.data?.title ?? ""}"
-                  : LanguageProvider.translate("global", "What are you looking for ?",
+                  : LanguageProvider.translate("global", "what_are_you_looking_for",
               ),
             ),
           ),

@@ -7,10 +7,12 @@ class SettingsEntity {
   bool mustUpdate;
   int version;
   final num tax;
+  final num deliveryPrice;
   String? packageName, appId;
   SettingsEntity({
     required this.id,
     required this.tax,
+    required this.deliveryPrice,
     required this.termsLink,
     required this.aboutLink,
     required this.email,

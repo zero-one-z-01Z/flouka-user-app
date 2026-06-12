@@ -372,7 +372,7 @@ class _AddImagePageState extends State<AddImagePage> {
                                     _save();
                                   },
                                   text: 'save',
-                                  width: 20.w,
+                                  takeSmallestWidth: true,
                                   height: 4.5.h,
                                   color: Colors.white,
                                   textStyle:

@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'svg_widget.dart';
 
 class CircleActionButtonWidget extends StatelessWidget {
-  const CircleActionButtonWidget({super.key, this.onTap, required this.svgImage});
+  const CircleActionButtonWidget({super.key, this.onTap, required this.svgImage,this.color});
   final VoidCallback? onTap;
   final String svgImage;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class CircleActionButtonWidget extends StatelessWidget {
       child: CircleAvatar(
         radius: 20,
         backgroundColor: const Color(0xffefeff3),
-        child: SvgWidget(svg: svgImage, color: Colors.grey),
+        child: SvgWidget(svg: svgImage, color: color??Colors.grey),
       ),
     );
   }

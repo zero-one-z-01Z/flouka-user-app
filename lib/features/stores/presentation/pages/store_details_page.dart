@@ -6,11 +6,15 @@ import 'package:flouka/features/stores/presentation/providers/store_reviews_prov
 import 'package:flouka/features/stores/presentation/widgets/stores_tabs_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../core/config/app_styles.dart';
 import '../../../../core/constants/app_images.dart';
+import '../../../../core/constants/constants.dart';
 import '../../../../core/widgets/button_widget.dart';
 import '../../../../core/widgets/svg_widget.dart';
+import '../../../language/presentation/provider/language_provider.dart';
+import '../../domain/entity/store_details_entity.dart';
 import '../providers/stores_product_provider.dart';
 import '../providers/stores_provider.dart';
 import '../widgets/store_details_section.dart';
@@ -30,6 +34,7 @@ class StoreDetailsPage extends StatelessWidget {
     }else{
       storeReviewsProvider.pagination();
     }
+    StoreDetailsEntity? storeDetailsEntity = storeDetailsProvider.storeDetailsEntity;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -38,12 +43,12 @@ class StoreDetailsPage extends StatelessWidget {
       extendBodyBehindAppBar: true,
       body: Builder(
         builder: (context) {
-          if (storeDetailsProvider.storeDetailsEntity == null) {
+          if (storeDetailsEntity == null) {
             return const Center(child: LoadingAnimationWidget(gif: Lotties.loading));
           }
           return RefreshIndicator(
             onRefresh: () async {
-              storeDetailsProvider.refresh(storeDetailsProvider.storeDetailsEntity!.id,);
+              storeDetailsProvider.refresh(storeDetailsEntity!.id,);
               if(storesProvider.current==0){
                 storesProductProvider.refresh();
               } else if(storesProvider.current==1){
@@ -59,25 +64,41 @@ class StoreDetailsPage extends StatelessWidget {
                   Stack(alignment: Alignment.bottomCenter,
                     clipBehavior: Clip.none,
                     children: [
-                    CachedNetworkImage( imageUrl: storeDetailsProvider.storeDetailsEntity!.vendor?.cover ?? "",
-                      errorWidget: (context, url, error) { return const Icon(Icons.error); },
-                      width: double.infinity, height: 20.h, fit: BoxFit.cover, ),
-                    Positioned( bottom: -4.h, child: Container(width: 100.w, padding: EdgeInsets.symmetric(horizontal: 4.w),
-                      child: Row( children: [ Row( children: [ CircleAvatar( radius: 34,backgroundColor: Colors.grey.shade300,
-                        backgroundImage: CachedNetworkImageProvider(storeDetailsProvider.storeDetailsEntity!.vendor!.logo!), ),
-                        SizedBox(width: 2.w), ButtonWidget( onTap: () {
-                         storeDetailsProvider.updateFollow( storeDetailsProvider.storeDetailsEntity!.id, );
-
-                        }, text: storeDetailsProvider .storeDetailsEntity! .isFollowed ? 'unfollow' : 'follow',
-                          width: 20.w, height: 3.5.h, borderRadius: 4,
-                          textStyle: TextStyleClass.normalStyle( color: Colors.white, ).copyWith(fontSize: 14.sp), ), ], ),
-                        SizedBox(width: 2.w),
-                        const Spacer(),
-                        Container( padding: EdgeInsets.all(3.w),
-                          decoration: const BoxDecoration( color: Colors.white, shape: BoxShape.circle,
-                            boxShadow: [ BoxShadow( color: Color.fromARGB(255, 168, 168, 168), blurRadius: 2,
-                              offset: Offset(0, 4), ), ], ),
-                          child: const SvgWidget( svg: AppImages.share, color: Color(0xff00A8E1), ), ), ], ), ), ), ],
+                      CachedNetworkImage( imageUrl: storeDetailsEntity!.vendor?.cover ?? "",
+                        errorWidget: (context, url, error) { return const Icon(Icons.error); },
+                        width: double.infinity, height: 20.h, fit: BoxFit.cover, ),
+                      Positioned(
+                        bottom: -4.h,
+                        child: Container(width: 100.w, padding: EdgeInsets.symmetric(horizontal: 4.w),
+                        child: Row( children: [ Row( children: [ CircleAvatar( radius: 34,backgroundColor: Colors.grey.shade300,
+                          backgroundImage: CachedNetworkImageProvider(storeDetailsEntity!.vendor!.logo!), ),
+                          SizedBox(width: 2.w),
+                          // ButtonWidget( onTap: () {
+                          //   storeDetailsProvider.updateFollow( storeDetailsEntity!.id, );
+                          //
+                          // }, text: storeDetailsProvider .storeDetailsEntity! .isFollowed ? 'unfollow' : 'follow',
+                          //   width: 20.w, height: 3.5.h, borderRadius: 4,
+                          //   textStyle: TextStyleClass.normalStyle( color: Colors.white, ).copyWith(fontSize: 14.sp),
+                          // ),
+                        ],
+                        ),
+                          SizedBox(width: 2.w),
+                          const Spacer(),
+                          InkWell(
+                            onTap: ()async{
+                              String url = '${Constants.baseUri}store?id=${storeDetailsEntity.id}';
+                              final box = context.findRenderObject() as RenderBox?;
+                              await Share.share("${LanguageProvider.translate('settings', 'share_store_description')
+                                  .replaceFirst("*name*", "${storeDetailsEntity.vendor!.name}")}\n$url",
+                                sharePositionOrigin: Constants.isTablet?
+                                (box!.localToGlobal(Offset.zero) & box.size):null,);
+                            },
+                            child: Container( padding: EdgeInsets.all(3.w),
+                              decoration: const BoxDecoration( color: Colors.white, shape: BoxShape.circle,
+                                boxShadow: [ BoxShadow( color: Color.fromARGB(255, 168, 168, 168), blurRadius: 2,
+                                  offset: Offset(0, 4), ), ], ),
+                              child: const SvgWidget( svg: AppImages.share, color: Color(0xff00A8E1), ), ),
+                          ), ], ), ), ), ],
                   ),
                   SizedBox(height: 4.h),
                   Padding(
@@ -86,11 +107,11 @@ class StoreDetailsPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '${storeDetailsProvider.storeDetailsEntity!.name}',
+                          '${storeDetailsEntity!.name}',
                         ),
 
                         Text(
-                          storeDetailsProvider.storeDetailsEntity!.bio,
+                          storeDetailsEntity!.bio,
                         ),
                       ],
                     ),

@@ -29,13 +29,18 @@ class BottomNavBarItemWidget extends StatelessWidget {
                 : Colors.grey,
           ),
           const SizedBox(height: 4),
-          Text(
-            bottomNaBarEntity.label,
-            style: TextStyle(
-              fontSize: 13.sp,
-              color: navBarProvider.currentIndex == bottomNaBarEntity.index
-                  ? AppColor.primaryColor
-                  : Colors.grey,
+          SizedBox(
+            width: 30,
+            child: FittedBox(
+              child: Text(
+                bottomNaBarEntity.label,
+                style: TextStyle(
+                  fontSize: 13.sp,
+                  color: navBarProvider.currentIndex == bottomNaBarEntity.index
+                      ? AppColor.primaryColor
+                      : Colors.grey,
+                ),
+              ),
             ),
           ),
         ],

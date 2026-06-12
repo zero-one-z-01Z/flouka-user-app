@@ -16,7 +16,7 @@ class SettingsModel extends SettingsEntity {
     required super.whatsapp,
     required super.packageName,
     required super.appId,
-    required super.tax,
+    required super.tax, required super.deliveryPrice,
   });
 
   factory SettingsModel.fromJson(Map data) {
@@ -36,7 +36,7 @@ class SettingsModel extends SettingsEntity {
       privacyLink: data["privacy_link"],
       packageName: data["package_name"] ?? "",
       appId: data["app_id"] ?? "",
-      tax: convertDataToNum(data["tax"] ?? 0)!,
+      tax: convertDataToNum(data["tax"] ?? 0)!, deliveryPrice: convertDataToNum(data['delivery_price'])??0,
     );
   }
 }

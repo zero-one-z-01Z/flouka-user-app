@@ -1,4 +1,5 @@
 import 'package:flouka/core/widgets/checkbox_widget.dart';
+import 'package:flouka/features/address/presentation/providers/neighborhood_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -21,7 +22,8 @@ class AddressBottomSheet extends StatelessWidget {
     final addressDetailsProvider = Provider.of<AddressDetailsProvider>(context);
     final cityProvider = Provider.of<CityProvider>(context, listen: false);
     final areaProvider = Provider.of<AreaProvider>(context, listen: false);
-    final partsProvider = Provider.of<PartsProvider>(context, listen: false);
+    final neighborhood = Provider.of<NeighborhoodProvider>(context, listen: false);
+    // final partsProvider = Provider.of<PartsProvider>(context, listen: false);
 
     return SafeArea(
       child: Form(
@@ -69,6 +71,12 @@ class AddressBottomSheet extends StatelessWidget {
                 _buildSectionTitle(context, 'inputs', 'city'),
                 DropDownWidget(
                   dropDownClass: areaProvider,
+                  color: Colors.white,
+                  borderColor: AppColor.primaryColor.withValues(alpha: .3),
+                ),
+                _buildSectionTitle(context, 'inputs', 'neighborhood'),
+                DropDownWidget(
+                  dropDownClass: neighborhood,
                   color: Colors.white,
                   borderColor: AppColor.primaryColor.withValues(alpha: .3),
                 ),

@@ -24,7 +24,7 @@ class CustomOrderPaymentWayWidget extends StatelessWidget {
         spacing: 16,
         children: [
           Text(
-            LanguageProvider.translate("global", "Payment details"),
+            LanguageProvider.translate("global", "payment_details"),
             style: TextStyleClass.normalStyle().copyWith(
               fontWeight: FontWeight.bold,
               fontSize: 15.sp,

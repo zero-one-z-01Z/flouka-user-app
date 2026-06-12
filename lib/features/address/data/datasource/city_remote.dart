@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:flouka/features/address/data/model/neighborhood_model.dart';
 import '../../../../core/helper_function/api.dart';
 import '../model/area_model.dart';
 import '../model/city_model.dart';
@@ -30,5 +31,17 @@ class CityRemoteDataSource {
       }
       return Right(list);
     });
-  } 
+  }
+  Future<Either<DioException, List<NeighborhoodModel>>> getNeighborhoods(
+    Map<String, dynamic> data,
+  ) async {
+    var response = await apiHandel.post('get_neighborhoods', data);
+    return response.fold((l) => Left(l), (r) {
+      List<NeighborhoodModel> list = [];
+      for (var i in r.data['data']) {
+        list.add(NeighborhoodModel.fromJson(i));
+      }
+      return Right(list);
+    });
+  }
 }

@@ -62,21 +62,41 @@ class OrderProvider extends ChangeNotifier
   }
 
 
-  void updateAfterRateSuccess({required bool isProduct, required int id, required int orderId, required int vendorOrderId}){
+  void updateAfterRateSuccess({required bool isProduct, required int id, required int orderId, }){
     int orderIndex = data?.indexWhere((element) => element.id == orderId) ?? -1;
-    int orderVendorIndex = data?[orderIndex].vendorOrders?.indexWhere((element) => element.id == vendorOrderId) ?? -1;
+    // int orderVendorIndex = data?[orderIndex].vendorOrders?.indexWhere((element) => element.id == vendorOrderId) ?? -1;
 
     if(orderIndex == -1) return;
-    if(isProduct){
-      int index = data![orderIndex].vendorOrders?[orderVendorIndex].items?.indexWhere((element) => element.id == id) ?? -1;
-      if(index != -1){
-        data![orderIndex].vendorOrders?[orderVendorIndex].items?[index].canReviewProduct = false;
-      }
-    }else{
-      if(data![orderIndex].vendorOrders?[orderVendorIndex].store?.id == id){
-        data![orderIndex].vendorOrders?[orderVendorIndex].canRateStore = false;
+    for (OrderEntity order in data??[]) {
+      for (VendorOrderEntity vendorOrder in order.vendorOrders??[]) {
+        if(isProduct){
+          for (OrderItemEntity item in vendorOrder.items??[]) {
+            if (item.productId == id) {
+              item.canReviewProduct = false;
+              notifyListeners();
+              return;
+            }
+          }
+        }else{
+          if (vendorOrder.store?.id == id) {
+            vendorOrder.canRateStore = false;
+            notifyListeners();
+            return;
+          }
+        }
       }
     }
+    // if(isProduct){
+    //
+    //   // int index = data![orderIndex].vendorOrders?[orderVendorIndex].items?.indexWhere((element) => element.productId == id) ?? -1;
+    //   // if(index != -1){
+    //   //   data![orderIndex].vendorOrders?[orderVendorIndex].items?[index].canReviewProduct = false;
+    //   // }
+    // }else{
+    //   if(data![orderIndex].vendorOrders?[orderVendorIndex].store?.id == id){
+    //     data![orderIndex].vendorOrders?[orderVendorIndex].canRateStore = false;
+    //   }
+    // }
     notifyListeners();
   }
 

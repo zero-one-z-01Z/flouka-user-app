@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flouka/core/config/app_styles.dart';
 import 'package:flouka/features/categories/domain/entity/category_entity.dart';
 import 'package:flouka/features/categories/presentation/providers/subcategory_provider.dart';
+import 'package:flouka/features/language/presentation/provider/language_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -73,7 +74,7 @@ class SubcategoryTile extends StatelessWidget {
                   ),
                   SizedBox(width: 2.w),
                   Text(
-                    'View all',
+                    LanguageProvider.translate('global', 'view_all'),
                     style: TextStyleClass.normalStyle(
                       color: Colors.black,
                     ).copyWith(fontWeight: FontWeight.bold),

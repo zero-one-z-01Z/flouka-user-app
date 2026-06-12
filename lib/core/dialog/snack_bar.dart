@@ -9,6 +9,7 @@ void showToast(String text, {Color? color, String? title,bool isSnack = false,Ma
     ScaffoldMessenger.of(Constants.globalContext()).showSnackBar(
       SnackBar(
         content: Text(text),
+        duration: const Duration(seconds: 2),
         action: action==null?null:SnackBarAction(
           label: action['text'],
           onPressed: () {

@@ -38,7 +38,7 @@ class CreateRateProvider extends ChangeNotifier {
   Future createReview({required int id ,required String type,required int orderId}) async {
     Map<String, dynamic> dataToUse = {};
     dataToUse['rate'] = rate;
-    dataToUse['orderId'] = orderId;
+    dataToUse['order_id'] = orderId;
     dataToUse['type'] = type;
     dataToUse['id'] = id;
     for(int i=0;i<rateFields.length;i++) {
@@ -47,6 +47,7 @@ class CreateRateProvider extends ChangeNotifier {
     for(int i=0;i<reviewImages.length;i++) {
       dataToUse['images[$i]'] = await MultipartFile.fromFile(reviewImages[i].path);
     }
+    print(dataToUse);
     loading();
     final result = await productUseCase.createReview(dataToUse);
     navPop();
@@ -56,12 +57,12 @@ class CreateRateProvider extends ChangeNotifier {
       navPop();
       OrderDetailsProvider orderDetailsProvider = Provider.of<OrderDetailsProvider>(Constants.globalContext(), listen: false);
       if(orderDetailsProvider.data != null){
-        orderDetailsProvider.updateAfterRateSuccess(isProduct:type=="product"? true:false , id: id);
+        orderDetailsProvider.updateAfterRateSuccess(isProduct:type=="product" , id: id);
       }
       OrderProvider orderProvider = Provider.of<OrderProvider>(Constants.globalContext(), listen: false);
       int orderIndex = orderProvider.data?.indexWhere((element) => element.id == orderId) ?? -1;
       if(orderIndex != -1){
-        orderProvider.updateAfterRateSuccess(isProduct:type=="product"? true:false , id: id, orderId: orderId, vendorOrderId: id);
+        orderProvider.updateAfterRateSuccess(isProduct: type=="product" , id: id, orderId: orderId);
       }
 
     });

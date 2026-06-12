@@ -15,7 +15,7 @@ import '../../../../core/constants/app_images.dart';
 import '../../../favorite/presentation/providers/favorite_provider.dart';
 import '../../domain/entity/product_entity.dart';
 import '../providers/products_details_provider.dart';
-Set favoriteIds = {};
+
 
 class HotDealsHomeContainerWidget extends StatelessWidget {
   HotDealsHomeContainerWidget({super.key, required this.product, this.isSimilar=false});
@@ -58,10 +58,12 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
                 children: [
                     Container(
                       height: 12.h,
-                      width: 12.h,
+                      width: 15.h,
                       decoration: BoxDecoration(
-                          image: DecorationImage(image:product.images.isNotEmpty ?
-                          CachedNetworkImageProvider(product.images.first.image) :const AssetImage(AppImages.logo))
+                          image: DecorationImage(image:product.image!=null ?
+                          CachedNetworkImageProvider(product.image!) :const AssetImage(AppImages.logo),
+                          fit: BoxFit.cover),
+
                       ),
                     ),
                   SizedBox(height: 0.6.h),
@@ -199,7 +201,7 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
                 ),
                 child: Consumer<FavoriteProvider>(
                   builder: (context, provider, child) {
-                    bool isFav = favoriteIds.contains(product.id);
+                    bool isFav = provider.favoriteIds.contains(product.id);
                     return Icon(
                       isFav ? Icons.favorite : Icons.favorite_border,
                       color: Colors.white,

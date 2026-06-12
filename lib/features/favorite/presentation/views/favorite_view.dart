@@ -26,7 +26,7 @@ class FavoriteView extends StatelessWidget {
 
       body: Consumer<FavoriteProvider>(
         builder: (context, provider, child) {
-
+          provider.pagination();
           return RefreshIndicator(
             onRefresh: ()async{
               provider.refresh();

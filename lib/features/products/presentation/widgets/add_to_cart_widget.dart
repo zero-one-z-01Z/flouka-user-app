@@ -1,3 +1,4 @@
+import 'package:flouka/core/dialog/guest_dialog.dart';
 import 'package:flouka/core/widgets/button_widget.dart';
 import 'package:flouka/core/widgets/drop_down_widget.dart';
 import 'package:flouka/features/cart/presentation/providers/cart_operation_provider.dart';
@@ -30,6 +31,10 @@ class AddToCartWidget extends StatelessWidget {
         DropDownWidget(dropDownClass:productQuantity, canPress: productDetailsProvider.canAddToCart(),),
         SizedBox(height: 2.h,),
         ButtonWidget(onTap: (){
+          if(!AuthProvider.isLogin()){
+            showGuestDialog();
+            return ;
+          }
           if(productDetailsProvider.isAllAttributesSelected() && productQuantity.quantity!=null
           && authProvider.userEntity?.addressEntity!=null){
             int stockId = productDetailsProvider.data!.variants.isNotEmpty ?

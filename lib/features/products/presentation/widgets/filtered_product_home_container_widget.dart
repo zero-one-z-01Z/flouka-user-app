@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../core/config/app_color.dart';
 import '../../../../core/config/app_styles.dart';
+import '../../../favorite/presentation/providers/favorite_provider.dart';
 import '../providers/products_details_provider.dart';
 
 class FilteredProductHomeContainerWidget extends StatelessWidget {
@@ -47,8 +48,8 @@ class FilteredProductHomeContainerWidget extends StatelessWidget {
                 height: 12.h,
                 width: 12.h,
                 decoration: BoxDecoration(
-                  image: DecorationImage(image:productEntity.images.isNotEmpty ?
-                  CachedNetworkImageProvider(productEntity.images.first.image) :const AssetImage(AppImages.logo))
+                  image: DecorationImage(image:productEntity.image !=null ?
+                  CachedNetworkImageProvider(productEntity.image!) :const AssetImage(AppImages.logo))
                 ),
               ),
               Column(
@@ -92,7 +93,21 @@ class FilteredProductHomeContainerWidget extends StatelessWidget {
                 ],
               ),
               const Spacer(),
-              Icon(Icons.favorite, color: AppColor.tertiaryColor),
+              GestureDetector(
+                onTap: () {
+                  context.read<FavoriteProvider>().toggleFavorite(productEntity);
+                },
+                child: Consumer<FavoriteProvider>(
+                  builder: (context, provider, child) {
+                    bool isFav = provider.favoriteIds.contains(productEntity.id);
+                    return Icon(
+                      isFav ? Icons.favorite : Icons.favorite_border,
+                      color: isFav ? Colors.red : const Color(0xff666666),
+                      size: 26,
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         ),

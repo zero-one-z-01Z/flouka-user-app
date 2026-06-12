@@ -1,4 +1,5 @@
 import 'package:flouka/core/config/app_styles.dart';
+import 'package:flouka/features/auth/presentation/providers/auth_provider.dart';
 import 'package:flouka/features/auth/presentation/widgets/profile_header_widget.dart';
 import 'package:flouka/features/auth/presentation/widgets/profile_pages_section.dart';
 import 'package:flouka/features/language/presentation/provider/language_provider.dart';
@@ -24,7 +25,7 @@ class ProfileView extends StatelessWidget {
             children: [
               SizedBox(height: 9.h),
               const ProfileHeaderWidget(),
-              const ProfilePagesSection(),
+              if(AuthProvider.isLogin())const ProfilePagesSection(),
               SizedBox(height: 1.h),
               Text(
                 LanguageProvider.translate('global', 'settings'),

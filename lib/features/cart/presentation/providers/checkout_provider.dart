@@ -1,5 +1,6 @@
 import 'package:flouka/core/helper_function/convert.dart';
 import 'package:flouka/features/cart/presentation/providers/coupon_provider.dart';
+import 'package:flouka/features/settings/domain/entities/settings_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/constants/app_images.dart';
@@ -13,6 +14,7 @@ import '../../../../core/widgets/payment_online_page.dart';
 import '../../../address/presentation/providers/address_provider.dart';
 import '../../../auth/presentation/providers/auth_provider.dart';
 import '../../../language/presentation/provider/language_provider.dart';
+import '../../../navbar/presentation/provider/nav_bar_provider.dart';
 import '../../../orders/domain/use_case/order_use_case.dart';
 import '../../../orders/presentation/provider/order_provider.dart';
 import '../../../settings/presentation/provider/settings_provider.dart';
@@ -33,6 +35,21 @@ class CheckoutProvider extends ChangeNotifier {
     }
     return convertDataToNum(sub.toStringAsFixed(2))!;
   }
+  num deliveryPrice() {
+    final settings =
+    Constants.globalContext().read<SettingsProvider>().settingsEntity!;
+
+    final num basePrice = settings.deliveryPrice;
+
+    final int storesCount =
+        cart.data?.map((e) => e.storeId).toSet().length ?? 0;
+
+    if (storesCount <= 1) {
+      return basePrice;
+    }
+
+    return basePrice + ((storesCount - 1) * (basePrice / 2));
+  }
 
   num tax() {
     SettingsProvider settingsProvider=Provider.of<SettingsProvider>(Constants.globalContext(), listen: false,);
@@ -43,7 +60,7 @@ class CheckoutProvider extends ChangeNotifier {
 
   num total() {
     CouponProvider couponProvider=Provider.of<CouponProvider>(Constants.globalContext(), listen: false,);
-    return convertDataToNum((subtotal() + tax()).toStringAsFixed(2))! - (couponProvider.calcDiscount() ?? 0);
+    return convertDataToNum((subtotal() + tax()).toStringAsFixed(2))! - ((couponProvider.calcDiscount() ?? 0) + deliveryPrice()) ;
   }
 
   CouponEntity? couponEntity;
@@ -66,6 +83,7 @@ class CheckoutProvider extends ChangeNotifier {
     AuthProvider authProvider = Provider.of<AuthProvider>(Constants.globalContext(), listen: false,);
     dataToUse['address_id'] = authProvider.userEntity?.addressEntity?.id;
     dataToUse['total'] = total();
+    dataToUse['delivery_price'] = deliveryPrice();
     dataToUse['sub_total'] = subtotal();
     dataToUse['tax'] = tax();
     dataToUse["payment_method"] = selectedPaymentMethod.toAPI;
@@ -90,10 +108,13 @@ class CheckoutProvider extends ChangeNotifier {
           walletProvider.decreaseWallet(total());
         }
         if (selectedPaymentMethod.toAPI != 'online') {
-          newSuccessDialog(lottie: Lotties.loading);
+          newSuccessDialog(lottie: Lotties.loading,then: (){
+            navPU();
+            Constants.globalContext().read<NavBarProvider>().changeIndex(0);
+            cart.refresh();
+          });
           notifyListeners();
-          navPU();
-          cart.refresh();
+
         }
         if(selectedPaymentMethod.toAPI == "cash"){
 

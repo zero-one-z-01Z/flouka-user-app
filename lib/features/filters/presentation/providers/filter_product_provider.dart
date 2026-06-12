@@ -1,3 +1,5 @@
+import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:flouka/features/products/domain/user_case/product_use_case.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -21,10 +23,13 @@ class FilterProductProvider extends ChangeNotifier {
     response.fold((l) {}, (r) {
       data=[];
       List<CategoryModel> staticCategories = [
-        CategoryModel(id: 0, name: 'for_you',image: "", parentId: null,),
+
         CategoryModel(id: -1, name: 'new_gadget',image: "", parentId: null,),
         CategoryModel(id: -2, name: 'best_selling',image: "", parentId: null,),
       ];
+      if(AuthProvider.isLogin()){
+        staticCategories.insert(0, CategoryModel(id: 0, name: 'for_you',image: "", parentId: null,),);
+      }
       data?.addAll(staticCategories);
 
       data?.addAll(r);
@@ -58,13 +63,14 @@ class FilterProductProvider extends ChangeNotifier {
       data['lat'] = authProvider.currentLocation?.latitude;
       data['lng'] = authProvider.currentLocation?.longitude;
     }
-    var response;
+    Either<DioException, List<ProductEntity>> response;
     if(id == 0){
       response = await productUseCase.getSuggestedProducts(data);
     }else{
       response = await productUseCase.getProducts(data);
     }
     response.fold((l) {}, (r) {
+      print(r.length);
       products = r;
     });
     isProductLoading = false;

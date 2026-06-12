@@ -38,7 +38,7 @@ class _DraggableImageButtonState extends State<DraggableImageButton> {
               borderRadius: BorderRadius.circular(16),
             ),
             child: Text(
-              LanguageProvider.translate("buttons", "PAY NOW"),
+              LanguageProvider.translate("global", "PAY NOW"),
               style: TextStyleClass.normalStyle().copyWith(color: Colors.white),
             ),
           ),

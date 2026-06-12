@@ -125,6 +125,9 @@ class AuthProvider extends ChangeNotifier {
     if (userEntity.name == null || userEntity.name!.isEmpty) {
       Provider.of<CompleteInfoProvider>(Constants.globalContext(), listen: false,).goToCompleteInfoView(isEdit: false);
     } else {
+      String apiToken = ApiHandel.getInstance.dio.options.headers['Authorization'];
+      String token = userEntity.token??apiToken.split(' ')[1];
+      sharedPreferences.setString('token', token);
       if(!fromAddress || firstAddress){
         if(userEntity.addressEntity != null){
           setLatLng(LatLng(userEntity.addressEntity!.lat!, userEntity.addressEntity!.lng!));

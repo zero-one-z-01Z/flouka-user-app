@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:flouka/features/address/presentation/providers/neighborhood_provider.dart';
+import 'package:flouka/features/address/domain/entities/neighborhood_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../../core/constants/constants.dart';
@@ -14,47 +14,47 @@ import '../../domain/entities/area_entity.dart';
 import '../../domain/usecase/city_usecase.dart';
 import 'parts_provider.dart';
 
-class AreaProvider extends ChangeNotifier implements DropDownClass<AreaEntity> {
-  AreaEntity? areaEntity;
-  List<AreaEntity> areas = [];
+class NeighborhoodProvider extends ChangeNotifier implements DropDownClass<NeighborhoodEntity> {
+  NeighborhoodEntity? neighborhood;
+  List<NeighborhoodEntity> neighborhoods = [];
   final CityUseCases areaUseCases;
-  AreaProvider(this.areaUseCases);
+  NeighborhoodProvider(this.areaUseCases);
 
   Map<dynamic, dynamic> validation() {
     return {
       'value': selected() == null,
-      "text": LanguageProvider.translate("validation", "select_city_first"),
+      "text": LanguageProvider.translate("validation", "select_neighborhood_first"),
     };
   }
 
   void clear() {
-    areaEntity = null;
-    areas.clear();
+    neighborhood = null;
+    neighborhoods.clear();
     notifyListeners();
   }
 
   void setData(int? id) {
     if (id != null) {
-      areaEntity = areas.firstWhere((element) => element.id == id);
+      neighborhood = neighborhoods.firstWhere((element) => element.id == id);
     } else {
-      areaEntity = null;
+      neighborhood = null;
     }
     notifyListeners();
   }
 
-  Future getArea({required int id, required bool fromAddress}) async {
+  Future getNeighborhood({required int id, required bool fromAddress}) async {
     Map<String, dynamic> data = {};
-    data['city_id'] = id;
-    areas.clear();
+    data['area_id'] = id;
+    neighborhoods.clear();
     if (!fromAddress) loading();
-    Either<DioException, List<AreaEntity>> value = await areaUseCases.getArea(data);
+    Either<DioException, List<NeighborhoodEntity>> value = await areaUseCases.getNeighborhoods(data);
     if (!fromAddress) navPop();
     value.fold(
       (l) async {
         showToast(l.message!);
       },
       (r) {
-        areas = r;
+        neighborhoods = r;
         notifyListeners();
       },
     );
@@ -62,16 +62,16 @@ class AreaProvider extends ChangeNotifier implements DropDownClass<AreaEntity> {
 
   @override
   String displayedName() {
-    return areaEntity?.name ?? LanguageProvider.translate('inputs', 'area');
+    return neighborhood?.name ?? LanguageProvider.translate('inputs', 'area');
   }
 
   @override
-  String displayedOptionName(AreaEntity type) {
+  String displayedOptionName(NeighborhoodEntity type) {
     return type.name;
   }
 
   @override
-  Widget? displayedOptionWidget(AreaEntity? type) {
+  Widget? displayedOptionWidget(NeighborhoodEntity? type) {
     return null;
   }
 
@@ -81,29 +81,30 @@ class AreaProvider extends ChangeNotifier implements DropDownClass<AreaEntity> {
   }
 
   @override
-  List<AreaEntity> list() {
-    return areas;
+  List<NeighborhoodEntity> list() {
+    return neighborhoods;
   }
 
   @override
-  Future onTap(AreaEntity? data) async {
-    areaEntity = data;
-    if (data != null) {
-      NeighborhoodProvider neighborhoodProvider= Provider.of(Constants.globalContext(), listen: false,);
-      neighborhoodProvider.neighborhood = null;
-      neighborhoodProvider.getNeighborhood(id: areaEntity!.id,fromAddress: false);
-    }
+  Future onTap(NeighborhoodEntity? data) async {
+    neighborhood = data;
+    // if (data != null) {
+    //   Provider.of<PartsProvider>(
+    //     Constants.globalContext(),
+    //     listen: false,
+    //   ).getParts(numbers: neighborhood!.id);
+    // }
     notifyListeners();
   }
 
   @override
-  AreaEntity? selected() {
-    return areaEntity;
+  NeighborhoodEntity? selected() {
+    return neighborhood;
   }
 
   @override
   value() {
-    return areaEntity?.id;
+    return neighborhood?.id;
   }
 
   @override

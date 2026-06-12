@@ -13,7 +13,7 @@ class StoriesEntity {
   final int id;
   final int? productId;
   final String path;
-  final String title;
+  final String? title;
   bool isWatched;
   StoriesEntity({
     required this.id,

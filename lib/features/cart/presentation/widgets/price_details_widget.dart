@@ -49,6 +49,12 @@ class PriceDetailesList extends StatelessWidget {
           ),
           Divider(color: Colors.grey.shade400, endIndent: 32, indent: 32),
           PaymentPriceWidget(
+            fontSize: 16.sp,
+            title: LanguageProvider.translate("global", "delivery"),
+            price: checkoutProvider.deliveryPrice().toStringAsFixed(2),
+          ),
+          Divider(color: Colors.grey.shade400, endIndent: 32, indent: 32),
+          PaymentPriceWidget(
             fontSize: 15.99.sp,
             title: LanguageProvider.translate("global", "total"),
             price: checkoutProvider.total().toStringAsFixed(2),

@@ -38,7 +38,7 @@ class ConfirmPopUpWidget extends StatelessWidget {
           SizedBox(height: 4.h),
           BorderButtonWidget(
             onTap: onConfirm ?? () {},
-            text: LanguageProvider.translate('global', 'نعم'),
+            text: LanguageProvider.translate('global', 'yes'),
             width: 60.w,
             textStyle: TextStyleClass.normalStyle(),
           ),
@@ -49,7 +49,7 @@ class ConfirmPopUpWidget extends StatelessWidget {
               navPop();
             },
             width: 60.w,
-            text: LanguageProvider.translate('global', 'لا'),
+            text: LanguageProvider.translate('global', 'no'),
             textStyle: TextStyleClass.normalStyle().copyWith(color: Colors.white),
           ),
         ],

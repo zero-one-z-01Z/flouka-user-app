@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:flouka/features/address/presentation/providers/neighborhood_provider.dart';
 import 'package:flouka/features/cart/presentation/providers/cart_operation_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -105,10 +106,11 @@ class AddressDetailsProvider extends ChangeNotifier {
 
   CityProvider cityProvider = Provider.of(Constants.globalContext(), listen: false);
   AreaProvider areaProvider = Provider.of(Constants.globalContext(), listen: false);
-  PartsProvider partsProvider = Provider.of(
-    Constants.globalContext(),
-    listen: false,
-  );
+  NeighborhoodProvider neighborhoodProvider = Provider.of(Constants.globalContext(), listen: false);
+  // PartsProvider partsProvider = Provider.of(
+  //   Constants.globalContext(),
+  //   listen: false,
+  // );
 
   void submitAddressForm() {
     String nameError = '';
@@ -118,6 +120,9 @@ class AddressDetailsProvider extends ChangeNotifier {
 
     if (areaProvider.areaEntity == null) {
       nameError += '${validateArea()}\n';
+    }
+    if (neighborhoodProvider.neighborhood == null) {
+      nameError += '${validateNeighborhood()}\n';
     }
 
     for (var element in inputs) {
@@ -168,8 +173,9 @@ class AddressDetailsProvider extends ChangeNotifier {
       i.controller.clear();
     }
     areaProvider.areaEntity = null;
+    neighborhoodProvider.neighborhood = null;
     cityProvider.cityEntity = null;
-    partsProvider.selectedPart = null;
+    // partsProvider.selectedPart = null;
   }
 
   void updateAddress() async {
@@ -227,6 +233,7 @@ class AddressDetailsProvider extends ChangeNotifier {
       data[i.key] = i.controller.text;
     }
     data['area_id'] = areaProvider.areaEntity!.id;
+    data['neighborhood_id'] = neighborhoodProvider.neighborhood!.id;
     data['lat'] = lat;
     data['lng'] = lng;
     if(isMakeDefault !=false){
@@ -248,10 +255,10 @@ class AddressDetailsProvider extends ChangeNotifier {
   bool firstAddress=false;
   Future<String?> goToAddressDetailsPage({AddressEntity? addressEntity,bool firstAddress = false}) async {
     try {
-      AuthProvider authProvider = Provider.of(
-        Constants.globalContext(),
-        listen: false,
-      );
+      // AuthProvider authProvider = Provider.of(
+      //   Constants.globalContext(),
+      //   listen: false,
+      // );
       isMakeDefault = addressEntity?.isDefault??false;
       if(isMakeDefault){
         this.firstAddress=true;
@@ -290,23 +297,26 @@ class AddressDetailsProvider extends ChangeNotifier {
   }
 
   void setInputsData() async {
-    final cityProvider = Provider.of<CityProvider>(
+    final authProvider = Provider.of<AuthProvider>(
       Constants.globalContext(),
       listen: false,
     );
-    final areaProvider = Provider.of<AreaProvider>(
-      Constants.globalContext(),
-      listen: false,
-    );
+
     // final partsProvider = Provider.of<PartsProvider>(Constants.globalContext(), listen: false,);
 
     if (addressEntity!.areaEntity != null) {
+      print(addressEntity!.areaId);
+      print(addressEntity!.areaEntity);
       cityProvider.cityEntity = cityProvider.cities.firstWhere(
         (element) => element.id == addressEntity!.areaEntity!.cityId,
       );
       await areaProvider.getArea(id: cityProvider.cityEntity!.id, fromAddress: true);
       areaProvider.areaEntity = areaProvider.areas.firstWhere(
         (element) => element.id == addressEntity!.areaEntity!.id,
+      );
+      await neighborhoodProvider.getNeighborhood(id: areaProvider.areaEntity!.id, fromAddress: true);
+      neighborhoodProvider.neighborhood = neighborhoodProvider.neighborhoods.firstWhere(
+        (element) => element.id == addressEntity!.neighborhoodEntity!.id,
       );
     }
 
@@ -315,7 +325,7 @@ class AddressDetailsProvider extends ChangeNotifier {
     // );
 
     inputs.firstWhere((element) => element.key == 'phone').controller.text =
-        addressEntity!.phone ?? "";
+        addressEntity!.phone ?? (authProvider.userEntity?.phone??"");
     inputs.firstWhere((element) => element.key == 'name').controller.text =
         addressEntity!.addressName ?? "";
     inputs.firstWhere((element) => element.key == 'address').controller.text =

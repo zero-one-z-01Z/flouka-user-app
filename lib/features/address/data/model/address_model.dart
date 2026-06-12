@@ -1,6 +1,7 @@
 import '../../../../core/helper_function/convert.dart';
 import '../../domain/entities/address_entity.dart';
 import 'area_model.dart';
+import 'neighborhood_model.dart';
 
 class AddressModel extends AddressEntity {
   AddressModel({
@@ -14,11 +15,12 @@ class AddressModel extends AddressEntity {
     required super.lng,
     required super.createdAt,
     required super.phone,
-    required super.address,
+    required super.address, required super.neighborhoodEntity,
   });
 
   factory AddressModel.fromJson(Map<String, dynamic> data) {
     final AreaModel? areaModel = data['area'] != null ? AreaModel.fromJson(data['area']) : null;
+    final NeighborhoodModel? neighborhoodModel = data['neighborhood'] != null ? NeighborhoodModel.fromJson(data['neighborhood']) : null;
     return AddressModel(
       id: data['id'],
       userId: data['user_id'],
@@ -31,6 +33,7 @@ class AddressModel extends AddressEntity {
       phone: data['phone'],
       address: data['address'],
       createdAt: data['created_at'],
+      neighborhoodEntity: neighborhoodModel,
     );
   }
 }

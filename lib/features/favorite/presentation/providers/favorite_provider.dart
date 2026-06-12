@@ -12,14 +12,16 @@ import '../../../products/domain/user_case/product_use_case.dart';
 import '../../../products/presentation/widgets/hot_deals_home_container_widget.dart';
 import '../views/favorite_view.dart';
 
+
+
+
+
 class FavoriteProvider extends ChangeNotifier
     implements ProviderStructureModel<List<ProductEntity>> , PaginationClass {
-
+  Set favoriteIds = {};
   final ProductUseCase productUseCase;
 
-  FavoriteProvider(this.productUseCase) {
-    pagination();
-  }
+  FavoriteProvider(this.productUseCase);
 
   @override
   List<ProductEntity>? data = [];
@@ -62,13 +64,6 @@ class FavoriteProvider extends ChangeNotifier
     final result = await productUseCase.getFavorites(dataToUse);
 
     result.fold((l) => showToast(l.message ?? "Failed to load orders"), (r) {
-      if (pageIndex == 1) {
-        data = [];
-        favoriteIds.clear();
-        for(var element in r){
-          favoriteIds.add(element.id);
-        }
-      }
       data ??= [];
       data!.addAll(r);
       pageIndex++;

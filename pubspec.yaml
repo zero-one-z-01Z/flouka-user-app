@@ -66,6 +66,7 @@ dependencies:
   voice_message_package: ^2.2.1
   web_socket_channel: ^3.0.3
   webview_flutter: ^4.13.0
+  app_links: 7.0.0
 
 dependency_overrides:
   record_platform_interface: 1.2.0

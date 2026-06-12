@@ -65,6 +65,9 @@ String validateAddress() {
 String validateArea() {
   return LanguageProvider.translate("validation", "area");
 }
+String validateNeighborhood() {
+  return LanguageProvider.translate("validation", "select_neighborhood_first");
+}
 
 String? validatePart() {
   return LanguageProvider.translate("validation", "part");

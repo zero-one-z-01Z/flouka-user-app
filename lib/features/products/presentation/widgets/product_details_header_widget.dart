@@ -3,10 +3,13 @@ import 'package:carousel_slider_plus/carousel_slider_plus.dart';
 import 'package:flouka/core/constants/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../core/config/app_color.dart';
+import '../../../../core/constants/constants.dart';
 import '../../../../core/widgets/circle_action_button_widget.dart';
 import '../../../favorite/presentation/providers/favorite_provider.dart';
+import '../../../language/presentation/provider/language_provider.dart';
 import '../../domain/entity/product_entity.dart';
 import '../providers/products_details_provider.dart';
 import 'custom_product_details_dots_indicators.dart';
@@ -54,11 +57,19 @@ class ProductDetailsHeaderWidget extends StatelessWidget {
               ),
               Positioned(
                 top: 3.h,
-                right: 5.w,
+                right: 2.w,
                 child: Column(
                   spacing: 2.h,
                   children: [
-                    // const CircleActionButtonWidget(svgImage: AppImages.share),
+                    InkWell(onTap: ()async{
+                      String url = '${Constants.baseUri}product?id=${productEntity.id}';
+                      final box = context.findRenderObject() as RenderBox?;
+                      await Share.share("${LanguageProvider.translate('settings', 'share_description')
+                          .replaceFirst("*product*", "${productEntity.title}")
+                          .replaceFirst("*description*", "${productEntity.description}")}\n$url",
+                        sharePositionOrigin: Constants.isTablet?
+                        (box!.localToGlobal(Offset.zero) & box.size):null,);
+                    },child: const CircleActionButtonWidget(svgImage: AppImages.share,color: Colors.black,)),
                     InkWell(
                       onTap: () {
                         FavoriteProvider favoriteProvider = Provider.of(context, listen: false);
@@ -81,7 +92,7 @@ class ProductDetailsHeaderWidget extends StatelessWidget {
                         ),
                         child: Consumer<FavoriteProvider>(
                           builder: (context, provider, child) {
-                            bool isFav = favoriteIds.contains(productEntity.id);
+                            bool isFav = provider.favoriteIds.contains(productEntity.id);
                             return Icon(
                               isFav ? Icons.favorite : Icons.favorite_border,
                               color: Colors.white,

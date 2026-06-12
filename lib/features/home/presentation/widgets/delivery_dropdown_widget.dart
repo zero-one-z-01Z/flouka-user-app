@@ -1,6 +1,7 @@
 import 'package:flouka/core/config/app_color.dart';
 import 'package:flouka/core/config/app_styles.dart';
 import 'package:flouka/core/constants/app_images.dart';
+import 'package:flouka/core/dialog/guest_dialog.dart';
 import 'package:flouka/core/widgets/svg_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,7 +20,9 @@ class DeliveryDropdownWidget extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        addressProvider.goToAddressPage();
+        checkGuest((){
+          addressProvider.goToAddressPage();
+        });
       },
       child: Row(
         children: [

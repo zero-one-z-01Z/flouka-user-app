@@ -50,7 +50,7 @@ class CheckoutView extends StatelessWidget {
                     SizedBox(height: 2.h),
                     if(cartProvider.data?.isNotEmpty ?? false)
                     CheckoutItemWidget(
-                      cartEntity: cartProvider.data?[0] ?? CartEntity(),
+                      cartEntity: cartProvider.data?[0] ?? CartEntity(storeId: 0),
                     ),
                     SizedBox(height: 1.3.h),
                     Container(

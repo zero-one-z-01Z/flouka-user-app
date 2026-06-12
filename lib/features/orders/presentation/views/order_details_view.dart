@@ -53,7 +53,8 @@ class OrderDetailsView extends StatelessWidget {
                       info: orderDetailsProvider.data?.id.toString() ?? "",
                     ),
                     SizedBox(height: 1.3.h),
-                    if(orderDetailsProvider.data!.vendorOrder?.isAnyUnavailable() ?? false)...[
+                    if(orderDetailsProvider.data!.vendorOrder?.isAnyUnavailable() ?? false)
+                    ...[
                       ItemOutOfStockWidget(id: orderDetailsProvider.data!.id!,),
                       SizedBox(height: 1.3.h),
                     ],

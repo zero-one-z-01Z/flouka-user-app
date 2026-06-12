@@ -94,7 +94,7 @@ extension CartOperations on CartProvider {
         (l) {
           showToast(l.message!);
           print('xxxxxxxxxxxx${dataToUse}');
-          showToast(dataToUse.toString());
+          // showToast(dataToUse.toString());
 
         },
         (r) {

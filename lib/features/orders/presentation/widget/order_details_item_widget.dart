@@ -33,7 +33,7 @@ class OrderDetailsItemWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  LanguageProvider.translate("global", "Item Summary"),
+                  LanguageProvider.translate("global", "item_summary"),
                   style: TextStyleClass.normalStyle(),
                 ),
               ],
@@ -92,7 +92,7 @@ class OrderDetailsItemWidget extends StatelessWidget {
                               color: const Color(0xffdff7ff),
                               onTap: () {
                                 CreateRateProvider createRateProvider = Provider.of(context, listen: false);
-                                createRateProvider.gotoReviewPage(itemId: orderItem.id!, orderId: orderDetailsEntity.id!, product: true);
+                                createRateProvider.gotoReviewPage(itemId: orderItem.productId!, orderId: orderDetailsEntity.id!, product: true);
                               },
                               text:"rate",
                               textStyle: TextStyleClass.smallStyle(),

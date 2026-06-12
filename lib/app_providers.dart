@@ -19,6 +19,7 @@ import 'package:flouka/injection_container.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'features/address/presentation/providers/city_provider.dart';
+import 'features/address/presentation/providers/neighborhood_provider.dart';
 import 'features/auth/presentation/providers/complete_info_provider.dart';
 import 'features/auth/presentation/providers/otp_provider.dart';
 import 'features/cart/presentation/providers/cart_provider.dart';
@@ -109,7 +110,8 @@ class AppProviders extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => OrderDetailsProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => StoreDetailsProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => MapProvider()),
-        ChangeNotifierProvider(create: (_) => PartsProvider()),
+        // ChangeNotifierProvider(create: (_) => PartsProvider()),
+        ChangeNotifierProvider(create: (_) => NeighborhoodProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => GetEditOrderProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => CreateRateProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => CheckoutProvider(sl.get())),

@@ -4,6 +4,7 @@ import '../../domain/repository/city_repo.dart';
 import '../datasource/city_remote.dart';
 import '../model/area_model.dart';
 import '../model/city_model.dart';
+import '../model/neighborhood_model.dart';
 
 class CityRepoImpl implements CityRepo {
   final CityRemoteDataSource cityRemoteDataSource;
@@ -20,5 +21,10 @@ class CityRepoImpl implements CityRepo {
     Map<String, dynamic> data,
   ) async {
     return await cityRemoteDataSource.getArea(data);
+  }
+
+  @override
+  Future<Either<DioException, List<NeighborhoodModel>>> getNeighborhoods(Map<String, dynamic> data) async{
+    return await cityRemoteDataSource.getNeighborhoods(data);
   }
 }

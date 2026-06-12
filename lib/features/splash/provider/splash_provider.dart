@@ -7,6 +7,7 @@ import '../../../core/constants/constants.dart';
 import '../../../core/helper_function/prefs.dart';
 import '../../address/presentation/providers/city_provider.dart';
 import '../../auth/presentation/providers/auth_provider.dart';
+import '../../navbar/presentation/provider/nav_bar_provider.dart';
 
 class SplashProvider extends ChangeNotifier {
 
@@ -27,7 +28,8 @@ class SplashProvider extends ChangeNotifier {
     if (isLoggedIn != null) {
         auth.getProfile(fromSplash: true);
       } else {
-        auth.goToLoginView();
+        // auth.goToLoginView();
+      context.read<NavBarProvider>().goToNavView(fromSplash: true);
     }
   }
 }

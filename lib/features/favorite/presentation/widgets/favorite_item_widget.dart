@@ -105,7 +105,7 @@ class FavoriteItemWidget extends StatelessWidget {
                 },
                 child: Consumer<FavoriteProvider>(
                   builder: (context, provider, child) {
-                    bool isFav = favoriteIds.contains(product.id);
+                    bool isFav = provider.favoriteIds.contains(product.id);
                     return Icon(
                       isFav ? Icons.favorite : Icons.favorite_border,
                       color: isFav ? Colors.red : const Color(0xff666666),

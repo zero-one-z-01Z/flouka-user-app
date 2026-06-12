@@ -57,107 +57,115 @@ class OrderItemWidget extends StatelessWidget {
           SizedBox(height: 1.h),
           Wrap(
             children: List.generate(orderEntity.vendorOrders?.length??0, (index) {
-              return Column(
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        width: 10.w,
-                        height: 10.w,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(fit:BoxFit.cover,
-                              image: CachedNetworkImageProvider(orderEntity.vendorOrders?[index].vendor?.logo ?? " "))
-                        ),
-                      ),
-                      SizedBox(width: 2.w,),
-                      Expanded(child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(orderEntity.vendorOrders?[index].vendor?.name ?? " ",style: TextStyleClass.smallStyle(),),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                "${orderEntity.vendorOrders?[index].store?.rate.toString()}",
-                                style: TextStyleClass.headStyle(
-                                  color: Colors.black,
-                                ).copyWith(fontWeight: FontWeight.bold, fontSize: 15.sp),
-                              ),
-                              SizedBox(width: 2.w),
-                              CustomStarRatingWidget(itemSize: 15.sp, rating: orderEntity.vendorOrders?[index].store?.rate ?? 0, readOnly: true,),
-                            ],
+              return InkWell(
+                onTap: (){
+                  orderDetailsProvider.goToPage({
+                    'order_id': orderEntity.id,
+                    'order_vendor_id': orderEntity.vendorOrders?[index].id,
+                  });
+                },
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          width: 10.w,
+                          height: 10.w,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(fit:BoxFit.cover,
+                                image: CachedNetworkImageProvider(orderEntity.vendorOrders?[index].vendor?.logo ?? " "))
                           ),
-                        ],
-                      )),
-
-                    ],
-                  ),
-                  SizedBox(height: 2.h),
-                  Wrap(
-                    children: List.generate(orderEntity.vendorOrders?[index].items?.length??0, (itemIndex) {
-                      OrderItemEntity orderItem =orderEntity.vendorOrders![index].items![itemIndex];
-                      String? name = orderItem.variant !=null ? (orderItem.variant!.name) : (orderItem.product!.title);
-
-                      return InkWell(
-                        onTap: (){
-                          orderDetailsProvider.goToPage({
-                            'order_id': orderEntity.id,
-                            'order_vendor_id': orderEntity.vendorOrders?[index].id,
-                          });
-                        },
-                        child: Row(crossAxisAlignment: CrossAxisAlignment.start,
+                        ),
+                        SizedBox(width: 2.w,),
+                        Expanded(child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(12),
-                              child: CachedNetworkImage(
-                                imageUrl: orderItem.product?.image ?? " ",width: 15.w,height: 10.w,fit: BoxFit.cover,
-                                errorWidget: (context, url, error) => const Icon(Icons.error),
-                              ),
-                            ),
-                            SizedBox(width: 2.w),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    name ?? " ",
-                                    style: TextStyleClass.smallStyle(color: const Color(0xff333542),),
-                                  ),
-                                  SizedBox(height: .2.h),
-                                  Text(
-                                    LanguageProvider.translate("orders", orderItem.status?.text??"",),
-                                    style: TextStyleClass.smallStyle(
-                                      color: orderItem.status?.info["color"],
-                                    ).copyWith(fontWeight: FontWeight.bold),
-                                  ),
-                                  SizedBox(height: 0.1.h),
-                                  PriceWidget(price: orderItem.price!,fontSize: 13.sp,),
-                                ],
-                              ),
-                            ),
-                            SizedBox(width: 2.w),
-                            if(orderItem.canReviewProduct??false)
-                            Expanded(
-                              child: ButtonWidget(
-                                borderRadius: 10,
-                                color: const Color(0xffdff7ff),
-                                onTap: () {
-                                  createRateProvider.gotoReviewPage(itemId: orderItem.id!, orderId: orderEntity.id!, product: true);
-                                },
-                                text:"rate",
-                                textStyle: TextStyleClass.smallStyle(),
-                                height: 4.h,
-                              ),
+                            Text(orderEntity.vendorOrders?[index].vendor?.name ?? " ",style: TextStyleClass.smallStyle(),),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "${orderEntity.vendorOrders?[index].store?.rate.toString()}",
+                                  style: TextStyleClass.headStyle(
+                                    color: Colors.black,
+                                  ).copyWith(fontWeight: FontWeight.bold, fontSize: 15.sp),
+                                ),
+                                SizedBox(width: 2.w),
+                                CustomStarRatingWidget(itemSize: 15.sp, rating: orderEntity.vendorOrders?[index].store?.rate ?? 0, readOnly: true,),
+                              ],
                             ),
                           ],
-                        ),
-                      );
-                    }),
-                  ),
-                  Container(color: Colors.grey.shade200,width: 100.w,height: 0.2.h,
-                  margin:  EdgeInsets.symmetric(vertical: 1.h),),
-                ],
+                        )),
+
+                      ],
+                    ),
+                    SizedBox(height: 2.h),
+                    Wrap(
+                      children: List.generate(orderEntity.vendorOrders?[index].items?.length??0, (itemIndex) {
+                        OrderItemEntity orderItem =orderEntity.vendorOrders![index].items![itemIndex];
+                        String? name = orderItem.variant !=null ? (orderItem.variant!.name) : (orderItem.product!.title);
+
+                        return InkWell(
+                          onTap: (){
+                            orderDetailsProvider.goToPage({
+                              'order_id': orderEntity.id,
+                              'order_vendor_id': orderEntity.vendorOrders?[index].id,
+                            });
+                          },
+                          child: Row(crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: CachedNetworkImage(
+                                  imageUrl: orderItem.product?.image ?? " ",width: 15.w,height: 10.w,fit: BoxFit.cover,
+                                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                                ),
+                              ),
+                              SizedBox(width: 2.w),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      name ?? " ",
+                                      style: TextStyleClass.smallStyle(color: const Color(0xff333542),),
+                                    ),
+                                    SizedBox(height: .2.h),
+                                    Text(
+                                      LanguageProvider.translate("orders", orderItem.status?.text??"",),
+                                      style: TextStyleClass.smallStyle(
+                                        color: orderItem.status?.info["color"],
+                                      ).copyWith(fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(height: 0.1.h),
+                                    PriceWidget(price: orderItem.price!,fontSize: 13.sp,),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(width: 2.w),
+                              if(orderItem.canReviewProduct??false)
+                              Expanded(
+                                child: ButtonWidget(
+                                  borderRadius: 10,
+                                  color: const Color(0xffdff7ff),
+                                  onTap: () {
+                                    createRateProvider.gotoReviewPage(itemId: orderItem.productId!, orderId: orderEntity.id!, product: true);
+                                  },
+                                  text:"rate",
+                                  textStyle: TextStyleClass.smallStyle(),
+                                  height: 4.h,
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      }),
+                    ),
+                    Container(color: Colors.grey.shade200,width: 100.w,height: 0.2.h,
+                    margin:  EdgeInsets.symmetric(vertical: 1.h),),
+                  ],
+                ),
               );
             },),
           ),

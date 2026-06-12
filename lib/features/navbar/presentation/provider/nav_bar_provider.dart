@@ -1,4 +1,5 @@
 import 'package:flouka/core/constants/app_images.dart';
+import 'package:flouka/core/dialog/guest_dialog.dart';
 import 'package:flouka/core/helper_function/loading.dart';
 import 'package:flouka/features/auth/presentation/views/profile_view.dart';
 import 'package:flouka/features/cart/presentation/providers/cart_provider.dart';
@@ -6,10 +7,12 @@ import 'package:flouka/features/categories/presentation/providers/subcategory_pr
 import 'package:flouka/features/categories/presentation/view/categories_view.dart';
 import 'package:flouka/features/home/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import '../../../../../core/helper_function/navigation.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/helper_function/helper_function.dart';
+import '../../../../core/helper_function/location.dart';
 import '../../../address/presentation/providers/city_provider.dart';
 import '../../../auth/presentation/providers/auth_provider.dart';
 import '../../../banners/presentation/provider/banners_provider.dart';
@@ -65,7 +68,7 @@ class NavBarProvider extends ChangeNotifier {
       BottomNaBarEntity(
         index: 4,
         svgImage: AppImages.navbarProfile,
-        label: LanguageProvider.translate('navbar', 'profile'),
+        label: LanguageProvider.translate('navbar', 'settings'),
       ),
     ];
     navPARU(const NavBarView());
@@ -73,31 +76,42 @@ class NavBarProvider extends ChangeNotifier {
 
   Future getAllData()async{
     AuthProvider authProvider = Provider.of(Constants.globalContext(), listen: false);
-    await Future.wait([
-      delay(500),
+    if(!AuthProvider.isLogin()){
+      LatLng current = await determinePosition();
+      Provider.of<AuthProvider>(Constants.globalContext(),listen: false).setLatLng(current);
+    }
+    var result = await Future.wait([
       Provider.of<BannersProvider>(Constants.globalContext(),listen: false,).getBanners(),
       Provider.of<FilterProductProvider>(Constants.globalContext(), listen: false,).getData(),
       Provider.of<StoresProvider>(Constants.globalContext(), listen: false,).getHomeStores(),
       Provider.of<OfferSectionProvider>(Constants.globalContext(), listen: false,).getData(),
-      Provider.of<VideoProvider>(Constants.globalContext(), listen: false,).refresh(),
       Provider.of<StoryProvider>(Constants.globalContext(), listen: false).getData(),
       Provider.of<CategoryProvider>(Constants.globalContext(), listen: false,).getCategories(),
       Provider.of<PopularCategoriesProvider>(Constants.globalContext(), listen: false,).getCategories(),
       Provider.of<RecommendProductsProvider>(Constants.globalContext(), listen: false,).getRecommendedHomeData(),
-      Provider.of<CartProvider>(Constants.globalContext(), listen: false).refresh(),
-      Provider.of<FavoriteProvider>(Constants.globalContext(), listen: false).refresh(),
     ]);
-  }
-
-  void changeIndex(int index) {
-    if (index == 3) {
+     Provider.of<VideoProvider>(Constants.globalContext(), listen: false,).refresh();
+    if(AuthProvider.isLogin()){
       Provider.of<CartProvider>(Constants.globalContext(), listen: false).refresh();
     }
-    if(index==1){
-      Provider.of<SubcategoryProvider>(Constants.globalContext(),listen: false).clear();
-    }
-    currentIndex = index;
-    notifyListeners();
+  }
+
+
+  void changeIndex(int index) {
+   if(index!=currentIndex){
+     if (index == 3) {
+       if(!AuthProvider.isLogin()){
+         showGuestDialog();
+         return;
+       }
+       Provider.of<CartProvider>(Constants.globalContext(), listen: false).refresh();
+     }
+     if(index==1){
+       Provider.of<SubcategoryProvider>(Constants.globalContext(),listen: false).clear();
+     }
+     currentIndex = index;
+     notifyListeners();
+   }
   }
 
   bool isSelected(int index) {

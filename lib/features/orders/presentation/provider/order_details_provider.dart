@@ -62,7 +62,7 @@ class OrderDetailsProvider extends ChangeNotifier
 
   void updateAfterRateSuccess({required bool isProduct, required int id}){
     if(isProduct){
-      int index = data!.vendorOrder?.items?.indexWhere((element) => element.id == id) ?? -1;
+      int index = data!.vendorOrder?.items?.indexWhere((element) => element.productId == id) ?? -1;
       if(index != -1){
         data!.vendorOrder?.items?[index].canReviewProduct = false;
       }

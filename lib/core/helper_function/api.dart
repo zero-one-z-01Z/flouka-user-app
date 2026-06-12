@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 // import 'package:provider/provider.dart';
 // import '../../features/auth/presentation/providers/auth_provider.dart';
 import '../../features/auth/presentation/providers/auth_provider.dart';
+import '../../features/language/presentation/provider/language_provider.dart';
 import '../constants/constants.dart';
 import 'convert.dart';
 import 'helper_function.dart';
@@ -28,7 +29,7 @@ class ApiHandel {
   }
 
   Future<void> init() async {
-    lang = sharedPreferences.getString('language_code') ?? "en";
+    lang = sharedPreferences.getString('language_code') ?? "fr";
     token = sharedPreferences.getString('token');
     dio = Dio(
       BaseOptions(
@@ -36,21 +37,21 @@ class ApiHandel {
         // will not throw errors
         validateStatus: (status) => true,
         headers: {
-          "lang": lang ?? "en",
+          "lang": lang ?? "fr",
           'Content-Type': 'application/json',
-          "Authorization": {'Bearer $token'},
+          "Authorization": 'Bearer $token',
         },
       ),
     );
-    // await Future.wait([
-    //   for (var i in LanguageProvider.languages) Dio().get('${Constants.baseUri}app_languages/user/${i.languageCode}.json'),
-    // ]).then((value) {
-    //   Map data = {};
-    //   for (int i = 0; i < LanguageProvider.languages.length; i++) {
-    //     data[LanguageProvider.languages[i].languageCode] = value[i].data;
-    //   }
-    //   languages = data;
-    // });
+    await Future.wait([
+      for (var i in LanguageProvider.languages) Dio().get('${Constants.baseUri}app_languages/user/${i.languageCode}.json'),
+    ]).then((value) {
+      Map data = {};
+      for (int i = 0; i < LanguageProvider.languages.length; i++) {
+        data[LanguageProvider.languages[i].languageCode] = value[i].data;
+      }
+      languages = data;
+    });
   }
 
   Map languages = {};
@@ -67,8 +68,8 @@ class ApiHandel {
       baseUrl: Constants.domain,
       // baseUrl: Constants.domain,
       headers: {
-        "Authorization": {'Bearer $token'},
-        "lang": lang ?? "en",
+        "Authorization": 'Bearer $token',
+        "lang": lang ?? "fr",
         'Content-Type': 'application/json',
       },
     );
@@ -115,7 +116,8 @@ class ApiHandel {
   Future<Either<DioException, Response>> delete(
     path, [
     Map<String, dynamic>? data,
-  ]) async {
+  ]) async
+  {
     try {
       await reLogin(path);
       cancelToken = CancelToken();
@@ -130,6 +132,7 @@ class ApiHandel {
         return Right(response);
       }
       log('error1');
+
       print("AaAAAAAAAAAAAAa${path}");
       return Left(dioException(response));
     } on DioException catch (e) {
@@ -178,6 +181,7 @@ class ApiHandel {
       log(e.response?.data.toString() ?? "");
       // print(" ON $e");
       log('error2');
+      print("AAAAAAAAAAAA${data}");
       print("AAAAAAAAAAAA${path}");
       return Left(e.response == null ? e : dioException(e.response!));
     } catch (e, line) {

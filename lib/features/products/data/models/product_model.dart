@@ -1,9 +1,12 @@
 import 'dart:developer';
+import 'package:flouka/core/constants/constants.dart';
 import 'package:flouka/core/helper_function/convert.dart';
+import 'package:flouka/features/favorite/presentation/providers/favorite_provider.dart';
 import 'package:flouka/features/products/data/models/attribute_model.dart';
 import 'package:flouka/features/products/data/models/product_review_model.dart';
 import 'package:flouka/features/products/data/models/variant_model.dart';
 import 'package:flouka/features/products/domain/entity/product_entity.dart';
+import 'package:provider/provider.dart';
 
 import '../../../reels/data/models/reel_model.dart';
 
@@ -77,6 +80,12 @@ class ProductModel extends ProductEntity {
         relatedProduct.add(RelatedModel.fromJson(element));
       }
     }
+    bool isFavorite = convertDataToBool(json['is_favorite']);
+    if(isFavorite){
+      Constants.globalContext().read<FavoriteProvider>().favoriteIds.add(json['id']);
+    }else{
+      Constants.globalContext().read<FavoriteProvider>().favoriteIds.remove(json['id']);
+    }
 
     return ProductModel(
       id: json['id'],
@@ -94,7 +103,7 @@ class ProductModel extends ProductEntity {
       rate: json['rate'] != null
           ? convertDataToNum(json['rate'])
           : null,
-      isFavorite: json['is_favorite'] ?? false,
+      isFavorite: isFavorite,
       discountTitle: json['discount_title'] ?? "",
       discountPercentage: convertDataToNum(json['discount_percentage']) ?? 0.0,
       store:json['store'] !=null ? StoreModel.fromJson(json['store']) : null,

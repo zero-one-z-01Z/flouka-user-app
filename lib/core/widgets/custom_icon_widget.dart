@@ -3,8 +3,9 @@ import 'package:sizer/sizer.dart';
 import 'svg_widget.dart';
 
 class CustomIconWidget extends StatelessWidget {
-  const CustomIconWidget({super.key, required this.svg});
+  const CustomIconWidget({super.key, required this.svg,this.color});
   final String svg;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class CustomIconWidget extends StatelessWidget {
       ),
       child: SvgWidget(
         svg: svg,
-        color: const Color(0xff686868),
+        color: color??const Color(0xff686868),
         width: 5.w,
         height: 5.w,
       ),

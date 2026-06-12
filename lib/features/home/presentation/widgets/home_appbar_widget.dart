@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../core/constants/app_images.dart';
+import '../../../../core/dialog/guest_dialog.dart';
 import '../../../../core/widgets/svg_widget.dart';
 import '../../../navbar/presentation/provider/nav_bar_provider.dart';
 import '../../../products/presentation/providers/categories_product_search_provider.dart';
@@ -30,8 +31,11 @@ class HomeAppbarWidget extends StatelessWidget {
           SizedBox(width: 4.w),
           InkWell(
             onTap: () {
-              NavBarProvider navBarProvider = Provider.of(context,listen: false);
-              navBarProvider.changeIndex(3);
+              checkGuest((){
+                NavBarProvider navBarProvider = Provider.of(context,listen: false);
+                navBarProvider.changeIndex(3);
+              });
+
             },
             child: const SvgWidget(svg: AppImages.cart),
           ),

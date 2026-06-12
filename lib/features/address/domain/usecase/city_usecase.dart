@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:flouka/features/address/domain/entities/neighborhood_entity.dart';
 import '../entities/area_entity.dart';
 import '../entities/city_entity.dart';
 import '../repository/city_repo.dart';
@@ -17,5 +18,10 @@ class CityUseCases {
     Map<String, dynamic> data,
   ) async {
     return await cityRepo.getArea(data);
+  }
+  Future<Either<DioException, List<NeighborhoodEntity>>> getNeighborhoods(
+    Map<String, dynamic> data,
+  ) async {
+    return await cityRepo.getNeighborhoods(data);
   }
 }

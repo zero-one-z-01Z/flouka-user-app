@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flouka/core/constants/app_images.dart';
+import 'package:flouka/core/dialog/guest_dialog.dart';
 import 'package:flouka/features/tickets/presentation/provider/tickets_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -111,10 +112,12 @@ class SettingsProvider extends ChangeNotifier {
       text: "support",
       color: const Color(0xff254AA5),
       onTap: () {
-        Provider.of<TicketsProvider>(
-          Constants.globalContext(),
-          listen: false,
-        ).goToTicketsPage();
+        checkGuest((){
+          Provider.of<TicketsProvider>(
+            Constants.globalContext(),
+            listen: false,
+          ).goToTicketsPage();
+        });
       },
     ),
     ProfileSettingsEntity(
@@ -145,27 +148,43 @@ class SettingsProvider extends ChangeNotifier {
     //   text: "rate_app",
     //   onTap: () {},
     // ),
-    ProfileSettingsEntity(
-      svgImage: AppImages.settingsDeleteAccount,
-      text: "delete_account",
-      color: const Color(0xffF44336),
-      onTap: () {
-        Provider.of<AuthProvider>(
-          Constants.globalContext(),
-          listen: false,
-        ).confirmDeleteAccount();
-      },
-    ),
-    ProfileSettingsEntity(
-      svgImage: AppImages.settingsDeleteAccount,
-      text: "logout",
-      color: const Color(0xffF44336),
-      onTap: () {
-        Provider.of<AuthProvider>(
-          Constants.globalContext(),
-          listen: false,
-        ).showLogoutDialog();
-      },
-    ),
+    if(AuthProvider.isLogin())...[
+      ProfileSettingsEntity(
+        svgImage: AppImages.settingsDeleteAccount,
+        text: "delete_account",
+        color: const Color(0xffF44336),
+        onTap: () {
+          Provider.of<AuthProvider>(
+            Constants.globalContext(),
+            listen: false,
+          ).confirmDeleteAccount();
+        },
+      ),
+      ProfileSettingsEntity(
+        svgImage: AppImages.settingsDeleteAccount,
+        text: "logout",
+        color: const Color(0xffF44336),
+        onTap: () {
+          Provider.of<AuthProvider>(
+            Constants.globalContext(),
+            listen: false,
+          ).showLogoutDialog();
+        },
+      ),
+    ],
+    if(!AuthProvider.isLogin())...[
+      ProfileSettingsEntity(
+        svgImage: AppImages.settingsDeleteAccount,
+        text: "login",
+        color: const Color(0xffF44336),
+        onTap: () {
+          Provider.of<AuthProvider>(
+            Constants.globalContext(),
+            listen: false,
+          ).successLogout();
+        },
+      ),
+    ],
+
   ];
 }

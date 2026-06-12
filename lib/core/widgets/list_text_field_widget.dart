@@ -85,7 +85,7 @@ class ListTextFieldWidget extends StatelessWidget {
             color: color,
             borderColor: borderColor,
             isLabel: inputs[index].isLabel ?? false,
-            maxLength: telInputs.contains(inputs[index].key) ? 10 : null,
+            // maxLength:inputs[index].ma
             controller: inputs[index].controller,
             keyboardType: inputs[index].textInputType,
             next: inputs.length - 1 != index,

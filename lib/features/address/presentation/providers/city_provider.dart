@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:flouka/features/address/presentation/providers/neighborhood_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../../core/constants/constants.dart';
@@ -76,6 +77,8 @@ class CityProvider extends ChangeNotifier implements DropDownClass<CityEntity> {
     cityEntity = data;
     AreaProvider areaProvider= Provider.of<AreaProvider>(Constants.globalContext(), listen: false,);
     areaProvider.areaEntity = null;
+    NeighborhoodProvider neighborhoodProvider= Provider.of(Constants.globalContext(), listen: false,);
+    neighborhoodProvider.neighborhood = null;
     if (data != null) {
       areaProvider.getArea(id: cityEntity!.id,fromAddress: false);
     }

@@ -55,6 +55,7 @@ class CompleteInfoProvider extends ChangeNotifier {
         textInputType: TextInputType.name,
         validator: (value) => validatePassword(value),
         key: "name",
+        next: true,
       ),
       TextFieldModel(
         label: LanguageProvider.translate("inputs", "Email"),
@@ -62,6 +63,7 @@ class CompleteInfoProvider extends ChangeNotifier {
         controller: TextEditingController(text: authProvider.userEntity?.email),
         textInputType: TextInputType.emailAddress,
         validator: (value) => validateEmail(value),
+        next: true,
       ),
       TextFieldModel(
         label: LanguageProvider.translate("inputs", "phone"),
@@ -76,6 +78,7 @@ class CompleteInfoProvider extends ChangeNotifier {
 
         },
         key: "phone",
+        next: false,
       ),
     ];
     if(isEdit){
@@ -128,7 +131,7 @@ class CompleteInfoProvider extends ChangeNotifier {
         showToast(l.message!);
       },
       (r) async {
-        authProvider.loginSuccess(r,isEdit: true);
+        authProvider.loginSuccess(r,isEdit: canPop());
         authProvider.rebuild();
       },
     );

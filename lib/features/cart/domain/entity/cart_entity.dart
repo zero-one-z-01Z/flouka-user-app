@@ -6,10 +6,11 @@ class CartEntity {
   ProductEntity? product;
   CartVariantEntity? variant;
   num? unitPrice;
+  int storeId;
 
   num get subTotal => (quantity??0) * (unitPrice??0);
 
-  CartEntity({this.id, this.quantity, this.product,this.variant,this.unitPrice});
+  CartEntity({this.id, this.quantity, this.product,this.variant,this.unitPrice,required this.storeId});
 }
 
 class CartVariantEntity {

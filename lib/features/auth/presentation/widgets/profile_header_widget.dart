@@ -1,3 +1,5 @@
+import 'package:flouka/core/constants/app_images.dart';
+import 'package:flouka/core/dialog/guest_dialog.dart';
 import 'package:flouka/core/helper_function/navigation.dart';
 import 'package:flouka/features/auth/presentation/providers/auth_provider.dart';
 import 'package:flouka/features/auth/presentation/views/complete_info_view.dart';
@@ -16,7 +18,11 @@ class ProfileHeaderWidget extends StatelessWidget {
     final authProvider = Provider.of<AuthProvider>(context);
     return InkWell(
       onTap: (){
-        Provider.of<CompleteInfoProvider>(context, listen: false,).goToCompleteInfoView(isEdit: true);
+        if(AuthProvider.isLogin()){
+          Provider.of<CompleteInfoProvider>(context, listen: false,).goToCompleteInfoView(isEdit: true);
+        }else{
+          showGuestDialog();
+        }
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
@@ -30,7 +36,10 @@ class ProfileHeaderWidget extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.white,
                 shape: BoxShape.circle,
-                image: DecorationImage(
+                image: authProvider.userEntity==null?DecorationImage(
+                  image: AssetImage(AppImages.logo),
+                  fit: BoxFit.cover,
+                ):DecorationImage(
                   image: NetworkImage(authProvider.userEntity?.image ?? ""),
                   fit: BoxFit.cover,
                 ),
@@ -45,7 +54,7 @@ class ProfileHeaderWidget extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            EditButtonWidget(
+            if(AuthProvider.isLogin())EditButtonWidget(
               width: 10.w,
               onTap: () {
                 Provider.of<CompleteInfoProvider>(context, listen: false,).goToCompleteInfoView(isEdit: true);
