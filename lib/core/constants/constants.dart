@@ -11,7 +11,7 @@ class Constants {
   static bool isTablet = false;
 
   static const String webSocketLink =
-      'wss://raval.zeroonez.com/app/d6jhrfdqa5ssnhnfoymoraval?protocol=7&client=js&version=8.4.0&flash=false ';
+      'wss://flouka.tn/app/d6jhrf3qa5ssnhnfoymoflouka?protocol=7&client=js&version=8.4.0&flash=false ';
 
   static BuildContext globalContext() {
     return navState.currentContext!;

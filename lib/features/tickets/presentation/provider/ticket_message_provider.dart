@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:camera/camera.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:voice_message_package/voice_message_package.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 // import 'package:voice_message_package/voice_message_package.dart';
 // import 'package:web_socket_channel/web_socket_channel.dart';
 import '../../../../core/constants/constants.dart';
@@ -17,14 +20,16 @@ import '../../domain/usecases/tickets_use_case.dart';
 import '../pages/ticket_message_page.dart';
 import 'tickets_provider.dart';
 
-class TicketMessageProvider extends ChangeNotifier {
+class TicketMessageProvider extends ChangeNotifier{
+
   TicketEntity? ticketEntity;
   final TextEditingController controller = TextEditingController();
   ScrollController controllerList = ScrollController();
-  // late WebSocketChannel socket;
+  late WebSocketChannel socket;
   bool isSocketConnected = false;
   final TicketsUseCase ticketsUseCase;
   TicketMessageProvider(this.ticketsUseCase);
+  bool inPage = false;
 
   void stopAllControllers(String path) {
     for (var i in ticketEntity?.messages ?? []) {
@@ -62,7 +67,7 @@ class TicketMessageProvider extends ChangeNotifier {
 
   Future addMessage({dynamic file, required String type, int? sec}) async {
     if (ticketEntity == null) return;
-    // if (!isSocketConnected) return;
+    if (!isSocketConnected) return;
 
     Map<String, dynamic> data = {};
     if (file != null) {
@@ -83,22 +88,22 @@ class TicketMessageProvider extends ChangeNotifier {
       type: type,
       isFile: true,
       duration: sec?.toDouble() ?? 0,
-      voiceController: type != "audio" ? null : VoiceController(
-        audioSrc: file.path,
+      voiceController: type != "audio"
+          ? null
+          : VoiceController(
+        audioSrc: file!.path,
         onComplete: () {},
         onPause: () {},
-        onPlaying: () => stopAllControllers(file),
+        onPlaying: () => stopAllControllers(file!.path),
         onError: (err) {},
         isFile: true,
         maxDuration: Duration(seconds: (sec ?? 0).toInt()),
-      ),
-      sender: 'user',
-      updatedAt: DateTime.now(),
+      ), sender: 'user', updatedAt: DateTime.now(),
     );
     ticketEntity?.messages?.insert(0, message);
-    // if (message.message.isNotEmpty && isSocketConnected) {
-    //   socket.sink.add(jsonEncode(message.toJson()));
-    // }
+    if (message.message.isNotEmpty && isSocketConnected) {
+      socket.sink.add(jsonEncode(message.toJson()));
+    }
     scrollToBottom();
     notifyListeners();
     var response = await ticketsUseCase.createTicketMessage(data);
@@ -110,9 +115,11 @@ class TicketMessageProvider extends ChangeNotifier {
 
   void goToMessagePage({required int id}) {
     getTicketDetails(id: id);
+    inPage = true;
     navP(const TicketMessagePage(), then: (val) {
       delay(300).then((_) => clear());
-      // closeConnection();
+      inPage = false;
+      closeConnection();
     });
     scrollToBottom();
   }
@@ -121,76 +128,88 @@ class TicketMessageProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future getTicketDetails({required int id, bool fromNoti = false}) async {
-    Map<String, dynamic> data = {'ticket_id': id};
+  Future getTicketDetails({required int id,bool fromNoti=false}) async {
+    Map<String, dynamic> data = {
+      'ticket_id': id,
+    };
     var response = await ticketsUseCase.getTicketDetails(data);
     response.fold((l) => showToast(l.message ?? ""), (r) {
-      if (ticketEntity?.id == id) {
+      if(ticketEntity?.id == id){
         ticketEntity = r;
       }
-      if (fromNoti) {
-        Provider.of<TicketsProvider>(
-          Constants.globalContext(),
-          listen: false,
-        ).updateTicketStatus(r);
-      } else {
+      if(fromNoti){
+        Provider.of<TicketsProvider>(Constants.globalContext(),listen: false).updateTicketStatus(r);
+      }else{
         ticketEntity = r;
       }
       startSocketConnection();
       notifyListeners();
-    });
+    },
+    );
   }
 
   void startSocketConnection() {
     if (isSocketConnected) return;
 
-    // socket = WebSocketChannel.connect(
-    //   Uri.parse(Constants.webSocketLink,),
-    // );
+    socket = WebSocketChannel.connect(
+      Uri.parse(Constants.webSocketLink,),
+    );
     isSocketConnected = true;
-    //   socket.stream.listen((event) {
-    //     print('rrrrrrrrrrr$event');
-    //     try {
-    //       final data = jsonDecode(event);
-    //       if (data["event"] == "new_message") {
-    //         final messageData = jsonDecode(data["data"]);
-    //         if(messageData['sender'] =="admin"){
-    //           ticketEntity?.messages?.insert(0, TicketMessageModel(id: 0, ticketId: 0, message: messageData["message"],
-    //             type: messageData['type'], sender: 'admin', isFile: false, createdAt: DateTime.now(), duration: null,
-    //             voiceController: null, updatedAt: DateTime.now(),));
-    //         notifyListeners();}
-    //       }
-    //       if (data["event"] == "pusher:connection_established") {
-    //         final subscribeData = {
-    //           "event": "pusher:subscribe",
-    //           "data": {"channel": "ticket_${ticketEntity?.id}"}
-    //         };
-    //         socket.sink.add(jsonEncode(subscribeData));
-    //       }
-    //       if (data["event"] == "pusher:ping") {
-    //         final pongResponse = {"event": "pusher:pong"};
-    //         socket.sink.add(jsonEncode(pongResponse));
-    //       }
-    //     } catch (e) {}
-    //   }, onError: (error) {
-    //     isSocketConnected = false;
-    //   }, onDone: () {
-    //     isSocketConnected = false;
-    //   });
-    // }
+    socket.stream.listen((event) {
+      try {
+        final data = jsonDecode(event);
+        if (data["event"] == "new_message") {
+          final messageData = jsonDecode(data["data"]);
+          if(messageData['sender'] == "admin"){
+            ticketEntity?.messages?.insert(0, TicketMessageModel(id: 0, ticketId: 0, message: messageData["message"],
+              type: messageData['type'], sender: 'admin', isFile: false, createdAt: DateTime.now(), duration: null,
+              voiceController: null, updatedAt: DateTime.now(),));
+            notifyListeners();}
+        }
+        if (data["event"] == "pusher:connection_established") {
+          final subscribeData = {
+            "event": "pusher:subscribe",
+            "data": {"channel": "ticket_${ticketEntity?.id}"}
+          };
+          socket.sink.add(jsonEncode(subscribeData));
+        }
+        if (data["event"] == "pusher:ping") {
+          final pongResponse = {"event": "pusher:pong"};
+          socket.sink.add(jsonEncode(pongResponse));
+        }
+      } catch (e) {}
+    }, onError: (error) async{
+      isSocketConnected = false;
+      closeConnection();
+      debugPrint('socket error ');
+      debugPrint(error.toString());
+      if(inPage){
+        await delay(1000);
+        startSocketConnection();
+      }
+    }, onDone: () async{
+      isSocketConnected = false;
+      closeConnection();
+      debugPrint('socket error ');
+      if(inPage){
+        await delay(1000);
+        startSocketConnection();
+      }
+    },cancelOnError: true,);
+  }
 
-    // bool checkMessageOfThisChat(int id) {
-    //   if (ticketEntity != null && ticketEntity!.id == id) {
-    //     return true;
-    //   }
-    //   return false;
-    // }
+  bool checkMessageOfThisChat(int id) {
+    if (ticketEntity != null && ticketEntity!.id == id) {
+      return true;
+    }
+    return false;
+  }
 
-    // void closeConnection() {
-    //   if (isSocketConnected) {
-    //     socket.sink.close(1000);
-    //     isSocketConnected = false;
-    //   }
-    // }
+  void closeConnection() {
+    if (isSocketConnected) {
+      socket.sink.close(1000);
+      isSocketConnected = false;
+    }
   }
 }
+

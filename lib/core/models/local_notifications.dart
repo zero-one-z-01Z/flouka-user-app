@@ -1,12 +1,18 @@
 import 'dart:convert';
+import 'package:flouka/core/constants/constants.dart';
+import 'package:flouka/features/orders/presentation/provider/order_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:provider/provider.dart';
+import '../../features/chat/presentation/provider/message_provider.dart';
+import '../../features/tickets/presentation/provider/ticket_message_provider.dart';
+import '../../features/tickets/presentation/provider/tickets_provider.dart';
 import '../helper_function/convert.dart';
 import '../helper_function/helper_function.dart';
 
 class NotificationLocalClass {
   static final FlutterLocalNotificationsPlugin notificationsPlugin =
-      FlutterLocalNotificationsPlugin();
+  FlutterLocalNotificationsPlugin();
   static Future notificationDet() async {
     return const NotificationDetails(
       android: AndroidNotificationDetails(
@@ -44,18 +50,16 @@ class NotificationLocalClass {
   }
 
   static Future init({bool initScheduled = false}) async {
-    const settings = InitializationSettings(
-      android: AndroidInitializationSettings('logo'),
+    final settings = InitializationSettings(
+      android: const AndroidInitializationSettings('@mipmap/ic_launcher'),
       iOS: DarwinInitializationSettings(
-        requestSoundPermission: true,
-        requestBadgePermission: true,
-        requestAlertPermission: true,
-        defaultPresentBadge: true,
-        // onDidReceiveLocalNotification: (id,title,body,pay)async{
-
-        //   clickNoti(pay!);
-
-        // }
+          requestSoundPermission: true,
+          requestBadgePermission: true,
+          requestAlertPermission: true,
+          defaultPresentBadge: true,
+          onDidReceiveLocalNotification: (id,title,body,pay)async{
+            clickNoti(pay!);
+          }
       ),
     );
     await notificationsPlugin.initialize(
@@ -70,43 +74,41 @@ class NotificationLocalClass {
 
 void clickNoti(String pay) async {
   Map payload = jsonDecode(pay);
-  // if(AuthProvider.isLogin()){
   if (payload.containsKey('message_type_')) {
     if (payload['message_type_'] == "chat") {
       Map message = jsonDecode(payload['data_']);
-      message['chat'];
-      // MessageProvider messageProvider = Provider.of(Constants.globalContext(),listen: false);
-      // bool check = messageProvider.checkMessageOfThisChat(convertStringToInt(message['chat']['id']));
-      // if(!check){
-      //   int sellerId = convertStringToInt(chat['seller_id']);
-      //   int buyerId = convertStringToInt(chat['buyer_id']);
-      //   int addId = convertStringToInt(chat['add_id']);
-      //
-      //   if(messageProvider.chatEntity==null){
-      //     messageProvider.goToMessagePage(sellerId: sellerId,buyerId: buyerId, adId: addId,);
-      //   }else{
-      //     messageProvider.getMessages(sellerId: sellerId,buyerId: buyerId, adId: addId,);
-      //   }
+      MessageProvider messageProvider = Provider.of(Constants.globalContext(),listen: false);
+      if(messageProvider.chatEntity==null){
+        messageProvider.goToMessagePage(orderId: message['order_id'],storeId: message['store_id']);
+      }else{
+        messageProvider.getMessages(orderId: message['order_id'],storeId: message['store_id']);
+      }
     }
   } else if (payload['message_type_'] == "order") {
-    convertStringToInt(jsonDecode(payload['data_']));
-    // OrderDetailsProvider orderDetailsProvider = Provider.of(Constants.globalContext(),listen: false);
-    // if(orderDetailsProvider.ordersDetails!=null&&orderDetailsProvider.ordersDetails!.id!=orderId){
-    //   orderDetailsProvider.getOrderDetailsData(id: orderId);
-    // }
-    // if(orderDetailsProvider.ordersDetails==null){
-    //   orderDetailsProvider.goToOrderDetailsHome(id: orderId);
-    // }
-  } else if (payload['message_type_'] == "comment") {
-    convertStringToInt(jsonDecode(payload['data_']));
-    // OrderDetailsProvider orderDetailsProvider = Provider.of(Constants.globalContext(),listen: false);
-    // if(orderDetailsProvider.ordersDetails!=null&&orderDetailsProvider.ordersDetails!.id!=adId){
-    //   orderDetailsProvider.refresh(adId);
-    // }
-    // if(orderDetailsProvider.ordersDetails==null){
-    //   orderDetailsProvider.goToOrderDetailsHome(id: adId);
-    // }
-    // }
-    // }
+    int orderId = convertStringToInt(jsonDecode(payload['data_']));
+    OrderProvider orderProvider = Constants.globalContext().read();
+    if(orderProvider.data==null){
+      orderProvider.goToPage();
+    }
+  }else if(payload['message_type_']=="ticket"){
+    TicketsProvider ticketsProvider = Provider.of(Constants.globalContext(),listen: false);
+    Map message = jsonDecode(payload['data_']);
+    TicketMessageProvider messageProvider = Provider.of(Constants.globalContext(),listen: false);
+    if(messageProvider.ticketEntity==null){
+      ticketsProvider.goToTicketsPage();
+      messageProvider.getTicketDetails(id: message['ticket_id']);
+    }else{
+      messageProvider.getTicketDetails(id: message['ticket_id']);
+    }
+  }else if(payload['message_type_']=="ticket_status"){
+    TicketsProvider ticketsProvider = Provider.of(Constants.globalContext(),listen: false);
+    int id = convertStringToInt(jsonDecode(payload['data_']));
+    TicketMessageProvider messageProvider = Provider.of(Constants.globalContext(),listen: false);
+    if(ticketsProvider.tickets==null){
+      ticketsProvider.goToTicketsPage();
+      messageProvider.getTicketDetails(id: id);
+    }else{
+      messageProvider.getTicketDetails(id: id);
+    }
   }
 }
