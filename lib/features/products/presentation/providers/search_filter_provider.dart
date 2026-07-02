@@ -329,7 +329,7 @@ class SearchFilterProvider extends ChangeNotifier {
     selectedPriceRange = range;
     isChangedPrice=true;
     Map<String,dynamic> element= mainFilters.firstWhere((e) => e['title'] == 'price');
-    element['value'] = {"name":"${range.start}  -  ${range.end}", "from":range.start,"to":range.end};
+    element['value'] = {"name":"${range.start.toStringAsFixed(2)}  -  ${range.end.toStringAsFixed(2)}", "from":range.start,"to":range.end};
     notifyListeners();
   }
 

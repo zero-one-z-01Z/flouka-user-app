@@ -72,7 +72,7 @@ class AddressProvider extends ChangeNotifier {
       cancel: 'delete',
       cancelTap: () {
         navPop();
-        deleteAddress(id);
+        // deleteAddress(id);
       },
     );
   }

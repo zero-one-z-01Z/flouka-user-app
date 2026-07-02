@@ -60,7 +60,7 @@ class CheckoutProvider extends ChangeNotifier {
 
   num total() {
     CouponProvider couponProvider=Provider.of<CouponProvider>(Constants.globalContext(), listen: false,);
-    return convertDataToNum((subtotal() + tax()).toStringAsFixed(2))! - ((couponProvider.calcDiscount() ?? 0) + deliveryPrice()) ;
+    return convertDataToNum((subtotal() + tax()).toStringAsFixed(2))! - ((couponProvider.calcDiscount() ?? 0))+deliveryPrice() ;
   }
 
   CouponEntity? couponEntity;

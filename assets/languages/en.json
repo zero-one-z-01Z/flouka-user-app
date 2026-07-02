@@ -290,6 +290,7 @@
     "today": "today"
   },
   "buttons": {
+    "delete": "Delete",
     "chat": "Chat",
     "skip": "Skip",
     "start_chat": "Start Chat",

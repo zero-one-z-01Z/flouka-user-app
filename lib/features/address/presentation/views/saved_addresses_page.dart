@@ -50,13 +50,12 @@ class SavedAddressesPage extends StatelessWidget {
       ),
 
       bottomNavigationBar: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 17.sp, vertical: 5.h),
+        padding: EdgeInsets.symmetric(horizontal: 17.sp, vertical: 5.h).add(EdgeInsets.only(bottom: 3.h)),
         child: ButtonWidget(
           onTap: () {
             mapProvider.goToMapPage();
           },
           text: LanguageProvider.translate('global', 'add_location'),
-          height: 7.h,
           borderRadius: 12,
         ),
       ),

@@ -39,7 +39,7 @@ class SavedAddressContainerWidget extends StatelessWidget {
               SizedBox(width: 2.w),
               if(address.isDefault == false)
               InkWell(
-                onTap: () => addressProvider.deleteAddress(address.id!),
+                onTap: () => addressProvider.showDeleteLocation(address.id!),
                 child: const Icon(Icons.delete, color: Colors.red),
               ),
 
