@@ -5,6 +5,7 @@ import 'package:flouka/features/language/presentation/provider/language_provider
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import '../../../../core/constants/app_images.dart';
 import '../providers/complete_info_provider.dart';
 import '../widgets/profile_image_widget.dart';
 
@@ -22,35 +23,53 @@ class CompleteInfoView extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: Text(
-          LanguageProvider.translate("auth", "Profile"),
+          LanguageProvider.translate("auth",completeInfoProvider.isEdit? "edit_profile" : "complete_profile"),
           style: TextStyleClass.headStyle().copyWith(fontSize: 17.sp),
         ),
       ),
-      body: Form(
-        key: completeInfoProvider.formKey,
-        child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 4.w),
-          child: Column(
-            children: [
-              SizedBox(height: 4.h),
-              const ProfileImageWidget(),
-              SizedBox(height: 2.h),
-              ListTextFieldWidget(
-                inputs: completeInfoProvider.completeInfoTextFieldList,
+      extendBodyBehindAppBar: true,
+      body: SizedBox(
+        width: 100.w,height: 100.h,
+        child: Stack(
+          children: [
+            Form(
+              key: completeInfoProvider.formKey,
+              child: SafeArea(
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: SingleChildScrollView(
+                        padding: EdgeInsets.symmetric(horizontal: 4.w),
+                        child: Column(
+                          children: [
+                            SizedBox(height: 2.h),
+                            const ProfileImageWidget(),
+                            SizedBox(height: 2.h),
+                            ListTextFieldWidget(
+                              inputs: completeInfoProvider.completeInfoTextFieldList,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 2.h, ),
+                      child: ButtonWidget(
+                        onTap: () {
+                          completeInfoProvider.updateProfileButton();
+                        },
+                        text: isEdit ? "save" : "sign_up",
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ],
-          ),
-        ),
-      ),
-      bottomNavigationBar: Padding(
-        padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 4.w),
-        child: ButtonWidget(
-          height: 6.h,
-          width: 80.w,
-          onTap: () {
-            completeInfoProvider.updateProfileButton();
-          },
-          text: isEdit ? "save" : "sign_up",
+            ),
+            Positioned(
+                top: 0,left: 0,right: 0,
+                child: Image.asset(AppImages.topAuth)),
+
+          ],
         ),
       ),
     );

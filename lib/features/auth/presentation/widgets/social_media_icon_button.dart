@@ -18,19 +18,21 @@ class SocialMediaIconButton extends StatelessWidget {
         margin: EdgeInsets.only(bottom: 2.h),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(32),
-          border: Border.all(color: Colors.black),
+          border: Border.all(color:const  Color(0xffE5E7EB)),
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            SizedBox(width: 10.w),
+
             Image.asset(socialAuthEntity.image, width: 4.w),
+            SizedBox(width: 10.w),
             Text(
               LanguageProvider.translate("auth", socialAuthEntity.text),
               style: TextStyleClass.normalStyle().copyWith(
                 fontWeight: FontWeight.w500,
               ),
             ),
-            SizedBox(width: 4.w),
           ],
         ),
       ),

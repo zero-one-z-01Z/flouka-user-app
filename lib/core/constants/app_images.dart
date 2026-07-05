@@ -19,7 +19,9 @@ abstract class AppImages {
   static const String signup = 'assets/images/auth/signup.png';
   static const String signup2 = 'assets/images/auth/signup2.png';
   static const String preson = 'assets/images/auth/person.png';
+  static const String otpBack = 'assets/images/auth/otp_back.png';
   static const String google = 'assets/images/auth/google.png';
+  static const String guest = 'assets/images/auth/guest.png';
   static const String facebook = 'assets/images/auth/facebook.png';
   static const String apple = 'assets/images/auth/apple.png';
 
@@ -35,6 +37,11 @@ abstract class AppImages {
   static const String location = 'assets/images/home/location.svg';
   static const String search = 'assets/images/home/search.svg';
   static const String star = 'assets/images/home/star.svg';
+
+  // auth
+
+  static const String topAuth = 'assets/images/auth/top_auth.png';
+  static const String bottomAuth = 'assets/images/auth/bottom_auth.png';
 
   //Address
   static const String addressHome = 'assets/images/address/home.svg';

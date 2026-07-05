@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../core/config/app_color.dart';
 import '../../../../core/config/app_styles.dart';
+import '../../../../core/constants/app_images.dart';
 import '../../../../core/widgets/button_widget.dart';
 import '../../../language/presentation/provider/language_provider.dart';
 import '../providers/auth_provider.dart';
@@ -24,14 +25,15 @@ class OtpContainerWithButton extends StatelessWidget {
     AuthProvider authProvider = Provider.of<AuthProvider>(context, listen: false);
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: const Color(0xffF7F6F6),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: 16,
         children: [
+          Center(
+            child: Text(LanguageProvider.translate("auth", "otp"),style: TextStyleClass.headStyle().copyWith(
+              fontWeight: FontWeight.bold,height: 1
+            ),),
+          ),
           RowTextWidget(
             normalText: LanguageProvider.translate(
               "auth",
@@ -40,35 +42,31 @@ class OtpContainerWithButton extends StatelessWidget {
             highlightedTextWithonTap:
                 "(${authProvider.loginTextFieldList[0].controller.text})",
           ),
+          SizedBox(height: 1.h),
+          Image.asset(AppImages.otpBack, ),
+          SizedBox(height: 0.5.h),
+
           const CustomOTPField(),
-          Selector<OtpProvider, int>(
-            builder: (context, value, child) => InkWell(
-              onTap: () {
-                authProvider.sendOTP(isResend: true);
-              },
-              child: Text(
-                "${LanguageProvider.translate("auth", "resend_otp_after")} ${otpProvider.sendCode(value)}",
-                style: TextStyleClass.headStyle().copyWith(
-                  fontSize: 15.sp,
-                  color: otpProvider.counter > 0
-                      ? const Color(0xff525252)
-                      : AppColor.primaryColor,
+          Center(
+            child: Selector<OtpProvider, int>(
+              builder: (context, value, child) => InkWell(
+                onTap: () {
+                  authProvider.sendOTP(isResend: true);
+                },
+                child: Text(
+                  "${LanguageProvider.translate("auth", "resend_otp_after")} ${otpProvider.sendCode(value)}",
+                  style: TextStyleClass.headStyle().copyWith(
+                    fontSize: 15.sp,
+                    color: otpProvider.counter > 0
+                        ? const Color(0xff525252)
+                        : AppColor.primaryColor,
+                  ),
                 ),
               ),
+              selector: (p0, p1) => otpProvider.counter,
             ),
-            selector: (p0, p1) => otpProvider.counter,
           ),
-          ButtonWidget(
-            text: "Active",
-            textStyle: TextStyleClass.headStyle().copyWith(
-              color: Colors.white,
-              fontSize: 15.sp,
-            ),
-            onTap: () {
-              // completeInfoProvider.goToCompleteInfoView();
-              otpProvider.checkCode();
-            },
-          ),
+
         ],
       ),
     );

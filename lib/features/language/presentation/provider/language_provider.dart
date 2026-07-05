@@ -78,8 +78,8 @@ class LanguageProvider extends ChangeNotifier {
       Constants.globalContext(),
       listen: false,
     );
-    return languageCubit.getTranslate(key,value);
-    // return Translate.translate(key, value);
+    // return languageCubit.getTranslate(key,value);
+    return Translate.translate(key, value);
   }
 
   Future afterChangeLanguage() async {

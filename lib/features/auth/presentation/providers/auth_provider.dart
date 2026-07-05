@@ -271,7 +271,7 @@ class AuthProvider extends ChangeNotifier {
 
   List<TextFieldModel> loginTextFieldList = [
     TextFieldModel(
-      label: LanguageProvider.translate("inputs", "Number"),
+      hint: LanguageProvider.translate("inputs", "Number"),
       key: "phone",
       controller: TextEditingController(),
       textInputType: TextInputType.phone,
@@ -351,6 +351,12 @@ class AuthProvider extends ChangeNotifier {
       image: AppImages.google,
       onTap: () => googleLogin(),
       text: "Google",
+    ),
+    SocialAuthEntity(
+      image: AppImages.guest,
+      onTap: () => Constants.globalContext().read<NavBarProvider>().goToNavView()
+    ,
+      text: LanguageProvider.translate('auth', 'guest_description'),
     ),
   ];
   bool isGuest() {

@@ -43,7 +43,7 @@ class ButtonWidget extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: takeSmallestWidth ? null : (width ?? 90.w),
-        height: height ?? (Constants.isTablet ? 7.h : 5.h),
+        height: height ?? (Constants.isTablet ? 7.h : 6.5.h),
         decoration: BoxDecoration(
           borderRadius:
               directionBorderRadius ?? BorderRadius.circular(borderRadius ?? 15),

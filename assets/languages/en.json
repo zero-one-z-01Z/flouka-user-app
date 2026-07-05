@@ -59,7 +59,11 @@
   },
   "auth": {
     "guest": "Guest",
+    "guest_description": "Continue as a guest",
+
     "Forgot password": "Forgot password",
+    "auth_welcome": "Welcome!\nEnter your phone number to sign in to your account.",
+
     "New to Habitual?": "New to Habitual?",
     "Sign up": "Sign up",
     "resend_otp_after": "Resend code",
@@ -292,6 +296,8 @@
   "buttons": {
     "delete": "Delete",
     "chat": "Chat",
+    "login" : "Login",
+
     "skip": "Skip",
     "start_chat": "Start Chat",
     "pay": "Pay",
@@ -343,6 +349,7 @@
     "share_store_description": "Shop now with us *name* and explore many of products",
     "terms": "Terms & Conditions",
     "settings": "Settings",
+    "login": "Login",
     "favourite": "Favourite",
     "language": "Language",
     "support": "Support",

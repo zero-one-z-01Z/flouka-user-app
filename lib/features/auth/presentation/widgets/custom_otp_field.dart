@@ -13,38 +13,30 @@ class CustomOTPField extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.ltr,
 
-      child: PinCodeTextField(
-        keyboardType: TextInputType.number,
-        appContext: context,
-        length: 4,
-        obscureText: false,
-        animationType: AnimationType.fade,
-        cursorColor: Colors.black38,
-        enablePinAutofill: true,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        separatorBuilder: (context, position) => Column(
-          children: [Container(width: 10, height: 80, color: Colors.grey.shade200)],
+      child: Center(
+        child: MaterialPinField(
+          keyboardType: TextInputType.number,
+          length: 4,
+          pinController: otpProvider.otpController,
+          obscureText: false,
+          mainAxisAlignment: MainAxisAlignment.center,
+          separatorBuilder: (context, position) => Column(
+            children: [Container(width: 25, height: 80, color: Colors.white)],
+          ),
+          theme: MaterialPinTheme(
+            shape: MaterialPinShape.outlined,
+            focusedFillColor: Colors.white,
+            completeBorderColor: Colors.grey.shade200,
+            borderColor: Colors.grey.shade200,
+            focusedBorderColor: AppColor.primaryColor,
+            cursorColor: AppColor.primaryColor,
+            cellSize: const Size(65, 64),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          onCompleted: (v) {
+            // otpProvider.checkCode();
+          },
         ),
-        pinTheme: PinTheme(
-          borderRadius: BorderRadius.circular(12),
-          selectedColor: AppColor.primaryColor,
-          selectedFillColor: Colors.white,
-          activeColor: AppColor.primaryColor,
-          inactiveColor: Colors.grey,
-          shape: PinCodeFieldShape.underline,
-          fieldHeight: 55,
-          fieldWidth: 50,
-          activeFillColor: Colors.white,
-          inactiveFillColor: Colors.white,
-          errorBorderColor: Colors.white,
-        ),
-        animationDuration: const Duration(milliseconds: 300),
-        backgroundColor: Colors.white,
-        enableActiveFill: true,
-        controller: otpProvider.otpController,
-        onCompleted: (v) {
-          // otpProvider.checkCode();
-        },
       ),
     );
   }

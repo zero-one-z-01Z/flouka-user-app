@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/dialog/snack_bar.dart';
@@ -43,11 +44,11 @@ class OtpProvider extends ChangeNotifier {
   OtpProvider(this.authUsceCase);
 
   void goToOTPView() {
-    otpController = TextEditingController();
+    otpController = PinInputController();
     navP(const OTPView());
   }
 
-  late TextEditingController otpController;
+  late PinInputController otpController;
 
   Future<void> checkCode({bool isRegister = true}) async {
     AuthProvider authProvider = Provider.of<AuthProvider>(

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:math' show atan2, cos, pi, pow, sin, sqrt;
@@ -7,53 +9,72 @@ String? currentLocationAddress;
 
 Future<LatLng> determinePosition({
   bool showMessage = true,
-  bool fromHome = false,
 }) async {
-  // await  delay(2000);
-  LocationPermission permission;
-  LatLng defaultLatLngq = const LatLng(24.7136, 46.6753);
-  // return defaultLatLngq;
-  // تحقق من إذن الموقع
+  const defaultLatLng = LatLng(24.7136, 46.6753);
+
   try {
-    permission = await Geolocator.checkPermission();
+    // 1- Check Location Service
+    final serviceEnabled = await Geolocator.isLocationServiceEnabled();
+
+    if (!serviceEnabled) {
+      if (showMessage) {
+        await showSettingsDialog('open_gps');
+      }
+      return defaultLatLng;
+    }
+
+    // 2- Check Permission
+    var permission = await Geolocator.checkPermission();
+
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
 
       if (permission == LocationPermission.denied) {
         if (showMessage) {
-          await showSettingsDialog('open_gps');
+          await showSettingsDialog('location_permission_denied');
         }
-        return defaultLatLngq;
+        return defaultLatLng;
       }
     }
+
     if (permission == LocationPermission.deniedForever) {
       if (showMessage) {
         await showSettingsDialog('open_gps_settings');
       }
-      return defaultLatLngq;
+      return defaultLatLng;
     }
-    try {
-      Position position = await Geolocator.getCurrentPosition();
 
-      LatLng latLng = LatLng(position.latitude, position.longitude);
-      return latLng;
-    } catch (e) {
+    // 3- Try Current Position
+    try {
+      final position = await Geolocator.getCurrentPosition(
+        locationSettings: const LocationSettings(
+          accuracy: LocationAccuracy.high,
+          timeLimit: Duration(seconds: 2),
+        ),
+      );
+
+      return LatLng(position.latitude, position.longitude);
+    } on TimeoutException {
+      final lastPosition = await Geolocator.getLastKnownPosition();
+
+      if (lastPosition != null) {
+        return LatLng(lastPosition.latitude, lastPosition.longitude);
+      }
 
       if (showMessage) {
-        await showSettingsDialog('location_error');
+        await showSettingsDialog('location_timeout');
       }
-      return defaultLatLngq;
-    }
-  } catch (e) {
-    print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa12222');
 
+      return defaultLatLng;
+    }
+  } catch (e, s) {
     if (showMessage) {
       await showSettingsDialog('location_error');
     }
-    return defaultLatLngq;
+
+    return defaultLatLng;
   }
 }
-
 Future showSettingsDialog(String title) async {
   // Position as = Position(longitude: 24.7136, latitude: 46.6753, timestamp: DateTime.now(),
   //     accuracy: 0 , altitude: 0, altitudeAccuracy: 0, heading: 0, headingAccuracy: 0, speed: 0,

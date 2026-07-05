@@ -59,6 +59,8 @@
   },
   "auth": {
     "guest": "Invité",
+    "guest_description": "Continuer en tant qu'invité",
+    "auth_welcome": "Bienvenue !\nEntrez votre numéro de téléphone pour vous connecter à votre compte.",
     "Forgot password": "Mot de passe oublié",
     "New to Habitual?": "Nouveau sur Habitual ?",
     "Sign up": "S'inscrire",
@@ -289,6 +291,7 @@
   "buttons": {
     "chat": "Discuter",
     "skip": "Passer",
+    "login" :"Connexion",
     "start_chat": "Commencer le chat",
     "pay": "Payer",
     "rate": "Évaluer",
@@ -340,6 +343,7 @@
     "terms": "Conditions générales",
     "settings": "Paramètres",
     "favourite": "Favoris",
+    "login": "Connexion",
     "language": "Langue",
     "support": "Support",
     "dark_mode": "Mode sombre",
