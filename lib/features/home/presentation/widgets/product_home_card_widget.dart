@@ -1,9 +1,11 @@
 import 'package:flouka/core/config/app_styles.dart';
 import 'package:flouka/features/language/presentation/provider/language_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../core/constants/app_images.dart';
+import '../../../products/presentation/providers/categories_product_search_provider.dart';
 
 class ProductHomeCardWidget extends StatelessWidget {
   const ProductHomeCardWidget({super.key});
@@ -12,7 +14,8 @@ class ProductHomeCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-
+        CategoriesProductSearchProvider provider = Provider.of(context, listen: false);
+        provider.goToPage();
       },
       child: Container(
         width: 100.w,
