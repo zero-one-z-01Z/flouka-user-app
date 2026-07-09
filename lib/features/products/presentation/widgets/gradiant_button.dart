@@ -21,93 +21,39 @@ class gradiantButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16),
-      padding: const EdgeInsets.all(1),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5),
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: gradiantcolors,
-        ),
-      ),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(5),
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            if(vendor.vendor != null)
+      child:Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          if(vendor.vendor != null)
             Container(
-              padding: const EdgeInsets.all(2),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: gradiantcolors,
-                ),
+                border: Border.all(color:const Color(0xff00A8E1),),
               ),
-              child: Container(
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white,
-                ),
-                child: ClipOval(
-                  child: Container(width: 10.w,height: 10.w,
-                    decoration: BoxDecoration(
+              child: ClipOval(
+                child: Container(width: 10.w,height: 10.w,
+                  decoration: BoxDecoration(
                       image: DecorationImage(image: CachedNetworkImageProvider(vendor.vendor!.logo),fit: BoxFit.cover)
-                    ),
                   ),
                 ),
               ),
             ),
-            SizedBox(width: 2.w),
-            Padding(
-              padding: const EdgeInsets.only(top: 2),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Text(LanguageProvider.translate("global", "sold_by"), style: TextStyleClass.smallStyle()),
-                      SizedBox(width: 1.w),
-                      Text(
-                        vendor.name,
-                        style: TextStyleClass.smallStyle(
-                          color: AppColor.primaryColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                  // SizedBox(height: 1.h),
-                  Row(
-                    children: [
-                      // Text(vendor.avgRating, style: TextStyleClass.smallStyle()),
-                      RatingBar(
-                        itemCount: 1,
-                        itemSize: 16.sp,
-                        initialRating: 1,
-                        ratingWidget: RatingWidget(
-                          full: const Icon(Icons.star, color: Colors.amber),
-                          half: const Icon(Icons.star_half, color: Colors.amber),
-                          empty: const Icon(Icons.star_outline, color: Colors.amber),
-                        ),
-                        onRatingUpdate: (value) {},
-                      ),
-                    ],
-                  ),
-                ],
+          SizedBox(width: 2.w),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(LanguageProvider.translate("global", "sold_by"), style: TextStyleClass.smallStyle()),
+              SizedBox(width: 1.w),
+              Text(
+                vendor.name,
+                style: TextStyleClass.smallStyle(
+                  color: AppColor.primaryColor,
+                ),
               ),
-            ),
-            const Spacer(),
-            Icon(Icons.arrow_forward_ios, size: 18.sp),
-          ],
-        ),
+            ],
+          ),
+        ],
       ),
     );
   }

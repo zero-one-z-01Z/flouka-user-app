@@ -10,6 +10,10 @@
   },
   "home": {
     "deliver_to": "التوصيل إلى",
+    "discount": "خصم *num* %",
+    "card_title": "استمتع بمزايا حصرية مع احدث المتاجر",
+    "card_des": "توصيل مجاني وعروض خاصة بانتظارك",
+    "card_button": "تسوق الان",
     "select_location": "إضافة موقع",
     "Profile": "الملف الشخصي",
     "change": "تغيير",
@@ -22,8 +26,10 @@
     "craziest": "الأكثر جنونًا",
     "black_friday_deals": "عروض الجمعة البيضاء",
     "hot_deals": "عروض ساخنة",
-    "retail_stores": "متاجر التجزئة",
-    "popular_categories": "الفئات الشائعة"
+    "related_products": "منتجات ذات صلة",
+    "retail_stores": "المتاجر",
+    "popular_categories": "الفئات الشائعة",
+    "store_details": "تفاصيل المتجر"
   },
   "chat": {
     "chat": "الدردشة",
@@ -36,7 +42,7 @@
   },
   "navbar": {
     "home": "الرئيسية",
-    "categories": "الفئات",
+    "categories": "الأقسام",
     "orders": "الطلبات",
     "cart": "السلة",
     "profile": "الملف الشخصي",
@@ -55,6 +61,7 @@
   },
   "categories": {
     "search": "بحث ...",
+    "search_title": "البحث",
     "shop_by": "تسوق حسب"
   },
   "auth": {
@@ -88,6 +95,11 @@
   },
   "global": {
     "delivery": "التوصيل",
+    "delivery_to": "عنوان التوصيل",
+    "payment_method": "طريقة الدفع",
+    "my_orders": "طلباتي",
+    "coupon_code": "كود الخصم (اختياري)",
+    "start_from": "تبدأ من ",
     "yes": "نعم",
     "no": "لا",
     "payment_details": "تفاصيل الدفع",
@@ -102,7 +114,7 @@
     "change_camera": "تغيير الكاميرا",
     "upload_review_images": "تحميل صور المراجعة",
     "notifications": "الإشعارات",
-    "all_reviews": "جميع المراجعات",
+    "all_reviews": "جميع التقييمات",
     "no_notifications": "لا توجد إشعارات بعد",
     "order_address": "اختر موقعًا",
     "no_favorite": "لا توجد منتجات مفضلة",
@@ -128,7 +140,7 @@
     "operations": "عمليات المحفظة",
     "your_credit": "رصيدك",
     "deposited": "تم الإيداع",
-    "seller_ratings": "تقييمات البائع",
+    "seller_ratings": "التقييم",
     "best_seller": "الأكثر مبيعًا",
     "category": "الفئة",
     "say_hello": "قل مرحبًا لشريكنا الجديد",
@@ -139,7 +151,7 @@
     "explore": "استكشف",
     "made_in": "صُنع في",
     "staff_pick": "اختيار الموظفين",
-    "reviews": "المراجعات",
+    "reviews": "التقييمات",
     "quantity": "الكمية",
     "customers": "العملاء",
     "products": "المنتجات",
@@ -159,7 +171,7 @@
     "home": "الرئيسية",
     "checkout": "إتمام الشراء",
     "what_are_you_looking_for": "ما الذي تبحث عنه؟",
-    "see reviews": "عرض المراجعات",
+    "see reviews": "عرض التقييمات",
     "total": "الإجمالي",
     "Description": "الوصف",
     "Personal information": "المعلومات الشخصية",
@@ -193,6 +205,7 @@
     "Update on Your Order": "تحديث حول طلبك",
     "available": "متوفر",
     "out_of_stock": "غير متوفر",
+    "product": "منتج",
     "this_item_unavailable": "هذا العنصر غير متوفر حاليًا"
   },
   "orders": {
@@ -282,7 +295,7 @@
     "street_name": "اسم الشارع"
   },
   "time": {
-    "ago": "مضى",
+    "ago": "منذ",
     "year": "سنة",
     "month": "شهر",
     "day": "يوم",
@@ -294,6 +307,7 @@
   "buttons": {
     "chat": "دردشة",
     "login" : "تسجيل الدخول",
+    "confirm": "تأكيد",
     "skip": "تخطي",
     "start_chat": "ابدأ الدردشة",
     "pay": "ادفع",
@@ -344,6 +358,7 @@
     "share_description": "أنصحك بشراء *product* وهذا المنتج *description*",
     "share_store_description": "تسوق الآن معنا *name* واستكشف العديد من المنتجات",
     "terms": "الشروط والأحكام",
+    "share": "مشاركة",
     "settings": "الإعدادات",
     "login": "تسجيل الدخول",
     "favourite": "المفضلة",

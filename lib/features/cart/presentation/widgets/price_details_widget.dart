@@ -26,6 +26,7 @@ class PriceDetailesList extends StatelessWidget {
             fontSize: 16.sp,
             title: LanguageProvider.translate("global", "price"),
             price: checkoutProvider.subtotal().toStringAsFixed(2),
+            color: Colors.grey,
           ),
           // PaymentPriceWidget(
           //   fontSize: 16.sp,
@@ -34,30 +35,34 @@ class PriceDetailesList extends StatelessWidget {
           // ),
 
           if (couponProvider.couponEntity != null && couponProvider.couponEntity!.isNotEmpty) ...[
-            Divider(color: Colors.grey.shade400, endIndent: 32, indent: 32),
+            Container(color: Colors.grey.shade300, height: 0.1.h,width: 100.w,),
             PaymentPriceWidget(
               fontSize: 16.sp,
               title: LanguageProvider.translate("global", "discount"),
               price: couponProvider.calcDiscount()?.toStringAsFixed(2)??"",
+              color: Colors.grey,
             ),
           ],
-          Divider(color: Colors.grey.shade400, endIndent: 32, indent: 32),
+          Container(color: Colors.grey.shade300, height: 0.1.h,width: 100.w,),
           PaymentPriceWidget(
             fontSize: 16.sp,
             title: LanguageProvider.translate("global", "tax"),
             price: checkoutProvider.tax().toStringAsFixed(2),
+            color: Colors.grey,
           ),
-          Divider(color: Colors.grey.shade400, endIndent: 32, indent: 32),
+          Container(color: Colors.grey.shade300, height: 0.1.h,width: 100.w,),
           PaymentPriceWidget(
             fontSize: 16.sp,
             title: LanguageProvider.translate("global", "delivery"),
             price: checkoutProvider.deliveryPrice().toStringAsFixed(2),
+            color: Colors.grey,
           ),
-          Divider(color: Colors.grey.shade400, endIndent: 32, indent: 32),
+          Container(color: Colors.grey.shade300, height: 0.1.h,width: 100.w,),
           PaymentPriceWidget(
             fontSize: 15.99.sp,
             title: LanguageProvider.translate("global", "total"),
             price: checkoutProvider.total().toStringAsFixed(2),
+            color: Colors.black,
             isGreen: true,
             isBold: isBold,
           ),

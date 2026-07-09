@@ -13,10 +13,10 @@ class FarAwayContainerWidget extends StatelessWidget {
       children: [
         Container(
           padding: EdgeInsets.symmetric(
-            horizontal: 1.w,
+            horizontal: 4.w,
             vertical: 0.2.h,
           ).copyWith(left: 9.w),
-          color: Colors.black,
+          color: AppColor.primaryColor,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [

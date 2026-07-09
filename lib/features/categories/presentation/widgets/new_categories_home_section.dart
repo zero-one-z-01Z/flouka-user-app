@@ -26,7 +26,7 @@ class NewCategoriesHomeSection extends StatelessWidget {
             },
               child: NewCategoriesHomeWidget(
                 title: categories[index].name,
-                image: categories[index].image,
+                image: categories[index].image??"",
               ),
             );
           },

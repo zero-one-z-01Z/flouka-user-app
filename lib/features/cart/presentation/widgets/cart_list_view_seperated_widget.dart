@@ -14,37 +14,40 @@ class CartListViewSeperatedWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cartProvider = Provider.of<CartProvider>(context);
-    return Builder(
-      builder: (context) {
-        if (cartProvider.data == null) {
-          return const Center(
-            child: Center(child: LoadingAnimationWidget(gif: Lotties.loading)),
-          );
-        }
-        if (cartProvider.data!.isEmpty) {
-          return Center(
-            child: EmptyAnimation(
-              title: LanguageProvider.translate("global", "cart_is_empty"),
-
-              gif: Lotties.cartAnimation,
-            ),
-          );
-        }
-        return ListView.separated(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: cartProvider.data!.length,
-          itemBuilder: (context, index) {
-            return CartItemWidget(cartEntity: cartProvider.data![index]);
-          },
-          separatorBuilder: (context, index) {
-            return SizedBox(
-              height: 5.h,
-              child: const Divider(color: Color(0xffe3e3e3)),
+    return Padding(
+      padding:  EdgeInsets.symmetric(vertical: 2.h),
+      child: Builder(
+        builder: (context) {
+          if (cartProvider.data == null) {
+            return const Center(
+              child: Center(child: LoadingAnimationWidget(gif: Lotties.loading)),
             );
-          },
-        );
-      },
+          }
+          if (cartProvider.data!.isEmpty) {
+            return Center(
+              child: EmptyAnimation(
+                title: LanguageProvider.translate("global", "cart_is_empty"),
+
+                gif: Lotties.cartAnimation,
+              ),
+            );
+          }
+          return ListView.separated(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: cartProvider.data!.length,
+            itemBuilder: (context, index) {
+              return CartItemWidget(cartEntity: cartProvider.data![index]);
+            },
+            separatorBuilder: (context, index) {
+              return SizedBox(
+                height: 2.h,
+                // child: const Divider(color: Color(0xffe3e3e3)),
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }

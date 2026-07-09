@@ -23,7 +23,7 @@ class CategoriesView extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 4.w),
             child: Column(
               children: [
-                SizedBox(height: 1.h),
+                SizedBox(height: 2.h),
                 // const SearchbarContainer(),
                 // SizedBox(height: 1.h),
                 const CategoriesGridView(),

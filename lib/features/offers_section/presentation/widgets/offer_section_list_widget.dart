@@ -2,8 +2,7 @@ import 'package:flouka/features/offers_section/presentation/providers/offer_sect
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-
-import '../../../home/presentation/widgets/recommended_section.dart';
+import '../../../home/presentation/widgets/product_home_card_widget.dart';
 import '../../../stores/presentation/widgets/stores_home_section.dart';
 import '../../domain/entity/offer_section_entity.dart';
 import 'offer_section_widget.dart';
@@ -33,8 +32,9 @@ class OfferSectionListWidget extends StatelessWidget {
                 offerSectionEntity: offers[index],
               ),
               if(index==0)...[
+                const ProductHomeCardWidget(),
                 const StoresHomeSection(),
-                const RecommendedSection(),
+                // const RecommendedSection(),
               ],
             ],
           );

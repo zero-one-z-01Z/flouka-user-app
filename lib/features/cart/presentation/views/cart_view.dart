@@ -15,12 +15,8 @@ class CartView extends StatelessWidget {
     final cartProvider = Provider.of<CartProvider>(context);
     // final checkoutProvider = Provider.of<CheckoutProvider>(context);
     return Scaffold(
-      backgroundColor: const Color(0xffeffbff),
       appBar: AppBar(
-        title: Text(
-          LanguageProvider.translate("global", "cart"),
-          style: TextStyleClass.normalStyle(),
-        ),
+        title: Text(LanguageProvider.translate("global", "cart"),),
       ),
       body: SafeArea(
         child: Column(

@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flouka/features/address/domain/entities/neighborhood_entity.dart';
 
 import 'area_entity.dart';
+import 'city_entity.dart';
 
 class AddressEntity extends Equatable {
   final int? id;
@@ -14,11 +15,13 @@ class AddressEntity extends Equatable {
   final String? phone;
   final String? createdAt;
   final AreaEntity? areaEntity;
+  final CityEntity? cityEntity;
   final NeighborhoodEntity? neighborhoodEntity;
   bool? isDefault;
   AddressEntity({
     required this.id,
     required this.userId,
+    required this.cityEntity,
     required this.areaEntity,
     required this.areaId,
     required this.isDefault,

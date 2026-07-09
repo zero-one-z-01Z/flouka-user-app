@@ -12,6 +12,8 @@ abstract class AppImages {
   static const String yellowCircle = 'assets/images/onboarding/yellow_circle.png';
   static const String greenCircle = 'assets/images/onboarding/green_circle.png';
   static const String backgroundHome = 'assets/images/home/background_home.jpg';
+  static const String topSection = 'assets/images/home/top_section.png';
+  static const String topSectionSvg = 'assets/images/home/top_section.svg';
   static const String pinkCircle = 'assets/images/onboarding/pink_circle.png';
   static const String circles = 'assets/images/onboarding/3circles.png';
 
@@ -32,6 +34,7 @@ abstract class AppImages {
   //Home
   static const String cart = 'assets/images/home/cart.svg';
   static const String heart = 'assets/images/home/heart.svg';
+  static const String productCard = 'assets/images/home/product_card.png';
   static const String happyCart = 'assets/images/home/happy_cart.png';
   static const String explore = 'assets/images/home/explore.svg';
   static const String location = 'assets/images/home/location.svg';

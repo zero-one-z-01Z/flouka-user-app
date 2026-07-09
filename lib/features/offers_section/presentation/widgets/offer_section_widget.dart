@@ -16,9 +16,9 @@ class OffersSectionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(
-        horizontal: 1.w,
-        vertical: 0.2.h,
-      ).copyWith(left: 2.5.w, top: 1.h, bottom: 1.h),
+        horizontal: 3.w,
+        vertical: 2.h,
+      ),
       color: offerSectionEntity.color,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

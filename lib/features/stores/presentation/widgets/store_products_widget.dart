@@ -38,9 +38,10 @@ class StoreProductsWidget extends StatelessWidget {
                 }
                 return SizedBox(width: 100.w,
                   child: Wrap(
-                    runSpacing: 1.h,
+                    runSpacing: 1.h,spacing: 2.w,
                     children: List.generate(hotDeals.length, (index){
                       return HotDealsHomeContainerWidget(
+                        width: 38.w,
                         product: hotDeals[index],
                       );
                     }),

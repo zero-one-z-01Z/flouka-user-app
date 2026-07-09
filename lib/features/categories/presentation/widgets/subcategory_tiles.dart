@@ -40,7 +40,7 @@ class SubcategoryTile extends StatelessWidget {
                 children: [
                   SizedBox(width: 1.w),
                   CachedNetworkImage(
-                    imageUrl: subcategory!.image,
+                    imageUrl: subcategory!.image??"",
                     width: 12.w,
                     height: 5.h,
                     errorWidget: (context, url, error) => const Icon(Icons.error),

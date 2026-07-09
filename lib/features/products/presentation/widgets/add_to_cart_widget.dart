@@ -57,7 +57,7 @@ class AddToCartWidget extends StatelessWidget {
         }, text: 'add_to_cart',
           borderRadius: 12,width: 100.w, color: productDetailsProvider.isAllAttributesSelected() &&
               productQuantity.quantity!=null && authProvider.userEntity?.addressEntity!=null
-              ? AppColor.primaryColor : AppColor.primaryColor.withValues(alpha: 0.2),),
+              ? AppColor.secondaryColor : AppColor.secondaryColor.withValues(alpha: 0.2),),
         SizedBox(height: 2.h,),
       ],
     );

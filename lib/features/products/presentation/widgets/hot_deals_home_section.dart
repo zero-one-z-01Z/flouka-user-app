@@ -11,23 +11,12 @@ class HotDealsHomeSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            height: 25.h,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: products.length,
-              itemBuilder: (context, index) {
-                final product = products[index];
-                return HotDealsHomeContainerWidget(
-                  product: product,
-                );
-              },
-            ),
-          ),
-        ],
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(spacing: 3.w,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: List.generate(products.length, (index) => HotDealsHomeContainerWidget(product: products[index])),
+        ),
       ),
     );
   }

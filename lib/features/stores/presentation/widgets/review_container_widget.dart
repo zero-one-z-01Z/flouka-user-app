@@ -83,7 +83,7 @@ class ReviewContainerWidget extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Align(
-            alignment: Alignment.bottomRight,
+            alignment: AlignmentDirectional.bottomEnd,
             child: Text(
               getDiffTime(review.createdAt),
               style: TextStyle(
@@ -93,7 +93,7 @@ class ReviewContainerWidget extends StatelessWidget {
               ),
             ),
           ),
-          const Divider(color: Colors.grey, thickness: 0.4),
+          // const Divider(color: Colors.grey, thickness: 0.4),
         ],
       ),
     );

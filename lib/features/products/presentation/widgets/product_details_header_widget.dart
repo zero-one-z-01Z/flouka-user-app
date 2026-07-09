@@ -46,6 +46,7 @@ class ProductDetailsHeaderWidget extends StatelessWidget {
                     ),
                   );
                 }).toList(),
+                controller: productDetailsProvider.controller,
                 options: CarouselOptions(
                   viewportFraction: 1.0,
                   enlargeCenterPage: false,

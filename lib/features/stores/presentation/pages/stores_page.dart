@@ -17,29 +17,31 @@ class StoresPage extends StatelessWidget {
     provider.pagination();
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
         title: Text(LanguageProvider.translate('home', 'retail_stores')),
 
       ),
-      body: SingleChildScrollView(
-        controller: provider.controller,
-        physics:const AlwaysScrollableScrollPhysics(),
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 4.w),
-          child: Builder(
-            builder: (context) {
-              if(provider.data == null){
-                return const Center(child:  LoadingAnimationWidget(gif:Lotties.loading));
-              }else if(provider.data!.isEmpty){
-                return const EmptyAnimation(title: "title", gif: Lotties.noSearch);
+      body: RefreshIndicator(
+        onRefresh: () => provider.refresh(),
+        child: SingleChildScrollView(
+          controller: provider.controller,
+          physics:const AlwaysScrollableScrollPhysics(),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 4.w,vertical: 2.h),
+            child: Builder(
+              builder: (context) {
+                if(provider.data == null){
+                  return const Center(child:  LoadingAnimationWidget(gif:Lotties.loading));
+                }else if(provider.data!.isEmpty){
+                  return const EmptyAnimation(title: "title", gif: Lotties.noSearch);
+                }
+                return Column(
+                  spacing: 2.h,
+                  children: List.generate(provider.data!.length, (index) {
+                    return StoresContainerHomeWidget(store: provider.data![index]);
+                  }),
+                );
               }
-              return Column(
-                spacing: 2.h,
-                children: List.generate(provider.data!.length, (index) {
-                  return StoresContainerHomeWidget(store: provider.data![index]);
-                }),
-              );
-            }
+            ),
           ),
         ),
       ),

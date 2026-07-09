@@ -3,6 +3,7 @@ import '../../../products/domain/entity/product_entity.dart';
 class CartEntity {
   int? id;
   int? quantity;
+  num? stock;
   ProductEntity? product;
   CartVariantEntity? variant;
   num? unitPrice;
@@ -10,7 +11,7 @@ class CartEntity {
 
   num get subTotal => (quantity??0) * (unitPrice??0);
 
-  CartEntity({this.id, this.quantity, this.product,this.variant,this.unitPrice,required this.storeId});
+  CartEntity({this.id, this.quantity, this.product,this.variant,this.unitPrice,required this.storeId, this.stock});
 }
 
 class CartVariantEntity {

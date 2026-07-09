@@ -110,9 +110,8 @@ class ReviewItemWidget extends StatelessWidget {
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
-            const SizedBox(height: 8),
             Align(
-              alignment: Alignment.bottomRight,
+              alignment: AlignmentDirectional.bottomEnd,
               child: Text(
                 getDiffTime(review.createdAt),
                 style: TextStyle(
@@ -122,8 +121,8 @@ class ReviewItemWidget extends StatelessWidget {
                 ),
               ),
             ),
-            if(!onlyOne)
-            const Divider(color: Colors.grey, thickness: 0.4),
+            // if(!onlyOne)
+            // const Divider(color: Colors.grey, thickness: 0.4),
           ],
         ),
       ),

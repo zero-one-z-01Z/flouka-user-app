@@ -20,11 +20,9 @@ class FilterPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        elevation: 0,
-        backgroundColor: Colors.white,
+        // automaticallyImplyLeading: false,
         title: Text(LanguageProvider.translate('filters', 'filter')),
-        leading: const BackButton(),
+        // leading: const BackButton(),
       ),
       body: SafeArea(
         child: Column(

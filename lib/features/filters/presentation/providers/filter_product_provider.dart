@@ -23,13 +23,13 @@ class FilterProductProvider extends ChangeNotifier {
     response.fold((l) {}, (r) {
       data=[];
       List<CategoryModel> staticCategories = [
-
-        CategoryModel(id: -1, name: 'new_gadget',image: "", parentId: null,),
-        CategoryModel(id: -2, name: 'best_selling',image: "", parentId: null,),
+        //
+        // CategoryModel(id: -1, name: 'new_gadget',image: "", parentId: null,),
+        // CategoryModel(id: -2, name: 'best_selling',image: "", parentId: null,),
       ];
-      if(AuthProvider.isLogin()){
-        staticCategories.insert(0, CategoryModel(id: 0, name: 'for_you',image: "", parentId: null,),);
-      }
+      // if(AuthProvider.isLogin()){
+      //   staticCategories.insert(0, CategoryModel(id: 0, name: 'for_you',image: "", parentId: null,),);
+      // }
       data?.addAll(staticCategories);
 
       data?.addAll(r);

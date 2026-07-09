@@ -24,7 +24,7 @@ class CategoriesGridView extends StatelessWidget {
 
         final categories = categoryProvider.categories;
         final rows = <Widget>[];
-        const int itemsPerRow = 3;
+        const int itemsPerRow = 2;
 
         for (int i = 0; i < categories.length; i += itemsPerRow) {
           final rowCategories = categories.skip(i).take(itemsPerRow).toList();
@@ -35,7 +35,7 @@ class CategoriesGridView extends StatelessWidget {
           );
 
           rows.add(
-            Column(
+            Column(spacing: 1.h,
               children: [
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,7 +70,7 @@ class CategoriesGridView extends StatelessWidget {
                   ), // Smaller spacing between row and its subcategories
                   const SubcategoriesListView(),
                   SizedBox(
-                    height: 0.h,
+                    height: 2.h,
                   ), // Larger spacing after subcategories before next row
                 ] else ...[
                   SizedBox(height: 0.h), // Normal spacing between rows

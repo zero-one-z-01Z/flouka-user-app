@@ -1,10 +1,10 @@
 import 'package:flouka/core/config/app_styles.dart';
 import 'package:flouka/core/constants/app_images.dart';
 import 'package:flouka/core/constants/app_lotties.dart';
-import 'package:flouka/core/helper_function/navigation.dart';
 import 'package:flouka/core/widgets/loading_animation_widget.dart';
 import 'package:flouka/core/widgets/svg_widget.dart';
 import 'package:flouka/features/cart/presentation/providers/cart_provider.dart';
+import 'package:flouka/features/products/presentation/providers/product_variant_provider.dart';
 import 'package:flouka/features/products/presentation/widgets/gradiant_button.dart';
 import 'package:flouka/features/products/presentation/widgets/product_details_header_widget.dart';
 import 'package:flouka/features/products/presentation/widgets/review_widget.dart';
@@ -14,13 +14,11 @@ import 'package:sizer/sizer.dart';
 import '../../../../core/config/app_color.dart';
 import '../../../language/presentation/provider/language_provider.dart';
 import '../../../reviews/presentation/providres/product_reviews_provider.dart';
-import '../../../stores/presentation/providers/store_details_provider.dart';
 import '../providers/products_details_provider.dart';
 import '../widgets/avg_rating_widget.dart';
 import '../widgets/frequently_list_widget.dart';
 import '../widgets/hot_deals_widget.dart';
 import '../widgets/product_attributes_widget.dart';
-import '../widgets/rating_with_see_reviews_widget.dart';
 import '../widgets/review_with_images_section.dart';
 
 class ProductsDetailsView extends StatelessWidget {
@@ -39,10 +37,9 @@ class ProductsDetailsView extends StatelessWidget {
           }
         },
         child: Scaffold(
-          backgroundColor: const Color(0xffF0FBFF),
           appBar: AppBar(
             leading: IconButton(
-              icon: const Icon(Icons.arrow_back, color: Colors.black),
+              icon: const Icon(Icons.arrow_back, color: Colors.white),
               onPressed: () {
                 // navPop();
                 productDetailsProvider.backToLastProduct();
@@ -56,7 +53,7 @@ class ProductsDetailsView extends StatelessWidget {
                 },
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 2.w),
-                    child: const SvgWidget(svg: AppImages.navbarCart)),
+                    child: const SvgWidget(svg: AppImages.navbarCart,color: Colors.white,)),
               ),
             ],
             title: Text(
@@ -84,17 +81,64 @@ class ProductsDetailsView extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          gradiantButton(
+                            vendor: productDetailsProvider.data!.store!,
+                            onTap: () {
+                            },
+                            gradiantcolors: [Colors.white, AppColor.primaryColor],
+                          ),
                           SizedBox(height: 2.h),
                           Text(
                             productDetailsProvider.data!.title!,
                             style: TextStyleClass.headStyle(),
                           ),
-                          RatingWithSeeReviewsWidget(product: productDetailsProvider.data!,),
-                          // SizedBox(height: 2.5.h),
-                          Text(
-                            LanguageProvider.translate("global", "Description"),
-                            style: TextStyleClass.headStyle(),
+                          SizedBox(height: 1.h),
+                          if(productDetailsProvider.variantEntity() ==null)
+                            Row(
+                            children: [
+                              Text(
+                                "${LanguageProvider.translate("global", "start_from")} ${productDetailsProvider.data!.offerPrice != null ?
+                                productDetailsProvider.data!.offerPrice! : productDetailsProvider.data!.price!}\$",
+                                style: TextStyleClass.headStyle(color: AppColor.secondaryColor),
+                              ),
+                              if(productDetailsProvider.data!.offerPrice != null)...[
+                                SizedBox(width: 2.w),
+                                Text(
+                                  "${productDetailsProvider.data!.price!}\$",
+                                  style: TextStyleClass.headStyle(color: Colors.grey.shade400).copyWith(
+                                    decoration: TextDecoration.lineThrough,
+                                  ),
+                                ),
+                              ],
+
+                            ],
                           ),
+                          if(productDetailsProvider.variantEntity() !=null)
+                          Row(
+                            children: [
+                              Text(
+                                "${productDetailsProvider.variantEntity()?.offerPrice != null ?
+                                productDetailsProvider.variantEntity()?.offerPrice! : productDetailsProvider.variantEntity()?.price}\$",
+                                style: TextStyleClass.headStyle(color: AppColor.secondaryColor),
+                              ),
+                              if(productDetailsProvider.variantEntity()?.offerPrice != null)...[
+                                SizedBox(width: 2.w),
+                                Text(
+                                  "${productDetailsProvider.variantEntity()?.price}\$",
+                                  style: TextStyleClass.headStyle(color: Colors.grey.shade400).copyWith(
+                                    decoration: TextDecoration.lineThrough,
+                                  ),
+                                ),
+                              ],
+
+                            ],
+                          ),
+                          // RatingWithSeeReviewsWidget(product: productDetailsProvider.data!,),
+                          // SizedBox(height: 2.5.h),
+                          // Text(
+                          //   LanguageProvider.translate("global", "Description"),
+                          //   style: TextStyleClass.headStyle(),
+                          // ),
                           Text(
                             productDetailsProvider.data!.description!,
                             style: TextStyleClass.normalStyle(
@@ -103,25 +147,9 @@ class ProductsDetailsView extends StatelessWidget {
                           ),
                           SizedBox(height: 2.h),
                           const ProductAttributesWidget(),
-                          Container(
-                            padding: EdgeInsets.symmetric(vertical: 1.h),
-                            width: 100.w,
-                            color: const Color(0xffeffbff),
-                            child: gradiantButton(
-                              vendor: productDetailsProvider.data!.store!,
-                              onTap: () {
-                              },
-                              gradiantcolors: [Colors.white, AppColor.primaryColor],
-                            ),
-                          ),
                           SizedBox(height: 2.h,),
-
                           if (productDetailsProvider.data!.related.isNotEmpty) ...[
-                            Text(
-                              LanguageProvider.translate(
-                                "global",
-                                "Frequently Bought Together",
-                              ),
+                            Text(LanguageProvider.translate("global", "Frequently Bought Together",),
                               style: TextStyleClass.normalStyle(),
                             ),
                             SizedBox(height: 2.h),
@@ -131,21 +159,20 @@ class ProductsDetailsView extends StatelessWidget {
                             ),
                             SizedBox(height: 2.h),
                           ],
-                          Text(
-                            LanguageProvider.translate(
-                              "global",
-                              "Proudact Reating & Reviwes",
-                            ),
+                          if(productDetailsProvider.data!.recommended.isNotEmpty)...[
+                            SizedBox(height: 2.h),
+                            HotDealsWidget(products: productDetailsProvider.data!.recommended,),
+                            SizedBox(height: 2.h),
+                          ],
+                          Text(LanguageProvider.translate("global", "Proudact Reating & Reviwes",),
                             style: TextStyleClass.normalStyle(),
                           ),
                           AvgRatingWidget(
                             rating: productDetailsProvider.data!.rate ?? 0,
                           ),
+
                           if (productDetailsProvider.data!.reviewImages.isNotEmpty) ...[
-                            ReviewWithImagesSection(
-                              reviewImages:
-                              productDetailsProvider.data!.reviewImages,
-                            ),
+                            ReviewWithImagesSection(reviewImages: productDetailsProvider.data!.reviewImages,),
                             SizedBox(height: 2.h),
                           ],
                           if(productDetailsProvider.data!.reviews.isNotEmpty)...[
@@ -166,26 +193,17 @@ class ProductsDetailsView extends StatelessWidget {
                             SizedBox(height: 2.h),
                             Wrap(
                               children: List.generate(
-                                productDetailsProvider.data!.reviews.length,
-                                    (index) => ReviewItemWidget(
+                                productDetailsProvider.data!.reviews.length, (index) => ReviewItemWidget(
                                   review:
                                   productDetailsProvider.data!.reviews[index],
                                 ),
                               ),
                             ),
                           ],
-
                           SizedBox(height: 2.h),
                         ],
                       ),
                     ),
-                    if(productDetailsProvider.data!.recommended.isNotEmpty)...[
-                      SizedBox(height: 5.h),
-                      HotDealsWidget(products: productDetailsProvider.data!.recommended,),
-                      SizedBox(height: 5.h),
-                    ],
-
-
                   ],
                 ),
               );

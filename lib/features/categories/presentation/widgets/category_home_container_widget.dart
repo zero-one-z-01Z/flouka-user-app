@@ -42,9 +42,9 @@ class CategoryHomeContainerWidget extends StatelessWidget {
           child: Center(
             child: ishome
                 ? isSvg
-                      ? SvgWidget(svg: category.image, width: 8.w)
-                      : Image.network(category.image, fit: BoxFit.contain)
-                : Image.network(category.image, fit: BoxFit.contain),
+                      ? SvgWidget(svg: category.icon??"", width: 8.w)
+                      : Image.network(category.image??"", fit: BoxFit.contain)
+                : Image.network(category.image??"", fit: BoxFit.contain),
           ),
         ),
         SizedBox(height: 1.h),

@@ -1,3 +1,4 @@
+import 'package:flouka/core/config/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flouka/core/config/app_styles.dart';
 import 'package:sizer/sizer.dart';
@@ -7,12 +8,13 @@ class ButtonsActionCartWidget extends StatelessWidget {
   final VoidCallback? onAdd;
   final VoidCallback? onRemove;
   final double scale;
-
+  final num max;
   const ButtonsActionCartWidget({
     super.key,
     this.count = 1,
     this.onAdd,
     this.onRemove,
+    required this.max,
     this.scale = 1.5,
   });
 
@@ -21,10 +23,6 @@ class ButtonsActionCartWidget extends StatelessWidget {
     return Container(
       width: 60.w,
       padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(4)),
-      ),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -33,8 +31,8 @@ class ButtonsActionCartWidget extends StatelessWidget {
           _buildCartButton(
             icon: Icons.remove,
             onTap: onRemove,
-            iconColor: Colors.black,
-            color: const Color(0xffefeff3),
+            iconColor: Colors.white,
+            color:count >1 ? AppColor.primaryColor : const Color(0xffefeff3),
           ),
           Text(
             "$count",
@@ -45,7 +43,7 @@ class ButtonsActionCartWidget extends StatelessWidget {
           _buildCartButton(
             icon: Icons.add,
             onTap: onAdd,
-            color: Colors.black,
+            color: count > max-1 ? const Color(0xffefeff3) : AppColor.primaryColor,
             iconColor: Colors.white,
           ),
         ],
@@ -65,7 +63,7 @@ class ButtonsActionCartWidget extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: color,
-          borderRadius: BorderRadius.circular(4),
+          shape: BoxShape.circle,
         ),
         child: Icon(icon, color: iconColor, size: 16),
       ),

@@ -21,52 +21,54 @@ class ProductAttributesWidget extends StatelessWidget {
           Builder(
             builder: (context) {
 
-              return Column(
+              return Column(spacing: 1.5.h,
                 children: List.generate(productDetailsProvider.data!.attributes.length,
-                      (index) => Column(crossAxisAlignment: CrossAxisAlignment.start,
+                      (index) => Row(crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(productDetailsProvider.data!.attributes[index].name,
                         style: TextStyleClass.semiHeadStyle(color: Colors.black,),
                       ),
-                      SizedBox(height: 2.h),
-                      Row(spacing: 2.w,
-                        children: List.generate(
-                          productDetailsProvider.data!.attributes[index].values.length, (attributeIndex) {
-                            final attribute = productDetailsProvider.data!.attributes[index].values[attributeIndex];
-                            final attributeId = attribute.id;
-                            final isHidden = productDetailsProvider.hide(index, attributeId);
-                            final isSelected = productDetailsProvider.isSelected(index, attributeId);
+                      SizedBox(width: 4.w),
+                      Expanded(
+                        child: Row(spacing: 2.w,
+                          children: List.generate(
+                            productDetailsProvider.data!.attributes[index].values.length, (attributeIndex) {
+                              final attribute = productDetailsProvider.data!.attributes[index].values[attributeIndex];
+                              final attributeId = attribute.id;
+                              final isHidden = productDetailsProvider.hide(index, attributeId);
+                              final isSelected = productDetailsProvider.isSelected(index, attributeId);
 
-                            return AnimatedOpacity(
-                              duration: const Duration(milliseconds:300),
-                              opacity: isHidden ? 0.4 : 1,
-                              child: InkWell(
-                                onTap: isHidden ? null : () {
-                                  productDetailsProvider.onTap(index, attributeId,);
-                                  productQuantity.reset();
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 3.w,
-                                    vertical: 0.5.h,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: isSelected ? AppColor.primaryColor.withValues(alpha: 0.1) : Colors.grey.shade200,
-                                    border: Border.all(
-                                      color: isSelected ? AppColor.primaryColor : Colors.grey.shade300,
+                              return AnimatedOpacity(
+                                duration: const Duration(milliseconds:300),
+                                opacity: isHidden ? 0.4 : 1,
+                                child: InkWell(
+                                  onTap: isHidden ? null : () {
+                                    productDetailsProvider.onTap(index, attributeId,);
+                                    productQuantity.reset();
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 4.w,
+                                      vertical: 0.5.h,
                                     ),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  child: Text(
-                                    attribute.value,
-                                    style: TextStyleClass.normalStyle(
-                                      color: isHidden ? Colors.grey : isSelected ? AppColor.primaryColor : Colors.black,
+                                    decoration: BoxDecoration(
+                                      color:  Colors.white,
+                                      border: Border.all(
+                                        color: isSelected ? AppColor.secondaryColor : Colors.grey.shade300,
+                                      ),
+                                      borderRadius: BorderRadius.circular(33),
+                                    ),
+                                    child: Text(
+                                      attribute.value,
+                                      style: TextStyleClass.normalStyle(
+                                        color: isHidden ? Colors.grey : isSelected ? AppColor.primaryColor : Colors.black,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            );
-                          },
+                              );
+                            },
+                          ),
                         ),
                       ),
                     ],

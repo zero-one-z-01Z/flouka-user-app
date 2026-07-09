@@ -31,28 +31,22 @@ class HotDealsWidget extends StatelessWidget {
               width: 100.w,
               child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding:  EdgeInsets.symmetric(horizontal: 6.w),
-                    child: Row(
-                      children: [
-                        Text(LanguageProvider.translate("home", "hot_deals"),
-                          style: TextStyleClass.normalStyle(color:const Color(0xff3A3A3A)).copyWith(fontWeight: FontWeight.bold),)
-                      ],
-                    ),
+                  Row(
+                    children: [
+                      Text(LanguageProvider.translate("home", "related_products"),
+                        style: TextStyleClass.normalStyle(color:const Color(0xff3A3A3A)).copyWith(fontWeight: FontWeight.bold),)
+                    ],
                   ),
                   SizedBox(height: 2.h),
-                  Padding(
-                    padding:  EdgeInsetsDirectional.only(start: 4.w),
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: List.generate(products.length, (index) {
-                          return HotDealsHomeContainerWidget(
-                            product: products[index],
-                            isSimilar: true,
-                          );
-                        },),
-                      ),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: List.generate(products.length, (index) {
+                        return HotDealsHomeContainerWidget(
+                          product: products[index],
+                          isSimilar: true,
+                        );
+                      },),
                     ),
                   ),
                 ],

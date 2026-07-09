@@ -18,9 +18,10 @@ import '../providers/products_details_provider.dart';
 
 
 class HotDealsHomeContainerWidget extends StatelessWidget {
-  HotDealsHomeContainerWidget({super.key, required this.product, this.isSimilar=false});
+  HotDealsHomeContainerWidget({super.key, required this.product, this.isSimilar=false,this.width});
   final ProductEntity product;
   final bool isSimilar;
+  final double? width;
   @override
   Widget build(BuildContext context) {
     final cartOperations = Provider.of<CartProvider>(context);
@@ -34,12 +35,13 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
           'is_similar': isSimilar,
         });
       },
-      child: Stack(
-        clipBehavior: Clip.none,
+      child: Column(
         children: [
+
+
+
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 2.w),
-            width: 42.w,
+            width:width?? 43.w,
             decoration: BoxDecoration(
               color: AppColor.backgroundColor,
               borderRadius: BorderRadius.circular(12),
@@ -56,53 +58,103 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                    Container(
-                      height: 12.h,
-                      width: 15.h,
-                      decoration: BoxDecoration(
-                          image: DecorationImage(image:product.image!=null ?
-                          CachedNetworkImageProvider(product.image!) :const AssetImage(AppImages.logo),
-                          fit: BoxFit.cover),
-
-                      ),
-                    ),
-                  SizedBox(height: 0.6.h),
-                  Row(
+                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       if(product.discountPercentage != null)
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 2.w),
-                        height: 5.w,
-                        decoration: BoxDecoration(
-                          color: const Color(0xffDF0033),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Center(
-                          child: FittedBox(
-                            child: Text(
-                              '${product.discountPercentage?.toStringAsFixed(2)}%',
-                              style: TextStyle(
-                                fontSize: 10.sp,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white,
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 2.w),
+                          height: 5.w,
+                          decoration: BoxDecoration(
+                            color: const Color(0xffDF0033),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Center(
+                            child: FittedBox(
+                              child: Text(
+                                '${LanguageProvider.translate("home", "discount").
+                                replaceFirst("*num*", "${product.discountPercentage?.toStringAsFixed(1)}")}',
+                                style: TextStyle(
+                                  fontSize: 10.sp,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
+                          ),
+                        ),
+                      InkWell(
+                        onTap: () {
+                          FavoriteProvider favoriteProvider = Provider.of(context, listen: false);
+                          favoriteProvider.toggleFavorite(product);
+                        },
+
+                        child: Container(
+                          width: 7.w,
+                          height: 7.w,
+                          decoration: BoxDecoration(
+                            color: AppColor.primaryColor,
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                blurRadius: 4,
+                                offset: const Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: Consumer<FavoriteProvider>(
+                            builder: (context, provider, child) {
+                              bool isFav = provider.favoriteIds.contains(product.id);
+                              return Icon(
+                                isFav ? Icons.favorite : Icons.favorite_border,
+                                color: Colors.white,
+                                size: 18,
+                              );
+                            },
                           ),
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 0.6.h),
+                  SizedBox(height: 1.h),
+
+                  Center(
+                    child: Container(
+                        height: 12.h,
+                        width: 15.h,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                            image: DecorationImage(image:product.image!=null ?
+                            CachedNetworkImageProvider(product.image!) :const AssetImage(AppImages.logo),
+                            fit: BoxFit.cover),
+
+                        ),
+                      ),
+                  ),
+                  SizedBox(height: 0.5.h),
+                  Container(
+                    height: 0.1.h,
+                    width: 100.w,
+                    color:const Color(0xffCCA6CD).withOpacity(0.2),
+                  ),
+                  SizedBox(height: 0.5.h),
+                  Text(
+                    product.title ?? "",
+                    style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600),
+                    softWrap: true,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  SizedBox(height: 0.5.h),
                   Row(
                     children: [
                       Flexible(child: PriceWidget(price:product.offerPrice ?? product.price ?? 0)),
                       SizedBox(width: 1.w),
                       if(product.offerPrice != null)
                       Flexible(
-                        child: Text(
-                          product.offerPrice !=null ? product.price.toString() : product.offerPrice.toString(),
+                        child: Text("\$ ${product.price.toString()} ",
                           style: TextStyle(
-                            fontSize: 13.sp,
+                            fontSize: 14.sp,
                             fontWeight: FontWeight.w500,
                             color: AppColor.tertiaryColor,
                             decoration: TextDecoration.lineThrough,
@@ -113,141 +165,65 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Text(
-                    product.title ?? "",
-                    style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600),
-                    softWrap: true,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  SizedBox(height: 0.2.h),
-                  // Row(
-                  //   children: [
-                  //     const SvgWidget(svg: AppImages.star),
-                  //     Text(rating.toString()),
-                  //   ],
-                  // ),
                   SizedBox(height: 0.5.h),
-                  // if (true)
-                  //   Container(
-                  //     width: 32.w,
-                  //     height: 5.w,
-                  //     decoration: BoxDecoration(
-                  //       gradient: LinearGradient(
-                  //         colors: [
-                  //           AppColor.primaryColor,
-                  //           AppColor.primaryColor,
-                  //           Colors.black,
-                  //           Colors.black,
-                  //         ],
-                  //         stops: stops,
-                  //         end: Alignment.centerLeft,
-                  //         begin: Alignment.centerRight,
-                  //       ),
-                  //       borderRadius: const BorderRadius.only(
-                  //         topRight: Radius.circular(0),
-                  //         topLeft: Radius.circular(10),
-                  //         bottomLeft: Radius.circular(10),
-                  //         bottomRight: Radius.circular(20),
-                  //       ),
-                  //       boxShadow: [
-                  //         BoxShadow(
-                  //           color: Colors.black.withOpacity(0.1),
-                  //           blurRadius: 4,
-                  //           offset: const Offset(0, 2),
-                  //         ),
-                  //       ],
-                  //     ),
-                  //     padding: EdgeInsets.symmetric(horizontal: 2.w),
-                  //     child: Center(
-                  //       child: FittedBox(
-                  //         child: Text(
-                  //           "${LanguageProvider.translate('global', 'made_in')}  China",
-                  //           style: TextStyle(
-                  //             fontSize: 10.sp,
-                  //             fontWeight: FontWeight.w600,
-                  //             color: Colors.white,
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ),
-                ],
-              ),
-            ),
-          ),
-          Positioned(
-            top: 1.h,
-            right: 4.w,
-            child: InkWell(
-              onTap: () {
-                FavoriteProvider favoriteProvider = Provider.of(context, listen: false);
-                favoriteProvider.toggleFavorite(product);
-              },
-
-              child: Container(
-                width: 7.w,
-                height: 7.w,
-                decoration: BoxDecoration(
-                  color: AppColor.primaryColor,
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 4,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
-                ),
-                child: Consumer<FavoriteProvider>(
-                  builder: (context, provider, child) {
-                    bool isFav = provider.favoriteIds.contains(product.id);
-                    return Icon(
-                      isFav ? Icons.favorite : Icons.favorite_border,
-                      color: Colors.white,
-                      size: 18,
-                    );
-                  },
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            top: 1.5.h,
-            left: 6.w,
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 2.w),
-              height: 5.w,
-              decoration: BoxDecoration(
-                color: const Color(0xff5A5A5A),
-                borderRadius: const BorderRadius.only(
-                  topRight: Radius.circular(0),
-                  topLeft: Radius.circular(10),
-                  bottomLeft: Radius.circular(10),
-                  bottomRight: Radius.circular(20),
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
-                    blurRadius: 4,
-                    offset: const Offset(0, 2),
+                  Center(
+                    child: Container(width: 30.w,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(78.4),
+                          border: Border.all(color: const Color(0xffAD46FF),width: 2),
+                        ),
+                        padding: EdgeInsets.symmetric(horizontal: 2.w,),
+                        child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.add_shopping_cart,color:const Color(0xffAD46FF),size: 4.w,),
+                            SizedBox(width: 1.w),
+                            Text(LanguageProvider.translate("buttons", "add_to_cart"),
+                              style: TextStyleClass.smallStyle(color: AppColor.primaryColor).copyWith(
+                                fontSize: 14.sp
+                              ),),
+                          ],
+                        )),
                   ),
                 ],
               ),
-              child: Center(
-                child: FittedBox(
-                  child: Text(
-                    LanguageProvider.translate('global', 'best_seller'),
-                    style: TextStyle(
-                      fontSize: 11.sp,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
             ),
           ),
+          // Positioned(
+          //   top: 1.5.h,
+          //   left: 6.w,
+          //   child: Container(
+          //     padding: EdgeInsets.symmetric(horizontal: 2.w),
+          //     height: 5.w,
+          //     decoration: BoxDecoration(
+          //       color: const Color(0xff5A5A5A),
+          //       borderRadius: const BorderRadius.only(
+          //         topRight: Radius.circular(0),
+          //         topLeft: Radius.circular(10),
+          //         bottomLeft: Radius.circular(10),
+          //         bottomRight: Radius.circular(20),
+          //       ),
+          //       boxShadow: [
+          //         BoxShadow(
+          //           color: Colors.black.withOpacity(0.1),
+          //           blurRadius: 4,
+          //           offset: const Offset(0, 2),
+          //         ),
+          //       ],
+          //     ),
+          //     child: Center(
+          //       child: FittedBox(
+          //         child: Text(
+          //           LanguageProvider.translate('global', 'best_seller'),
+          //           style: TextStyle(
+          //             fontSize: 11.sp,
+          //             fontWeight: FontWeight.w600,
+          //             color: Colors.white,
+          //           ),
+          //         ),
+          //       ),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );

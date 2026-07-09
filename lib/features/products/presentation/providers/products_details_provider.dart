@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:carousel_slider_plus/carousel_controller.dart';
 import 'package:flouka/features/products/presentation/providers/product_quantity_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flouka/features/products/domain/entity/product_entity.dart';
@@ -49,8 +50,14 @@ class ProductDetailsProvider extends ChangeNotifier implements ProviderStructure
 
   int imageIndex = 0;
   // int variantIndex = 0;
+  final CarouselSliderController controller = CarouselSliderController();
   void changeImageIndex({required int index}){
     imageIndex = index;
+    notifyListeners();
+  }
+
+  void animateToImage({required int index}){
+    controller.animateToPage(index);
     notifyListeners();
   }
 

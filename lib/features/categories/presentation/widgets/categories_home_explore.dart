@@ -34,6 +34,7 @@ class CategoriesHomeExplore extends StatelessWidget {
             itemBuilder: (context, index) {
               if (showExplore && index == 0) {
                 final exploreCategory = CategoryEntity(
+                  icon: null,
                   onTap: (){
 
                   },

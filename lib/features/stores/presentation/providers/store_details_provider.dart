@@ -32,8 +32,8 @@ class StoreDetailsProvider extends ChangeNotifier {
 
   Future<void> refresh(int id) async {
     storeDetailsEntity = null;
-    await getData(id);
     notifyListeners();
+    await getData(id);
   }
 
   void goToStoreDetailsPage(int id) {

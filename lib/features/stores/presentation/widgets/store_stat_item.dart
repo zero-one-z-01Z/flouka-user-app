@@ -19,46 +19,38 @@ class StoreStatItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
-      width: 29.w,
+      padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 0.7.h),
+      width: 25.w,
 
       decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(Radius.circular(8)),
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
-            spreadRadius: 1,
-            blurRadius: 5,
-            offset: const Offset(0, 3),
-          ),
-        ],
+        borderRadius: const BorderRadius.all(Radius.circular(14)),
+        color: Colors.grey.shade100,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            LanguageProvider.translate('global', title),
-            style: TextStyleClass.smallStyle().copyWith(
-              color: Colors.black,
-              fontSize: 16.sp,
-            ),
-          ),
-          SizedBox(height: 0.h),
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 value,
                 style: TextStyleClass.headStyle().copyWith(
-                  fontSize: 24.sp,
+                  fontSize: 20.sp,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               if (icon != null) ...[SizedBox(width: 1.w), icon!],
             ],
           ),
+          Text(
+            LanguageProvider.translate('global', title),
+            style: TextStyleClass.smallStyle().copyWith(
+              color: Colors.black,
+              fontSize: 15.sp,height: 1
+            ),
+          ),
+
         ],
       ),
     );

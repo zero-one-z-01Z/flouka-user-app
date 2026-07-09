@@ -13,10 +13,12 @@ class PaymentPriceWidget extends StatelessWidget {
     this.isGreen = false,
     this.fontSize,
     this.isBold = false,
+    this.color,
   });
   final String title;
   final String price;
   final bool? isBold;
+  final Color?color;
   final bool isGreen;
   final double? fontSize;
   @override
@@ -28,11 +30,11 @@ class PaymentPriceWidget extends StatelessWidget {
           style: TextStyleClass.normalStyle().copyWith(
             fontSize: 15.sp,
             fontWeight: (isGreen || isBold!) ? FontWeight.w900 : FontWeight.normal,
-            color: isGreen ? Colors.green : Colors.black,
+            color:  Colors.black,
           ),
         ),
         const Spacer(),
-        PriceWidget(price: convertDataToNum(price) ?? 5555, fontSize: fontSize),
+        PriceWidget(price: convertDataToNum(price) ?? 0, fontSize: fontSize,color: color,),
         // Text(
         //   "$price",
         //   style: AppStyles.style15Normal.copyWith(

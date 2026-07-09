@@ -4,9 +4,10 @@ import 'package:sizer/sizer.dart';
 import '../config/app_styles.dart';
 
 class PriceWidget extends StatelessWidget {
-  const PriceWidget({super.key, required this.price, this.fontSize});
+  const PriceWidget({super.key, required this.price, this.fontSize, this.color});
   final num price;
   final double? fontSize;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class PriceWidget extends StatelessWidget {
           style: TextStyleClass.normalStyle().copyWith(
             fontWeight: FontWeight.w900,
             fontSize: fontSize ?? 16.sp,
-            color: fontSize == 15.99.sp ? Colors.green : Colors.black,
+            color: color ?? (fontSize == 15.99.sp ? Colors.green : Colors.black),
           ),
         ),
         SizedBox(width: 1.w),
@@ -27,7 +28,7 @@ class PriceWidget extends StatelessWidget {
           style: TextStyleClass.normalStyle().copyWith(
             fontWeight: FontWeight.w900,
             fontSize: fontSize ?? 14.sp,
-            color: fontSize == 15.99.sp ? Colors.green : Colors.black,
+            color:color?? (fontSize == 15.99.sp ? Colors.green : Colors.black),
           ),
         ),
       ],

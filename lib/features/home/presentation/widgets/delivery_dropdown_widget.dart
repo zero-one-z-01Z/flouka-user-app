@@ -26,7 +26,7 @@ class DeliveryDropdownWidget extends StatelessWidget {
       },
       child: Row(
         children: [
-          SvgWidget(svg: AppImages.location, width: 6.w),
+          SvgWidget(svg: AppImages.location, width: 6.w,color: Colors.white),
           SizedBox(width: 2.w),
           if(authProvider.userEntity?.addressEntity != null )
           Expanded(
@@ -35,11 +35,11 @@ class DeliveryDropdownWidget extends StatelessWidget {
               children: [
                 Text(
                   LanguageProvider.translate("home", "deliver_to"),
-                  style: TextStyleClass.normalStyle().copyWith(fontSize: 14.sp),
+                  style: TextStyleClass.normalStyle(color: Colors.white).copyWith(fontSize: 14.sp),
                 ),
                 Text(
                   authProvider.userEntity?.addressEntity?.addressName??"",
-                  style: TextStyleClass.normalStyle().copyWith(fontSize: 14.sp),
+                  style: TextStyleClass.normalStyle(color: Colors.white).copyWith(fontSize: 14.sp),
                 ),
               ],
             ),
@@ -52,7 +52,7 @@ class DeliveryDropdownWidget extends StatelessWidget {
               ),
             ),
           SizedBox(width: 2.w),
-          Icon(Icons.arrow_drop_down, color: AppColor.primaryColor),
+          const Icon(Icons.arrow_drop_down, color: Colors.white,),
         ],
       ),
     );

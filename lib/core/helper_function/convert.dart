@@ -248,7 +248,7 @@ String getTimeChar(int year, int month, int day, int h, int m, int s) {
   } else if (h != 0) {
     return LanguageProvider.translate('time', 'hour');
   } else if (m != 0) {
-    return LanguageProvider.translate('time', 'minute');
+    return LanguageProvider.translate('time', 'min');
   } else if (s != 0) {
     return LanguageProvider.translate('time', 'sec');
   }
@@ -297,7 +297,7 @@ String getDiffTime(DateTime dateTime) {
   if (min == 0 && hours == 0 && days == 0 && years == 0 && month == 0) {
     sec = now.second + 10 - dateTime.second;
   }
-  return '${LanguageProvider.translate('global', 'ago')} ${getTimeNumber(years, month, days, hours, min, sec)} ${getTimeChar(years, month, days, hours, min, sec)}';
+  return '${LanguageProvider.translate('time', 'ago')} ${getTimeNumber(years, month, days, hours, min, sec)} ${getTimeChar(years, month, days, hours, min, sec)}';
 }
 
 double convertRgbToHue(int color) {

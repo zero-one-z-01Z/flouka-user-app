@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flouka/core/config/app_color.dart';
 import 'package:flouka/core/constants/app_lotties.dart';
 import 'package:flouka/core/widgets/loading_animation_widget.dart';
 import 'package:flouka/features/stores/presentation/providers/store_details_provider.dart';
@@ -11,7 +12,6 @@ import 'package:sizer/sizer.dart';
 import '../../../../core/config/app_styles.dart';
 import '../../../../core/constants/app_images.dart';
 import '../../../../core/constants/constants.dart';
-import '../../../../core/widgets/button_widget.dart';
 import '../../../../core/widgets/svg_widget.dart';
 import '../../../language/presentation/provider/language_provider.dart';
 import '../../domain/entity/store_details_entity.dart';
@@ -37,10 +37,8 @@ class StoreDetailsPage extends StatelessWidget {
     StoreDetailsEntity? storeDetailsEntity = storeDetailsProvider.storeDetailsEntity;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        title: Text(LanguageProvider.translate('home','store_details')),
       ),
-      backgroundColor: const Color(0xffEFFBFF),
-      extendBodyBehindAppBar: true,
       body: Builder(
         builder: (context) {
           if (storeDetailsEntity == null) {
@@ -48,42 +46,68 @@ class StoreDetailsPage extends StatelessWidget {
           }
           return RefreshIndicator(
             onRefresh: () async {
-              storeDetailsProvider.refresh(storeDetailsEntity!.id,);
+              storeDetailsProvider.refresh(storeDetailsEntity.id,);
               if(storesProvider.current==0){
                 storesProductProvider.refresh();
               } else if(storesProvider.current==1){
                 storeReviewsProvider.refresh();
               }
             },
-            child: SingleChildScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              controller:storesProvider.current==0 ? storesProductProvider.controller :storeReviewsProvider.controller,
-              child:Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Stack(alignment: Alignment.bottomCenter,
-                    clipBehavior: Clip.none,
-                    children: [
-                      CachedNetworkImage( imageUrl: storeDetailsEntity!.vendor?.cover ?? "",
-                        errorWidget: (context, url, error) { return const Icon(Icons.error); },
-                        width: double.infinity, height: 20.h, fit: BoxFit.cover, ),
-                      Positioned(
-                        bottom: -4.h,
-                        child: Container(width: 100.w, padding: EdgeInsets.symmetric(horizontal: 4.w),
-                        child: Row( children: [ Row( children: [ CircleAvatar( radius: 34,backgroundColor: Colors.grey.shade300,
-                          backgroundImage: CachedNetworkImageProvider(storeDetailsEntity!.vendor!.logo!), ),
-                          SizedBox(width: 2.w),
-                          // ButtonWidget( onTap: () {
-                          //   storeDetailsProvider.updateFollow( storeDetailsEntity!.id, );
-                          //
-                          // }, text: storeDetailsProvider .storeDetailsEntity! .isFollowed ? 'unfollow' : 'follow',
-                          //   width: 20.w, height: 3.5.h, borderRadius: 4,
-                          //   textStyle: TextStyleClass.normalStyle( color: Colors.white, ).copyWith(fontSize: 14.sp),
-                          // ),
-                        ],
-                        ),
-                          SizedBox(width: 2.w),
-                          const Spacer(),
+            child: Stack(alignment: Alignment.bottomCenter,
+              clipBehavior: Clip.none,
+              children: [
+                Positioned(top: 2.h,
+                  left: 1.w,right: 1.w,
+                  child: Padding(
+                    padding:  EdgeInsets.symmetric(horizontal: 2.w),
+                    child: CachedNetworkImage( imageUrl: storeDetailsEntity.vendor?.cover ?? "",
+                      errorWidget: (context, url, error) { return const Icon(Icons.error); },
+                      width: 100.w, height: 20.h, fit: BoxFit.cover, ),
+                  ),
+                ),
+                SingleChildScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  controller:storesProvider.current==0 ? storesProductProvider.controller :storeReviewsProvider.controller,
+                  child: Container(width: 100.w, padding: EdgeInsets.symmetric(horizontal: 3.w,vertical: 2.h),
+                    margin: EdgeInsets.symmetric(horizontal: 5.w).copyWith(top: 15.h),
+                    decoration:const BoxDecoration(
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(50),
+                      ),
+                      color: Colors.white,
+                    ),
+                    child: Column(
+                      children: [
+                        SizedBox(height: 1.h),
+                        Row(children: [
+                          CircleAvatar( radius: 34,backgroundColor: Colors.grey.shade300,
+                            backgroundImage: CachedNetworkImageProvider(storeDetailsEntity.vendor!.logo), ),
+                          SizedBox(width: 1.w),
+                          Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 4.w),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '${storeDetailsEntity.name}',style:TextStyleClass.normalStyle(),maxLines: 2,
+                                  ),
+                                  Row(
+                                    children: [
+                                      SvgWidget(svg: AppImages.star, color: Colors.amber, width: 5.w),
+                                      SizedBox(width: 1.w),
+                                      Text(storeDetailsEntity.avgRating.toString(),
+                                        style: TextStyleClass.smallStyle().copyWith(fontWeight: FontWeight.bold),),
+                                      SizedBox(width: 1.w),
+                                      Text("(${storeDetailsEntity.productsCount}) ${LanguageProvider.translate("global", "product")}",
+                                        style: TextStyleClass.smallStyle(color: Colors.grey.shade700),),
+                                    ],
+                                  ),
+                                  // Text(storeDetailsEntity.bio,),
+                                ],
+                              ),
+                            ),
+                          ),
                           InkWell(
                             onTap: ()async{
                               String url = '${Constants.baseUri}store?id=${storeDetailsEntity.id}';
@@ -93,35 +117,33 @@ class StoreDetailsPage extends StatelessWidget {
                                 sharePositionOrigin: Constants.isTablet?
                                 (box!.localToGlobal(Offset.zero) & box.size):null,);
                             },
-                            child: Container( padding: EdgeInsets.all(3.w),
-                              decoration: const BoxDecoration( color: Colors.white, shape: BoxShape.circle,
-                                boxShadow: [ BoxShadow( color: Color.fromARGB(255, 168, 168, 168), blurRadius: 2,
-                                  offset: Offset(0, 4), ), ], ),
-                              child: const SvgWidget( svg: AppImages.share, color: Color(0xff00A8E1), ), ),
-                          ), ], ), ), ), ],
-                  ),
-                  SizedBox(height: 4.h),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 4.w),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '${storeDetailsEntity!.name}',
-                        ),
-
-                        Text(
-                          storeDetailsEntity!.bio,
-                        ),
+                            child: Container( padding: EdgeInsets.symmetric(horizontal: 1.w,vertical: 0.5.h),
+                              decoration: BoxDecoration( color: AppColor.secondaryColor, borderRadius: BorderRadius.circular(4),),
+                              child: Row(
+                                children: [
+                                  const SvgWidget( svg: AppImages.share,),
+                                  SizedBox(width: 1.w),
+                                  Text(LanguageProvider.translate('settings', 'share'),
+                                    style: TextStyleClass.smallStyle(color: Colors.white).copyWith(fontWeight: FontWeight.bold),),
+                                ],
+                              ), ),
+                          ),
+                          // ButtonWidget( onTap: () {
+                          //   storeDetailsProvider.updateFollow( storeDetailsEntity!.id, );
+                          //
+                          // }, text: storeDetailsProvider .storeDetailsEntity! .isFollowed ? 'unfollow' : 'follow',
+                          //   width: 20.w, height: 3.5.h, borderRadius: 4,
+                          //   textStyle: TextStyleClass.normalStyle( color: Colors.white, ).copyWith(fontSize: 14.sp),
+                          // ),
+                        ],),
+                        SizedBox(height: 1.h),
+                        const StoreDetailsSection(),
+                        SizedBox(height: 2.h),
+                        const StoresTabsWidget(),
+                        SizedBox(height: 2.h),
                       ],
-                    ),
-                  ),
-                  const StoreDetailsSection(),
-                  SizedBox(height: 2.h),
-                  const StoresTabsWidget(),
-                  SizedBox(height: 2.h),
-                ],
-              ),
+                    ), ),
+                ), ],
             ),
           );
         },

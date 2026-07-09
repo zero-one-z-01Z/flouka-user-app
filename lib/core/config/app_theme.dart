@@ -21,18 +21,18 @@ ThemeData defaultTheme = ThemeData(
 );
 
 AppBarTheme appBarTheme = AppBarTheme(
-  backgroundColor: const Color(0xffeffbff),
+  backgroundColor: AppColor.secondaryColor,
   toolbarHeight: 56,
   centerTitle: true,
   foregroundColor: AppColor.primaryColor,
   elevation: 0,
-  iconTheme: const IconThemeData(color: Colors.black),
-  systemOverlayStyle: barColor(),
+  iconTheme: const IconThemeData(color: Colors.white),
+  systemOverlayStyle: lightBarColor(),
   titleTextStyle: TextStyle(
     fontFamily: "Lato",
     fontWeight: FontWeight.bold,
     fontSize: 16.sp,
-    color: Colors.black,
+    color: Colors.white,
   ),
 );
 

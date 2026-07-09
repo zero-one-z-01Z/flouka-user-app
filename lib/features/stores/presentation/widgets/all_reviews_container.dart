@@ -26,7 +26,7 @@ class AllReviewsContainer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                LanguageProvider.translate("global", "reviews"),
+                LanguageProvider.translate("global", "all_reviews"),
                 style: TextStyleClass.normalStyle(),
               ),
               SizedBox(height: 1.h),

@@ -9,6 +9,7 @@ class CartModel extends CartEntity {
     super.product,
     super.variant,
     super.unitPrice, required super.storeId,
+    super.stock,
   });
 
   factory CartModel.fromJson(Map<String, dynamic> json) {
@@ -17,6 +18,7 @@ class CartModel extends CartEntity {
       quantity: json['quantity'],
       unitPrice: convertDataToNum(json['unit_price']),
       storeId: convertStringToInt(json['store_id']),
+      stock: json['stock'] != null ? convertDataToNum(json['stock']) : null,
       product: json['product'] != null
           ? ProductModel.fromJson(json['product'])
           : null,

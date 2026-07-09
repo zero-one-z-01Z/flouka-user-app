@@ -46,20 +46,20 @@ class CategoryProvider extends ChangeNotifier {
         CategoriesProductSearchProvider provider = Provider.of(Constants.globalContext(),listen: false);
         provider.goToPage({'offer_products' : 1});
 
-      },parentId: null),
+      },parentId: null, icon: ''),
       CategoryEntity(id: 2,parentId: null, image: AppImages.bestSeller, name: 'best_sellers',onTap: (){
         CategoriesProductSearchProvider provider = Provider.of(Constants.globalContext(),listen: false);
-        provider.goToPage({'best_selling' : 1});
-      }),
+        provider.goToPage({'best_selling' : 1}, );
+      },icon: ''),
       CategoryEntity(id: 3,parentId: null, image: AppImages.categories, name: 'categories',onTap: (){
         NavBarProvider navBarProvider = Provider.of(Constants.globalContext(),listen: false);
         navBarProvider.changeIndex(1);
-      }),
+      }, icon: ''),
       CategoryEntity(id: 4,parentId: null, image: AppImages.exploreCategories, name: 'explore',onTap: (){
         CategoriesProductSearchProvider provider = Provider.of(Constants.globalContext(),listen: false);
         provider.clearSearch();
 
-      }),
+      }, icon: ''),
     ];
   }
 

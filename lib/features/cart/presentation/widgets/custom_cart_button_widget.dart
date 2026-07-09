@@ -22,26 +22,21 @@ class CustomCartButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final CheckoutProvider checkoutProvider = Provider.of<CheckoutProvider>(context);
     final AuthProvider authProvider = Provider.of<AuthProvider>(context);
-    return Container(
+    return Container(width: 100.w,
       padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(12)),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Column(
-            children: [
-              Text(
-                LanguageProvider.translate("global", "total"),
-                style: TextStyleClass.smallStyle(color: Colors.grey),
-              ),
-              PriceWidget(price: convertDataToDouble(cartProvider.caluclateTotal().toStringAsFixed(2))),
-            ],
+          Text(
+            "${LanguageProvider.translate("global", "price")} : ${convertDataToDouble(cartProvider.caluclateTotal().toStringAsFixed(2))} \$",
+            style: TextStyleClass.smallStyle(color: const Color(0xff444444)),
           ),
+          SizedBox(height: 1.h),
           ButtonWidget(
-            width: 40.w,
+            width: 100.w,height: 6.h,
             color: AppColor.primaryColor,
             onTap: () {
               if(authProvider.userEntity?.addressEntity!=null){
@@ -53,8 +48,9 @@ class CustomCartButtonWidget extends StatelessWidget {
               }
 
             },
-            text: "checkout",
+            text: "pay",
           ),
+
         ],
       ),
     );

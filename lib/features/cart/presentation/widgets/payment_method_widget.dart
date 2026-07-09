@@ -19,18 +19,18 @@ class PaymentMthodItemWidget extends StatelessWidget {
       },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
-        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 8),
         decoration: BoxDecoration(
-          color: const Color(0xffeffbff),
+          color: checkoutProvider.isPaymentMethodSelected(paymentMethodEntity) ?
+          const Color(0xffAD46FF).withOpacity(0.05) : null,
           borderRadius: BorderRadius.circular(16),
-          border: checkoutProvider.isPaymentMethodSelected(paymentMethodEntity)
-              ? Border.all(color: AppColor.primaryColor, width: 1.2)
-              : null,
+          border:  Border.all(color: checkoutProvider.isPaymentMethodSelected(paymentMethodEntity)
+              ?AppColor.secondaryColor: Colors.grey.shade300, width: 1.2),
         ),
         child: Row(
           spacing: 16,
           children: [
-            SvgWidget(svg: paymentMethodEntity.image),
+            SvgWidget(svg: paymentMethodEntity.image,color: Colors.grey,),
             Text(
               LanguageProvider.translate(
                 "global",

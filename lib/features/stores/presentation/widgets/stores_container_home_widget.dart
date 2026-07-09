@@ -36,15 +36,15 @@ class StoresContainerHomeWidget extends StatelessWidget {
           ],
         ),
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding:  EdgeInsets.symmetric(horizontal: 4.w),
           child: Row(
             children: [
               Container(
-                width: 15.w,
-                height: 15.w,
+                width: 18.w,
+                height: 18.w,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  border: Border.all(color: AppColor.primaryColor, width: 0.7.w),
+                  border: Border.all(color: AppColor.secondaryColor, width: 0.2.w),
                   image: DecorationImage(
                     image: CachedNetworkImageProvider(store.vendor.logo),
                     fit: BoxFit.cover,
@@ -63,25 +63,24 @@ class StoresContainerHomeWidget extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    SizedBox(height: 0.5.h),
-                    Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    Text(
+                      store.vendor.bio,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyleClass.smallStyle(),
+                    ),
+                    Row(mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Expanded(
-                          child: Text(
-                            store.vendor.name,
-                            style: TextStyleClass.smallStyle(),
-                          ),
+                        CustomStarRatingWidget(
+                          rating: store.rate,readOnly: true,
                         ),
-                          CustomStarRatingWidget(
-                            rating: store.rate,readOnly: true,
-                          ),
-                          SizedBox(width: 1.w),
-                          Text(
-                            store.rate.toString(),
-                            style: TextStyleClass.smallStyle(color: Colors.amber),
-                          ),
-                      ],),
-
+                        SizedBox(width: 1.w),
+                        Text(
+                          store.rate.toString(),
+                          style: TextStyleClass.smallStyle(color: Colors.amber),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),

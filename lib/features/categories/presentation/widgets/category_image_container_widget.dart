@@ -13,16 +13,19 @@ class CategoryImageContainerWidget extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
-          width: 34.w,
+          width: 45.w,
           height: 15.h,
           padding: EdgeInsets.symmetric(horizontal: 2.w,vertical: 0.h),
-          child: CachedNetworkImage(
-            imageUrl: category.image,
-            fit: BoxFit.cover,
-            placeholder: (context, url) =>
-                const Center(child: CircularProgressIndicator()),
-            errorWidget: (context, url, error) =>
-                const Center(child: Icon(Icons.error)),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: CachedNetworkImage(
+              imageUrl: category.image??"",
+              fit: BoxFit.cover,
+              placeholder: (context, url) =>
+                  const Center(child: CircularProgressIndicator()),
+              errorWidget: (context, url, error) =>
+                  const Center(child: Icon(Icons.error)),
+            ),
           ),
         ),
         // SizedBox(height: 1.h),

@@ -63,56 +63,35 @@ class _StoresTabsWidgetState extends State<StoresTabsWidget> {
                   onTap: () {
                     storesProvider.changeCurrent(0);
                   },
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 5.w),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: List.generate(
-                        StoresTabsWidget.titles.length,
-                        (index) => GestureDetector(
-                          onTap: () {
-                            storesProvider.changeCurrent(index);
-                          },
-                          child: Text(
-                            LanguageProvider.translate(
-                              "global",
-                              StoresTabsWidget.titles[index],
-                            ),
-                            style: TextStyleClass.normalStyle().copyWith(
-                              color: storesProvider.current == index
-                                  ? AppColor.primaryColor
-                                  : Colors.black,
-                              fontWeight: FontWeight.w600,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: List.generate(
+                      StoresTabsWidget.titles.length,
+                      (index) => GestureDetector(
+                        onTap: () {
+                          storesProvider.changeCurrent(index);
+                        },
+                        child: Container(width: 40.w,
+                          padding: EdgeInsets.symmetric(horizontal: 1.w,vertical: 0.5.h),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(99999),
+                            color: storesProvider.current == index
+                                ? AppColor.secondaryColor
+                                : Colors.transparent,
+                          ),
+
+                          child: Center(
+                            child: Text(
+                              LanguageProvider.translate("global", StoresTabsWidget.titles[index],),
+                              style: TextStyleClass.normalStyle().copyWith(
+                                color: storesProvider.current == index
+                                    ? Colors.white
+                                    : Colors.black,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 5),
-                // Indicator bar
-                InkWell(
-                  onTap: () {
-                    storesProvider.changeCurrent(1);
-                  },
-                  child: Container(
-                    alignment: storesProvider.current == 0
-                        ? Alignment.centerLeft
-                        : Alignment.centerRight,
-                    margin: const EdgeInsets.symmetric(horizontal: 16),
-                    width: 100.w,
-                    height: 1.h,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      color: const Color(0xffdddddd),
-                    ),
-                    child: Container(
-                      height: 1.h,
-                      width: 25.w,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        color: AppColor.primaryColor,
                       ),
                     ),
                   ),

@@ -4,6 +4,7 @@ import 'package:flouka/core/widgets/svg_widget.dart';
 import 'package:flouka/features/categories/presentation/providers/categories_provider.dart';
 import 'package:flouka/features/categories/presentation/widgets/categories_view_all_filter_widget.dart';
 import 'package:flouka/core/widgets/searchbar_container.dart';
+import 'package:flouka/features/language/presentation/provider/language_provider.dart';
 import 'package:flouka/features/products/presentation/widgets/shop_products_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -21,52 +22,7 @@ class CategoriesViewAllPage extends StatelessWidget {
     categoryProvider.pagination();
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        title: Row(
-          children: [
-
-            Expanded(
-              child: SearchbarContainer(
-                controller: categoryProvider.searchController,
-                onChanged: (){
-                  categoryProvider.onTextChanged();
-                },
-                // suffixIcon: SvgWidget(
-                //   svg: AppImages.aiSearch,
-                //   width: 1.w,
-                //   height: 1.h,
-                // ),
-                readOnly: false,
-              ),
-            ),
-            SizedBox(width: 2.w),
-            InkWell(
-              onTap: (){
-                // navPop();
-                // NavBarProvider provider = Provider.of(context, listen: false);
-                // provider.changeIndex(3);
-                SearchFilterProvider provider = Provider.of(context, listen: false);
-                provider.goToFilterPage();
-              },
-              child: Container(
-                width: 12.w,
-                height: 5.h,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(
-                    color: const Color(0xff221F1F).withOpacity(0.2),
-                  ),
-                ),
-                child: Center(
-                  child: SvgWidget(
-                    svg: AppImages.filter,
-                    color: AppColor.primaryColor,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
+        title: Text(LanguageProvider.translate("categories", "search_title"))
       ),
       body: SingleChildScrollView(
         controller: categoryProvider.controller,
@@ -75,6 +31,52 @@ class CategoriesViewAllPage extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 4.w),
           child: Column(
             children: [
+              SizedBox(height: 1.h),
+              Row(
+                children: [
+
+                  Expanded(
+                    child: SearchbarContainer(
+                      controller: categoryProvider.searchController,
+                      onChanged: (){
+                        categoryProvider.onTextChanged();
+                      },
+                      // suffixIcon: SvgWidget(
+                      //   svg: AppImages.aiSearch,
+                      //   width: 1.w,
+                      //   height: 1.h,
+                      // ),
+                      readOnly: false,
+                    ),
+                  ),
+                  SizedBox(width: 2.w),
+                  InkWell(
+                    onTap: (){
+                      // navPop();
+                      // NavBarProvider provider = Provider.of(context, listen: false);
+                      // provider.changeIndex(3);
+                      SearchFilterProvider provider = Provider.of(context, listen: false);
+                      provider.goToFilterPage();
+                    },
+                    child: Container(
+                      width: 12.w,
+                      height: 5.h,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(
+                          color: const Color(0xff221F1F).withOpacity(0.2),
+                        ),
+                      ),
+                      child: Center(
+                        child: SvgWidget(
+                          svg: AppImages.filter,
+                          color: AppColor.primaryColor,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
               SizedBox(height: 1.h),
               const CategoriesViewAllFilterWidget(),
               // const CarouselSliderWidget(),

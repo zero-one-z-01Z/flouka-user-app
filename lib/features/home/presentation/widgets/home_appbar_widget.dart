@@ -17,7 +17,7 @@ class HomeAppbarWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(
         horizontal: 6.w,
         vertical: 1.h,
-      ).copyWith(top: 7.h),
+      ).copyWith(top: 5.h),
       child: Row(
         children: [
           const Expanded(child:  DeliveryDropdownWidget()),
@@ -27,7 +27,7 @@ class HomeAppbarWidget extends StatelessWidget {
                 CategoriesProductSearchProvider provider = Provider.of(context,listen: false);
                 provider.clearSearch();
               },
-              child: const SvgWidget(svg: AppImages.search)),
+              child: const SvgWidget(svg: AppImages.search,color: Colors.white,)),
           SizedBox(width: 4.w),
           InkWell(
             onTap: () {
@@ -37,7 +37,7 @@ class HomeAppbarWidget extends StatelessWidget {
               });
 
             },
-            child: const SvgWidget(svg: AppImages.cart),
+            child: const SvgWidget(svg: AppImages.cart,color: Colors.white,),
           ),
         ],
       ),

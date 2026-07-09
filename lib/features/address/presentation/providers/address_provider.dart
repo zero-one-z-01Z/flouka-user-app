@@ -26,6 +26,9 @@ class AddressProvider extends ChangeNotifier {
       },
       (r) {
         address = r;
+        for(var element in address!){
+          print('eeeeeeeeeeeeeeeeeeee${element}');
+        }
         notifyListeners();
       },
     );
