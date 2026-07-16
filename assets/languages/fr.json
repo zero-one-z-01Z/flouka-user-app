@@ -6,7 +6,16 @@
     "on_boarding_1": "Nous sommes ravis de vous rencontrer. Nous sommes heureux de vous avoir parmi nous, commençons !",
     "on_boarding_2": "Fini la recherche parmi des éléments non pertinents, nous nous occupons de tout. Habitual vous envoie les bons articles en fonction de vos habitudes et de vos centres d'intérêt.",
     "on_boarding_3": "Dites-nous ce que vous aimez. Vraiment, cela nous aide beaucoup lorsque nous vous proposons d'excellents produits. Continuez simplement à faire ce que vous aimez.",
-    "skip": "Passer"
+    "skip": "Passer",
+    "1_title1": "Payez comme",
+    "1_title2": "vous voulez.",
+    "1_description": "Carte, portefeuille Flouci ou paiement à la livraison —\net des coupons pour économiser sur chaque commande.",
+    "2_title1": "Des artisans tunisiens,",
+    "2_title2": "au monde entier.",
+    "2_description": "Soutenez le savoir-faire tunisien — chaque achat aide\nles produits locaux à aller plus loin.",
+    "3_title1": "Le marché tunisien,",
+    "3_title2": "dans votre poche.",
+    "3_description": "Achetez auprès de commerçants et d'artisans locaux — de l'électronique\nà l'artisanat traditionnel."
   },
   "home": {
     "deliver_to": "Livrer à",

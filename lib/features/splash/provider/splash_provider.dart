@@ -12,7 +12,7 @@ import '../../navbar/presentation/provider/nav_bar_provider.dart';
 class SplashProvider extends ChangeNotifier {
 
   void startApp() async {
-    // bool isFirstTime = !(sharedPreferences.getBool('onBoarding') ?? false);
+    bool isFirstTime = !(sharedPreferences.getBool('onBoarding') ?? false);
     final context = Constants.globalContext();
     var auth = Provider.of<AuthProvider>(context, listen: false);
     String? isLoggedIn = sharedPreferences.getString('token');
@@ -21,10 +21,10 @@ class SplashProvider extends ChangeNotifier {
       Provider.of<SettingsProvider>(Constants.globalContext(), listen: false,).getSettings(),
     ]);
 
-    // if(isFirstTime){
-    //   navPARU(const OnBoardingView());
-    //   return;
-    // }
+    if(isFirstTime){
+      navPARU(const OnBoardingView());
+      return;
+    }
     if (isLoggedIn != null) {
         auth.getProfile(fromSplash: true);
       } else {

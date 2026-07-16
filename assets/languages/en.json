@@ -6,7 +6,17 @@
     "on_boarding_1": "We're delighted to meet you. We're excited to have you with us, let's get started!",
     "on_boarding_2": "No more searching through irrelevant items, we've got you covered. Habitual sends you the right items based on your habits and interests.",
     "on_boarding_3": "Tell us what you love. Really, it helps us a lot when we offer you great products. Just keep doing what you love.",
-    "skip": "Skip"
+    "skip": "Skip",
+    "1_title1": "Pay the way",
+    "1_title2": "you like.",
+    "1_description": "Card, Flouci wallet, or cash on delivery —\nand coupons to save on every order.",
+    "2_title1": "From our local artisans,",
+    "2_title2": "to the world.",
+    "2_description": "Support Tunisian craftsmanship — every purchase helps\nlocal products go further.",
+    "3_title1": "Tunisia's marketplace,",
+    "3_title2": "in your pocket.",
+    "3_description": "Shop from local merchants and artisans — from electronics\nto traditional handicrafts."
+
   },
   "home": {
     "deliver_to": "Deliver to",
