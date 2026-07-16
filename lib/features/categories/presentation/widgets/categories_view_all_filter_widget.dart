@@ -85,67 +85,67 @@ class CategoriesViewAllFilterWidget extends StatelessWidget {
                 ),
               ),
             ),
-            if(categoriesProvider.category != null && categoriesProvider.category!.children!.isNotEmpty)
-              Container(
-              padding: EdgeInsets.symmetric(vertical: 1.h,horizontal: 2.w),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.grey.shade300),
-              ),
-              child:SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                physics:const AlwaysScrollableScrollPhysics(),
-                child: Row(spacing: 2.w,
-                  children: List.generate(categoriesProvider.category!.children!.length, (index) {
-                    final filter = categoriesProvider.category!.children![index];
-                    final isSelected = filter == categoriesProvider.subcategory;
-
-                    return GestureDetector(
-                      onTap: () => categoriesProvider.selectSubCategory(filter),
-                      child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 4.w,vertical: 0.5.h),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: isSelected ? AppColor.primaryColor : Colors.transparent),
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        alignment: Alignment.center,
-                        child: Column(
-                          children: [
-                            if(filter.icon != null)
-                              SvgWidget(
-                                svg: filter.icon!,
-                                width: 5.w,
-                                height: 5.h,
-                              ),
-                            if(filter.image != null && filter.icon==null)
-                              Container(
-                                width: 5.w,
-                                height: 5.h,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: CachedNetworkImageProvider(filter.image!),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            Text(
-                              filter.name,
-                              style: TextStyleClass.normalStyle().copyWith(
-                                fontSize: 15.sp,
-                                fontWeight: isSelected
-                                    ? FontWeight.w600
-                                    : FontWeight.w400,
-                                color: isSelected ?AppColor.primaryColor  :Colors.black ,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },),
-                ),
-              ),
-            ),
+            // if(categoriesProvider.category != null && categoriesProvider.category!.children!.isNotEmpty)
+            //   Container(
+            //   padding: EdgeInsets.symmetric(vertical: 1.h,horizontal: 2.w),
+            //   decoration: BoxDecoration(
+            //     borderRadius: BorderRadius.circular(12),
+            //     border: Border.all(color: Colors.grey.shade300),
+            //   ),
+            //   child:SingleChildScrollView(
+            //     scrollDirection: Axis.horizontal,
+            //     physics:const AlwaysScrollableScrollPhysics(),
+            //     child: Row(spacing: 2.w,
+            //       children: List.generate(categoriesProvider.category!.children!.length, (index) {
+            //         final filter = categoriesProvider.category!.children![index];
+            //         final isSelected = filter == categoriesProvider.subcategory;
+            //
+            //         return GestureDetector(
+            //           onTap: () => categoriesProvider.selectSubCategory(filter),
+            //           child: Container(
+            //             padding: EdgeInsets.symmetric(horizontal: 4.w,vertical: 0.5.h),
+            //             decoration: BoxDecoration(
+            //               border: Border.all(color: isSelected ? AppColor.primaryColor : Colors.transparent),
+            //               borderRadius: BorderRadius.circular(4),
+            //             ),
+            //             alignment: Alignment.center,
+            //             child: Column(
+            //               children: [
+            //                 if(filter.icon != null)
+            //                   SvgWidget(
+            //                     svg: filter.icon!,
+            //                     width: 5.w,
+            //                     height: 5.h,
+            //                   ),
+            //                 if(filter.image != null && filter.icon==null)
+            //                   Container(
+            //                     width: 5.w,
+            //                     height: 5.h,
+            //                     decoration: BoxDecoration(
+            //                       image: DecorationImage(
+            //                         image: CachedNetworkImageProvider(filter.image!),
+            //                         fit: BoxFit.cover,
+            //                       ),
+            //                     ),
+            //                   ),
+            //                 Text(
+            //                   filter.name,
+            //                   style: TextStyleClass.normalStyle().copyWith(
+            //                     fontSize: 15.sp,
+            //                     fontWeight: isSelected
+            //                         ? FontWeight.w600
+            //                         : FontWeight.w400,
+            //                     color: isSelected ?AppColor.primaryColor  :Colors.black ,
+            //                   ),
+            //                 ),
+            //               ],
+            //             ),
+            //           ),
+            //         );
+            //       },),
+            //     ),
+            //   ),
+            // ),
           ],
         );
       },

@@ -45,18 +45,13 @@ class FilteredProductHomeContainerWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                padding: EdgeInsets.symmetric(vertical: 1.h),
+                height: 12.h,
+                width: 12.h,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: Colors.grey.shade200,
-                ),
-                child: Container(
-                  height: 12.h,
-                  width: 12.h,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(image:productEntity.image !=null ?
-                    CachedNetworkImageProvider(productEntity.image!) :const AssetImage(AppImages.logo))
-                  ),
+                    borderRadius: BorderRadius.circular(12),
+                  image: DecorationImage(image:productEntity.image !=null ?
+                  CachedNetworkImageProvider(productEntity.image!) :const AssetImage(AppImages.logo),
+                  fit: BoxFit.cover)
                 ),
               ),
               SizedBox(width: 2.w),
@@ -69,6 +64,18 @@ class FilteredProductHomeContainerWidget extends StatelessWidget {
                       style: TextStyleClass.normalStyle().copyWith(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w400,
+                      ),
+                      softWrap: true,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    SizedBox(height: 1.h),
+                    Text(
+                      productEntity.description ?? "",
+                      style: TextStyleClass.normalStyle().copyWith(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.grey
                       ),
                       softWrap: true,
                       maxLines: 2,
@@ -117,7 +124,7 @@ class FilteredProductHomeContainerWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(78.4),
                       border: Border.all(color: const Color(0xffAD46FF),width: 2),
                     ),
-                        padding: EdgeInsets.symmetric(horizontal: 4.w,vertical: 1.h),
+                        padding: EdgeInsets.symmetric(horizontal: 4.w,vertical: 0.5.h),
                         child: Row(mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Icon(Icons.add_shopping_cart,color:  Color(0xffAD46FF),),

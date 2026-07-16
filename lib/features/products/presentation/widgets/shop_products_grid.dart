@@ -46,7 +46,8 @@ class ShopProductsGrid extends StatelessWidget {
                         final imageHeight = 12.h;
 
                         // Apply top padding to every right item (odd index)
-                        double topPadding = (i % 2 == 1) ? 2.h : 0;
+                        double topPadding =  0;
+                        // double topPadding = (i % 2 == 1) ? 2.h : 0;
 
                         return Padding(
                           padding: EdgeInsets.only(top: topPadding),

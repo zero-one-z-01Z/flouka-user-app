@@ -19,70 +19,69 @@ class LoginView extends StatelessWidget {
     final AuthProvider authProvider = Provider.of(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: SafeArea(top: false,
-        child: SizedBox(height: 100.h,width: 100.w,
-          child: Stack(
-            children: [
-              SingleChildScrollView(
-                padding: EdgeInsets.symmetric(horizontal: 4.w),
-                child: Form(
-                  key: authProvider.loginFormKey,
-                  child: Column(
-                    children: [
-                      SizedBox(height: 10.h),
-                      Image.asset(AppImages.logo, width: 20.w),
-                      SizedBox(height: 3.h),
-                      Text(
-                        LanguageProvider.translate("auth", "auth_welcome"),
-                        textAlign: TextAlign.center,
-                        style: TextStyleClass.smallStyle().copyWith(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16.sp,
-                        ),
+      body: SizedBox(height: 100.h,width: 100.w,
+        child: Stack(
+          children: [
+            SingleChildScrollView(
+              padding: EdgeInsets.symmetric(horizontal: 4.w),
+              child: Form(
+                key: authProvider.loginFormKey,
+                child: Column(
+                  children: [
+                    SizedBox(height: 10.h),
+                    Image.asset(AppImages.logo, width: 20.w),
+                    SizedBox(height: 3.h),
+                    Text(
+                      LanguageProvider.translate("auth", "auth_welcome"),
+                      textAlign: TextAlign.center,
+                      style: TextStyleClass.smallStyle().copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.sp,
                       ),
-                      SizedBox(height: 2.h),
-                      ListTextFieldWidget(inputs: authProvider.loginTextFieldList),
-                      SizedBox(height: 2.h),
-                      ButtonWidget(onTap: () => authProvider.sendOTP(), text: "Login",height: 6.h,),
-                      SizedBox(height: 2.h),
-                      // Align(
-                      //   alignment: AlignmentDirectional.centerStart,
-                      //   child: Text(
-                      //     LanguageProvider.translate("auth", "Forgot password"),
-                      //     style: TextStyleClass.normalStyle().copyWith(
-                      //       fontWeight: FontWeight.bold,
-                      //       fontSize: 15.sp,
-                      //       decoration: TextDecoration.underline,
-                      //     ),
-                      //   ),
-                      // ),
-                      // SizedBox(height: 2.h),
-                      const OrDividerWidget(),
-                      SizedBox(height: 3.h),
-                      const LoginSocialMediaListWidget(),
-                      // Align(
-                      //   alignment: AlignmentDirectional.centerStart,
-                      //   child: CustomTextWithUnderLineText(
-                      //     customText: "New to Habitual?",
-                      //     underLineText: "Sign up",
-                      //     onTap: () {
-                      //       authProvider.goToRegisterView();
-                      //     },
-                      //   ),
-                      // ),
-                    ],
-                  ),
+                    ),
+                    SizedBox(height: 2.h),
+                    ListTextFieldWidget(inputs: authProvider.loginTextFieldList),
+                    SizedBox(height: 2.h),
+                    ButtonWidget(onTap: () => authProvider.sendOTP(), text: "Login",height: 6.h,),
+                    SizedBox(height: 2.h),
+                    // Align(
+                    //   alignment: AlignmentDirectional.centerStart,
+                    //   child: Text(
+                    //     LanguageProvider.translate("auth", "Forgot password"),
+                    //     style: TextStyleClass.normalStyle().copyWith(
+                    //       fontWeight: FontWeight.bold,
+                    //       fontSize: 15.sp,
+                    //       decoration: TextDecoration.underline,
+                    //     ),
+                    //   ),
+                    // ),
+                    // SizedBox(height: 2.h),
+                    const OrDividerWidget(),
+                    SizedBox(height: 3.h),
+                    const LoginSocialMediaListWidget(),
+                    // Align(
+                    //   alignment: AlignmentDirectional.centerStart,
+                    //   child: CustomTextWithUnderLineText(
+                    //     customText: "New to Habitual?",
+                    //     underLineText: "Sign up",
+                    //     onTap: () {
+                    //       authProvider.goToRegisterView();
+                    //     },
+                    //   ),
+                    // ),
+                  ],
                 ),
               ),
-              Positioned(
-                  top: 0,left: 0,right: 0,
-                  child: Image.asset(AppImages.topAuth)),
-              Positioned(
-                  bottom: 0,
-                  child: Image.asset(AppImages.bottomAuth,)),
-        
-            ],
-          ),
+            ),
+            Positioned(
+                top: 0,left: 0,right: 0,
+                child: Image.asset(AppImages.topAuth)),
+            Positioned(
+                bottom: 0,
+                right: 0,
+                child: Image.asset(AppImages.bottomAuth,fit: BoxFit.fitWidth,)),
+
+          ],
         ),
       ),
     );

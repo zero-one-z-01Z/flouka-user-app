@@ -28,187 +28,186 @@ class ProductsDetailsView extends StatelessWidget {
   Widget build(BuildContext context) {
     final ProductDetailsProvider productDetailsProvider = Provider.of(context);
 
-    return SafeArea(
-      child: PopScope(
-        canPop: false,
-        onPopInvokedWithResult: (result,_) {
-          if (!result) {
-            productDetailsProvider.backToLastProduct();
-          }
-        },
-        child: Scaffold(
-          appBar: AppBar(
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back, color: Colors.white),
-              onPressed: () {
-                // navPop();
-                productDetailsProvider.backToLastProduct();
-              },
-            ),
-            actions: [
-              InkWell(
-                onTap: (){
-                  // productDetailsProvider.productsIDs.clear();
-                  Provider.of<CartProvider>(context,listen: false).goToPage();
-                },
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 2.w),
-                    child: const SvgWidget(svg: AppImages.navbarCart,color: Colors.white,)),
-              ),
-            ],
-            title: Text(
-              productDetailsProvider.data != null
-                  ? "${productDetailsProvider.data?.title ?? ""}"
-                  : LanguageProvider.translate("global", "what_are_you_looking_for",
-              ),
-            ),
-          ),
-          body: Builder(
-            builder: (context) {
-              if (productDetailsProvider.data == null) {
-                return const Center(
-                  child: LoadingAnimationWidget(gif: Lotties.loading),
-                );
-              }
-              return SingleChildScrollView(
-                child: Column(
-                  children: [
-                    ProductDetailsHeaderWidget(
-                      productEntity: productDetailsProvider.data!,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 4.w),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          gradiantButton(
-                            vendor: productDetailsProvider.data!.store!,
-                            onTap: () {
-                            },
-                            gradiantcolors: [Colors.white, AppColor.primaryColor],
-                          ),
-                          SizedBox(height: 2.h),
-                          Text(
-                            productDetailsProvider.data!.title!,
-                            style: TextStyleClass.headStyle(),
-                          ),
-                          SizedBox(height: 1.h),
-                          if(productDetailsProvider.variantEntity() ==null)
-                            Row(
-                            children: [
-                              Text(
-                                "${LanguageProvider.translate("global", "start_from")} ${productDetailsProvider.data!.offerPrice != null ?
-                                productDetailsProvider.data!.offerPrice! : productDetailsProvider.data!.price!}\$",
-                                style: TextStyleClass.headStyle(color: AppColor.secondaryColor),
-                              ),
-                              if(productDetailsProvider.data!.offerPrice != null)...[
-                                SizedBox(width: 2.w),
-                                Text(
-                                  "${productDetailsProvider.data!.price!}\$",
-                                  style: TextStyleClass.headStyle(color: Colors.grey.shade400).copyWith(
-                                    decoration: TextDecoration.lineThrough,
-                                  ),
-                                ),
-                              ],
-
-                            ],
-                          ),
-                          if(productDetailsProvider.variantEntity() !=null)
-                          Row(
-                            children: [
-                              Text(
-                                "${productDetailsProvider.variantEntity()?.offerPrice != null ?
-                                productDetailsProvider.variantEntity()?.offerPrice! : productDetailsProvider.variantEntity()?.price}\$",
-                                style: TextStyleClass.headStyle(color: AppColor.secondaryColor),
-                              ),
-                              if(productDetailsProvider.variantEntity()?.offerPrice != null)...[
-                                SizedBox(width: 2.w),
-                                Text(
-                                  "${productDetailsProvider.variantEntity()?.price}\$",
-                                  style: TextStyleClass.headStyle(color: Colors.grey.shade400).copyWith(
-                                    decoration: TextDecoration.lineThrough,
-                                  ),
-                                ),
-                              ],
-
-                            ],
-                          ),
-                          // RatingWithSeeReviewsWidget(product: productDetailsProvider.data!,),
-                          // SizedBox(height: 2.5.h),
-                          // Text(
-                          //   LanguageProvider.translate("global", "Description"),
-                          //   style: TextStyleClass.headStyle(),
-                          // ),
-                          Text(
-                            productDetailsProvider.data!.description!,
-                            style: TextStyleClass.normalStyle(
-                              color: Colors.grey.shade400,
-                            ).copyWith(height: 2),
-                          ),
-                          SizedBox(height: 2.h),
-                          const ProductAttributesWidget(),
-                          SizedBox(height: 2.h,),
-                          if (productDetailsProvider.data!.related.isNotEmpty) ...[
-                            Text(LanguageProvider.translate("global", "Frequently Bought Together",),
-                              style: TextStyleClass.normalStyle(),
-                            ),
-                            SizedBox(height: 2.h),
-                            FrequentlyListWidget(
-                              relatedProducts:
-                              productDetailsProvider.data!.related,
-                            ),
-                            SizedBox(height: 2.h),
-                          ],
-                          if(productDetailsProvider.data!.recommended.isNotEmpty)...[
-                            SizedBox(height: 2.h),
-                            HotDealsWidget(products: productDetailsProvider.data!.recommended,),
-                            SizedBox(height: 2.h),
-                          ],
-                          Text(LanguageProvider.translate("global", "Proudact Reating & Reviwes",),
-                            style: TextStyleClass.normalStyle(),
-                          ),
-                          AvgRatingWidget(
-                            rating: productDetailsProvider.data!.rate ?? 0,
-                          ),
-
-                          if (productDetailsProvider.data!.reviewImages.isNotEmpty) ...[
-                            ReviewWithImagesSection(reviewImages: productDetailsProvider.data!.reviewImages,),
-                            SizedBox(height: 2.h),
-                          ],
-                          if(productDetailsProvider.data!.reviews.isNotEmpty)...[
-                            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(LanguageProvider.translate("global", "all_reviews"),style: TextStyleClass.normalStyle(),),
-                                InkWell(
-                                  onTap: (){
-                                    Provider.of<ProductReviewsProvider>(context, listen: false).goToPage({
-                                      'product_id': productDetailsProvider.data!.id,
-                                    });
-                                  },
-                                  child: Text(LanguageProvider.translate("global", "see_all"),
-                                    style: TextStyleClass.normalStyle(color: AppColor.primaryColor),),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 2.h),
-                            Wrap(
-                              children: List.generate(
-                                productDetailsProvider.data!.reviews.length, (index) => ReviewItemWidget(
-                                  review:
-                                  productDetailsProvider.data!.reviews[index],
-                                ),
-                              ),
-                            ),
-                          ],
-                          SizedBox(height: 2.h),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              );
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (result,_) {
+        if (!result) {
+          productDetailsProvider.backToLastProduct();
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () {
+              // navPop();
+              productDetailsProvider.backToLastProduct();
             },
           ),
+          actions: [
+            InkWell(
+              onTap: (){
+                // productDetailsProvider.productsIDs.clear();
+                Provider.of<CartProvider>(context,listen: false).goToPage();
+              },
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 2.w),
+                  child: const SvgWidget(svg: AppImages.navbarCart,color: Colors.white,)),
+            ),
+          ],
+          title: Text(
+            productDetailsProvider.data != null
+                ? "${productDetailsProvider.data?.title ?? ""}"
+                : LanguageProvider.translate("global", "what_are_you_looking_for",
+            ),
+          ),
+        ),
+        body: Builder(
+          builder: (context) {
+            if (productDetailsProvider.data == null) {
+              return const Center(
+                child: LoadingAnimationWidget(gif: Lotties.loading),
+              );
+            }
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  ProductDetailsHeaderWidget(
+                    productEntity: productDetailsProvider.data!,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 4.w),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        gradiantButton(
+                          vendor: productDetailsProvider.data!.store!,
+                          onTap: () {
+                          },
+                          gradiantcolors: [Colors.white, AppColor.primaryColor],
+                        ),
+                        SizedBox(height: 2.h),
+                        Text(
+                          productDetailsProvider.data!.title!,
+                          style: TextStyleClass.headStyle(),
+                        ),
+                        SizedBox(height: 1.h),
+                        if(productDetailsProvider.variantEntity() ==null)
+                          Row(
+                          children: [
+                            Text(
+                              "${LanguageProvider.translate("global", "start_from")} ${productDetailsProvider.data!.offerPrice != null ?
+                              productDetailsProvider.data!.offerPrice! : productDetailsProvider.data!.price!}\$",
+                              style: TextStyleClass.headStyle(color: AppColor.secondaryColor),
+                            ),
+                            if(productDetailsProvider.data!.offerPrice != null)...[
+                              SizedBox(width: 2.w),
+                              Text(
+                                "${productDetailsProvider.data!.price!}\$",
+                                style: TextStyleClass.headStyle(color: Colors.grey.shade400).copyWith(
+                                  decoration: TextDecoration.lineThrough,
+                                ),
+                              ),
+                            ],
+
+                          ],
+                        ),
+                        if(productDetailsProvider.variantEntity() !=null)
+                        Row(
+                          children: [
+                            Text(
+                              "${productDetailsProvider.variantEntity()?.offerPrice != null ?
+                              productDetailsProvider.variantEntity()?.offerPrice! : productDetailsProvider.variantEntity()?.price}\$",
+                              style: TextStyleClass.headStyle(color: AppColor.secondaryColor),
+                            ),
+                            if(productDetailsProvider.variantEntity()?.offerPrice != null)...[
+                              SizedBox(width: 2.w),
+                              Text(
+                                "${productDetailsProvider.variantEntity()?.price}\$",
+                                style: TextStyleClass.headStyle(color: Colors.grey.shade400).copyWith(
+                                  decoration: TextDecoration.lineThrough,
+                                ),
+                              ),
+                            ],
+
+                          ],
+                        ),
+                        // RatingWithSeeReviewsWidget(product: productDetailsProvider.data!,),
+                        // SizedBox(height: 2.5.h),
+                        // Text(
+                        //   LanguageProvider.translate("global", "Description"),
+                        //   style: TextStyleClass.headStyle(),
+                        // ),
+
+                        const ProductAttributesWidget(),
+                        SizedBox(height: 2.h,),
+                        if (productDetailsProvider.data!.related.isNotEmpty) ...[
+                          Text(LanguageProvider.translate("global", "Frequently Bought Together",),
+                            style: TextStyleClass.normalStyle(),
+                          ),
+                          SizedBox(height: 2.h),
+                          FrequentlyListWidget(
+                            relatedProducts:
+                            productDetailsProvider.data!.related,
+                          ),
+                          SizedBox(height: 2.h),
+                        ],
+                        if(productDetailsProvider.data!.recommended.isNotEmpty)...[
+                          SizedBox(height: 2.h),
+                          HotDealsWidget(products: productDetailsProvider.data!.recommended,),
+                          SizedBox(height: 2.h),
+                        ],
+                        Text(
+                          productDetailsProvider.data!.description!,
+                          style: TextStyleClass.normalStyle(
+                            color: Colors.grey.shade400,
+                          ).copyWith(height: 2),
+                        ),
+                        SizedBox(height: 2.h),
+                        Text(LanguageProvider.translate("global", "Proudact Reating & Reviwes",),
+                          style: TextStyleClass.normalStyle(),
+                        ),
+                        AvgRatingWidget(
+                          rating: productDetailsProvider.data!.rate ?? 0,
+                        ),
+
+                        if (productDetailsProvider.data!.reviewImages.isNotEmpty) ...[
+                          ReviewWithImagesSection(reviewImages: productDetailsProvider.data!.reviewImages,),
+                          SizedBox(height: 2.h),
+                        ],
+                        if(productDetailsProvider.data!.reviews.isNotEmpty)...[
+                          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(LanguageProvider.translate("global", "all_reviews"),style: TextStyleClass.normalStyle(),),
+                              InkWell(
+                                onTap: (){
+                                  Provider.of<ProductReviewsProvider>(context, listen: false).goToPage({
+                                    'product_id': productDetailsProvider.data!.id,
+                                  });
+                                },
+                                child: Text(LanguageProvider.translate("global", "see_all"),
+                                  style: TextStyleClass.normalStyle(color: AppColor.primaryColor),),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 2.h),
+                          Wrap(
+                            children: List.generate(
+                              productDetailsProvider.data!.reviews.length, (index) => ReviewItemWidget(
+                                review:
+                                productDetailsProvider.data!.reviews[index],
+                              ),
+                            ),
+                          ),
+                        ],
+                        SizedBox(height: 2.h),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
         ),
       ),
     );

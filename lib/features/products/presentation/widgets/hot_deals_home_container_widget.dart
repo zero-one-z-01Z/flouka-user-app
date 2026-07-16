@@ -146,6 +146,15 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(height: 0.5.h),
+                  Text(
+                    product.description ?? "",
+                    style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600,
+                    color: Colors.grey),
+                    softWrap: true,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  SizedBox(height: 0.5.h),
                   Row(
                     children: [
                       Flexible(child: PriceWidget(price:product.offerPrice ?? product.price ?? 0)),
@@ -167,22 +176,27 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
                   ),
                   SizedBox(height: 0.5.h),
                   Center(
-                    child: Container(width: 30.w,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(78.4),
-                          border: Border.all(color: const Color(0xffAD46FF),width: 2),
-                        ),
-                        padding: EdgeInsets.symmetric(horizontal: 2.w,),
-                        child: Row(mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.add_shopping_cart,color:const Color(0xffAD46FF),size: 4.w,),
-                            SizedBox(width: 1.w),
-                            Text(LanguageProvider.translate("buttons", "add_to_cart"),
-                              style: TextStyleClass.smallStyle(color: AppColor.primaryColor).copyWith(
-                                fontSize: 14.sp
-                              ),),
-                          ],
-                        )),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(78.4),
+                              border: Border.all(color: const Color(0xffAD46FF),width: 2),
+                            ),
+                            padding: EdgeInsets.symmetric(horizontal: 2.w,),
+                            child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.add_shopping_cart,color:const Color(0xffAD46FF),size: 4.w,),
+                                SizedBox(width: 1.w),
+                                Text(LanguageProvider.translate("buttons", "add_to_cart"),
+                                  style: TextStyleClass.smallStyle(color: AppColor.primaryColor).copyWith(
+                                    fontSize: 14.sp
+                                  ),),
+                              ],
+                            )),
+                      ],
+                    ),
                   ),
                 ],
               ),

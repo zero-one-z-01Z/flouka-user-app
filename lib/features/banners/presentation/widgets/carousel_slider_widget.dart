@@ -24,8 +24,8 @@ class CarouselSliderWidget extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            width: 90.w,
-            height: 15.h,
+            width: 95.w,
+            height: 18.h,
             child: CarouselSlider(
               items: bannerProvider.bannersList.map((item) {
                 return InkWell(
@@ -35,7 +35,7 @@ class CarouselSliderWidget extends StatelessWidget {
                     }
                   },
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(16),
                     child: CachedNetworkImage(
                       imageUrl: item.image,
                       fit: BoxFit.cover,

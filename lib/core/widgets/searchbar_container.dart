@@ -46,7 +46,7 @@ class SearchbarContainer extends StatelessWidget {
             begin: Alignment.bottomCenter,
             end: Alignment.topCenter,
             colors: [
-              const Color(0xFF00A8E1),
+              AppColor.primaryColor,
               const Color(0xffA6E7CF).withOpacity(0.77),
             ],
           ),

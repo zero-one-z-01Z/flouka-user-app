@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:camera/camera.dart';
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import '../../features/language/presentation/provider/language_provider.dart';
@@ -62,19 +63,24 @@ class UploadMultiImageWidget extends StatelessWidget {
                 ],
               ),
             SizedBox(height: 0.5.h),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 2.h),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey.shade500),
-                borderRadius: BorderRadius.circular(5),
+            DottedBorder(
+              options: RoundedRectDottedBorderOptions(
+                color: AppColor.primaryColor,
+                strokeWidth: 2,
+                dashPattern: const [6, 3],
+                radius: Radius.circular(6),
+
               ),
+
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
                 child: Row(
                   children: [
                     Container(
                       width: 18.w,height: 18.w,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(2.w),
-                        color: AppColor.primaryColor,
+                        color: AppColor.primaryColor.withAlpha(150),
                         border: Border.all(color: Colors.white, width: 2),
                       ),
                       child: Icon(Icons.add, size: 6.w, color: Colors.white),
@@ -116,6 +122,7 @@ class UploadMultiImageWidget extends StatelessWidget {
                   ],
                 ),
               ),
+            ),
             Row(
               children: [
                 if (images.isNotEmpty)

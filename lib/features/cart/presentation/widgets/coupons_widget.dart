@@ -27,7 +27,7 @@ class CouponsWidget extends StatelessWidget {
         SizedBox(height: 1.3.h),
         Consumer<CouponProvider>(
           builder: (context, value, child) => Column(
-            spacing: 2.h,
+            spacing: 0.h,
             children: List.generate(value.couponsFields.length, (index) {
               return Row(
                 spacing: 8,

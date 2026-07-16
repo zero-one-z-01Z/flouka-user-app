@@ -29,9 +29,12 @@ class MyAddressWidget extends StatelessWidget {
           child: Column(
             spacing: 1.h,
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   spacing: 3.w,
                   children: [
                     const SvgWidget(svg: AppImages.location, color: Colors.black),
@@ -52,12 +55,12 @@ class MyAddressWidget extends StatelessWidget {
                               fontSize: 15.sp,
                             ),
                           ),
-                          Text(
-                            "${addressEntity.neighborhoodEntity?.name??""} ${addressEntity.areaEntity !=null ?",":""} ${addressEntity.areaEntity?.name??""} ${addressEntity.cityEntity !=null ?",":""} ${addressEntity.cityEntity?.name??""}",
-                            style: TextStyleClass.smallStyle().copyWith(
-                              fontSize: 15.sp,
-                            ),maxLines: 2,
-                          ),
+                          // Text(
+                          //   "${addressEntity.neighborhoodEntity?.name??""} ${addressEntity.areaEntity !=null ?",":""} ${addressEntity.areaEntity?.name??""} ${addressEntity.cityEntity !=null ?",":""} ${addressEntity.cityEntity?.name??""}",
+                          //   style: TextStyleClass.smallStyle().copyWith(
+                          //     fontSize: 15.sp,
+                          //   ),maxLines: 2,
+                          // ),
                         ],
                       ),
                     ),

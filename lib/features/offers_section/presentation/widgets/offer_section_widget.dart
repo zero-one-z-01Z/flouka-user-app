@@ -19,38 +19,48 @@ class OffersSectionWidget extends StatelessWidget {
         horizontal: 3.w,
         vertical: 2.h,
       ),
+      width: double.infinity,
       color: offerSectionEntity.color,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    offerSectionEntity.title,
-                    style: TextStyleClass.normalStyle().copyWith(
-                      color: offerSectionEntity.titleColor ?? Colors.white,
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    offerSectionEntity.description,
-                    style: TextStyleClass.normalStyle().copyWith(
-                      color: offerSectionEntity.descriptionColor ?? Colors.white,
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ],
-              ),
-              const Spacer(),
-              if(offerSectionEntity.buttonText.isNotEmpty)
+          SizedBox(
+            width: double.infinity,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
                 Expanded(
-                  child: InkWell(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        offerSectionEntity.title,
+                        style: TextStyleClass.normalStyle().copyWith(
+                          color: offerSectionEntity.titleColor ?? Colors.white,
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.bold,
+
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      Text(
+                        offerSectionEntity.description,
+                        style: TextStyleClass.normalStyle().copyWith(
+                          color: offerSectionEntity.descriptionColor ?? Colors.white,
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w400,
+
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(width: 5.w,),
+                if(offerSectionEntity.buttonText.isNotEmpty)
+                  InkWell(
                     onTap: (){
                       // Provider.of<CategoriesProductSearchProvider>(context, listen: false).goToPage({
                       //   "section_id":offerSectionEntity.id
@@ -58,7 +68,7 @@ class OffersSectionWidget extends StatelessWidget {
                       Provider.of<RecommendProductsProvider>(context,listen: false).goToPage({'title':offerSectionEntity.title,"section_id":offerSectionEntity.id});
                     },
                     child: Container(
-                      padding:EdgeInsets.all(1.w),
+                      padding:EdgeInsets.symmetric(vertical: 1.w,horizontal: 3.w),
                       decoration: BoxDecoration(
                         color: offerSectionEntity.buttonColor ?? Colors.black,
                         borderRadius: BorderRadius.circular(12),
@@ -70,9 +80,9 @@ class OffersSectionWidget extends StatelessWidget {
                       ),
                     ),
                   ),
-                ),
 
-            ],
+              ],
+            ),
           ),
           HotDealsHomeSection(products: offerSectionEntity.products),
         ],

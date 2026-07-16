@@ -1,7 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flouka/core/config/app_color.dart';
 import 'package:flouka/core/constants/app_lotties.dart';
+import 'package:flouka/core/helper_function/navigation.dart';
 import 'package:flouka/core/widgets/loading_animation_widget.dart';
+import 'package:flouka/features/reviews/presentation/providres/create_rate_provider.dart';
+import 'package:flouka/features/reviews/presentation/views/create_review_page.dart';
 import 'package:flouka/features/stores/presentation/providers/store_details_provider.dart';
 import 'package:flouka/features/stores/presentation/providers/store_reviews_provider.dart';
 import 'package:flouka/features/stores/presentation/widgets/stores_tabs_widget.dart';
@@ -69,7 +72,7 @@ class StoreDetailsPage extends StatelessWidget {
                   physics: const AlwaysScrollableScrollPhysics(),
                   controller:storesProvider.current==0 ? storesProductProvider.controller :storeReviewsProvider.controller,
                   child: Container(width: 100.w, padding: EdgeInsets.symmetric(horizontal: 3.w,vertical: 2.h),
-                    margin: EdgeInsets.symmetric(horizontal: 5.w).copyWith(top: 15.h),
+                    margin: EdgeInsets.symmetric(horizontal: 4.w).copyWith(top: 15.h),
                     decoration:const BoxDecoration(
                       borderRadius: BorderRadius.vertical(
                         top: Radius.circular(50),
@@ -117,8 +120,8 @@ class StoreDetailsPage extends StatelessWidget {
                                 sharePositionOrigin: Constants.isTablet?
                                 (box!.localToGlobal(Offset.zero) & box.size):null,);
                             },
-                            child: Container( padding: EdgeInsets.symmetric(horizontal: 1.w,vertical: 0.5.h),
-                              decoration: BoxDecoration( color: AppColor.secondaryColor, borderRadius: BorderRadius.circular(4),),
+                            child: Container( padding: EdgeInsets.symmetric(horizontal: 4.w,vertical: 0.5.h),
+                              decoration: BoxDecoration( color: AppColor.secondaryColor, borderRadius: BorderRadius.circular(10),),
                               child: Row(
                                 children: [
                                   const SvgWidget( svg: AppImages.share,),
