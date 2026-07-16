@@ -92,18 +92,26 @@ abstract class AppImages {
   static const String pendingPayment = 'assets/images/status/pending_payment.svg';
 
   //Settings
+  static const String settingsProfile = 'assets/images/settings/profile.svg';
+  static const String settingsLanguages = 'assets/images/settings/languages.svg';
+  static const String settingsLocation = 'assets/images/settings/location.svg';
+  static const String settingsWallet = 'assets/images/settings/wallet.svg';
+  static const String settingsOrders = 'assets/images/settings/orders.svg';
+  static const String settingsFavorite = 'assets/images/settings/favorite.svg';
+  static const String settingsTerms = 'assets/images/settings/terms.svg';
+  static const String settingsPrivacy = 'assets/images/settings/privacy.svg';
   static const String settingsAddress = 'assets/images/settings/address.svg';
   static const String settingsDeleteAccount =
       'assets/images/settings/delete_account.svg';
-  static const String settingsFavorite = 'assets/images/settings/favorite.svg';
+  // static const String settingsFavorite = 'assets/images/settings/favorite.svg';
   static const String settingsLanguage = 'assets/images/settings/language.svg';
   static const String settingsNotification =
       'assets/images/settings/notification.svg';
-  static const String settingsOrders = 'assets/images/settings/orders.svg';
+  // static const String settingsOrders = 'assets/images/settings/orders.svg';
   static const String settingsPrivacyPolicy =
       'assets/images/settings/privacy_policy.svg';
   static const String settingsSupport = 'assets/images/settings/support.svg';
-  static const String settingsWallet = 'assets/images/settings/wallet.svg';
+  // static const String settingsWallet = 'assets/images/settings/wallet.svg';
 
   //Test
   static const String testAirpods = 'assets/images/test/airpods.png';

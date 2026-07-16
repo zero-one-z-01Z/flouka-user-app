@@ -18,11 +18,11 @@ class OrdersView extends StatelessWidget {
     final OrderProvider ordersProvider = Provider.of(context);
     // ordersProvider.pagination();
     return Scaffold(
-      backgroundColor: const Color(0xffeffbff),
       appBar: AppBar(
         title: Text(
           LanguageProvider.translate("global", "orders"),
-          style: TextStyleClass.normalStyle().copyWith(fontWeight: FontWeight.w600),
+          style: TextStyleClass.normalStyle().copyWith(fontWeight: FontWeight.w600,
+          color: Colors.white),
         ),
       ),
       body: RefreshIndicator(

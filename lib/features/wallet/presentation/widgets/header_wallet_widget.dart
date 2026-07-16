@@ -5,6 +5,7 @@ import '../../../../core/config/app_color.dart';
 import '../../../../core/config/app_styles.dart';
 import '../../../auth/presentation/providers/auth_provider.dart';
 import '../../../language/presentation/provider/language_provider.dart';
+import '../provider/wallet_provider.dart';
 
 class HeaderWalletWidget extends StatelessWidget {
   const HeaderWalletWidget({super.key});
@@ -12,61 +13,65 @@ class HeaderWalletWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of(context);
+    WalletProvider walletProvider = Provider.of(context);
     return Container(
-      height: 18.h,
+      // height: 18.h,
       margin: EdgeInsets.all(6.w),
       decoration: BoxDecoration(
         color: AppColor.primaryColor,
-        borderRadius: BorderRadiusDirectional.circular(50),
+        borderRadius: BorderRadiusDirectional.circular(16),
       ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(50),
-        child: Stack(
-          clipBehavior: Clip.hardEdge,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+      padding: EdgeInsets.symmetric(vertical: 2.h,horizontal: 4.w),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 6.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        LanguageProvider.translate("global", "your_credit"),
-                        style: TextStyleClass.normalStyle().copyWith(
-                          color: Colors.white,
-                          fontSize: 16.sp,
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            " ${authProvider.userEntity?.wallet ?? 0} ",
-                            style: TextStyleClass.normalStyle().copyWith(
-                              color: Colors.white,
-                              fontSize: 21.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            LanguageProvider.translate('global', 'US'),
-                            style: TextStyleClass.normalStyle().copyWith(
-                              color: Colors.white,
-                              fontSize: 21.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                Text(
+                  LanguageProvider.translate("global", "your_credit"),
+                  style: TextStyleClass.normalStyle().copyWith(
+                    color: Colors.white,
+                    fontSize: 16.sp,
                   ),
+                ),
+                Row(
+                  children: [
+                    Text(
+                      " ${authProvider.userEntity?.wallet ?? 0} ",
+                      style: TextStyleClass.normalStyle().copyWith(
+                        color: Colors.white,
+                        fontSize: 21.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      LanguageProvider.translate('global', 'currency'),
+                      style: TextStyleClass.normalStyle().copyWith(
+                        color: Colors.white,
+                        fontSize: 21.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
-        ),
+          ),
+          SizedBox(width: 7.w,),
+          InkWell(
+            onTap: (){
+              walletProvider.showChargeSheet();
+            },
+            child: CircleAvatar(
+              radius: 6.w,
+              backgroundColor: Colors.white,
+              child: Icon(Icons.add,color: AppColor.primaryColor,size: 30,),
+            ),
+          ),
+        ],
       ),
     );
   }

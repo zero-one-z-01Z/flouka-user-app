@@ -44,6 +44,7 @@ class _WebViewPageState extends State<WebViewPage> {
 
     // if (Platform.isAndroid) WebView.platform = AndroidWebView();
     return SafeArea(
+      top: false,
       child: Scaffold(
         appBar: AppBar(
           title: Text(LanguageProvider.translate('settings', widget.title)),

@@ -20,6 +20,7 @@ class TicketsPage extends StatelessWidget {
     TicketsProvider ticketsProvider = Provider.of(context);
     ticketsProvider.pagination();
     return SafeArea(
+      top: false,
       child: Scaffold(
         backgroundColor: Colors.transparent,
         extendBody: true,

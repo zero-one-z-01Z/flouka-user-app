@@ -94,6 +94,7 @@
     "filter": "تصفية"
   },
   "global": {
+    "currency": "TND",
     "delivery": "التوصيل",
     "delivery_to": "عنوان التوصيل",
     "payment_method": "طريقة الدفع",
@@ -138,7 +139,7 @@
     "suggested_products": "المنتجات المقترحة",
     "see_all": "عرض الكل",
     "operations": "عمليات المحفظة",
-    "your_credit": "رصيدك",
+    "your_credit": "رصيد المحفظة المتاح",
     "deposited": "تم الإيداع",
     "seller_ratings": "التقييم",
     "best_seller": "الأكثر مبيعًا",
@@ -355,6 +356,17 @@
     "ask_address": "لضمان أفضل تجربة خدمة، يرجى إضافة عنوانك الرئيسي. إذا اخترت تخطي هذه الخطوة، قد يُطلب منك تقديم موقعك الحالي مؤقتًا، ولكن سيظل العنوان الرئيسي مطلوبًا قبل تقديم أي طلب."
   },
   "settings": {
+    "account_settings": "اعدادات الحساب",
+    "general_settings": "اعدادات الخصوصيه",
+    "edit_profile": "تعديل الحساب",
+    "notifications": "الاشعارات",
+    "address": "العناوين",
+    "wallet": "المحفظة",
+    "orders": "الطلبات",
+    "favorite": "المفضلة",
+    "privacy_security": "السياسة و الخصوصية",
+    "hi_guest": "مرحبا بك",
+    "title": "حساب تعريفي",
     "share_description": "أنصحك بشراء *product* وهذا المنتج *description*",
     "share_store_description": "تسوق الآن معنا *name* واستكشف العديد من المنتجات",
     "terms": "الشروط والأحكام",

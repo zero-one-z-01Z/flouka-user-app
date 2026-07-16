@@ -28,33 +28,30 @@ class MessagePage extends StatelessWidget {
       child: Scaffold(
         // backgroundColor: AppColor.backgroundColor,
         appBar: AppBar(title: Text(LanguageProvider.translate('chat', 'chat')),),
-        body: SafeArea(
-          bottom: false,
-          child: SizedBox(
-            width: 100.w,
-            height: 100.h,
-            child: Builder(
-              builder: (context) {
-                if (messageProvider.chatEntity == null) {
-                  return LoadingAnimationWidget(
-                    gif: Lotties.chats,
-                    width: 60.w,
-                    height: 20.h,
-                    topPadding: 0,
-                  );
-                }
-                return const SafeArea(
-                  child:  Column(
-                    children: [
-                      Expanded(
-                        child: MessagesWidget(),
-                      ),
-                      SendMessageWidget(),
-                    ],
-                  ),
+        body: SizedBox(
+          width: 100.w,
+          height: 100.h,
+          child: Builder(
+            builder: (context) {
+              if (messageProvider.chatEntity == null) {
+                return LoadingAnimationWidget(
+                  gif: Lotties.chats,
+                  width: 60.w,
+                  height: 20.h,
+                  topPadding: 0,
                 );
-              },
-            ),
+              }
+              return const SafeArea(
+                child:  Column(
+                  children: [
+                    Expanded(
+                      child: MessagesWidget(),
+                    ),
+                    SendMessageWidget(),
+                  ],
+                ),
+              );
+            },
           ),
         ),
       ),

@@ -24,36 +24,44 @@ class UserWalletHome extends StatelessWidget {
       child: SafeArea(
         top: false,
         child: Scaffold(
-          backgroundColor: const Color(0xffEFFBFF),
+
           appBar: AppBar(
             title: Text(
               LanguageProvider.translate('settings', 'wallet'),
               style: TextStyleClass.normalStyle().copyWith(
                 fontWeight: FontWeight.bold,
                 fontSize: 17.sp,
+                color: Colors.white
               ),
             ),
             elevation: 0,
           ),
-          bottomNavigationBar: const WalletBottomWidget(),
+          // bottomNavigationBar: const WalletBottomWidget(),
           body: RefreshIndicator(
             onRefresh: () async {
               walletProvider.refresh();
             },
             child: Padding(
               padding: EdgeInsets.only(bottom: 8.h),
-              child: SingleChildScrollView(
-                physics: const AlwaysScrollableScrollPhysics(),
-                controller: controller,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const HeaderWalletWidget(),
-                    const ListOfTransactionWidgets(),
-                    if (walletProvider.paginationStarted) const LoadingWidget(),
-                    SizedBox(height: 7.h),
-                  ],
-                ),
+              child: Column(
+                children: [
+                  const HeaderWalletWidget(),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      controller: controller,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+
+                          const ListOfTransactionWidgets(),
+                          if (walletProvider.paginationStarted) const LoadingWidget(),
+                          SizedBox(height: 7.h),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

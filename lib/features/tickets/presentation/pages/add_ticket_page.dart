@@ -15,6 +15,7 @@ class AddTicketPage extends StatelessWidget {
     AddTicketProvider addTicketCubit =Provider.of(context);
     return 
        SafeArea(
+         top: false,
         child: Scaffold(
           extendBody: true,
           appBar: AppBar(title: Text(LanguageProvider.translate("ticket","add_ticket"))),

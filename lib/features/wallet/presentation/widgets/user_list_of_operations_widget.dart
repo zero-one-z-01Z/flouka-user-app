@@ -15,8 +15,13 @@ class ListOfTransactionWidgets extends StatelessWidget {
   Widget build(BuildContext context) {
     var walletProvider = Provider.of<WalletProvider>(context);
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 3.w),
+      padding: EdgeInsets.symmetric(horizontal: 3.w,vertical: 2.h),
       width: 100.w,
+      margin: EdgeInsets.symmetric(horizontal: 5.w),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: const Color(0xffF0F2F5),
+      ),
       child: FadeTransitionWidget(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

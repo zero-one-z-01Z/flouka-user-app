@@ -33,8 +33,8 @@ class ProfileImageWidget extends StatelessWidget {
         SizedBox(height: 1.h),
         Center(
           child: ButtonWidget(
-            width: 35.w,
-            height: 3.5.h,
+            width: 58.w,
+            height: 3.8.h,
             text: "upload_image",
             onTap: () async {
               await completeDataProvider.selectImage();

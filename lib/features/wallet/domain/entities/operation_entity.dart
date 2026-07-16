@@ -16,8 +16,10 @@ class OperationEntity extends Equatable {
     required this.createdAt,
   });
 
+  bool get isUp => !['buy','withdraw','for_admin'].contains(operation);
+
   String transactionIcon() {
-    if (operation == "deposited" || operation == "deducted") {
+    if (!isUp) {
       return AppImages.arrowDown;
     } else {
       return AppImages.arrowUp;

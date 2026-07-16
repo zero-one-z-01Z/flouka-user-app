@@ -25,6 +25,7 @@ import '../../../language/presentation/provider/language_provider.dart';
 import '../../../offers_section/presentation/providers/offer_section_provider.dart';
 import '../../../products/presentation/providers/recommend_products_provider.dart';
 import '../../../reels/presentation/providers/video_provider.dart';
+import '../../../settings/presentation/views/settings_view.dart';
 import '../../../stores/presentation/providers/stores_provider.dart';
 import '../../../stories/presentation/provider/story_provider.dart';
 import '../../domain/entities/bottom_nav_bar_entity.dart';
@@ -38,7 +39,7 @@ class NavBarProvider extends ChangeNotifier {
     const CategoriesView(),
     const SizedBox.shrink(),
     const CartView(),
-    const ProfileView(),
+    const SettingsView(),
   ];
 
   List<BottomNaBarEntity> bottomNavigationBarItemEntity = [];

@@ -66,7 +66,7 @@ class AddressBottomSheet extends StatelessWidget {
                   color: Colors.white,
                   borderColor: AppColor.primaryColor.withValues(alpha: .3),
                 ),
-                SizedBox(height: 2.h),
+                SizedBox(height: 0.5.h),
       
                 _buildSectionTitle(context, 'inputs', 'city'),
                 DropDownWidget(
@@ -74,13 +74,14 @@ class AddressBottomSheet extends StatelessWidget {
                   color: Colors.white,
                   borderColor: AppColor.primaryColor.withValues(alpha: .3),
                 ),
+                SizedBox(height: 0.5.h),
                 _buildSectionTitle(context, 'inputs', 'neighborhood'),
                 DropDownWidget(
                   dropDownClass: neighborhood,
                   color: Colors.white,
                   borderColor: AppColor.primaryColor.withValues(alpha: .3),
                 ),
-                SizedBox(height: 2.h),
+
       
                 // _buildSectionTitle(context, 'inputs', 'part'),
                 // DropDownWidget(
@@ -88,7 +89,7 @@ class AddressBottomSheet extends StatelessWidget {
                 //   color: AppColor.backgroundColor,
                 //   borderColor: AppColor.primaryColor.withValues(alpha: .3),
                 // ),
-                SizedBox(height: 3.h),
+                SizedBox(height: 0.5.h),
       
                 // Text Fields
                 ListTextFieldWidget(inputs: addressDetailsProvider.inputs),

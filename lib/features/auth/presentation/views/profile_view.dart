@@ -36,22 +36,22 @@ class ProfileView extends StatelessWidget {
               ),
               SizedBox(height: 2.h),
 
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 1.h),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12.sp),
-                ),
-                child: Wrap(
-                  children: List.generate(
-                    settingsProvider.settingsList.length,
-                    (index) => SettingsWidget(
-                      settingsEntity: settingsProvider.settingsList[index],
-                      isLast: index == settingsProvider.settingsList.length - 1,
-                    ),
-                  ),
-                ),
-              ),
+              // Container(
+              //   padding: EdgeInsets.symmetric(vertical: 1.h),
+              //   decoration: BoxDecoration(
+              //     color: Colors.white,
+              //     borderRadius: BorderRadius.circular(12.sp),
+              //   ),
+              //   child: Wrap(
+              //     children: List.generate(
+              //       settingsProvider.settingsList.length,
+              //       (index) => SettingsWidget(
+              //         settingsEntity: settingsProvider.settingsList[index],
+              //         isLast: index == settingsProvider.settingsList.length - 1,
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),

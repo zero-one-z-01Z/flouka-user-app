@@ -13,69 +13,56 @@ class OperationWidgets extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // SizedBox(height: 2.h,),
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 1.5.h),
-          decoration: BoxDecoration(
-            border: Border(bottom: BorderSide(color: Colors.grey.shade300)),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Center(
-                      child: Image.asset(
-                        myOperation.operation == "deducted"
-                            ? AppImages.arrowDown
-                            : AppImages.arrowUp,
-                        width: 15.w,
-                        height: 15.w,
-                      ),
-                    ),
-                    SizedBox(width: 2.w),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          LanguageProvider.translate(
-                            "global",
-                            myOperation.operation,
-                          ),
-                          style: TextStyleClass.normalStyle().copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(height: 0.5.h),
-                        Text(
-                          DateFormat(
-                            'dd/MM',
-                          ).format(DateTime.parse(myOperation.createdAt)),
-                          style: TextStyleClass.smallStyle().copyWith(
-                            color: Colors.grey,
-                            fontSize: 14.sp,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      margin: EdgeInsets.only(bottom: 1.h),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  LanguageProvider.translate(
+                    "global",
+                    myOperation.operation,
+                  ),
+                  style: TextStyleClass.normalStyle().copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              // Spacer(),
-              Text(
-                "${myOperation.price} ${LanguageProvider.translate("global", "US")}",
-                style: TextStyleClass.normalStyle(),
-              ),
-            ],
+                Text(
+                  DateFormat(
+                    'dd/MM',
+                  ).format(DateTime.parse(myOperation.createdAt)),
+                  style: TextStyleClass.smallStyle().copyWith(
+                    color: Colors.grey,
+                    fontSize: 14.sp,
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
+          // Spacer(),
+          Text(
+            "${myOperation.price} ${LanguageProvider.translate("global", "US")}",
+            style: TextStyleClass.normalStyle(color: myOperation.isUp?Colors.green:Colors.red),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 1.h),
+            child: Image.asset(
+              myOperation.transactionIcon(),
+              width: 10.w,
+              height: 10.w,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

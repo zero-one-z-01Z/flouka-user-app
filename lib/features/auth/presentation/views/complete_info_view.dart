@@ -26,6 +26,7 @@ class CompleteInfoView extends StatelessWidget {
           LanguageProvider.translate("auth",completeInfoProvider.isEdit? "edit_profile" : "complete_profile"),
           style: TextStyleClass.headStyle().copyWith(fontSize: 17.sp),
         ),
+        leading: BackButton(color: Colors.black,),
       ),
       extendBodyBehindAppBar: true,
       body: SizedBox(

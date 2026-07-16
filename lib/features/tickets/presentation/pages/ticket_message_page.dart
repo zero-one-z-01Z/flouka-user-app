@@ -26,6 +26,7 @@ class TicketMessagePage extends StatelessWidget {
         FocusScope.of(context).unfocus();
       },
       child: SafeArea(
+        top: false,
         child: Scaffold(
           appBar: AppBar(
             title:ticketMessageProvider.ticketEntity !=null ?
