@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flouka/core/config/app_color.dart';
 import 'package:flouka/core/widgets/button_widget.dart';
 import 'package:flouka/features/language/presentation/provider/language_provider.dart';
 import 'package:flutter/material.dart';
@@ -12,96 +13,107 @@ class UpdateOrderItemWidget extends StatelessWidget {
   final OrderItemEntity orderItem;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      spacing: 1.h,
-      children: [
-        Container(
-          padding: EdgeInsets.all(2.w),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  CachedNetworkImage(
-                    width: 20.w,
-                    imageUrl: "${orderItem.product?.image}",
-                    errorWidget: (context, url, error) => const Icon(Icons.error),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: Column(
-                      spacing: 1.h,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "${orderItem.product?.title}",
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 2,
-                          style: TextStyleClass.normalStyle().copyWith(
-                            color: const Color(0xff333542),
-                          ),
-                        ),
-                        // if (!isOutOfStock)
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            // PriceWidget(price: orderItem.product?.price ?? 0),
-                            if (orderItem.status != OrderItemStatus.outOfStock)
-                              ButtonWidget(
-                                width: 27.w,
-                                color: const Color(0xff00920A),
-                                textStyle: TextStyleClass.normalStyle().copyWith(
-                                  fontSize: 14.sp,
-                                  color: Colors.white,
-                                ),
-                                height: 3.5.h,
-                                onTap: () {},
-                                text: LanguageProvider.translate(
-                                  "global",
-                                  "available",
-                                ),
-                              ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              if (orderItem.status == OrderItemStatus.outOfStock)
+    return Material(
+      elevation: 5,
+      shadowColor: AppColor.primaryColor,
+      borderRadius: BorderRadius.circular(12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: 1.h,
+        children: [
+          Container(
+            padding: EdgeInsets.all(2.w),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      LanguageProvider.translate("global", "this_item_unavailable"),
-                      style: TextStyleClass.normalStyle().copyWith(
-                        fontSize: 15.sp,
-                        color: const Color(0xffFF0000),
-                      ),
+                    CachedNetworkImage(
+                      width: 20.w,
+                      imageUrl: "${orderItem.product?.image}",
+                      errorWidget: (context, url, error) => const Icon(Icons.error),
                     ),
-                    ButtonWidget(
-                      width: 27.w,
-                      color: const Color(0xff950526),
-                      textStyle: TextStyleClass.normalStyle().copyWith(
-                        fontSize: 14.sp,
-                        color: Colors.white,
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: Column(
+                        spacing: 1.h,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "${orderItem.product?.title}",
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                            style: TextStyleClass.normalStyle().copyWith(
+                              color: const Color(0xff333542),
+                            ),
+                          ),
+                          // if (!isOutOfStock)
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              // PriceWidget(price: orderItem.product?.price ?? 0),
+                              if (orderItem.status != OrderItemStatus.outOfStock)
+                                ButtonWidget(
+                                  width: 27.w,
+                                  color: const Color(0xff00920A),
+                                  textStyle: TextStyleClass.normalStyle().copyWith(
+                                    fontSize: 14.sp,
+                                    color: Colors.white,
+                                  ),
+                                  height: 3.5.h,
+                                  onTap: () {},
+                                  text: LanguageProvider.translate(
+                                    "global",
+                                    "available",
+                                  ),
+                                ),
+                            ],
+                          ),
+                        ],
                       ),
-                      height: 3.5.h,
-                      onTap: () {},
-                      text: LanguageProvider.translate("global", "out_of_stock"),
                     ),
                   ],
                 ),
-            ],
+                if (orderItem.status == OrderItemStatus.outOfStock)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(
+                            LanguageProvider.translate("global", "this_item_unavailable"),
+                            style: TextStyleClass.normalStyle().copyWith(
+                              fontSize: 15.sp,
+                              color: const Color(0xffFF0000),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 3.w,),
+                      ButtonWidget(
+                        width: 27.w,
+                        color: const Color(0xff950526),
+                        textStyle: TextStyleClass.normalStyle().copyWith(
+                          fontSize: 14.sp,
+                          color: Colors.white,
+                        ),
+                        height: 3.5.h,
+                        onTap: () {},
+                        text: LanguageProvider.translate("global", "out_of_stock"),
+                      ),
+                    ],
+                  ),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

@@ -11,29 +11,34 @@ class ItemOutOfStockWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<GetEditOrderProvider>(context);
-    return InkWell(
-      onTap: () => provider.goToOutOfStockItemsPage(id: id),
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 0.5.h),
-        width: 100.w,
-        decoration: BoxDecoration(
-          color: const Color(0xff950526),
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              child: Column(crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(LanguageProvider.translate("global", "item_out_of_stock"),
-                    style: TextStyleClass.normalStyle(color: Colors.white),),
-                  // Text(LanguageProvider.translate("global", "items_description").
-                  // replaceFirst("*num*", "${order.vendorOrder?.availableItemsCount}").
-                  // replaceFirst("*total*","${order.vendorOrder?.items?.length}"),style: TextStyleClass.normalStyle(color: Colors.white),),
-                ],
+    return Material(
+      elevation: 5,
+      shadowColor: Colors.redAccent,
+      borderRadius: BorderRadius.circular(12),
+      child: InkWell(
+        onTap: () => provider.goToOutOfStockItemsPage(id: id),
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 0.5.h),
+          width: 100.w,
+          decoration: BoxDecoration(
+            color: const Color(0xff950526),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(LanguageProvider.translate("global", "item_out_of_stock"),
+                      style: TextStyleClass.normalStyle(color: Colors.white),),
+                    // Text(LanguageProvider.translate("global", "items_description").
+                    // replaceFirst("*num*", "${order.vendorOrder?.availableItemsCount}").
+                    // replaceFirst("*total*","${order.vendorOrder?.items?.length}"),style: TextStyleClass.normalStyle(color: Colors.white),),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

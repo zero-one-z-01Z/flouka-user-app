@@ -50,7 +50,7 @@ class OperationWidgets extends StatelessWidget {
           ),
           // Spacer(),
           Text(
-            "${myOperation.price} ${LanguageProvider.translate("global", "US")}",
+            "${myOperation.price} ${LanguageProvider.translate("global", "currency")}",
             style: TextStyleClass.normalStyle(color: myOperation.isUp?Colors.green:Colors.red),
           ),
           Padding(

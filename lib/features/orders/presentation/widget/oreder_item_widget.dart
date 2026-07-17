@@ -66,6 +66,7 @@ class OrderItemWidget extends StatelessWidget {
                 },
                 child: Column(
                   children: [
+                    // store widget
                     Row(
                       children: [
                         Container(
@@ -96,7 +97,8 @@ class OrderItemWidget extends StatelessWidget {
                               ],
                             ),
                           ],
-                        )),
+                        ),
+                        ),
 
                       ],
                     ),

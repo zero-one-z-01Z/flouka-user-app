@@ -1,4 +1,7 @@
+
 import 'package:flouka/core/constants/app_lotties.dart';
+import 'package:flouka/features/orders/domain/entity/order_entity.dart';
+import 'package:flouka/features/orders/presentation/widget/new_widgets/order_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flouka/features/orders/presentation/provider/order_provider.dart';
@@ -47,10 +50,22 @@ class OrdersView extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(height: 3.h),
+
+
                   ...List.generate(
                     ordersProvider.data!.length,
-                    (index) => OrderItemWidget(orderEntity: ordersProvider.data![index]),
+                        (index) {
+                      OrderEntity order = ordersProvider.data![index];
+                      return OrderWidget(order: order,);
+                        },
                   ),
+
+
+
+                  // ...List.generate(
+                  //   ordersProvider.data!.length,
+                  //   (index) => OrderItemWidget(orderEntity: ordersProvider.data![index]),
+                  // ),
                   SizedBox(height: 6.h),
 
                   // Expanded(

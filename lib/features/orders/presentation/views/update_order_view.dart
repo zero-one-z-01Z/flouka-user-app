@@ -13,7 +13,7 @@ class UpdateOrderView extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = Provider.of<GetEditOrderProvider>(context);
     return Scaffold(
-      backgroundColor: const Color(0xffEFFBFF),
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(LanguageProvider.translate("global", "Update on Your Order")),
       ),

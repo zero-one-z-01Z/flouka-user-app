@@ -97,13 +97,13 @@ class ProductsDetailsView extends StatelessWidget {
                           children: [
                             Text(
                               "${LanguageProvider.translate("global", "start_from")} ${productDetailsProvider.data!.offerPrice != null ?
-                              productDetailsProvider.data!.offerPrice! : productDetailsProvider.data!.price!}\$",
+                              productDetailsProvider.data!.offerPrice! : productDetailsProvider.data!.price!} ${LanguageProvider.translate('global', 'currency')}",
                               style: TextStyleClass.headStyle(color: AppColor.secondaryColor),
                             ),
                             if(productDetailsProvider.data!.offerPrice != null)...[
                               SizedBox(width: 2.w),
                               Text(
-                                "${productDetailsProvider.data!.price!}\$",
+                                "${productDetailsProvider.data!.price!} ${LanguageProvider.translate('global', 'currency')}",
                                 style: TextStyleClass.headStyle(color: Colors.grey.shade400).copyWith(
                                   decoration: TextDecoration.lineThrough,
                                 ),
@@ -117,13 +117,13 @@ class ProductsDetailsView extends StatelessWidget {
                           children: [
                             Text(
                               "${productDetailsProvider.variantEntity()?.offerPrice != null ?
-                              productDetailsProvider.variantEntity()?.offerPrice! : productDetailsProvider.variantEntity()?.price}\$",
+                              productDetailsProvider.variantEntity()?.offerPrice! : productDetailsProvider.variantEntity()?.price} ${LanguageProvider.translate('global', 'currency')}",
                               style: TextStyleClass.headStyle(color: AppColor.secondaryColor),
                             ),
                             if(productDetailsProvider.variantEntity()?.offerPrice != null)...[
                               SizedBox(width: 2.w),
                               Text(
-                                "${productDetailsProvider.variantEntity()?.price}\$",
+                                "${productDetailsProvider.variantEntity()?.price} ${LanguageProvider.translate('global', 'currency')}",
                                 style: TextStyleClass.headStyle(color: Colors.grey.shade400).copyWith(
                                   decoration: TextDecoration.lineThrough,
                                 ),

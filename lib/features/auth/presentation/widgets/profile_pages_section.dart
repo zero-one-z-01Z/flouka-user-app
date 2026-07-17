@@ -3,6 +3,7 @@ import 'package:flouka/core/constants/constants.dart';
 import 'package:flouka/features/auth/presentation/providers/auth_provider.dart';
 import 'package:flouka/features/auth/presentation/widgets/profile_pages_container_widget.dart';
 import 'package:flouka/features/favorite/presentation/providers/favorite_provider.dart';
+import 'package:flouka/features/language/presentation/provider/language_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -37,7 +38,7 @@ class ProfilePagesSection extends StatelessWidget {
       },
       {
         "title": "wallet",
-        "subTitle": "${authProvider.userEntity?.wallet} US \$",
+        "subTitle": "${authProvider.userEntity?.wallet} ${LanguageProvider.translate('global', 'currency')}",
         "svg": AppImages.settingsWallet,
         "onTap": () {
           final walletProvider = Provider.of<WalletProvider>(Constants.globalContext(), listen: false,);

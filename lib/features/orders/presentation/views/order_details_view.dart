@@ -3,6 +3,7 @@ import 'package:flouka/features/orders/presentation/widget/share_your_experience
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import '../../../../core/config/app_color.dart';
 import '../../../../core/config/app_styles.dart';
 import '../../../../core/widgets/loading_animation_widget.dart';
 import '../../../language/presentation/provider/language_provider.dart';
@@ -25,11 +26,10 @@ class OrderDetailsView extends StatelessWidget {
         Provider.of<OrderDetailsProvider>(context);
     final OrderProvider orderProvider = Provider.of<OrderProvider>(context);
     return Scaffold(
-      backgroundColor: const Color(0xfff7f5f5),
       appBar: AppBar(
         title: Text(
           LanguageProvider.translate("global", "Tracking Details"),
-          style: TextStyleClass.normalStyle().copyWith(fontWeight: FontWeight.w500),
+          style: TextStyleClass.normalStyle(color: Colors.white).copyWith(fontWeight: FontWeight.w500),
         ),
       ),
       body: Builder(
@@ -63,15 +63,15 @@ class OrderDetailsView extends StatelessWidget {
                     OrderStoreWidget(order:orderDetailsProvider.data! ,),
                     SizedBox(height: 1.3.h),
                     if(orderDetailsProvider.data!.vendorOrder!.canRateStore ==true)
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: ShareYourExperienceWidget(StoreId: orderDetailsProvider.data!.vendorOrder!.store!.id!,
+                            orderId: orderDetailsProvider.data!.id!),
                       ),
-                      child: ShareYourExperienceWidget(StoreId: orderDetailsProvider.data!.vendorOrder!.store!.id!,
-                          orderId: orderDetailsProvider.data!.id!),
-                    ),
                     SizedBox(height: 1.3.h),
                     // if (orderDetailsProvider.data?.status == OrderStatus.pending)
                     //   ButtonWidget(

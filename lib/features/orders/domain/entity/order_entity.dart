@@ -484,3 +484,5 @@ enum OrderItemStatus {
   bool get isActive =>
       !isCancelled && this != OrderItemStatus.delivered;
 }
+
+

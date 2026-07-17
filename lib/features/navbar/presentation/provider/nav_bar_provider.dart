@@ -6,6 +6,7 @@ import 'package:flouka/features/cart/presentation/providers/cart_provider.dart';
 import 'package:flouka/features/categories/presentation/providers/subcategory_provider.dart';
 import 'package:flouka/features/categories/presentation/view/categories_view.dart';
 import 'package:flouka/features/home/presentation/pages/home_page.dart';
+import 'package:flouka/features/settings/presentation/provider/settings_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
@@ -109,6 +110,9 @@ class NavBarProvider extends ChangeNotifier {
      }
      if(index==1){
        Provider.of<SubcategoryProvider>(Constants.globalContext(),listen: false).clear();
+     }
+     if(index==4){
+       Provider.of<SettingsProvider>(Constants.globalContext(),listen: false).getData();
      }
      currentIndex = index;
      notifyListeners();

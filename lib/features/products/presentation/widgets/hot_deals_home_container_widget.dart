@@ -161,7 +161,7 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
                       SizedBox(width: 1.w),
                       if(product.offerPrice != null)
                       Flexible(
-                        child: Text("\$ ${product.price.toString()} ",
+                        child: Text("${product.price.toString()} ${LanguageProvider.translate('global', 'currency')}",
                           style: TextStyle(
                             fontSize: 14.sp,
                             fontWeight: FontWeight.w500,

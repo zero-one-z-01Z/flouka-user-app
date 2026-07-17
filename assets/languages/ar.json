@@ -103,6 +103,8 @@
     "filter": "تصفية"
   },
   "global": {
+    "products_count": "منتجات",
+    "seller": "البائع",
     "app_name": "فلوكه",
     "currency": "TND",
     "delivery": "التوصيل",
@@ -315,7 +317,15 @@
     "sec": "ثانية",
     "today": "اليوم"
   },
+  "update_dialog": {
+    "new_update": "تحديث جديد",
+    "update": "تحديث",
+    "cancel": "إلغاء"
+  },
   "buttons": {
+    "rate_store": "قيم المتجر",
+    "rate_product": "قيم المنتج",
+    "show_details": "عرض التفاصيل",
     "chat": "دردشة",
     "login" : "تسجيل الدخول",
     "confirm": "تأكيد",

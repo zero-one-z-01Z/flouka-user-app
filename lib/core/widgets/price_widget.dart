@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../features/language/presentation/provider/language_provider.dart';
 import '../config/app_styles.dart';
 
 class PriceWidget extends StatelessWidget {
@@ -14,21 +15,23 @@ class PriceWidget extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
-          r"$",
-          style: TextStyleClass.normalStyle().copyWith(
-            fontWeight: FontWeight.w900,
-            fontSize: fontSize ?? 16.sp,
-            color: color ?? (fontSize == 15.99.sp ? Colors.green : Colors.black),
-          ),
-        ),
-        SizedBox(width: 1.w),
+
+
         Text(
           price.toString(),
           style: TextStyleClass.normalStyle().copyWith(
             fontWeight: FontWeight.w900,
             fontSize: fontSize ?? 14.sp,
             color:color?? (fontSize == 15.99.sp ? Colors.green : Colors.black),
+          ),
+        ),
+        SizedBox(width: 1.w),
+        Text(
+          LanguageProvider.translate('global', 'currency'),
+          style: TextStyleClass.normalStyle().copyWith(
+            fontWeight: FontWeight.w900,
+            fontSize: fontSize ?? 16.sp,
+            color: color ?? (fontSize == 15.99.sp ? Colors.green : Colors.black),
           ),
         ),
       ],

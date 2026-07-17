@@ -85,7 +85,7 @@ class FilteredProductHomeContainerWidget extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          '\$${productEntity.offerPrice != null ? productEntity.offerPrice.toString() :  productEntity.price.toString()}',
+                          '${productEntity.offerPrice != null ? productEntity.offerPrice.toString() :  productEntity.price.toString()} ${LanguageProvider.translate('global', 'currency')}',
                           style: TextStyleClass.normalStyle().copyWith(
                             fontSize: 16.sp,
                             fontWeight: FontWeight.bold,
@@ -95,7 +95,7 @@ class FilteredProductHomeContainerWidget extends StatelessWidget {
                         if(productEntity.offerPrice != null)...[
                           SizedBox(width: 1.w),
                           Text(
-                            '\$${productEntity.price.toString()}',
+                            '${productEntity.price.toString()} ${LanguageProvider.translate('global', 'currency')}',
                             style: TextStyleClass.normalStyle().copyWith(
                               fontSize: 16.sp,
                               fontWeight: FontWeight.bold,

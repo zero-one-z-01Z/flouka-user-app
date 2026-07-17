@@ -31,7 +31,7 @@ class CustomCartButtonWidget extends StatelessWidget {
       child: Column(crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "${LanguageProvider.translate("global", "price")} : ${convertDataToDouble(cartProvider.caluclateTotal().toStringAsFixed(2))} \$",
+            "${LanguageProvider.translate("global", "price")} : ${convertDataToDouble(cartProvider.caluclateTotal().toStringAsFixed(2))} ${LanguageProvider.translate('global', 'currency')}",
             style: TextStyleClass.smallStyle(color: const Color(0xff444444)),
           ),
           SizedBox(height: 1.h),
