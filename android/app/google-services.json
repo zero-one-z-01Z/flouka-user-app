@@ -53,6 +53,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "284237387262-53rfi0lt65rha1au1qhb64up2s6i6aai.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zeroonez.flouka.user",
+            "certificate_hash": "c0c276178fae087cc1b6e5243e237705c3cefa58"
+          }
+        },
+        {
           "client_id": "284237387262-a9t26a5bdiu26128aihls2iq6jcuq2dc.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -66,6 +74,14 @@
           "android_info": {
             "package_name": "com.zeroonez.flouka.user",
             "certificate_hash": "1ccfed3d7e8a85751010dec848e3ce8c44507066"
+          }
+        },
+        {
+          "client_id": "284237387262-s55637bds6nicrd35235ieeudvigrsa0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zeroonez.flouka.user",
+            "certificate_hash": "ba23efa891abde9d01c902dea939c2f650689fbc"
           }
         },
         {

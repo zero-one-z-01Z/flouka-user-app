@@ -201,7 +201,7 @@ class AuthProvider extends ChangeNotifier {
           AppleIDAuthorizationScopes.fullName,
         ],
         webAuthenticationOptions: WebAuthenticationOptions(
-          clientId: "com.zeroonez.raval.apple",
+          clientId: "com.zeroonez.flouka.user.apple",
           redirectUri: Uri.parse(redirectUrl),
         ),
       );

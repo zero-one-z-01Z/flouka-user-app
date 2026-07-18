@@ -1,8 +1,9 @@
+# Uncomment this line to define a global platform for your project
 platform :ios, '14.0'
-
+#pod deintegrate && pod repo remove trunk && pod setup && pod install
+# CocoaPods analytics sends network stats synchronously affecting flutter build latency.
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
 source 'https://github.com/CocoaPods/Specs.git'
-
 project 'Runner', {
   'Debug' => :debug,
   'Profile' => :release,
@@ -27,18 +28,9 @@ require File.expand_path(File.join('packages', 'flutter_tools', 'bin', 'podhelpe
 flutter_ios_podfile_setup
 
 target 'Runner' do
-  use_frameworks! :linkage => :static
+  use_frameworks!
   use_modular_headers!
-
   pod 'PhoneNumberKit', '~> 3.7.6'
-
-  # # Firebase pods
-  # pod 'Firebase/Core'
-  # pod 'Firebase/Analytics'
-  # pod 'Firebase/Auth'
-  # pod 'Firebase/Firestore'
-  # pod 'Firebase/Messaging'
-
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
 end
 
@@ -46,15 +38,14 @@ post_install do |installer|
   installer.pods_project.targets.each do |target|
     flutter_additional_ios_build_settings(target)
     target.build_configurations.each do |config|
-
-      config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= [
-        '$(inherited)',
-        'PERMISSION_CAMERA=1',
-        'PERMISSION_PHOTOS=1',
-        'PERMISSION_MICROPHONE=1',
-      ]
-
-      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
+    config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= [
+    '$(inherited)',
+    ##comment dart: PermissionGroup.camera
+    'PERMISSION_CAMERA=1',
+    'PERMISSION_PHOTOS=1',
+    'PERMISSION_MICROPHONE=1',
+    ]
+    config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
     end
   end
 end

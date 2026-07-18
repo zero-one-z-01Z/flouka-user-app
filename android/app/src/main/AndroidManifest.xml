@@ -1,16 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-
+    <meta-data android:name="flutter_deeplinking_enabled" android:value="false" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-
 
     <queries>
         <intent>
@@ -25,12 +22,7 @@
             <action android:name="android.intent.action.SEND"/>
             <data android:mimeType="*/*"/>
         </intent>
-        <intent>
-            <action android:name="android.intent.action.PROCESS_TEXT"/>
-            <data android:mimeType="text/plain"/>
-        </intent>
     </queries>
-
 
     <application
         android:label="Flouka"
@@ -70,12 +62,25 @@
                 <!-- Accepts URIs that begin with https://YOUR_HOST -->
                 <data
                     android:scheme="https"
-                    android:pathPrefix="/new_user"
-                    android:host="api.cartime.com.sa" />
+                    android:pathPrefix="/store"
+                    android:host="floka.zeroonez.com" />
                 <data
                     android:scheme="https"
-                    android:pathPrefix="/auction_car_time"
-                    android:host="flouka.tn" />
+                    android:pathPrefix="/product"
+                    android:host="floka.zeroonez.com" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.aboutyou.dart_packages.sign_in_with_apple.SignInWithAppleCallback"
+            android:exported="true"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="signinwithapple" />
+                <data android:path="callback" />
             </intent-filter>
         </activity>
 

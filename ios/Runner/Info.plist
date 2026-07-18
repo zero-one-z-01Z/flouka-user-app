@@ -43,5 +43,74 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
+
+
+
+	<key>LSApplicationQueriesSchemes</key>
+        	<array>
+            		<string>whatsapp</string>
+            		<string>comgooglemaps</string>
+                                    <string>baidumap</string>
+                                    <string>iosamap</string>
+                                    <string>waze</string>
+                                    <string>yandexmaps</string>
+                                    <string>yandexnavi</string>
+                                    <string>citymapper</string>
+                                    <string>mapswithme</string>
+                                    <string>osmandmaps</string>
+                                    <string>dgis</string>
+                                    <string>qqmap</string>
+                                    <string>here-location</string>
+                                    <string>tomtomgo</string>
+                                    <string>copilot</string>
+                                    <string>com.sygic.aura</string>
+                                    <string>nmap</string>
+                                    <string>kakaomap</string>
+                                    <string>tmap</string>
+                                    <string>szn-mapy</string>
+                                    <string>mappls</string>
+            	</array>
+        	<key>NSAppTransportSecurity</key>
+            	<dict>
+            		<key>NSAllowsArbitraryLoads</key>
+            		<true/>
+            	</dict>
+
+            	<key>NSAppleMusicUsageDescription</key>
+                	<string>Music!</string>
+                	<key>NSCameraUsageDescription</key>
+                	<string>This app needs Camera Usage for upload profile photo and for Order chat</string>
+                	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+                	<string>This app needs access to location to add address for Order.</string>
+                	<key>NSLocationAlwaysUsageDescription</key>
+                	<string>This app needs access to location when in the background to get nearby orders.</string>
+                	<key>NSLocationWhenInUseUsageDescription</key>
+                	<string>This app needs access to location to address for order.</string>
+                	<key>NSMicrophoneUsageDescription</key>
+                	<string>We need to access to the microphone to record audio file for order Chat</string>
+                	<key>NSPhotoLibraryUsageDescription</key>
+                	<string>This app needs to access photo library to upload profile photo and for Order chat </string>
+                	<key>UIApplicationSceneManifest</key>
+                	<dict>
+                		<key>UISceneConfigurations</key>
+                		<dict/>
+                	</dict>
+                	<key>UIApplicationSupportsIndirectInputEvents</key>
+                	<true/>
+                	<key>UIBackgroundModes</key>
+                	<array>
+                		<string>fetch</string>
+                		<string>remote-notification</string>
+                	</array>
+
+<key>AssociatedDomains</key>
+		<array>
+			<string>applinks:floka.zeroonez.com</string>
+		</array>
+		<key>FlutterDeepLinkingEnabled</key>
+		<false/>
+
+
+
 </dict>
 </plist>
