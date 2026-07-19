@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import '../../../../core/config/app_color.dart';
 import '../../../../core/widgets/loading_animation_widget.dart';
 import '../providers/categories_product_search_provider.dart';
 import 'hot_deals_home_container_widget.dart';

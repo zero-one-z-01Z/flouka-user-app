@@ -1,3 +1,4 @@
+import 'package:flouka/core/constants/constants.dart';
 import 'package:flouka/features/navbar/presentation/provider/nav_bar_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -21,8 +22,8 @@ class BottomNavBarItemWidget extends StatelessWidget {
       child: Column(
         children: [
           SvgWidget(
-            width: 24,
-            height: 24,
+            width: Constants.isTablet?30:24,
+            // height: 24,
             svg: bottomNaBarEntity.svgImage,
             color: navBarProvider.currentIndex == bottomNaBarEntity.index
                 ? AppColor.primaryColor
@@ -30,12 +31,12 @@ class BottomNavBarItemWidget extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           SizedBox(
-            width: 30,
+            width: Constants.isTablet?50:30,
             child: FittedBox(
               child: Text(
                 bottomNaBarEntity.label,
                 style: TextStyle(
-                  fontSize: 13.sp,
+                  fontSize: Constants.isTablet?17.sp: 13.sp,
                   color: navBarProvider.currentIndex == bottomNaBarEntity.index
                       ? AppColor.primaryColor
                       : Colors.grey,

@@ -15,6 +15,7 @@ class RowTextWidget extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
       spacing: 4,
       children: [
         Text(

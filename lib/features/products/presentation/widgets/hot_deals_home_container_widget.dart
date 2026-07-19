@@ -187,7 +187,7 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
                             padding: EdgeInsets.symmetric(horizontal: 2.w,),
                             child: Row(mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(Icons.add_shopping_cart,color:const Color(0xffAD46FF),size: 4.w,),
+                                Icon(Icons.add_shopping_cart,color:const Color(0xffAD46FF),size: 25,),
                                 SizedBox(width: 1.w),
                                 Text(LanguageProvider.translate("buttons", "add_to_cart"),
                                   style: TextStyleClass.smallStyle(color: AppColor.primaryColor).copyWith(

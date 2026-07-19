@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 import 'svg_widget.dart';
 
@@ -13,9 +14,9 @@ class CircleActionButtonWidget extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: CircleAvatar(
-        radius: 20,
+        radius: 3.5.w,
         backgroundColor: const Color(0xffefeff3),
-        child: SvgWidget(svg: svgImage, color: color??Colors.grey),
+        child: SvgWidget(svg: svgImage, color: color??Colors.grey,width: 25,),
       ),
     );
   }

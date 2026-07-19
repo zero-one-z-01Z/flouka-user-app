@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider_plus/carousel_slider_plus.dart';
+import 'package:flouka/core/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
@@ -28,26 +29,29 @@ class CarouselSliderWidget extends StatelessWidget {
             height: 18.h,
             child: CarouselSlider(
               items: bannerProvider.bannersList.map((item) {
-                return InkWell(
-                  onTap: () {
-                    if (item.link != null) {
-                      launchLink(item.link!);
-                    }
-                  },
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(16),
-                    child: CachedNetworkImage(
-                      imageUrl: item.image,
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                      errorWidget: (context, url, error) => const Icon(Icons.error),
+                return Padding(
+                  padding: Constants.isTablet?EdgeInsets.symmetric(horizontal: 2.w) : EdgeInsets.zero,
+                  child: InkWell(
+                    onTap: () {
+                      if (item.link != null) {
+                        launchLink(item.link!);
+                      }
+                    },
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16),
+                      child: CachedNetworkImage(
+                        imageUrl: item.image,
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        errorWidget: (context, url, error) => const Icon(Icons.error),
+                      ),
                     ),
                   ),
                 );
               }).toList(),
               options: CarouselOptions(
                 height: 200,
-                viewportFraction: 1.0,
+                viewportFraction: Constants.isTablet?0.6: 1.0,
                 enlargeCenterPage: false,
                 autoPlay: true,
                 onPageChanged: (index, reason) {

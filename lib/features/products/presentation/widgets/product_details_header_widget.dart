@@ -27,33 +27,35 @@ class ProductDetailsHeaderWidget extends StatelessWidget {
           height: 30.h,width: 100.w,
           child: Stack(
             children: [
-              CarouselSlider(
-                items: productDetailsProvider.images().map((item) {
-                  return InkWell(
-                    onTap: () {
+              Positioned.fill(
+                child: CarouselSlider(
+                  items: productDetailsProvider.images().map((item) {
+                    return InkWell(
+                      onTap: () {
+                      },
+                      child: Container(
+                        height: 35.h,width: 100.w,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: CachedNetworkImage(
+                          imageUrl: item.image,
+                          fit: BoxFit.cover,
+                          width: double.infinity,
+                          errorWidget: (context, url, error) => const Icon(Icons.error),
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                  controller: productDetailsProvider.controller,
+                  options: CarouselOptions(
+                    viewportFraction: 1.0,
+                    enlargeCenterPage: false,
+                    autoPlay: false,
+                    onPageChanged: (index, reason) {
+                      productDetailsProvider.changeImageIndex(index: index);
                     },
-                    child: Container(
-                      height: 35.h,width: 100.w,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: CachedNetworkImage(
-                        imageUrl: item.image,
-                        fit: BoxFit.cover,
-                        width: double.infinity,
-                        errorWidget: (context, url, error) => const Icon(Icons.error),
-                      ),
-                    ),
-                  );
-                }).toList(),
-                controller: productDetailsProvider.controller,
-                options: CarouselOptions(
-                  viewportFraction: 1.0,
-                  enlargeCenterPage: false,
-                  autoPlay: false,
-                  onPageChanged: (index, reason) {
-                    productDetailsProvider.changeImageIndex(index: index);
-                  },
+                  ),
                 ),
               ),
               Positioned(
@@ -97,7 +99,7 @@ class ProductDetailsHeaderWidget extends StatelessWidget {
                             return Icon(
                               isFav ? Icons.favorite : Icons.favorite_border,
                               color: Colors.white,
-                              size: 18,
+                              size: 25,
                             );
                           },
                         ),
@@ -110,6 +112,7 @@ class ProductDetailsHeaderWidget extends StatelessWidget {
           ),
         ),
         // the dots indicators of number of images
+        SizedBox(height: 0.5.h,),
         CustomProductDetailsDotsIndicators(imagesList: productEntity.images,),
 
       ],
