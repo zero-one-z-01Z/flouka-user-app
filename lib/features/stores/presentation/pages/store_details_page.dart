@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flouka/core/config/app_color.dart';
 import 'package:flouka/core/constants/app_lotties.dart';
+import 'package:flouka/core/dialog/report_dialog.dart';
 import 'package:flouka/core/helper_function/navigation.dart';
 import 'package:flouka/core/widgets/loading_animation_widget.dart';
 import 'package:flouka/features/reviews/presentation/providres/create_rate_provider.dart';
@@ -41,6 +42,45 @@ class StoreDetailsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(LanguageProvider.translate('home','store_details')),
+        actions: storeDetailsEntity==null?null:[
+          PopupMenuButton<ProductMenuAction>(
+            icon: const Icon(Icons.more_vert),
+            onSelected: (value) {
+              switch (value) {
+                case ProductMenuAction.report:
+                  reportDialog(title: LanguageProvider.translate("global", "complaint"),
+                      type: "vendor", id: storeDetailsEntity.vendor?.id??0);
+                  break;
+
+                case ProductMenuAction.blockVendor:
+                  storeDetailsProvider.confirmBlock(vendorId: storeDetailsEntity.vendor?.id??0);
+                  break;
+              }
+            },
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                value: ProductMenuAction.report,
+                child: Row(
+                  children: [
+                    Icon(Icons.flag_outlined,color: Colors.black,),
+                    SizedBox(width: 12),
+                    Text(LanguageProvider.translate('buttons', 'report')),
+                  ],
+                ),
+              ),
+              PopupMenuItem(
+                value: ProductMenuAction.blockVendor,
+                child: Row(
+                  children: [
+                    Icon(Icons.block_outlined,color: Colors.black,),
+                    SizedBox(width: 12),
+                    Text(LanguageProvider.translate('buttons', 'block')),
+                  ],
+                ),
+              ),
+            ],
+          )
+        ],
       ),
       body: Builder(
         builder: (context) {

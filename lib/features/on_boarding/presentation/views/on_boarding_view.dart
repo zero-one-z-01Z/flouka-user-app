@@ -40,7 +40,7 @@ class OnBoardingView extends StatelessWidget {
             ),
             SizedBox(height: 4.h,),
             Image.asset(onBoardingProvider.selected.image.replaceAll('*lang*', LanguageProvider.languageCode()??"fr"),
-            fit: BoxFit.contain,width: 80.w,height: 40.h,),
+            fit: BoxFit.contain,width: 80.w,height: 38.h,),
             Spacer(),
             SizedBox(
               width: double.infinity,

@@ -74,6 +74,7 @@
     "shop_by": "Acheter par"
   },
   "auth": {
+    "agree_terms": "J'accepte les conditions générales et la politique de confidentialité",
     "guest": "Invité",
     "guest_description": "Continuer en tant qu'invité",
     "otp": "Code de vérification",
@@ -103,6 +104,7 @@
     "filter": "Filtrer"
   },
   "global": {
+    "complaint": "Déposer une réclamation",
     "products_count": "Produits",
     "seller": "Vendeur",
     "app_name": "Flouka",
@@ -323,6 +325,8 @@
     "cancel": "Annuler"
   },
   "buttons": {
+    "report": "Signaler",
+    "block": "Bloquer",
     "rate_store": "Évaluer le magasin",
     "rate_product": "Évaluer le produit",
     "show_details": "Afficher les détails",
@@ -422,6 +426,7 @@
     "completed": "Terminé"
   },
   "validation": {
+    "terms": "Vous devez d'abord accepter les conditions générales.",
     "number_error": "Veuillez entrer un numéro valide.",
     "name_required": "Le nom est requis.",
     "otp_required": "Le code de vérification est requis.",
@@ -450,6 +455,7 @@
     "select_city_first": "Sélectionnez d'abord la ville"
   },
   "warning": {
+    "block_title": "Êtes-vous sûr de vouloir bloquer ce magasin ?",
     "delete_location": "Supprimer l'emplacement ?",
     "must_login": "🌟 Connexion requise",
     "must_login_first": "Vous n'êtes pas encore connecté ! Veuillez vous connecter pour profiter de tous nos services",

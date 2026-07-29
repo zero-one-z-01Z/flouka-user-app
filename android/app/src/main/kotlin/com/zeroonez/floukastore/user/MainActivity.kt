@@ -1,4 +1,4 @@
-package com.zeroonez.flouka.user
+package com.zeroonez.floukastore.user
 
 import io.flutter.embedding.android.FlutterActivity
 

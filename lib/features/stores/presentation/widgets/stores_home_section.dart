@@ -11,7 +11,8 @@ class StoresHomeSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final stores = context.watch<StoresProvider>().homeStores;
+    final provider = context.watch<StoresProvider>();
+    final stores = provider.homeStores;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
       child: stores.isEmpty ? const SizedBox() : Column(

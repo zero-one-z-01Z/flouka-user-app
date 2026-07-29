@@ -1,12 +1,16 @@
 import 'dart:developer';
 
 import 'package:carousel_slider_plus/carousel_controller.dart';
+import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:flouka/features/products/presentation/providers/product_quantity_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flouka/features/products/domain/entity/product_entity.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/dialog/snack_bar.dart';
+import '../../../../core/dialog/success_dialog.dart';
+import '../../../../core/helper_function/loading.dart';
 import '../../../../core/helper_function/navigation.dart';
 import '../../../../core/models/provider_structure_model.dart';
 import '../../../auth/presentation/providers/auth_provider.dart';
@@ -152,69 +156,22 @@ class ProductDetailsProvider extends ChangeNotifier implements ProviderStructure
     notifyListeners();
   }
 
-  // ColorEntity? colorEntity;
-  // onColorChange(ColorEntity newColor) {
-  //   if (colorEntity?.id == newColor.id) {
-  //     return;
-  //   }
-  //   sizeEntity = null;
-  //   sizes = [];
-  //   for (var elemnt in data!.stock!.where(
-  //     (element) => element.colorId == newColor.id,
-  //   )) {
-  //     int index = sizes.indexWhere((element) => element.id == elemnt.sizeId);
-  //     if (index == -1) {
-  //       sizes.add(elemnt.sizeEntity!);
-  //     }
-  //   }
-  //   colorEntity = newColor;
-  //   notifyListeners();
-  // }
+  Future createReport({required int id,required String type,required String comment}) async {
+    Map<String,dynamic> data ={};
+    data['id'] = id;
+    data['type'] = type;
+    data['message'] = comment;
+    loading();
+    Either<DioException, bool> response = await productUseCase.createReport(data);
+    navPop();
+    response.fold((l) {
+    }, (r) {
+      successDialog(then: (){
+        navPop();
+      });
+      notifyListeners();
+    });
+  }
 
-  // bool isColorSelected(ColorEntity color) {
-  //   return colorEntity?.id == color.id;
-  // }
 
-  // bool isSizeAvialalbe(SizeEntity newSize) {
-  //   return data!.stock!.any(
-  //     (element) =>
-  //         element.sizeId == newSize.id &&
-  //         element.colorId == colorEntity!.id &&
-  //         element.stock! > 0,
-  //   );
-  // }
-
-  // SizeEntity? sizeEntity;
-  // onSizeChange(SizeEntity newSize) {
-  //   if (isSizeAvialalbe(newSize)) {
-  //     sizeEntity = newSize;
-  //     notifyListeners();
-  //   }
-  // }
-
-  // bool isSizeSelected(SizeEntity size) {
-  //   return sizeEntity?.id == size.id;
-  // }
-
-  // updateFavourite(bool isFavorite) {
-  //   if (data == null) return;
-  //   data!.isFavorite = isFavorite;
-  //   notifyListeners();
-  // }
-
-  // List<ColorEntity> colors = [];
-  // List<SizeEntity> sizes = [];
-
-  // List<ImageEntity> allImages(){
-  //   List<ImageEntity> images = List.from(data!.images!);
-  //   int index = data?.stock?.indexWhere((element) => element.id == colorEntity?.id && element.image!=null)??-1;
-  //   if(index!=-1){
-  //     images.insert(0,ImageEntity(id: 0, image: data!.stock![index].image!));
-  //   }
-  //   return images;
-  // }
 }
-
-// product details entity => List<StockEntity>
-// loop data in stock entity => size stock entity => colors stock entity
-// product stock entity

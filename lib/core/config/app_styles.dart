@@ -10,8 +10,8 @@ abstract class TextStyleClass {
     return TextStyle(color: color ?? Colors.black, fontSize: 18.sp);
   }
 
-  static TextStyle normalStyle({Color? color}) {
-    return TextStyle(color: color ?? Colors.black, fontSize: 16.sp);
+  static TextStyle normalStyle({Color? color,double? fontSize}) {
+    return TextStyle(color: color ?? Colors.black, fontSize: fontSize??16.sp);
   }
 
   static TextStyle smallStyle({Color? color}) {

@@ -86,6 +86,7 @@ abstract class AppImages {
   //Products
   static const String delivery = 'assets/images/products/delivery.svg';
   static const String share = 'assets/images/products/share.svg';
+  static const String flag = 'assets/images/products/flag.svg';
   static const String trash = 'assets/images/products/trash.svg';
 
   //status

@@ -13,6 +13,7 @@ import '../../../../core/constants/app_images.dart';
 import '../../../../core/widgets/button_widget.dart';
 import '../widgets/login_social_media_list_widget.dart';
 import '../widgets/or_divider_widget.dart';
+import '../widgets/terms_checkbox_widget.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -45,6 +46,8 @@ class LoginView extends StatelessWidget {
                       ),
                       SizedBox(height: 2.h),
                       ListTextFieldWidget(inputs: authProvider.loginTextFieldList),
+                      SizedBox(height: 2.h),
+                      const TermsCheckboxWidget(),
                       SizedBox(height: 2.h),
                       ButtonWidget(onTap: () => authProvider.sendOTP(), text: "Login",height: 6.h,),
                       SizedBox(height: 2.h),

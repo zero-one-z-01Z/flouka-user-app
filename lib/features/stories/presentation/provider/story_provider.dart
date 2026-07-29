@@ -37,4 +37,8 @@ class StoryProvider extends ChangeNotifier {
     currentIndex = index;
     notifyListeners();
   }
+  void removeVendor(int id){
+    data?.removeWhere((e)=>e.id==id);
+    notifyListeners();
+  }
 }

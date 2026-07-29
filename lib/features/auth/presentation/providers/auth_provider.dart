@@ -37,7 +37,7 @@ class AuthProvider extends ChangeNotifier {
   UserEntity? userEntity;
   final AuthUseCase authUseCase;
 
-  bool isUser = true;
+  bool termsAccepted = false;
 
   AuthProvider(this.authUseCase);
 
@@ -180,6 +180,10 @@ class AuthProvider extends ChangeNotifier {
   }
 
   Future<void> googleLogin() async {
+    if(!termsAccepted){
+      showToast(LanguageProvider.translate('validation', 'terms'));
+      return;
+    }
     await _initGoogle();
     try {
       await _googleSignIn.signOut();
@@ -194,6 +198,10 @@ class AuthProvider extends ChangeNotifier {
 
   Future<void> appleLogin() async {
     try {
+      if(!termsAccepted){
+        showToast(LanguageProvider.translate('validation', 'terms'));
+        return;
+      }
       String redirectUrl = "${Constants.domain}callback_sign_in_with_apple";
       final credential = await SignInWithApple.getAppleIDCredential(
         scopes: [
@@ -251,7 +259,9 @@ class AuthProvider extends ChangeNotifier {
     String token = sharedPreferences.getString('token')!;
     Map<String, dynamic> data = {'token': token};
     final result = await authUseCase.refreshToken(data);
-    result.fold((l){}, (r) {
+    result.fold((l){
+      sharedPreferences.remove('token');
+    }, (r) {
       sharedPreferences.setString('token', r);
       ApiHandel.getInstance.updateHeader(r);
     });
@@ -361,5 +371,9 @@ class AuthProvider extends ChangeNotifier {
   ];
   bool isGuest() {
     return this.userEntity == null;
+  }
+  void toggleTermsAccepted(bool? value) {
+    termsAccepted = value ?? false;
+    notifyListeners();
   }
 }

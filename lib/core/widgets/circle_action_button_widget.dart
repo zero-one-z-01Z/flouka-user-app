@@ -14,7 +14,7 @@ class CircleActionButtonWidget extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: CircleAvatar(
-        radius: 3.5.w,
+        radius: 4.w,
         backgroundColor: const Color(0xffefeff3),
         child: SvgWidget(svg: svgImage, color: color??Colors.grey,width: 25,),
       ),

@@ -69,6 +69,9 @@ class ProductUseCase {
   Future<Either<DioException, bool>> createReview(Map<String, dynamic> data,) async {
     return await productRepo.createReview(data);
   }
+  Future<Either<DioException, bool>> createReport(Map<String, dynamic> data,) async {
+    return await productRepo.createReport(data);
+  }
 
 
 

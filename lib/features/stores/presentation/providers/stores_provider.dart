@@ -131,4 +131,10 @@ class StoresProvider with ChangeNotifier
     refresh();
     navP(const StoresPage());
   }
+
+  void removeVendor(int id){
+    data?.removeWhere((e)=>e.vendor.id==id);
+    homeStores?.removeWhere((e)=>e.vendor.id==id);
+    notifyListeners();
+  }
 }

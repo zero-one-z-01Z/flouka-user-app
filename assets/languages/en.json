@@ -74,6 +74,7 @@
     "shop_by": "Shop by"
   },
   "auth": {
+    "agree_terms": "I agree to the Terms and Conditions and Privacy Policy",
     "guest": "Guest",
     "guest_description": "Continue as guest",
     "otp": "Verification code",
@@ -103,6 +104,7 @@
     "filter": "Filter"
   },
   "global": {
+    "complaint": "Submit a Complaint",
     "products_count": "Products",
     "seller": "Seller",
     "app_name": "Flouka",
@@ -323,6 +325,8 @@
     "cancel": "Cancel"
   },
   "buttons": {
+    "report": "Report",
+    "block": "Block",
     "rate_store": "Rate store",
     "rate_product": "Rate product",
     "show_details": "Show details",
@@ -422,6 +426,7 @@
     "completed": "Completed"
   },
   "validation": {
+    "terms": "You must accept the Terms and Conditions first.",
     "number_error": "Please enter a valid number.",
     "name_required": "Name is required.",
     "otp_required": "Verification code is required.",
@@ -450,6 +455,7 @@
     "select_city_first": "Select the city first"
   },
   "warning": {
+    "block_title": "Are you sure you want to block this store?",
     "delete_location": "Delete location?",
     "must_login": "🌟 Login required",
     "must_login_first": "Looks like you haven't logged in yet! Please log in to enjoy all our services",

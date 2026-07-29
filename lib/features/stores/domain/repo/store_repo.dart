@@ -11,4 +11,5 @@ abstract class StoreRepo {
   Future<Either<DioException, List<ProductReviewEntity>>> getReviews(Map<String,dynamic> data);
   Future<Either<DioException, StoreDetailsEntity>> getStoreDetails(Map<String,dynamic> data);
   Future<Either<DioException, bool>> updateFollow(Map<String,dynamic> data);
+  Future<Either<DioException, bool>> createBlock(Map<String,dynamic> data);
 }

@@ -74,6 +74,7 @@
     "shop_by": "تسوق حسب"
   },
   "auth": {
+    "agree_terms": "أوافق على الشروط وسياسة الخصوصية",
     "guest": "زائر",
     "guest_description": "المتابعة كزائر",
     "otp": "رمز التحقق",
@@ -103,6 +104,7 @@
     "filter": "تصفية"
   },
   "global": {
+    "complaint": "تقديم شكوي",
     "products_count": "منتجات",
     "seller": "البائع",
     "app_name": "فلوكه",
@@ -323,6 +325,8 @@
     "cancel": "إلغاء"
   },
   "buttons": {
+    "report": "ابلاغ",
+    "block": "حظر",
     "rate_store": "قيم المتجر",
     "rate_product": "قيم المنتج",
     "show_details": "عرض التفاصيل",
@@ -447,9 +451,11 @@
     "english_phone": "رقم الهاتف يجب أن يحتوي على أرقام فقط",
     "select_neighborhood_first": "اختر الحي أولاً",
     "select_area_first": "اختر المنطقة أولاً",
-    "select_city_first": "اختر المدينة أولاً"
+    "select_city_first": "اختر المدينة أولاً",
+    "terms": "يحب قبول الشروط و الاحكام اولا"
   },
   "warning": {
+    "block_title": "هل انت متاكد من حظر هذا المتجر؟",
     "delete_location": "حذف الموقع؟",
     "must_login": "🌟 تسجيل الدخول مطلوب",
     "must_login_first": "يبدو أنك لم تسجل الدخول بعد! يرجى تسجيل الدخول للاستمتاع بجميع خدماتنا",

@@ -34,6 +34,10 @@ class StoreRepoImpl implements StoreRepo {
   Future<Either<DioException, bool>> updateFollow(Map<String,dynamic> data) async {
     return await storeRemoteDataSource.updateFollow(data);
   }
+  @override
+  Future<Either<DioException, bool>> createBlock(Map<String,dynamic> data) async {
+    return await storeRemoteDataSource.createBlock(data);
+  }
 
 
 }

@@ -71,6 +71,10 @@ class ProductRepoImpl implements ProductRepo {
   Future<Either<DioException, bool>> createReview(Map<String, dynamic> data,) async {
     return await productRemoteDataSource.createReview(data);
   }
+  @override
+  Future<Either<DioException, bool>> createReport(Map<String, dynamic> data,) async {
+    return await productRemoteDataSource.createReport(data);
+  }
 
   @override
   Future<Either<DioException, bool>> updateFavorite(

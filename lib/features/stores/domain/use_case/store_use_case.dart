@@ -24,6 +24,9 @@ class StoreUseCase {
   Future<Either<DioException, bool>> updateFollow(Map<String,dynamic> data) async {
     return await storeRepo.updateFollow(data);
   }
+  Future<Either<DioException, bool>> createBlock(Map<String,dynamic> data) async {
+    return await storeRepo.createBlock(data);
+  }
   Future<Either<DioException, List<ProductReviewEntity>>> getReviews(Map<String,dynamic> data) async {
     return await storeRepo.getReviews(data);
   }

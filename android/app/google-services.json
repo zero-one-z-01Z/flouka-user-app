@@ -122,6 +122,77 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:284237387262:android:247a5f805ebf56abf71caf",
+        "android_client_info": {
+          "package_name": "com.zeroonez.floukastore.user"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "284237387262-c7ut0sunpf2kvb0lrl0i9kmd4943sl21.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zeroonez.floukastore.user",
+            "certificate_hash": "76fb019352f27dcb2c58becdf0084e7e8da83e17"
+          }
+        },
+        {
+          "client_id": "284237387262-g0298kgcaqlfqvaecdccgdctf83gqod0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zeroonez.floukastore.user",
+            "certificate_hash": "d8303a20b8ab8c3ad85a1dbce353f617d8b94564"
+          }
+        },
+        {
+          "client_id": "284237387262-s4fh5k86evn5bktbkqu4vgk7snjirhqa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zeroonez.floukastore.user",
+            "certificate_hash": "d923f4e49346dc417e0bf318ff1fe8ac411c1773"
+          }
+        },
+        {
+          "client_id": "284237387262-slsarpoj6r1edm1l40bhdrkh656b659d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zeroonez.floukastore.user",
+            "certificate_hash": "aea1b74c20ec25f7ca61cd3037100b3a2eae7fbc"
+          }
+        },
+        {
+          "client_id": "284237387262-bbvh479purd5civvlbvhan7bo666hmc0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDM1aKyaVQJpLSyiXqNq6vzEWb9CGlTniw"
+        },
+        {
+          "current_key": "AIzaSyBWvfvpWSLeXX_zfP4LOKbzKbSMZn8tJTA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "284237387262-bbvh479purd5civvlbvhan7bo666hmc0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "284237387262-4bhtk7kbouj70qenakda9truc4rtsqjo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.zeroonez.flouka.user"
+              }
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

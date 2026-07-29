@@ -7,6 +7,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../core/config/app_color.dart';
 import '../../../../core/constants/constants.dart';
+import '../../../../core/dialog/report_dialog.dart';
 import '../../../../core/widgets/circle_action_button_widget.dart';
 import '../../../favorite/presentation/providers/favorite_provider.dart';
 import '../../../language/presentation/provider/language_provider.dart';
@@ -64,6 +65,10 @@ class ProductDetailsHeaderWidget extends StatelessWidget {
                 child: Column(
                   spacing: 2.h,
                   children: [
+                    InkWell(onTap: (){
+                      reportDialog(title: LanguageProvider.translate("global", "complaint"),
+                          type: "product", id: productDetailsProvider.data?.id??0);
+                    },child: const CircleActionButtonWidget(svgImage: AppImages.flag,color: Colors.red,)),
                     InkWell(onTap: ()async{
                       String url = '${Constants.baseUri}product?id=${productEntity.id}';
                       final box = context.findRenderObject() as RenderBox?;
@@ -80,8 +85,8 @@ class ProductDetailsHeaderWidget extends StatelessWidget {
                       },
 
                       child: Container(
-                        width: 7.w,
-                        height: 7.w,
+                        width: 8.w,
+                        height: 8.w,
                         decoration: BoxDecoration(
                           color: AppColor.primaryColor,
                           shape: BoxShape.circle,
@@ -93,6 +98,7 @@ class ProductDetailsHeaderWidget extends StatelessWidget {
                             ),
                           ],
                         ),
+
                         child: Consumer<FavoriteProvider>(
                           builder: (context, provider, child) {
                             bool isFav = provider.favoriteIds.contains(productEntity.id);

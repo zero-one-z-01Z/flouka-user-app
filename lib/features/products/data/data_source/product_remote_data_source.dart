@@ -130,4 +130,10 @@ import '../models/product_model.dart';
       return const Right(true);
     });
   }
+  Future<Either<DioException, bool>> createReport(Map<String, dynamic> data,) async {
+    var response = await ApiHandel.getInstance.post('user/create_report', data,);
+    return response.fold((l) => Left(l), (r) {
+      return const Right(true);
+    });
+  }
 }

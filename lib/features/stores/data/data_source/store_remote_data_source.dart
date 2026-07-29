@@ -57,5 +57,11 @@ class StoreRemoteDataSource {
       return const Right(true);
     });
   }
+  Future<Either<DioException, bool>> createBlock(Map<String,dynamic> data) async {
+    var response = await ApiHandel.getInstance.post('user/create_block', data);
+    return response.fold((l) => Left(l), (r) {
+      return const Right(true);
+    });
+  }
 
 }
