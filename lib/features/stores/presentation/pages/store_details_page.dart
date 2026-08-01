@@ -45,6 +45,7 @@ class StoreDetailsPage extends StatelessWidget {
         actions: storeDetailsEntity==null?null:[
           PopupMenuButton<ProductMenuAction>(
             icon: const Icon(Icons.more_vert),
+            enabled: true,
             onSelected: (value) {
               switch (value) {
                 case ProductMenuAction.report:
@@ -64,7 +65,8 @@ class StoreDetailsPage extends StatelessWidget {
                   children: [
                     Icon(Icons.flag_outlined,color: Colors.black,),
                     SizedBox(width: 12),
-                    Text(LanguageProvider.translate('buttons', 'report')),
+                    Text(LanguageProvider.translate('buttons', 'report'),
+                    style: TextStyleClass.normalStyle(color: Colors.black),),
                   ],
                 ),
               ),
@@ -74,7 +76,8 @@ class StoreDetailsPage extends StatelessWidget {
                   children: [
                     Icon(Icons.block_outlined,color: Colors.black,),
                     SizedBox(width: 12),
-                    Text(LanguageProvider.translate('buttons', 'block')),
+                    Text(LanguageProvider.translate('buttons', 'block'),
+                    style: TextStyleClass.normalStyle(color: Colors.black),),
                   ],
                 ),
               ),

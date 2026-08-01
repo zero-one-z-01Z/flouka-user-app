@@ -31,19 +31,15 @@ void reportDialog({required String title, required String type, required int id}
             children: [
               Text(
                 title,
-                style: Constants.isTablet
-                    ? TextStyleClass.normalStyle(fontSize: 2.5.sp, color: Colors.black)
-                    : TextStyleClass.smallStyle(color: Colors.black),
+                style: TextStyleClass.smallStyle(color: Colors.black),
               ),
               SizedBox(height: 1.h),
               TextFieldWidget(
                 controller: controller,
                 maxLines: 2,
-                contentPadding: Constants.isTablet
-                    ? EdgeInsets.symmetric(vertical: 1.h, horizontal: 0.5.w)
-                    : null,
+                contentPadding:  null,
                 style: Constants.isTablet
-                    ? TextStyleClass.normalStyle(fontSize: 2.5.sp, color: Colors.black)
+                    ? TextStyleClass.normalStyle( color: Colors.black)
                     : TextStyleClass.smallStyle(color: Colors.black),
               ),
               SizedBox(height: 1.h),
@@ -62,7 +58,7 @@ void reportDialog({required String title, required String type, required int id}
                       child: Text(
                         LanguageProvider.translate("buttons", "send"),
                         style: Constants.isTablet
-                            ? TextStyleClass.normalStyle(fontSize: 2.5.sp, color: Colors.red)
+                            ? TextStyleClass.normalStyle(color: Colors.red)
                             : TextStyleClass.smallStyle(color: Colors.red),
                       ),
                     ),
@@ -76,7 +72,7 @@ void reportDialog({required String title, required String type, required int id}
                       child: Text(
                         LanguageProvider.translate('buttons', 'cancel'),
                         style: Constants.isTablet
-                            ? TextStyleClass.normalStyle(fontSize: 2.5.sp, color: Colors.black)
+                            ? TextStyleClass.normalStyle(color: Colors.black)
                             : TextStyleClass.smallStyle(color: Colors.black),
                       ),
                     ),

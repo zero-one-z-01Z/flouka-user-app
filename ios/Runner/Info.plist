@@ -76,27 +76,25 @@
             		<true/>
             	</dict>
 
-            	<key>NSAppleMusicUsageDescription</key>
-                	<string>Music!</string>
+
                 	<key>NSCameraUsageDescription</key>
-                	<string>This app needs Camera Usage for upload profile photo and for Order chat</string>
+                	<string>Flouka uses the camera so you can take photos for your profile and attach photos when chatting with other users about products or orders.</string>
                 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-                	<string>This app needs access to location to add address for Order.</string>
+                	<string>Flouka uses your location while you are using the app and, when enabled, in the background to provide continuous location updates during active deliveries or navigation.</string>
                 	<key>NSLocationAlwaysUsageDescription</key>
                 	<string>This app needs access to location when in the background to get nearby orders.</string>
                 	<key>NSLocationWhenInUseUsageDescription</key>
-                	<string>This app needs access to location to address for order.</string>
+                	<string>Flouka uses your location to help you select your pickup or delivery location, display nearby listings, and calculate distances accurately.</string>
                 	<key>NSMicrophoneUsageDescription</key>
-                	<string>We need to access to the microphone to record audio file for order Chat</string>
+                	<string>Flouka uses the microphone so you can record and send voice messages while chatting with other users about products or orders.</string>
                 	<key>NSPhotoLibraryUsageDescription</key>
-                	<string>This app needs to access photo library to upload profile photo and for Order chat </string>
+                	<string>Flouka accesses your photo library so you can choose a profile picture and attach existing photos in chat messages about products or orders.</string>
                 	<key>UIApplicationSceneManifest</key>
                 	<dict>
                 		<key>UISceneConfigurations</key>
                 		<dict/>
                 	</dict>
-                	<key>UIApplicationSupportsIndirectInputEvents</key>
-                	<true/>
+
                 	<key>UIBackgroundModes</key>
                 	<array>
                 		<string>fetch</string>
