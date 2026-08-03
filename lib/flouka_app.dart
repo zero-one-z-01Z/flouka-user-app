@@ -6,6 +6,8 @@ import 'package:toastification/toastification.dart';
 
 import 'core/config/app_theme.dart';
 import 'core/constants/constants.dart';
+import 'features/chatbot/presentation/providers/chat_provider.dart';
+import 'features/chatbot/presentation/widgets/floating_chat_bubble.dart';
 import 'features/language/domain/entities/app_localizations.dart';
 import 'features/language/presentation/provider/language_provider.dart';
 import 'features/splash/views/splash_view.dart';
@@ -39,21 +41,39 @@ class MainApp extends StatelessWidget {
                   theme: defaultTheme,
                   home: const SplashView(),
                   builder: (context, child) {
-                    return GestureDetector(
-                      onTap: () {
-                        FocusScope.of(context).unfocus();
-                      },
-                      child: MediaQuery(
-                        data: MediaQuery.of(
-                          context,
-                        ).copyWith(textScaler: const TextScaler.linear(1.0)),
-                        child: Container(
-                          color: Colors.white,
-                          width: 100.w,
-                          height: 100.h,
-                          child: child!,
+                    return Stack(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            FocusScope.of(context).unfocus();
+                          },
+                          child: MediaQuery(
+                            data: MediaQuery.of(
+                              context,
+                            ).copyWith(textScaler: const TextScaler.linear(1.0)),
+                            child: Container(
+                              color: Colors.white,
+                              width: 100.w,
+                              height: 100.h,
+                              child: child!,
+                            ),
+                          ),
                         ),
-                      ),
+                        Consumer<ChatBotProvider>(
+                            builder: (context,chat,_) {
+                              if((!chat.insidePage&&chat.insideApp)){
+                                return const Stack(
+                                  children: [
+                                    FloatingChatBubble(),
+                                  ],
+                                );
+                              }
+                              return SizedBox.shrink();
+
+
+                            }
+                        ),
+                      ],
                     );
                   },
                 ),

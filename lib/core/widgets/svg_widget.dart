@@ -17,6 +17,7 @@ class SvgWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SvgPicture.asset(
+
       svg,
       colorFilter: color == null
           ? null

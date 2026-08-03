@@ -104,6 +104,8 @@
     "filter": "Filtrer"
   },
   "global": {
+    "smart_flouka": "Flouka Intelligent",
+    "type_message": "Écrivez votre message...",
     "order_agree_terms": "Nous acceptons une exécution partielle de votre commande si certains produits ne sont pas disponibles.",
     "complaint": "Déposer une réclamation",
     "products_count": "Produits",
@@ -326,6 +328,7 @@
     "cancel": "Annuler"
   },
   "buttons": {
+    "get_started": "Commencer",
     "report": "Signaler",
     "block": "Bloquer",
     "rate_store": "Évaluer le magasin",

@@ -1,6 +1,7 @@
 // ignore_for_file: unused_local_variable
 
 import 'dart:convert';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flouka/features/orders/presentation/provider/order_provider.dart';
 import 'package:provider/provider.dart';
@@ -92,4 +93,9 @@ void appNotifications(
   if(showNotificationLocal&&AuthProvider.isLogin()&&!click){
     NotificationLocalClass.showNoti(title: data2.title??"", body: data2.body??"", payload: jsonEncode(payload));
   }
+}
+
+final AudioPlayer audioPlayer = AudioPlayer();
+Future<void> playSuccessSound({required String path}) async {
+  await audioPlayer.play(AssetSource('sounds/$path'));
 }

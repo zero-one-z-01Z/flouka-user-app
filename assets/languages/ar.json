@@ -104,6 +104,8 @@
     "filter": "تصفية"
   },
   "global": {
+    "smart_flouka": "فلوكا الذكي",
+    "type_message": "اكتب رسالتك...",
     "order_agree_terms": "نقبل بعض المنتجات جزئيًا، وإذا لم تكن بعضها متوفرة",
     "complaint": "تقديم شكوي",
     "products_count": "منتجات",
@@ -326,6 +328,7 @@
     "cancel": "إلغاء"
   },
   "buttons": {
+    "get_started": "ابدا الان",
     "report": "ابلاغ",
     "block": "حظر",
     "rate_store": "قيم المتجر",

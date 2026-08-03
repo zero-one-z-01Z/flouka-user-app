@@ -3,6 +3,8 @@ import 'package:flouka/features/categories/data/repositories/category_repo_impl.
 import 'package:flouka/features/categories/domain/usecases/category_usecase.dart';
 import 'package:flouka/features/chat/data/repositories/chat_repository_impl.dart';
 import 'package:flouka/features/chat/domain/repositories/chat_repository.dart';
+import 'package:flouka/features/chatbot/data/repositories_impl/chat_repository_impl.dart';
+import 'package:flouka/features/chatbot/domain/repositories/chat_repository.dart';
 import 'package:flouka/features/filters/data/repo/filter_repo_impl.dart';
 import 'package:flouka/features/filters/domain/repo/filter_repo.dart';
 import 'package:flouka/features/filters/domain/use_case/filter_use_case.dart';
@@ -47,6 +49,8 @@ import 'features/categories/data/datasource/category_remote_data_source.dart';
 import 'features/categories/domain/repositories/category_repo.dart';
 import 'features/chat/data/data_sources/remote.dart';
 import 'features/chat/domain/use_cases/chat_usecases.dart';
+import 'features/chatbot/data/data_sources/chat_remote_datasource.dart';
+import 'features/chatbot/domain/use_cases/send_chat_message_usecase.dart';
 import 'features/filters/data/data_source/filter_remote_data_source.dart';
 import 'features/notification/data/data_sources/remote.dart';
 import 'features/notification/data/repositories/notification_repo_impl.dart';
@@ -189,6 +193,12 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<BannersRemoteDataSource>(BannersRemoteDataSource(sl.get()));
   sl.registerSingleton<BannersRepository>(BannersRepoImpl(sl.get()));
   sl.registerSingleton<BannersUseCase>(BannersUseCase(sl.get()));
+
+
+  //ai
+  sl.registerSingleton<ChatAiRemoteDatasource>(ChatAiRemoteDatasource(sl.get()));
+  sl.registerSingleton<ChatBotRepository>(ChatBotRepositoryImpl(sl.get()));
+  sl.registerSingleton<SendAiMessageUseCase>(SendAiMessageUseCase(sl.get()));
 
   // // //settings
   // sl.registerSingleton<SettingsRemoteDataSource>(

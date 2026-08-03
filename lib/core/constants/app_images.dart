@@ -32,6 +32,9 @@ abstract class AppImages {
   static const String addIcon = 'assets/images/settings/tickets.svg';
 
   //Home
+  static const String send = 'assets/images/home/send.svg';
+  static const String chatIcon = 'assets/images/home/chat_icon.svg';
+  static const String AI = 'assets/images/home/ai.png';
   static const String cart = 'assets/images/home/cart.svg';
   static const String heart = 'assets/images/home/heart.svg';
   static const String productCard = 'assets/images/home/product_card.png';

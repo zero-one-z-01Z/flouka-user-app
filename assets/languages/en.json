@@ -104,6 +104,8 @@
     "filter": "Filter"
   },
   "global": {
+    "smart_flouka": "Smart Flouka",
+    "type_message": "Type your message...",
     "order_agree_terms": "We accept partial fulfillment of your order if some products are unavailable.",
     "complaint": "Submit a Complaint",
     "products_count": "Products",
@@ -326,6 +328,7 @@
     "cancel": "Cancel"
   },
   "buttons": {
+    "get_started": "Get Started",
     "report": "Report",
     "block": "Block",
     "rate_store": "Rate store",

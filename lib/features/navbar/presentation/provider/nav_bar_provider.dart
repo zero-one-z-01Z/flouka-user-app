@@ -5,6 +5,7 @@ import 'package:flouka/features/auth/presentation/views/profile_view.dart';
 import 'package:flouka/features/cart/presentation/providers/cart_provider.dart';
 import 'package:flouka/features/categories/presentation/providers/subcategory_provider.dart';
 import 'package:flouka/features/categories/presentation/view/categories_view.dart';
+import 'package:flouka/features/chatbot/presentation/providers/chat_provider.dart';
 import 'package:flouka/features/home/presentation/pages/home_page.dart';
 import 'package:flouka/features/products/presentation/providers/best_products_provider.dart';
 import 'package:flouka/features/settings/presentation/provider/settings_provider.dart';
@@ -47,6 +48,7 @@ class NavBarProvider extends ChangeNotifier {
   List<BottomNaBarEntity> bottomNavigationBarItemEntity = [];
 
   void goToNavView({bool fromSplash = false}) async{
+
     currentIndex = 0;
     if(!fromSplash)loading();
     await getAllData();
@@ -74,6 +76,7 @@ class NavBarProvider extends ChangeNotifier {
         label: LanguageProvider.translate('navbar', 'settings'),
       ),
     ];
+    Constants.globalContext().read<ChatBotProvider>().setInsideApp();
     navPARU(const NavBarView());
   }
 
