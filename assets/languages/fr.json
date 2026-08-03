@@ -104,6 +104,9 @@
     "filter": "Filtrer"
   },
   "global": {
+    "buy_one_more": "Achetez un article supplémentaire et profitez de la livraison gratuite",
+    "but_more_for_free_delivery": "Dépensez encore *num* pour bénéficier de la livraison gratuite",
+    "free_delivery": "Vous avez débloqué la livraison gratuite",
     "smart_flouka": "Flouka Intelligent",
     "type_message": "Écrivez votre message...",
     "order_agree_terms": "Nous acceptons une exécution partielle de votre commande si certains produits ne sont pas disponibles.",

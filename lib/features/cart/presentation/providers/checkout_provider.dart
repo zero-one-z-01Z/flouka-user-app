@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flouka/core/helper_function/convert.dart';
 import 'package:flouka/features/cart/presentation/providers/coupon_provider.dart';
 import 'package:flouka/features/settings/domain/entities/settings_entity.dart';
@@ -36,6 +38,9 @@ class CheckoutProvider extends ChangeNotifier {
     return convertDataToNum(sub.toStringAsFixed(2))!;
   }
   num deliveryPrice() {
+    if(getFreeDelivery()){
+      return 0;
+    }
     final settings =
     Constants.globalContext().read<SettingsProvider>().settingsEntity!;
 
@@ -63,6 +68,27 @@ class CheckoutProvider extends ChangeNotifier {
     return convertDataToNum((subtotal() + tax()).toStringAsFixed(2))! - ((couponProvider.calcDiscount() ?? 0))+deliveryPrice() ;
   }
 
+  num diffDeliveryNeed(){
+    SettingsEntity settingsEntity = Constants.globalContext().read<SettingsProvider>().settingsEntity!;
+    return max(settingsEntity.minFreeDelivery-subtotal(), 0);
+  }
+  String? freeDelvieryText(){
+
+    if(diffDeliveryNeed()>0){
+      return LanguageProvider.translate('global', 'but_more_for_free_delivery').replaceAll('*num*',
+          diffDeliveryNeed().toStringAsFixed(2));
+    }
+    if((cart.data?.length??0)==1){
+      return LanguageProvider.translate('global', 'buy_one_more');
+    }
+    return  LanguageProvider.translate('global', 'free_delivery');;
+
+  }
+
+  bool getFreeDelivery(){
+    return diffDeliveryNeed()==0&&(cart.data?.length??0)>1;
+  }
+
   CouponEntity? couponEntity;
 
   OrderProvider ordersProvider = Provider.of<OrderProvider>(
@@ -84,6 +110,7 @@ class CheckoutProvider extends ChangeNotifier {
     dataToUse['address_id'] = authProvider.userEntity?.addressEntity?.id;
     dataToUse['total'] = total();
     dataToUse['delivery_price'] = deliveryPrice();
+    dataToUse['is_free_delivery'] = getFreeDelivery()?1:0;
     dataToUse['sub_total'] = subtotal();
     dataToUse['tax'] = tax();
     dataToUse["payment_method"] = selectedPaymentMethod.toAPI;
