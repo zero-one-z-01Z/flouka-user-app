@@ -8,11 +8,13 @@ class SettingsEntity {
   int version;
   final num tax;
   final num deliveryPrice;
+  final num minFreeDelivery;
   String? packageName, appId;
   SettingsEntity({
     required this.id,
     required this.tax,
     required this.deliveryPrice,
+    required this.minFreeDelivery,
     required this.termsLink,
     required this.aboutLink,
     required this.email,

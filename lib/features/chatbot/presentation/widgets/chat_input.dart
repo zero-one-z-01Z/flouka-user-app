@@ -40,7 +40,7 @@ class ChatInput extends StatelessWidget {
                 keyboardType: TextInputType.multiline,
                 decoration: InputDecoration(
                   hintText: LanguageProvider.translate('global', 'type_message'),
-                  hintStyle: TextStyleClass.normalStyle(color: Colors.white),
+                  hintStyle: TextStyleClass.normalStyle(color: Colors.black),
                   border: InputBorder.none,
                   fillColor: Colors.transparent,
                 ),

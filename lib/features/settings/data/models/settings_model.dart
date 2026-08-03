@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import '../../../../../core/helper_function/convert.dart';
@@ -16,7 +17,7 @@ class SettingsModel extends SettingsEntity {
     required super.whatsapp,
     required super.packageName,
     required super.appId,
-    required super.tax, required super.deliveryPrice,
+    required super.tax, required super.deliveryPrice, required super.minFreeDelivery,
   });
 
   factory SettingsModel.fromJson(Map data) {
@@ -36,7 +37,7 @@ class SettingsModel extends SettingsEntity {
       privacyLink: data["privacy_link"],
       packageName: data["package_name"] ?? "",
       appId: data["app_id"] ?? "",
-      tax: convertDataToNum(data["tax"] ?? 0)!, deliveryPrice: convertDataToNum(data['delivery_price'])??0,
+      tax: convertDataToNum(data["tax"] ?? 0)!, deliveryPrice: convertDataToNum(data['delivery_price'])??0, minFreeDelivery: convertDataToNum(data['min_free_delivery'])??0,
     );
   }
 }
