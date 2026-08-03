@@ -55,6 +55,10 @@ PODS:
   - flutter_inappwebview_ios/Core (0.0.1):
     - Flutter
     - OrderedSet (~> 6.0.3)
+  - flutter_libphonenumber_darwin (1.0.0):
+    - Flutter
+    - FlutterMacOS
+    - PhoneNumberKit/PhoneNumberKitCore (= 4.2.1)
   - flutter_local_notifications (0.0.1):
     - Flutter
   - geocoding_ios (1.0.5):
@@ -136,12 +140,7 @@ PODS:
     - FlutterMacOS
   - permission_handler_apple (9.3.0):
     - Flutter
-  - PhoneNumberKit (3.7.11):
-    - PhoneNumberKit/PhoneNumberKitCore (= 3.7.11)
-    - PhoneNumberKit/UIKit (= 3.7.11)
-  - PhoneNumberKit/PhoneNumberKitCore (3.7.11)
-  - PhoneNumberKit/UIKit (3.7.11):
-    - PhoneNumberKit/PhoneNumberKitCore
+  - PhoneNumberKit/PhoneNumberKitCore (4.2.1)
   - PromisesObjC (2.4.0)
   - record_darwin (1.0.0):
     - Flutter
@@ -174,6 +173,7 @@ DEPENDENCIES:
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - Flutter (from `Flutter`)
   - flutter_inappwebview_ios (from `.symlinks/plugins/flutter_inappwebview_ios/ios`)
+  - flutter_libphonenumber_darwin (from `.symlinks/plugins/flutter_libphonenumber_darwin/darwin`)
   - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
   - geocoding_ios (from `.symlinks/plugins/geocoding_ios/ios`)
   - geolocator_apple (from `.symlinks/plugins/geolocator_apple/darwin`)
@@ -184,7 +184,6 @@ DEPENDENCIES:
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
-  - PhoneNumberKit (~> 3.7.6)
   - record_darwin (from `.symlinks/plugins/record_darwin/ios`)
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
@@ -231,6 +230,8 @@ EXTERNAL SOURCES:
     :path: Flutter
   flutter_inappwebview_ios:
     :path: ".symlinks/plugins/flutter_inappwebview_ios/ios"
+  flutter_libphonenumber_darwin:
+    :path: ".symlinks/plugins/flutter_libphonenumber_darwin/darwin"
   flutter_local_notifications:
     :path: ".symlinks/plugins/flutter_local_notifications/ios"
   geocoding_ios:
@@ -285,6 +286,7 @@ SPEC CHECKSUMS:
   FirebaseMessaging: 3b26e2cee503815e01c3701236b020aa9b576f09
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
   flutter_inappwebview_ios: b89ba3482b96fb25e00c967aae065701b66e9b99
+  flutter_libphonenumber_darwin: fd0b33a1dc0f2cadfec5dbedad6d778667b413b7
   flutter_local_notifications: ad39620c743ea4c15127860f4b5641649a988100
   geocoding_ios: 33776c9ebb98d037b5e025bb0e7537f6dd19646e
   geolocator_apple: ab36aa0e8b7d7a2d7639b3b4e48308394e8cef5e
@@ -304,7 +306,7 @@ SPEC CHECKSUMS:
   package_info_plus: af8e2ca6888548050f16fa2f1938db7b5a5df499
   path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
   permission_handler_apple: 4ed2196e43d0651e8ff7ca3483a069d469701f2d
-  PhoneNumberKit: ced55861269312a5e3bc2ef82a58d6255b1c976a
+  PhoneNumberKit: 932b267030c6edde97b58e6945be8b1e47eea628
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   record_darwin: fb1f375f1d9603714f55b8708a903bbb91ffdb0a
   share_plus: 50da8cb520a8f0f65671c6c6a99b3617ed10a58a
@@ -316,6 +318,6 @@ SPEC CHECKSUMS:
   video_player_avfoundation: 3453f792138786248960ca029747fcd9f318ef52
   webview_flutter_wkwebview: 1821ceac936eba6f7984d89a9f3bcb4dea99ebb2
 
-PODFILE CHECKSUM: 16dd0a3796a541862c9f61c113d3ced4c787777d
+PODFILE CHECKSUM: 44c630faf3cec4db1c480223e0cf84aafa98a5fc
 
 COCOAPODS: 1.16.2

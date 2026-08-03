@@ -19,8 +19,8 @@ class CheckBoxWidget extends StatelessWidget {
         onChange(!check);
       },
       child: Container(
-        width: 20.sp,
-        height: 20.sp,
+        width: 18.sp,
+        height: 18.sp,
 
         // margin: EdgeInsets.symmetric(horizontal: 2.w),
         decoration: BoxDecoration(

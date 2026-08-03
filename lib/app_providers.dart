@@ -35,6 +35,7 @@ import 'features/notification/presentation/provider/notifications_provider.dart'
 import 'features/offers_section/presentation/providers/offer_section_provider.dart';
 import 'features/orders/presentation/provider/order_provider.dart';
 import 'features/orders/presentation/provider/get_edit_order_provider.dart';
+import 'features/products/presentation/providers/best_products_provider.dart';
 import 'features/products/presentation/providers/categories_product_search_provider.dart';
 import 'features/products/presentation/providers/home_products_provider.dart';
 import 'features/products/presentation/providers/product_quantity_provider.dart';
@@ -126,6 +127,7 @@ class AppProviders extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => ReviewProvider()),
         ChangeNotifierProvider(create: (_) => VideoProvider(sl.get())),
         ChangeNotifierProvider(create: (_) => NotificationProvider(sl.get())),
+        ChangeNotifierProvider(create: (_) => BestProductsProvider(sl.get())),
       ],
       child: child,
     );

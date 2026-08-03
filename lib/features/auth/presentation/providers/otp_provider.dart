@@ -9,6 +9,7 @@ import '../../../../core/helper_function/navigation.dart';
 import '../../../language/presentation/provider/language_provider.dart';
 import '../../domain/usecases/auth_use_case.dart';
 import '../views/otp_view.dart';
+import '../widgets/country_widget.dart';
 import 'auth_provider.dart';
 
 class OtpProvider extends ChangeNotifier {
@@ -16,7 +17,7 @@ class OtpProvider extends ChangeNotifier {
   Timer? timer;
   int counter = 60;
   late bool isEdit;
-
+  String? otpPhoneCode = '';
   void startTimer() {
     otpController.clear();
     counter = 60;
@@ -59,7 +60,7 @@ class OtpProvider extends ChangeNotifier {
     Map<String, dynamic> data = {};
     data["otp"] = otpController.text.trim();
     data["phone"] = authProvider.loginTextFieldList[0].controller.text;
-
+    data['phone_code'] = defaultCountry.toString().replaceFirst('+',"");
     loading();
     final result = await authUsceCase.checkCode(data);
     navPop();
@@ -84,6 +85,10 @@ class OtpProvider extends ChangeNotifier {
 
     Map<String, dynamic> data = {};
     data["phone"] = authProvider.loginTextFieldList[0].controller.text;
+    if(otpPhoneCode?.isEmpty??true){
+      otpPhoneCode = defaultCountry;
+    }
+    data['phone_code'] = otpPhoneCode.toString().replaceFirst('+',"");
     loading();
     final result = await authUsceCase.sendOtp(data);
     navPop();

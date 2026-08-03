@@ -43,46 +43,55 @@ class StoreDetailsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(LanguageProvider.translate('home','store_details')),
         actions: storeDetailsEntity==null?null:[
-          PopupMenuButton<ProductMenuAction>(
-            icon: const Icon(Icons.more_vert),
-            enabled: true,
-            onSelected: (value) {
-              switch (value) {
-                case ProductMenuAction.report:
-                  reportDialog(title: LanguageProvider.translate("global", "complaint"),
-                      type: "vendor", id: storeDetailsEntity.vendor?.id??0);
-                  break;
-
-                case ProductMenuAction.blockVendor:
-                  storeDetailsProvider.confirmBlock(vendorId: storeDetailsEntity.vendor?.id??0);
-                  break;
-              }
-            },
-            itemBuilder: (context) => [
-              PopupMenuItem(
-                value: ProductMenuAction.report,
-                child: Row(
-                  children: [
-                    Icon(Icons.flag_outlined,color: Colors.black,),
-                    SizedBox(width: 12),
-                    Text(LanguageProvider.translate('buttons', 'report'),
-                    style: TextStyleClass.normalStyle(color: Colors.black),),
-                  ],
-                ),
-              ),
-              PopupMenuItem(
-                value: ProductMenuAction.blockVendor,
-                child: Row(
-                  children: [
-                    Icon(Icons.block_outlined,color: Colors.black,),
-                    SizedBox(width: 12),
-                    Text(LanguageProvider.translate('buttons', 'block'),
-                    style: TextStyleClass.normalStyle(color: Colors.black),),
-                  ],
-                ),
-              ),
-            ],
-          )
+          InkWell(onTap: (){
+            reportDialog(title: LanguageProvider.translate("global", "complaint"),
+                type: "vendor", id: storeDetailsEntity.vendor?.id??0);
+          },child: Icon(Icons.flag_outlined,color: Colors.white,)),
+          SizedBox(width: 5.w,),
+          InkWell(onTap: (){
+            storeDetailsProvider.confirmBlock(vendorId: storeDetailsEntity.vendor?.id??0);
+          },child: Icon(Icons.block_outlined,color: Colors.white,)),
+          SizedBox(width: 5.w,),
+          // PopupMenuButton<ProductMenuAction>(
+          //   icon: const Icon(Icons.more_vert),
+          //   enabled: true,
+          //   onSelected: (value) {
+          //     switch (value) {
+          //       case ProductMenuAction.report:
+          //         reportDialog(title: LanguageProvider.translate("global", "complaint"),
+          //             type: "vendor", id: storeDetailsEntity.vendor?.id??0);
+          //         break;
+          //
+          //       case ProductMenuAction.blockVendor:
+          //         storeDetailsProvider.confirmBlock(vendorId: storeDetailsEntity.vendor?.id??0);
+          //         break;
+          //     }
+          //   },
+          //   itemBuilder: (context) => [
+          //     PopupMenuItem(
+          //       value: ProductMenuAction.report,
+          //       child: Row(
+          //         children: [
+          //           Icon(Icons.flag_outlined,color: Colors.black,),
+          //           SizedBox(width: 12),
+          //           Text(LanguageProvider.translate('buttons', 'report'),
+          //           style: TextStyleClass.normalStyle(color: Colors.black),),
+          //         ],
+          //       ),
+          //     ),
+          //     PopupMenuItem(
+          //       value: ProductMenuAction.blockVendor,
+          //       child: Row(
+          //         children: [
+          //           Icon(Icons.block_outlined,color: Colors.black,),
+          //           SizedBox(width: 12),
+          //           Text(LanguageProvider.translate('buttons', 'block'),
+          //           style: TextStyleClass.normalStyle(color: Colors.black),),
+          //         ],
+          //       ),
+          //     ),
+          //   ],
+          // )
         ],
       ),
       body: Builder(

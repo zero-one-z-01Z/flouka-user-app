@@ -16,7 +16,7 @@ class UserModel extends UserEntity {
     required super.loginFrom,
     required super.name,
     required super.LastReadNotification,
-    required super.addressEntity
+    required super.addressEntity, required super.phoneCode
   });
 
   factory UserModel.fromJson(Map data) {
@@ -31,7 +31,7 @@ class UserModel extends UserEntity {
         wallet: convertDataToNum(data['wallet']) ?? 0,
         name: data['name'],
         LastReadNotification: convertStringToInt(data['last_read_notification']),
-        addressEntity: data['address'] !=null ? AddressModel.fromJson(data['address']) :null
+        addressEntity: data['address'] !=null ? AddressModel.fromJson(data['address']) :null, phoneCode: data['phone_code']
       );
     } catch (e, line) {
       log(line.toString());

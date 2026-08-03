@@ -7,6 +7,7 @@ import '../../../core/constants/constants.dart';
 import '../../../core/helper_function/prefs.dart';
 import '../../address/presentation/providers/city_provider.dart';
 import '../../auth/presentation/providers/auth_provider.dart';
+import '../../banners/presentation/provider/banners_provider.dart';
 import '../../navbar/presentation/provider/nav_bar_provider.dart';
 
 class SplashProvider extends ChangeNotifier {
@@ -18,6 +19,7 @@ class SplashProvider extends ChangeNotifier {
     String? isLoggedIn = sharedPreferences.getString('token');
     await Future.wait([
       Provider.of<CityProvider>(Constants.globalContext(), listen: false,).getCities(),
+      Provider.of<BannersProvider>(Constants.globalContext(),listen: false,).getBanners(),
       Provider.of<SettingsProvider>(Constants.globalContext(), listen: false,).getSettings(),
     ]);
 

@@ -8,12 +8,15 @@ import 'package:flutter/material.dart';
 import 'package:flouka/features/products/domain/entity/product_entity.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/constants/constants.dart';
+import '../../../../core/dialog/bottom_sheet_dialog.dart';
 import '../../../../core/dialog/snack_bar.dart';
 import '../../../../core/dialog/success_dialog.dart';
 import '../../../../core/helper_function/loading.dart';
 import '../../../../core/helper_function/navigation.dart';
 import '../../../../core/models/provider_structure_model.dart';
 import '../../../auth/presentation/providers/auth_provider.dart';
+import '../../../cart/presentation/providers/cart_operation_provider.dart';
+import '../../../cart/presentation/providers/cart_provider.dart';
 import '../../domain/user_case/product_use_case.dart';
 import '../pages/products_details_view.dart';
 import 'product_variant_provider.dart' show ProductVariantProvider;
@@ -118,6 +121,12 @@ class ProductDetailsProvider extends ChangeNotifier implements ProviderStructure
 
   @override
   void goToPage([Map<String, dynamic>? inputs]) {
+    init();
+    if (productsIDs.length == 1) {
+      navP(const ProductsDetailsView(showAppBar: true,));
+    }
+  }
+  void init([Map<String, dynamic>? inputs]){
     this.inputs = inputs;
     imageIndex=0;
     variants = {};
@@ -128,9 +137,6 @@ class ProductDetailsProvider extends ChangeNotifier implements ProviderStructure
       productsIDs.add(productId);
     }
     refresh();
-    if (productsIDs.length == 1) {
-      navP(const ProductsDetailsView());
-    }
   }
 
   @override
@@ -173,5 +179,22 @@ class ProductDetailsProvider extends ChangeNotifier implements ProviderStructure
     });
   }
 
+  void addToCart(ProductEntity product){
+    print(product.haveVariant);
+    print(product.stock);
+    print(product.store);
+    if(product.haveVariant||product.stock==null||product.store==null){
+      init({
+        'product_id': product.id,
+        'is_similar': false,
+      });
+      bottomSheetDialog(ProductsDetailsView(showAppBar: false,));
+    }else{
+      final cartProvider = Provider.of<CartProvider>(Constants.globalContext(),listen: false);
+      int stockId = product.stock!.id;
+      cartProvider.addToCart(storeId: product.store!.id, quantity: 1,
+          storeProductStockId: stockId);
+    }
+  }
 
 }

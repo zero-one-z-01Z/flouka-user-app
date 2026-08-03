@@ -54,7 +54,7 @@ class HomePage extends StatelessWidget {
                   const CarouselSliderWidget(),
                   // const NewCategoriesHomeSection(),
                   const PopularCategoriesSection(),
-                  // const ListTextWidget(),
+                  ListTextWidget(),
                   const OfferSectionListWidget(),
                   if(offerSectionProvider.data ==null || offerSectionProvider.data!=null &&offerSectionProvider.data!.isEmpty)
                     ...[

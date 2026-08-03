@@ -32,6 +32,7 @@ import '../../domain/entities/social_auth_entity.dart';
 import '../../domain/entities/user_entity.dart';
 import '../../domain/usecases/auth_use_case.dart';
 import '../views/complete_info_view.dart';
+import '../widgets/country_widget.dart';
 
 class AuthProvider extends ChangeNotifier {
   UserEntity? userEntity;
@@ -46,12 +47,24 @@ class AuthProvider extends ChangeNotifier {
   }
 
   void goToLoginView() {
+    defaultCountry = '+216';
+    CountryWidget.getLength;
+    loginTextFieldList = [
+      TextFieldModel(
+        label: LanguageProvider.translate("inputs", "Number"),
+        controller: TextEditingController(),
+        textInputType: const TextInputType.numberWithOptions(),
+        validator: (value) => validatePhone(value),
+        key: "phone",
+        length: phoneLength,
+      ),
+    ];
     navPR(const LoginView());
   }
 
-  void goToRegisterView() {
-    navP(const RegisterView());
-  }
+  // void goToRegisterView() {
+  //   navP(const RegisterView());
+  // }
 
   /// ----------- Login Logic -----------
   Future socialLogin({
@@ -296,6 +309,7 @@ class AuthProvider extends ChangeNotifier {
       textInputType: const TextInputType.numberWithOptions(),
       validator: (value) => validatePhone(value),
       key: "phone",
+      length: phoneLength,
     ),
   ];
 
@@ -314,6 +328,8 @@ class AuthProvider extends ChangeNotifier {
     for (var element in loginTextFieldList) {
       data[element.key] = element.controller.text.trim();
     }
+    OtpProvider otpProvider = Constants.globalContext().read();
+    data['phone_code'] = defaultCountry.toString().replaceFirst('+',"");
     loading();
     final result = await authUseCase.sendOtp(data);
     navPop();

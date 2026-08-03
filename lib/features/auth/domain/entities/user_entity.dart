@@ -3,7 +3,7 @@ import '../../../address/domain/entities/address_entity.dart';
 class UserEntity {
   final int id;
   String? name;
-  String? phone;
+  String? phone,phoneCode;
   String? email;
   String? image;
   String ? loginFrom;
@@ -19,6 +19,7 @@ class UserEntity {
     required this.image,
     required this.name,
     required this.wallet,
+    required this.phoneCode,
     required this.loginFrom,
     this.LastReadNotification,
     required this.token,

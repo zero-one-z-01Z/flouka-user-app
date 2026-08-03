@@ -23,6 +23,7 @@ import '../../../../core/helper_function/text_form_field_validation.dart';
 import '../../../language/presentation/provider/language_provider.dart';
 import '../../domain/entities/user_entity.dart';
 import '../views/complete_info_view.dart';
+import '../widgets/country_widget.dart';
 
 class CompleteInfoProvider extends ChangeNotifier {
   XFile? image;
@@ -44,10 +45,17 @@ class CompleteInfoProvider extends ChangeNotifier {
       updateImage(image);
     }
   }
-
+  String? otpPhoneCode = '';
   void goToCompleteInfoView({bool isEdit = false}) {
     AuthProvider authProvider = Provider.of(Constants.globalContext(), listen: false);
     UserEntity? userEntity = authProvider.userEntity;
+
+
+
+    defaultCountry = userEntity?.phoneCode==null?'+216':('+'+userEntity!.phoneCode!);
+    int length = CountryWidget.getLength;
+
+    otpPhoneCode = defaultCountry;
     completeInfoTextFieldList = [
       TextFieldModel(
         label: LanguageProvider.translate("inputs", "Name"),
@@ -69,7 +77,8 @@ class CompleteInfoProvider extends ChangeNotifier {
         label: LanguageProvider.translate("inputs", "phone"),
         controller: TextEditingController(text: authProvider.userEntity?.phone),
         textInputType: TextInputType.number,
-        readOnly: true,
+        readOnly: userEntity?.loginFrom!="user",
+        length: length,
         validator: (value){
           if(userEntity?.loginFrom =="user"){
            return validatePhone(value);
@@ -121,6 +130,7 @@ class CompleteInfoProvider extends ChangeNotifier {
     if (image != null && imageUpdated) {
       data['image'] = await MultipartFile.fromFile(image!.path);
     }
+    data['phone_code'] = defaultCountry.toString().replaceFirst('+',"");
 
     // data["token"] = await FirebaseMessaging.instance.getToken() ?? "123";
     loading();

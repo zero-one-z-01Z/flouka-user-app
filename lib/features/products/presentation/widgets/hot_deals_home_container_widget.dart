@@ -28,6 +28,7 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
     const double fillPercent = 56.23;
     const double fillStop = (100 - fillPercent) / 100;
     const List<double> stops = [0.0, fillStop, fillStop, 1.0];
+
     return InkWell(
       onTap: () {
         Provider.of<ProductDetailsProvider>(context,listen: false).goToPage({
@@ -176,26 +177,31 @@ class HotDealsHomeContainerWidget extends StatelessWidget {
                   ),
                   SizedBox(height: 0.5.h),
                   Center(
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(78.4),
-                              border: Border.all(color: const Color(0xffAD46FF),width: 2),
-                            ),
-                            padding: EdgeInsets.symmetric(horizontal: 2.w,),
-                            child: Row(mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(Icons.add_shopping_cart,color:const Color(0xffAD46FF),size: 25,),
-                                SizedBox(width: 1.w),
-                                Text(LanguageProvider.translate("buttons", "add_to_cart"),
-                                  style: TextStyleClass.smallStyle(color: AppColor.primaryColor).copyWith(
-                                    fontSize: 14.sp
-                                  ),),
-                              ],
-                            )),
-                      ],
+                    child: InkWell(
+                      onTap: (){
+                        Provider.of<ProductDetailsProvider>(context,listen: false).addToCart(product);
+                      },
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(78.4),
+                                border: Border.all(color: const Color(0xffAD46FF),width: 2),
+                              ),
+                              padding: EdgeInsets.symmetric(horizontal: 2.w,),
+                              child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.add_shopping_cart,color:const Color(0xffAD46FF),size: 25,),
+                                  SizedBox(width: 1.w),
+                                  Text(LanguageProvider.translate("buttons", "add_to_cart"),
+                                    style: TextStyleClass.smallStyle(color: AppColor.primaryColor).copyWith(
+                                      fontSize: 14.sp
+                                    ),),
+                                ],
+                              )),
+                        ],
+                      ),
                     ),
                   ),
                 ],

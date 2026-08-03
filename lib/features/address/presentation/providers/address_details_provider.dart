@@ -17,6 +17,7 @@ import '../../../../../injection_container.dart';
 import '../../../../core/constants/app_lotties.dart';
 import '../../../../core/dialog/new_success_dialog.dart';
 import '../../../auth/presentation/providers/auth_provider.dart';
+import '../../../auth/presentation/widgets/country_widget.dart';
 import '../../../cart/presentation/providers/cart_provider.dart';
 import '../../../language/presentation/provider/language_provider.dart';
 import '../../domain/entities/address_entity.dart';
@@ -47,6 +48,7 @@ class AddressDetailsProvider extends ChangeNotifier {
   late double lat, lng;
   AddressEntity? addressEntity;
   String description = '';
+  String? otpPhoneCode = '';
   List<TextFieldModel> inputs = [
     TextFieldModel(
       controller: TextEditingController(),
@@ -63,6 +65,7 @@ class AddressDetailsProvider extends ChangeNotifier {
     TextFieldModel(
       controller: TextEditingController(),
       key: 'phone',
+      length: 8,
       label: 'phone',
       textInputType: TextInputType.phone,
       validator: (value) => validatePhone(value),
@@ -242,6 +245,7 @@ class AddressDetailsProvider extends ChangeNotifier {
     if (addressEntity != null) {
       data['id'] = addressEntity!.id;
     }
+    data['phone_code'] = defaultCountry.toString().replaceFirst('+',"");
     return data;
   }
 
@@ -263,7 +267,18 @@ class AddressDetailsProvider extends ChangeNotifier {
       if(isMakeDefault){
         this.firstAddress=true;
       }
+      final authProvider = Provider.of<AuthProvider>(Constants.globalContext(), listen: false,);
+      defaultCountry = addressEntity?.phoneCode==null?(authProvider.userEntity?.phoneCode==null?'+216':'+'+authProvider.userEntity!.phoneCode!):('+'+addressEntity!.phoneCode!);
+      int length = CountryWidget.getLength;
+      print("defaultCountry");
+      print(defaultCountry);
+      print(length);
+      inputs.firstWhere((element) => element.key == 'phone').length = length;
+      otpPhoneCode = defaultCountry;
+      inputs.firstWhere((element) => element.key == 'phone').controller.text =
+          addressEntity?.phone ?? (authProvider.userEntity?.phone??"");
       if (addressEntity != null) {
+        otpPhoneCode = addressEntity.phoneCode;
         title = "edit_address";
         this.addressEntity = addressEntity;
         setData(addressEntity.lat!, addressEntity.lng!);

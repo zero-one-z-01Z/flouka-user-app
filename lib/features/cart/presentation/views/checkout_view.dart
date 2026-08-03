@@ -12,6 +12,7 @@ import '../../../language/presentation/provider/language_provider.dart';
 import '../providers/cart_provider.dart';
 import '../providers/checkout_provider.dart';
 import '../widgets/checkout_item_widget.dart';
+import '../widgets/checkout_terms_widget.dart';
 import '../widgets/coupons_widget.dart';
 import '../widgets/payment_method_list.dart';
 import '../widgets/price_details_widget.dart';
@@ -68,6 +69,8 @@ class CheckoutView extends StatelessWidget {
                       ),
 
                     ],
+                    SizedBox(height: 1.3.h),
+                    const CheckoutTermsWidget(),
                     SizedBox(height: 1.3.h),
                     const CouponsWidget(),
                     SizedBox(height: 1.3.h),

@@ -22,8 +22,8 @@ import '../widgets/product_attributes_widget.dart';
 import '../widgets/review_with_images_section.dart';
 
 class ProductsDetailsView extends StatelessWidget {
-  const ProductsDetailsView({super.key});
-
+  const ProductsDetailsView({super.key, required this.showAppBar});
+  final bool showAppBar;
   @override
   Widget build(BuildContext context) {
     final ProductDetailsProvider productDetailsProvider = Provider.of(context);
@@ -36,7 +36,7 @@ class ProductsDetailsView extends StatelessWidget {
         }
       },
       child: Scaffold(
-        appBar: AppBar(
+        appBar: showAppBar?AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () {
@@ -61,7 +61,7 @@ class ProductsDetailsView extends StatelessWidget {
                 : LanguageProvider.translate("global", "what_are_you_looking_for",
             ),
           ),
-        ),
+        ):null,
         body: Builder(
           builder: (context) {
             if (productDetailsProvider.data == null) {

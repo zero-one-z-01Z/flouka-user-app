@@ -17,7 +17,7 @@ class ProductEntity {
   final List<ProductImage> reviewImages;
   final String? image;
   final num? rate;
-  bool isFavorite;
+  bool isFavorite,haveVariant;
   final StoreEntity? store;
   final List<RelatedEntity> related;
   final List<ProductEntity> recommended;
@@ -28,6 +28,7 @@ class ProductEntity {
   ProductEntity({
     required this.id,
     required this.title,
+    required this.haveVariant,
     required this.recommended,
     required this.description,
      this.discountTitle,

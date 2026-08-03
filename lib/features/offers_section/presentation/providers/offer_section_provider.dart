@@ -21,6 +21,7 @@ class OfferSectionProvider extends ChangeNotifier {
       data = [];
     }, (r) {
       data = r;
+      notifyListeners();
     });
   }
 }

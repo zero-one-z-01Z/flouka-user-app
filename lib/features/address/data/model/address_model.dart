@@ -17,7 +17,7 @@ class AddressModel extends AddressEntity {
     required super.lng,
     required super.createdAt,
     required super.phone,
-    required super.address, required super.neighborhoodEntity,
+    required super.address, required super.neighborhoodEntity, required super.phoneCode,
   });
 
   factory AddressModel.fromJson(Map<String, dynamic> data) {
@@ -37,7 +37,7 @@ class AddressModel extends AddressEntity {
       phone: data['phone'],
       address: data['address'],
       createdAt: data['created_at'],
-      neighborhoodEntity: neighborhoodModel,
+      neighborhoodEntity: neighborhoodModel, phoneCode: data['phone_code'],
     );
   }
 }

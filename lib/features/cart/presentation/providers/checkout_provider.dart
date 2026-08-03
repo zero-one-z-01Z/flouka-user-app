@@ -87,7 +87,7 @@ class CheckoutProvider extends ChangeNotifier {
     dataToUse['sub_total'] = subtotal();
     dataToUse['tax'] = tax();
     dataToUse["payment_method"] = selectedPaymentMethod.toAPI;
-
+    dataToUse['can_ship_auto'] = termsAccepted?1:0;
     dataToUse['discount'] = (couponProvider.calcDiscount() ?? 0);
     for (int i=0;i<(couponProvider.couponEntity?.length ??0);i++) {
       dataToUse['coupons[$i][coupon]'] = couponProvider.couponEntity?[i].coupon;
@@ -128,6 +128,7 @@ class CheckoutProvider extends ChangeNotifier {
   }
 
   void goToPage([Map<String, dynamic>? inputs]) async {
+    termsAccepted = false;
     navP(const CheckoutView());
   }
 
@@ -165,6 +166,14 @@ class CheckoutProvider extends ChangeNotifier {
     listen: false,
   );
   final cart = Provider.of<CartProvider>(Constants.globalContext(), listen: false);
+
+  bool  termsAccepted = false;
+  void toggleTermsAccepted(bool val){
+    termsAccepted = val;
+    notifyListeners();
+  }
+
+
 
   void makeOrder() async {
     if (['online'].contains(selectedPaymentMethod.toAPI)) {

@@ -16,10 +16,6 @@ class PopularCategoriesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final NavBarProvider navBarProvider = Provider.of<NavBarProvider>(
-      context,
-      listen: false,
-    );
     return Consumer<PopularCategoriesProvider>(
       builder: (context, provider, _){
         final List<PopularCategoriesEntity> popular = provider.categories;

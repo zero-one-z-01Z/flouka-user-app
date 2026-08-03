@@ -20,9 +20,9 @@ class AddressBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final addressDetailsProvider = Provider.of<AddressDetailsProvider>(context);
-    final cityProvider = Provider.of<CityProvider>(context, listen: false);
-    final areaProvider = Provider.of<AreaProvider>(context, listen: false);
-    final neighborhood = Provider.of<NeighborhoodProvider>(context, listen: false);
+    final cityProvider = Provider.of<CityProvider>(context);
+    final areaProvider = Provider.of<AreaProvider>(context);
+    final neighborhood = Provider.of<NeighborhoodProvider>(context);
     // final partsProvider = Provider.of<PartsProvider>(context, listen: false);
 
     return SafeArea(
@@ -68,19 +68,42 @@ class AddressBottomSheet extends StatelessWidget {
                 ),
                 SizedBox(height: 0.5.h),
       
-                _buildSectionTitle(context, 'inputs', 'city'),
-                DropDownWidget(
-                  dropDownClass: areaProvider,
-                  color: Colors.white,
-                  borderColor: AppColor.primaryColor.withValues(alpha: .3),
+
+                Visibility(
+                  visible: !areaProvider.areas.isEmpty,
+                  // opacity: !areaProvider.areas.isEmpty?0.3:1,
+                  // duration: Duration(milliseconds: 400),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildSectionTitle(context, 'inputs', 'city'),
+                      DropDownWidget(
+                        dropDownClass: areaProvider,
+                        color: Colors.white,
+                        borderColor: AppColor.primaryColor.withValues(alpha: .3),
+                      ),
+                      SizedBox(height: 0.5.h),
+                    ],
+                  ),
                 ),
-                SizedBox(height: 0.5.h),
-                _buildSectionTitle(context, 'inputs', 'neighborhood'),
-                DropDownWidget(
-                  dropDownClass: neighborhood,
-                  color: Colors.white,
-                  borderColor: AppColor.primaryColor.withValues(alpha: .3),
+                Visibility(
+                  visible: !neighborhood.neighborhoods.isEmpty,
+                  // duration: Duration(milliseconds: 400),
+                  // opacity: !neighborhood.neighborhoods.isEmpty?0.3:1,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildSectionTitle(context, 'inputs', 'neighborhood'),
+                      DropDownWidget(
+                        dropDownClass: neighborhood,
+                        color: Colors.white,
+                        borderColor: AppColor.primaryColor.withValues(alpha: .3),
+                      ),
+                      SizedBox(height: 0.5.h),
+                    ],
+                  ),
                 ),
+
 
       
                 // _buildSectionTitle(context, 'inputs', 'part'),

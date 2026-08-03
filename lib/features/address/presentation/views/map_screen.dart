@@ -64,8 +64,9 @@ class MapScreen extends StatelessWidget {
             ),
           ),
           Positioned(
-            left: 22,
+            left: 15.w,
             bottom: 7.h,
+            right: 15.w,
             child: InkWell(
               onTap: () {
                 mapProv.animateToMyLocation();

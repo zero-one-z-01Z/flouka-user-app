@@ -11,7 +11,7 @@ class TextFieldModel {
   Widget? suffix, prefix, title;
   void Function()? onTap;
   double? width;
-  int? min, max;
+  int? min, max,length;
   String? editTextString;
   EdgeInsets? contentPadding;
   List<Widget>? titleWidgets;
@@ -32,6 +32,7 @@ class TextFieldModel {
     this.suffix,
     this.prefix,
     this.title,
+    this.length,
     this.titleText,
     this.min,
     this.max,

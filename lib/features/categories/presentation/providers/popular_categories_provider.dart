@@ -37,6 +37,7 @@ class PopularCategoriesProvider extends ChangeNotifier {
         if (_categories.isNotEmpty && _selectedCategory == null) {
           _selectedCategory = null; // default = show all
         }
+        notifyListeners();
       },
     );
 

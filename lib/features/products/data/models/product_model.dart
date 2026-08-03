@@ -30,7 +30,7 @@ class ProductModel extends ProductEntity {
     required super.related,
     required super.reviewImages,
     required super.discountTitle,
-    required super.discountPercentage, required super.attributes, required super.variants,
+    required super.discountPercentage, required super.attributes, required super.variants, required super.haveVariant,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
@@ -109,7 +109,7 @@ class ProductModel extends ProductEntity {
       store:json['store'] !=null ? StoreModel.fromJson(json['store']) : null,
       related: relatedProduct,
       recommended: recommendedProduct,
-      variants: variants,
+      variants: variants, haveVariant: convertDataToBool(json['have_variant']),
     );
   }
 }

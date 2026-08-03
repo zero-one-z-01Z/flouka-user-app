@@ -119,20 +119,25 @@ class FilteredProductHomeContainerWidget extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 1.h),
-                    Container(width: 100.w,
-                        decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(78.4),
-                      border: Border.all(color: const Color(0xffAD46FF),width: 2),
+                    InkWell(
+                      onTap: (){
+                        Provider.of<ProductDetailsProvider>(context,listen: false).addToCart(productEntity);
+                      },
+                      child: Container(width: 100.w,
+                          decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(78.4),
+                        border: Border.all(color: const Color(0xffAD46FF),width: 2),
+                      ),
+                          padding: EdgeInsets.symmetric(horizontal: 4.w,vertical: 0.5.h),
+                          child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(Icons.add_shopping_cart,color:  Color(0xffAD46FF),),
+                          SizedBox(width: 2.w),
+                          Text(LanguageProvider.translate("buttons", "add_to_cart"),
+                            style: TextStyleClass.normalStyle(color: AppColor.primaryColor),),
+                        ],
+                      )),
                     ),
-                        padding: EdgeInsets.symmetric(horizontal: 4.w,vertical: 0.5.h),
-                        child: Row(mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(Icons.add_shopping_cart,color:  Color(0xffAD46FF),),
-                        SizedBox(width: 2.w),
-                        Text(LanguageProvider.translate("buttons", "add_to_cart"),
-                          style: TextStyleClass.normalStyle(color: AppColor.primaryColor),),
-                      ],
-                    )),
                   ],
                 ),
               ),

@@ -1,3 +1,8 @@
+
+
+import 'package:flouka/features/auth/presentation/widgets/country_widget.dart';
+import 'package:phone_numbers_parser/phone_numbers_parser.dart';
+
 import '../../features/language/presentation/provider/language_provider.dart';
 
 final RegExp emailValid = RegExp(
@@ -13,12 +18,25 @@ String? validatePhone(String? value) {
   if (value!.isEmpty) {
     return LanguageProvider.translate("validation", "phone_required");
   }
-  if (value.length < 5) {
-    return LanguageProvider.translate("validation", "phone_invalid");
-  }
+  // if (value.length < 5) {
+  //   return LanguageProvider.translate("validation", "phone_invalid");
+  // }
   if (validEnglish(value)) {
     return LanguageProvider.translate("validation", "english_phone");
   }
+  String country = defaultCountry;
+  if(!country.startsWith('+')){
+    defaultCountry = '+'+defaultCountry;
+  }
+  final phone = PhoneNumber.parse(
+    defaultCountry+value,
+  );
+
+  final isValid = phone.isValid();
+  if(!isValid){
+    return LanguageProvider.translate("validation", "phone_invalid");
+  }
+
   return null;
 }
 

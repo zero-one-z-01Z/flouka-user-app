@@ -104,6 +104,7 @@
     "filter": "Filtrer"
   },
   "global": {
+    "order_agree_terms": "Nous acceptons une exécution partielle de votre commande si certains produits ne sont pas disponibles.",
     "complaint": "Déposer une réclamation",
     "products_count": "Produits",
     "seller": "Vendeur",
@@ -463,5 +464,8 @@
     "choose_lang_content": "Veuillez sélectionner votre langue préférée pour l'application. Vous pouvez la modifier à tout moment dans les paramètres",
     "delete_location_content": "Êtes-vous sûr de vouloir supprimer cet emplacement ? Vous ne pourrez pas le récupérer plus tard",
     "done_payment": "Paiement effectué avec succès"
+  },
+  "success": {
+    "success": "Opération effectuée avec succès."
   }
 }

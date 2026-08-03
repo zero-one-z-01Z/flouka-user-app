@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
 // import '../../../../../core/constants/constants.dart';
 import '../../../../../core/helper_function/location.dart';
 import '../../../../../core/helper_function/navigation.dart';
 import '../../../../../core/models/pagination_class.dart';
+import '../../../../core/constants/constants.dart';
+import '../../../auth/presentation/providers/auth_provider.dart';
+import '../../../auth/presentation/widgets/country_widget.dart';
 import '../views/select_address_map_page.dart';
+import 'address_details_provider.dart';
 
 class MapProvider with ChangeNotifier implements PaginationClass {
   ScrollController scrollController = ScrollController();
@@ -42,8 +47,19 @@ class MapProvider with ChangeNotifier implements PaginationClass {
   }
 
   void goToMapPage() {
-    navP(const SelectAddressMapPage());
-    initLocation();
+    Provider.of<AddressDetailsProvider>(Constants.globalContext(),listen: false).goToAddressDetailsPage();
+    // final authProvider = Provider.of<AuthProvider>(Constants.globalContext(), listen: false,);
+    // defaultCountry = (authProvider.userEntity?.phoneCode==null?'+216':'+'+authProvider.userEntity!.phoneCode!);
+    // int length = CountryWidget.getLength;
+    // print("defaultCountry");
+    // print(defaultCountry);
+    // print(length);
+    // inputs.firstWhere((element) => element.key == 'phone').length = length;
+    // otpPhoneCode = defaultCountry;
+    // inputs.firstWhere((element) => element.key == 'phone').controller.text =
+    //     addressEntity?.phone ?? (authProvider.userEntity?.phone??"");
+    // navP(const SelectAddressMapPage());
+    // initLocation();
   }
 
   void onMapCreated(GoogleMapController controller) {

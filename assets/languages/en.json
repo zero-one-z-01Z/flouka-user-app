@@ -104,6 +104,7 @@
     "filter": "Filter"
   },
   "global": {
+    "order_agree_terms": "We accept partial fulfillment of your order if some products are unavailable.",
     "complaint": "Submit a Complaint",
     "products_count": "Products",
     "seller": "Seller",
@@ -463,5 +464,8 @@
     "choose_lang_content": "Please select your preferred language for the app. You can change it anytime in the settings",
     "delete_location_content": "Are you sure you want to delete this location? You won't be able to recover it later",
     "done_payment": "Payment completed successfully"
+  },
+  "success": {
+    "success": "Operation completed successfully."
   }
 }

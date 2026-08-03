@@ -94,6 +94,7 @@ class FilterProductProvider extends ChangeNotifier {
 
   ProductEntity fakeProduct = ProductEntity(
     id: -1,
+    haveVariant: false,
     title: 'Loading Product Title...',
     image: "",
     canRate: false,

@@ -6,6 +6,7 @@ import 'package:flouka/features/cart/presentation/providers/cart_provider.dart';
 import 'package:flouka/features/categories/presentation/providers/subcategory_provider.dart';
 import 'package:flouka/features/categories/presentation/view/categories_view.dart';
 import 'package:flouka/features/home/presentation/pages/home_page.dart';
+import 'package:flouka/features/products/presentation/providers/best_products_provider.dart';
 import 'package:flouka/features/settings/presentation/provider/settings_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -82,8 +83,8 @@ class NavBarProvider extends ChangeNotifier {
       LatLng current = await determinePosition();
       Provider.of<AuthProvider>(Constants.globalContext(),listen: false).setLatLng(current);
     }
-    var result = await Future.wait([
-      Provider.of<BannersProvider>(Constants.globalContext(),listen: false,).getBanners(),
+     Future.wait([
+      Provider.of<BestProductsProvider>(Constants.globalContext(), listen: false,).refresh(),
       Provider.of<FilterProductProvider>(Constants.globalContext(), listen: false,).getData(),
       Provider.of<StoresProvider>(Constants.globalContext(), listen: false,).getHomeStores(),
       Provider.of<OfferSectionProvider>(Constants.globalContext(), listen: false,).getData(),
