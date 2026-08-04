@@ -48,7 +48,7 @@ class SettingsActionButtons extends StatelessWidget {
             Icon(Icons.logout, color: AppColor.primaryColor, size: 20.sp),
             SizedBox(width: 3.w),
             Text(
-              AuthProvider.isLogin()?LanguageProvider.translate("settings", "logout"):LanguageProvider.translate("auth", "login"),
+              AuthProvider.isLogin()?LanguageProvider.translate("settings", "logout"):LanguageProvider.translate("buttons", "login"),
               style: TextStyleClass.normalStyle().copyWith(
                 color: AppColor.primaryColor,
                 fontWeight: FontWeight.bold,

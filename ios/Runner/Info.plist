@@ -100,7 +100,17 @@
                 		<string>fetch</string>
                 		<string>remote-notification</string>
                 	</array>
-
+ <key>CFBundleURLTypes</key>
+        <array>
+            <dict>
+                <key>CFBundleTypeRole</key>
+                <string>Editor</string>
+                <key>CFBundleURLSchemes</key>
+                <array>
+                    <string>com.googleusercontent.apps.284237387262-4bhtk7kbouj70qenakda9truc4rtsqjo</string>
+                </array>
+            </dict>
+        </array>
 <key>AssociatedDomains</key>
 		<array>
 			<string>applinks:floka.zeroonez.com</string>

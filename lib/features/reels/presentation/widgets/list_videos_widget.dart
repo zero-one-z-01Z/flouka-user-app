@@ -156,7 +156,7 @@ class ListVideosWidget extends StatelessWidget {
                                                 ),
                                                 child: Text(
                                                   LanguageProvider.translate(
-                                                    "video",
+                                                    "buttons",
                                                     "details",
                                                   ),
                                                   style: TextStyleClass.normalStyle(
